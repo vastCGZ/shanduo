@@ -1,0 +1,56 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/chat/chat",
+    "pages/activity/activity",
+    "pages/friends/friends",
+    "pages/personal/personal",
+    "pages/search/search"
+  ],
+  "window":{
+    "backgroundTextStyle":"dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "闪多",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh":true
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#4660ff",
+    "backgroundColor": "#fefefe",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/image/icon/index.png",
+        "selectedIconPath": "/image/icon/index_1.png"
+      },
+      {
+        "pagePath": "pages/chat/chat",
+        "text": "聊天",
+        "iconPath": "/image/icon/chat.png",
+        "selectedIconPath": "/image/icon/chat_1.png"
+      },
+      {
+        "pagePath": "pages/activity/activity",
+        "text": "活动",
+        "iconPath": "/image/icon/activity.png",
+        "selectedIconPath": "/image/icon/activity.png"
+      },
+      {
+        "pagePath": "pages/friends/friends",
+        "text": "好友",
+        "iconPath": "/image/icon/friends.png",
+        "selectedIconPath": "/image/icon/friends_1.png"
+      },
+      {
+        "pagePath": "pages/personal/personal",
+        "text": "我的",
+        "iconPath": "/image/icon/personal.png",
+        "selectedIconPath": "/image/icon/personal_1.png"
+      }
+    ]
+  }
+}

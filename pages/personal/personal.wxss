@@ -1,0 +1,92 @@
+page {
+  height: 100%;
+}
+
+.container {
+  align-items: stretch;
+}
+
+.bg_body {
+  background-color: #f7f7f7;
+  height: 100%;
+}
+
+.bg_body>view {
+  background-color: #fff;
+  padding-left: 30rpx;
+}
+
+.believe {
+  height: 180rpx;
+  margin: 10rpx 0;
+}
+
+.believe>.believe_left>image {
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.believe>.believe_right>view {
+  color: #fefefe;
+  font-size: 22rpx;
+  margin-right: 20rpx;
+  border-radius: 25rpx;
+  padding: 5rpx 10rpx 5rpx 20rpx;
+  background-color: #4660ff;
+}
+.believe>.believe_right>view>text {
+  color: #fefefe;
+  vertical-align: middle;
+}
+.believe>.believe_right>view>image {
+  width: 20rpx;
+  height: 20rpx;
+  color: #fefefe;
+  vertical-align: middle;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  height: 90rpx;
+  margin-bottom: 3rpx;
+}
+
+.nav_top {
+  margin: 10rpx 0 0;
+}
+
+.nav>view {
+  display: flex;
+  width: 50%;
+  line-height: 100%;
+  align-self: center;
+}
+
+.nav>.nav_left>view {
+  align-self: center;
+}
+
+.nav>.nav_left>image {
+  border-radius: 50%;
+  margin-right: 10rpx;
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.nav>.nav_left>view>text {
+  color: #999;
+}
+
+/*靠右*/
+
+.nav>.nav_right {
+  justify-content: flex-end;
+  align-self: center;
+}
+
+.nav>.nav_right>image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 20rpx;
+}

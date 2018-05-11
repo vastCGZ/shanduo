@@ -1,0 +1,47 @@
+<!--load.wxml-->
+<view class="container">
+  <form form-type='submit'>
+    <view class='header'>
+      <view class='header_left'>
+        <image src='/image/icon/off.png'></image>
+      </view>
+      <view class='header_right'>
+        <text bindtap='onTap'>去注册</text>
+        <image bindtap='onTap' src='/image/icon/return_2.png'></image>
+      </view>
+    </view>
+    <view class='article'>
+      <image src='/image/icon/portrait.png'></image>
+    </view>
+    <view class='footer'>
+      <view class='footer_name'>
+        <image wx:if='{{focus_1}}' src='/image/icon/icon_name_unchecked.png'></image>
+        <image wx:else='{{focus_1}}' src='/image/icon/icon_name_checked.png'></image>
+        <view>
+          <input type='text' name='uname' placeholder="手机号 / 闪多号" placeholder-class="psection" bindblur="blurInputEvent1" bindfocus="focusInputEvent1"></input>
+        </view>
+      </view>
+      <view class='footer_pwd'>
+        <image wx:if='{{focus_2}}' src='/image/icon/icon_password_unchecked.png'></image>
+        <image wx:else='{{focus_2}}' src='/image/icon/icon_pwd_checked.png'></image>
+        <view>
+          <input placeholder="输入登录密码" placeholder-class="psection" type='text' name='upwd' password='{{true}}' bindblur="blurInputEvent2" bindfocus="focusInputEvent2"></input>
+        </view>
+      </view>
+      <view class='footer_text'>
+        <view class='footer_text_left'>
+          <text>忘记密码?</text>
+        </view>
+        <view class='footer_text_right'>
+          <text bindtap='onTap'>还没有账号?</text>
+        </view>
+      </view>
+      <view class='footer_button'>
+        <button size='mini' type='warn'>立即登录</button>
+      </view>
+    </view>
+    <view class='bottom_img'>
+      <image src='/image/icon/bottom_img.png'></image>
+    </view>
+  </form>
+</view>

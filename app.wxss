@@ -1,0 +1,99 @@
+/*app.wxss*/
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+view {
+  font-size: 28rpx;
+}
+
+swiper {
+  height: 100%;
+}
+
+text {
+  color: #333;
+}
+
+.sex, .level {
+  display: inline-block;
+  background-color: #f5c724;
+  color: #fff;
+  font-size: 22rpx;
+  padding: 0 10rpx;
+  border-radius: 50rpx;
+  width: 60rpx;
+  text-align: center;
+}
+
+.sex {
+  background-color: #ff676f;
+  margin-right: 10rpx;
+  width: 50rpx;
+}
+
+.flo_left {
+  float: left;
+}
+
+.flo_right {
+  float: right;
+}
+
+.cl_both {
+  clear: both;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.block {
+  display: block;
+}
+
+.believe {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.believe>view {
+  display: flex;
+  width: 50%;
+  line-height: 100%;
+  align-self: center;
+}
+
+.believe>.believe_left>view {
+  align-self: center;
+}
+
+/*头像*/
+
+.believe>.believe_left>image {
+  border-radius: 50%;
+  margin-right: 20rpx;
+  width: 100rpx;
+  height: 100rpx;
+}
+
+/*距离右靠*/
+
+.believe>.believe_right {
+  justify-content: flex-end;
+  align-self: center;
+}
+
+/*右靠*/
+
+.believe>.believe_right>text {
+  margin-right: 20rpx;
+}

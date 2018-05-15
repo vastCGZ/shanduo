@@ -18,14 +18,14 @@
         <image wx:if='{{focus_1}}' src='/image/icon/icon_name_unchecked.png'></image>
         <image wx:else='{{focus_1}}' src='/image/icon/icon_name_checked.png'></image>
         <view>
-          <input type='text' name='uname' placeholder="手机号 / 闪多号" placeholder-class="psection" bindblur="blurInputEvent1" bindfocus="focusInputEvent1"></input>
+          <input type='text' name='uname' placeholder="手机号 / 闪多号" placeholder-class="psection" bindblur="blurInputEvent1" bindfocus="focusInputEvent1" bindinput='inputUserId'></input>
         </view>
       </view>
       <view class='footer_pwd'>
         <image wx:if='{{focus_2}}' src='/image/icon/icon_password_unchecked.png'></image>
         <image wx:else='{{focus_2}}' src='/image/icon/icon_pwd_checked.png'></image>
         <view>
-          <input placeholder="输入登录密码" placeholder-class="psection" type='text' name='upwd' password='{{true}}' bindblur="blurInputEvent2" bindfocus="focusInputEvent2"></input>
+          <input placeholder="输入登录密码" placeholder-class="psection" type='text' name='upwd' password='{{true}}' bindblur="blurInputEvent2" bindfocus="focusInputEvent2" bindinput='inputPwd'></input>
         </view>
       </view>
       <view class='footer_text'>
@@ -37,7 +37,11 @@
         </view>
       </view>
       <view class='footer_button'>
+<<<<<<< HEAD
         <button size='mini' type='warn' formType='submit'>立即登录</button>
+=======
+        <button size='mini' type='warn' bindtap='userLogin'>立即登录</button>
+>>>>>>> 034b9e3908860b96a62c54544ebdc056458e7bf2
       </view>
     </view>
 

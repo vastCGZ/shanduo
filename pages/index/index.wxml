@@ -14,7 +14,11 @@
       <image class='img_special' src='/image/icon/search.png' bindtap="bindFocus"></image>
     </view>
   </view>
+<<<<<<< HEAD
   <swiper wx:if="{{currentTab1 == 0 && currentTab == 0}}" current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange" style='height:{{816+390*(length-1)}}rpx'>
+=======
+  <swiper wx:if="{{currentTab1 == 0 && currentTab == 0}}" current="{{currentTab}}" class="swiper-box" duration="300" style='height:{{798+354*(length-1)}}rpx'>
+>>>>>>> 034b9e3908860b96a62c54544ebdc056458e7bf2
     <!-- 活动 -->
     <swiper-item>
       <view>
@@ -45,7 +49,11 @@
                   <view class='inline'>
                     <view>
                       <text>类别:</text>
+<<<<<<< HEAD
                       <text>{{item.activityType}}</text>
+=======
+                      <text>{{item.activityName}}</text>
+>>>>>>> 034b9e3908860b96a62c54544ebdc056458e7bf2
                     </view>
                     <view>
                       <text>时间:</text>
@@ -57,30 +65,53 @@
                     </view>
                     <view>
                       <text>男:</text>
+<<<<<<< HEAD
                       <text>{{item.manSum}}/{{item.manNumber}}</text>
                       <text class='m_left'>女:</text>
                       <text>{{item.womenSum}}/{{item.womanNumber}}</text>
+=======
+                      <text>{{item.manNumber}}</text>
+                      <text class='m_left'>女:</text>
+                      <text>{{item.womanNumber}}</text>
+                    </view>
+                    <view>
+                      <text>发起人:</text>
+                      <text>{{item.userName}}</text>
+>>>>>>> 034b9e3908860b96a62c54544ebdc056458e7bf2
                     </view>
                   </view>
                   <view class='inline'>
                     <view>
+<<<<<<< HEAD
                       <image src='https://app.yapinkeji.com/picture/{{item.headPortraitId}}'></image>
                     </view>
                     <view>
                       <text class='sex'><text class='sex_on' wx:if='{{item.gender}}'>♂</text><text class='sex_on' wx:else>♀</text>{{item.age}}</text>
+=======
+                      <image src='{{host}}/picture/{{item.headPortraitId}}'></image>
+                    </view>
+                    <view>
+                      <text class='sex'><text class='sex_on' wx:if='{{item.gender}}=="1"'>♂</text><text class='sex_on' wx:else>♀</text>{{item.age}}</text>
+>>>>>>> 034b9e3908860b96a62c54544ebdc056458e7bf2
                       <text class='level'>SVIP1</text>
                     </view>
                   </view>
                 </view>
                 <view>
                   <view>
+<<<<<<< HEAD
                     <text>发起人:</text>
                     <text>{{item.userName}}</text>
+=======
+                    <text>备注:</text>
+                    <text>{{item.remarks}}</text>
+>>>>>>> 034b9e3908860b96a62c54544ebdc056458e7bf2
                   </view>
                   <view>
                     <text>地点:</text>
                     <text>{{item.activityAddress}}</text>
                     <image class='location' src='/image/icon/location.png'></image>
+<<<<<<< HEAD
                     <text class='color_ls'>{{item.location}}km</text>
                   </view>
                   <view>
@@ -90,6 +121,12 @@
                 </view>
                 <view>
                   <text class='end'>截止时间:</text>
+=======
+                    <text class='color_ls'>{{item.activityAddress}}</text>
+                  </view>
+                </view>
+                <view>
+>>>>>>> 034b9e3908860b96a62c54544ebdc056458e7bf2
                   <text class='end'>{{item.activityCutoffTime}}</text>
                   <view class='inline flo_right'>
                     <text class='historical'>历史评价</text>

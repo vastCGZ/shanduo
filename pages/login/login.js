@@ -12,15 +12,21 @@ Page({
   data: {
     focus_1: true,
     focus_2: true,
+<<<<<<< HEAD
     modalHidden: true,
     toast1Hidden: true,
     notice_str: ''
+=======
+    username: null,
+    password: null
+>>>>>>> 034b9e3908860b96a62c54544ebdc056458e7bf2
   },
   onTap: function () {
     //保留当前页面,跳转到应用内某个页面
     wx.navigateTo({
       url: '../register/register',
     });
+<<<<<<< HEAD
     //跳转到tabBar页面,关闭其他所有tabBar页面
     // wx.switchTab({
     //   url: '../circum/circum',
@@ -29,6 +35,8 @@ Page({
     // wx.navigateBack({
     //   delta: 1
     // });
+=======
+>>>>>>> 034b9e3908860b96a62c54544ebdc056458e7bf2
   },
   offTap: function () {
     // 关闭当前页面,跳转到应用内某个页面
@@ -56,6 +64,7 @@ Page({
       focus_2: true
     })
   },
+<<<<<<< HEAD
   /*登录 */
 
   // 获取输入账号 
@@ -139,3 +148,59 @@ Page({
     }
   }
 })
+=======
+  inputUserId: function (event) {
+    this.setData({ username: event.detail.value })
+  },
+  inputPwd: function (event) {
+    this.setData({ password: event.detail.value })
+  },
+  userLogin: function () {
+    var that = this;
+    wx.showLoading({
+      title: '登陆中...',
+    })
+    wx.request({
+      url: app.host + '/juser/loginuser',
+      data: {
+        username: that.data.username,
+        password: that.data.password
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      dataType: 'json',
+      success: function (res) {
+        if (res.data.success) {
+          app.globalData.userInfo = res.data.result
+          wx.setStorage({
+            key: 'localUser',
+            data: res.data.result
+          })
+          wx.showModal({
+            title: '提示',
+            content: '登陆成功'
+          })
+          wx.switchTab({
+            url: '/pages/personal/personal'
+          });
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '用户名或密码错误'
+          })
+        }
+      },
+      fail: function () {
+        wx.showToast({
+          title: '访问错误'
+        })
+      },
+      complete: function () {
+        wx.hideLoading()
+      },
+      method: 'GET'
+    })
+  }
+})
+>>>>>>> 034b9e3908860b96a62c54544ebdc056458e7bf2

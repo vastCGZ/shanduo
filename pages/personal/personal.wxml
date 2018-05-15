@@ -2,10 +2,10 @@
   <view class='bg_body'>
     <view class='believe'>
       <view class='inline believe_left'>
-        <image src='/image/icon/image_1.png'></image>
+        <image src='{{headImg}}'></image>
         <view class='inline'>
           <view>
-            <text>小权律</text>
+            <text>{{userInfo.name}}</text>
           </view>
           <view>
             <text class='sex'>♀23</text>

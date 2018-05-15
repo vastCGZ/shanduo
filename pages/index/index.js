@@ -1,6 +1,4 @@
 //index.js  
-var postsData = require('../../data/posts_data.js')
-const req = require('../../utils/util.js')  
 //获取应用实例  
 var app = getApp()
 Page({
@@ -22,58 +20,50 @@ Page({
     posts_key: null,
     //活动数据的长度
     length: 0,
-    //
-    current: 0,
-    imgUrls: []
+    latitude: 0,
+    longitude: 0,
+    host: null
   },
   onLoad: function () {
     var that = this;
-    //调接口
-    req.GetByParams('activity/showHotActivity')//看这里  看这里  看这里  
-      .then(d => this.setData({ imgUrls: d, loading: false }))
-      .catch(e => {
-        this.setData({ imgUrls: [], loading: false })
-      })
-    console.log(this.data.imgUrls)
+    that.setData({ host: app.host });
     /** 
      * 获取系统信息 
      */
     wx.getSystemInfo({
-
       success: function (res) {
         that.setData({
           winWidth: res.windowWidth,
           winHeight: res.windowHeight,
-          vi_Height: res.windowHeight/2-100,
-          sw_Height: res.windowHeight/2-100,
+          vi_Height: res.windowHeight / 2 - 100,
+          sw_Height: res.windowHeight / 2 - 100
         });
       }
 
     });
-    that.setData({
-      posts_key: postsData.postList,
-      length: postsData.postList.length
+    wx.getLocation({
+      success: function (res) {
+        that.setData({ latitude: res.latitude });
+        that.setData({ longitude: res.longitude });
+        that.getActivityData();
+      }
     });
-    console.log(postsData.postList.length)
   },
   /** 
      * 滑动切换活动，动态 
      */
   bindChange: function (e) {
-
+    console.log(e.target.dataset.current);
     var that = this;
-    that.setData({ currentTab: e.detail.current });
-
+    that.setData({ currentTab: e.target.dataset.current });
   },
   /** 
    * 点击活动，动态切换 
    */
   swichNav: function (e) {
-
     var that = this;
-
     if (this.data.currentTab === e.target.dataset.current) {
-      return false;
+      return;
     } else {
       that.setData({
         currentTab: e.target.dataset.current
@@ -84,25 +74,46 @@ Page({
      * 滑动切换活动内的Tab
      */
   bindChange1: function (e) {
-
     var that = this;
     that.setData({ currentTab1: e.detail.current });
-
   },
   /** 
    * 点击活动，动态切换 
    */
   swichNav1: function (e) {
-
     var that = this;
-
     if (this.data.currentTab1 === e.target.dataset.current) {
-      return false;
-    } else {
-      that.setData({
-        currentTab1: e.target.dataset.current
-      })
+      return;
     }
+    that.setData({
+      currentTab1: e.target.dataset.current
+    })
+    that.getActivityData();
+  },
+  getActivityData: function () {
+    var that = this;
+    wx.request({
+      url: app.host + '/activity/showHotActivity',
+      data: {
+        token: app.globalData.userInfo.token,
+        type: that.data.currentTab1 + 1,
+        lon: that.data.longitude,
+        lat: that.data.latitude,
+        page: 1,
+        pageSize: 10
+      },
+      dataType: 'json',
+      success: function (res) {
+        if (res.data.success) {
+          that.setData({
+            posts_key: res.data.result.list,
+            length: res.data.result.list.length
+          });
+        }
+      }, fail: function (res) {
+        console.log(res.errorMsg);
+      }, method: 'GET'
+    });
   },
   /**
    * 扫一扫

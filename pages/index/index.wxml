@@ -14,7 +14,7 @@
       <image class='img_special' src='/image/icon/search.png' bindtap="bindFocus"></image>
     </view>
   </view>
-  <swiper wx:if="{{currentTab1 == 0 && currentTab == 0}}" current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange" style='height:{{798+354*(length-1)}}rpx'>
+  <swiper wx:if="{{currentTab1 == 0 && currentTab == 0}}" current="{{currentTab}}" class="swiper-box" duration="300" style='height:{{798+354*(length-1)}}rpx'>
     <!-- 活动 -->
     <swiper-item>
       <view>
@@ -45,11 +45,11 @@
                   <view class='inline flo_left'>
                     <view>
                       <text>类别:</text>
-                      <text>{{item.category}}</text>
+                      <text>{{item.activityName}}</text>
                     </view>
                     <view>
                       <text>时间:</text>
-                      <text>{{item.time}}</text>
+                      <text>{{item.activityStartTime}}</text>
                     </view>
                     <view>
                       <text>方式:</text>
@@ -57,39 +57,39 @@
                     </view>
                     <view>
                       <text>男:</text>
-                      <text>{{item.male_people}}</text>
+                      <text>{{item.manNumber}}</text>
                       <text class='m_left'>女:</text>
-                      <text>{{item.female_people}}</text>
+                      <text>{{item.womanNumber}}</text>
                     </view>
                     <view>
                       <text>发起人:</text>
-                      <text>{{item.initiator}}</text>
+                      <text>{{item.userName}}</text>
                     </view>
                   </view>
                   <view class='inline'>
                     <view>
-                      <image src='{{item.pic}}'></image>
+                      <image src='{{host}}/picture/{{item.headPortraitId}}'></image>
                     </view>
                     <view>
-                      <text class='sex'>{{item.sex_sign}}{{item.age}}</text>
-                      <text class='level'>{{item.level}}</text>
+                      <text class='sex'><text class='sex_on' wx:if='{{item.gender}}=="1"'>♂</text><text class='sex_on' wx:else>♀</text>{{item.age}}</text>
+                      <text class='level'>SVIP1</text>
                     </view>
                   </view>
                 </view>
                 <view>
                   <view>
                     <text>备注:</text>
-                    <text>{{item.notes}}</text>
+                    <text>{{item.remarks}}</text>
                   </view>
                   <view>
                     <text>地点:</text>
                     <text>{{item.place}}</text>
                     <image class='location' src='/image/icon/location.png'></image>
-                    <text class='color_ls'>{{item.distance}}</text>
+                    <text class='color_ls'>{{item.activityAddress}}</text>
                   </view>
                 </view>
                 <view>
-                  <text class='end'>{{item.deadline}}</text>
+                  <text class='end'>{{item.activityCutoffTime}}</text>
                   <view class='inline flo_right'>
                     <text class='historical'>历史评价</text>
                     <view class='inline evaluate'>

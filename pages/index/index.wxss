@@ -120,7 +120,6 @@
   padding: 20rpx;
   background-color: #fff;
   border-radius: 10rpx;
-  height:340rpx;
 }
 
 .m_left {
@@ -151,12 +150,16 @@
 
 /*热门活动信息内容*/
 
+.frame>view:nth-child(1) {
+  height: 190rpx;
+}
+
 .frame>view:nth-child(1)>view:nth-child(1) {
-  width: 75%;
+  width: 60%;
 }
 
 .frame>view:nth-child(1)>view:nth-child(2) {
-  width: 25%;
+  width: 40%;
 }
 
 .frame>view>view {
@@ -174,8 +177,7 @@
   display: inline-block;
   width: 100rpx;
   height: 100rpx;
-  margin-right: 20%;
-  margin-bottom: 10rpx;
+  margin-right: 12%;
 }
 
 .historical{
@@ -235,12 +237,7 @@
 }
 
 .dynamic .nearby>view:nth-child(2)>text {
-  display: inline-block;
   color: #999;
-  width: 70%;
-  overflow: hidden;
-  text-overflow:ellipsis;
-  white-space: nowrap;
 }
 
 .dynamic .nearby>view:nth-child(2)>view>image {

@@ -1,6 +1,4 @@
 //app.js
-<<<<<<< HEAD
-=======
 App({
   onLaunch: function () {
     var that = this;
@@ -16,4 +14,3 @@ App({
   },
   host: 'https://yapinkeji.com/shanduoparty'
 })
->>>>>>> 034b9e3908860b96a62c54544ebdc056458e7bf2

@@ -1,6 +1,5 @@
 {
   "pages":[
-    "pages/dynamic/dynamic",
     "pages/index/index",
     "pages/login/login",
     "pages/register/register",
@@ -10,6 +9,7 @@
     "pages/personal/personal",
     "pages/search/search",
     "pages/release_hd/release_hd",
+    "pages/dynamic/dynamic",
     "pages/release_dt/release_dt"
   ],
   "window":{

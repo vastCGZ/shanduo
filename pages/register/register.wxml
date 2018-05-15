@@ -1,6 +1,6 @@
 <!--register.wxml-->
 <view class="container">
-  <form bindsubmit="formSubmit">
+  <form form-type='submit'>
     <view class='header'>
       <view class='header_left'>
         <image bindtap='onTap' src='/image/icon/return_1.png'></image>
@@ -14,14 +14,8 @@
         <image wx:if='{{focus_1}}' src='/image/icon/icon_name_unchecked.png'></image>
         <image wx:else='{{focus_1}}' src='/image/icon/icon_name_checked.png'></image>
         <view>
-<<<<<<< HEAD
-          <input type='number' name='phone' placeholder="请输入手机号" placeholder-class="psection" bindblur="blurInputEvent1" bindfocus="focusInputEvent1"></input>
-          <button size='mini' type='warn' wx:if='{{!isShow}}' bindtap='getCode'>发送验证码</button>
-          <button size='mini' type='warn' wx:else>{{sec}}s</button>
-=======
           <input type='number' name='uname' placeholder="请输入手机号" placeholder-class="psection" bindblur="blurInputEvent1" bindfocus="focusInputEvent1" bindinput='inputPhone'></input>
           <button size='mini' type='warn' bindtap='sendMSM'>{{hint}}</button>
->>>>>>> 034b9e3908860b96a62c54544ebdc056458e7bf2
         </view>
       </view>
       <view class='footer_test'>
@@ -35,11 +29,7 @@
         <image wx:if='{{focus_3}}' src='/image/icon/icon_password_unchecked.png'></image>
         <image wx:else='{{focus_3}}' src='/image/icon/icon_pwd_checked.png'></image>
         <view>
-<<<<<<< HEAD
-          <input type='text' name='pwd' password='{{true}}' placeholder="设置用户密码" placeholder-class="psection" bindblur="blurInputEvent3" bindfocus="focusInputEvent3"></input>
-=======
           <input type='text' name='upwd' password='{{true}}' placeholder="设置用户密码8-16位" placeholder-class="psection" bindblur="blurInputEvent3" bindfocus="focusInputEvent3" bindinput='inputPwd'></input>
->>>>>>> 034b9e3908860b96a62c54544ebdc056458e7bf2
         </view>
       </view>
       <radio-group class='footer_text'>
@@ -49,25 +39,9 @@
         </label>
       </radio-group>
       <view class='footer_button'>
-<<<<<<< HEAD
-        <button size='mini' type='warn' formType='submit'>立即注册</button>
-=======
         <button size='mini' type='warn' bindtap='register'>立即注册</button>
->>>>>>> 034b9e3908860b96a62c54544ebdc056458e7bf2
       </view>
     </view>
-
-
-     <!-- 黑框提示并消失 --> 
-    <toast hidden="{{toast1Hidden}}" bindchange="toast1Change">  
-        {{notice_str}}  
-    </toast>  
-    <!-- 确认框 及 提示框 -->  
-    <view class="page__bd">  
-        <modal class="modal" title="确认" confirm-text="确定" cancel-text="取消" hidden="{{modalHidden}}" mask bindconfirm="confirm_one" bindcancel="cancel_one">  
-            确认提交么？  
-        </modal> 
-    </view> 
     <view class='bottom_img'>
       <image src='/image/icon/bottom_img.png'></image>
     </view>

@@ -1,10 +1,4 @@
 //index.js  
-<<<<<<< HEAD
-var postsData = require('../../data/posts_data.js')
-// const req = require('../../utils/util.js')  
-const network = require("../../request/request.js")  
-=======
->>>>>>> 034b9e3908860b96a62c54544ebdc056458e7bf2
 //获取应用实例  
 var app = getApp()
 Page({
@@ -23,45 +17,9 @@ Page({
     //扫一扫
     show: null,
     //请求的活动数据
-    posts_hot: null,
-    posts_hot_sex: null,
     posts_key: null,
     //活动数据的长度
     length: 0,
-<<<<<<< HEAD
-    length1: 0,
-    //
-    current: 0,
-    imgUrls: []
-  },
-  onLoad: function () {
-    var that = this;    //调接口
-    //写入参数  
-    var params = new Object()
-    params.type = 1;
-    params.lon = 113.91;
-    params.lat = 22.50;
-    params.page = 1;
-    params.pageSize = 5;
-
-    //发起请求  
-    network.GET(
-      {
-        params: params,
-        success: function (res) {
-          //拿到解密后的数据，进行代码逻辑  
-          that.setData({
-            posts_hot: res.data.result.list,
-            length: res.data.result.list.length
-          });
-        },
-        fail: function () {
-          //失败后的逻辑  
-
-        },
-      }
-    ) 
-=======
     latitude: 0,
     longitude: 0,
     host: null
@@ -69,7 +27,6 @@ Page({
   onLoad: function () {
     var that = this;
     that.setData({ host: app.host });
->>>>>>> 034b9e3908860b96a62c54544ebdc056458e7bf2
     /** 
      * 获取系统信息 
      */
@@ -84,18 +41,12 @@ Page({
       }
 
     });
-<<<<<<< HEAD
-    that.setData({
-      posts_key: postsData.postList,
-      length1: postsData.postList.length
-=======
     wx.getLocation({
       success: function (res) {
         that.setData({ latitude: res.latitude });
         that.setData({ longitude: res.longitude });
         that.getActivityData();
       }
->>>>>>> 034b9e3908860b96a62c54544ebdc056458e7bf2
     });
   },
   /** 
@@ -124,53 +75,16 @@ Page({
      */
   bindChange1: function (e) {
     var that = this;
-<<<<<<< HEAD
-    that.setData({ currentTab1: e.detail.current});
-
-=======
     that.setData({ currentTab1: e.detail.current });
->>>>>>> 034b9e3908860b96a62c54544ebdc056458e7bf2
   },
   /** 
    * 点击活动，动态切换 
    */
   swichNav1: function (e) {
     var that = this;
-<<<<<<< HEAD
-    var type_on = parseInt(e.target.dataset.current)+1
-
-=======
->>>>>>> 034b9e3908860b96a62c54544ebdc056458e7bf2
     if (this.data.currentTab1 === e.target.dataset.current) {
       return;
     }
-<<<<<<< HEAD
-    //调接口
-    //写入参数  
-    var params = new Object()
-    params.type = type_on;
-    params.lon = 113.91;
-    params.lat = 22.50;
-    params.page = 1;
-    params.pageSize = 5;
-
-    //发起请求  
-    network.GET(
-      {
-        params: params,
-        success: function (res) {
-          //拿到解密后的数据，进行代码逻辑  
-          that.setData({
-            posts_hot: res.data.result.list,
-            length: res.data.result.list.length
-          });
-        },
-        fail: function () {
-          //失败后的逻辑  
-
-        },
-      }) 
-=======
     that.setData({
       currentTab1: e.target.dataset.current
     })
@@ -200,7 +114,6 @@ Page({
         console.log(res.errorMsg);
       }, method: 'GET'
     });
->>>>>>> 034b9e3908860b96a62c54544ebdc056458e7bf2
   },
   /**
    * 扫一扫

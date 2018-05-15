@@ -1,9 +1,9 @@
 <!--load.wxml-->
 <view class="container">
-  <form form-type='submit'>
+  <form bindsubmit="formSubmit">
     <view class='header'>
       <view class='header_left'>
-        <image src='/image/icon/off.png'></image>
+        <image bindtap='offTap' src='/image/icon/off.png'></image>
       </view>
       <view class='header_right'>
         <text bindtap='onTap'>去注册</text>
@@ -37,9 +37,21 @@
         </view>
       </view>
       <view class='footer_button'>
-        <button size='mini' type='warn'>立即登录</button>
+        <button size='mini' type='warn' formType='submit'>立即登录</button>
       </view>
     </view>
+
+
+     <!-- 黑框提示并消失 --> 
+    <toast hidden="{{toast1Hidden}}" bindchange="toast1Change">  
+        {{notice_str}}  
+    </toast>  
+    <!-- 确认框 及 提示框 -->  
+    <view class="page__bd">  
+        <modal class="modal" title="确认" confirm-text="确定" cancel-text="取消" hidden="{{modalHidden}}" mask bindconfirm="confirm_one" bindcancel="cancel_one">  
+            确认提交么？  
+        </modal> 
+    </view>  
     <view class='bottom_img'>
       <image src='/image/icon/bottom_img.png'></image>
     </view>

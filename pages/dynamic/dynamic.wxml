@@ -1,0 +1,133 @@
+<view class='container'>
+  <block wx:for="{{ posts_key }}" wx:key="navItems"  wx:for-item="item" wx:for-index="idx">
+    <view class='nearby'>
+      <view class='believe'>
+        <view class='inline believe_left'>
+          <image src='{{item.pic}}'></image>
+          <view class='inline'>
+            <view>
+              <text>{{item.initiator}}</text>
+            </view>
+            <view>
+              <text class='sex'>{{item.sex_sign}}{{item.age}}</text>
+              <text class='level'>{{item.level}}</text>
+            </view>
+          </view>
+        </view>
+        <view class='inline believe_right'>
+          <image class='location' src='/image/icon/location.png'></image>
+          <text class='color_ls'>{{item.distance}}</text>
+        </view>
+      </view>
+      <view>
+        <text>{{item.say}}</text>
+        <view>
+          <image wx:for="{{ item.say_pic }}" wx:key="navItems"  wx:for-item="ite" wx:for-index="index" src='{{ite.pic}}'></image>
+        </view>
+        <view>
+          <text>刚刚发布</text>
+        </view>
+      </view>
+      <view>
+        <view>
+          <image src='/image/icon/comment_1.png'></image>
+          <text>863</text>
+          <image src='/image/icon/fabulous_1.png'></image>
+          <text>863</text>
+        </view>
+        <view>
+          <image src='/image/icon/more2.png'></image>
+        </view>
+      </view>
+      <view class='pl_area'>
+        <view class='area_top'>
+          <text>评论区(138)</text>
+        </view>
+        <view class='area_content'>
+          <view class='inline area_user'>
+            <image src='{{item.pic}}'></image>
+            <view class='inline'>
+              <view>
+                <text>{{item.initiator}}</text>
+                <text class='sex sex_nan'>{{item.sex_sign}}{{item.age}}</text>
+              </view>
+              <view>
+                <text>皮!</text>
+              </view>
+              <view>
+                <view>
+                  <view>
+                    <text class='txt_title'>来自火星的:</text>
+                    <text class='txt_floor'>6666666666666666666666666666666666666666666666666666666666</text>
+                  </view>
+                  <view>
+                    <text class='txt_title'>来自火星的:</text>
+                    <text class='txt_floor'>6666666666666666666666666666666666666666666666666666666666</text>
+                  </view>
+                  <view>
+                    <text class='txt_title'>来自火星的:</text>
+                    <text class='txt_floor'>6666666666666666666666666666666666666666666666666666666666</text>
+                  </view>
+                  <view>
+                    <text class='txt_title'>来自火星的:</text>
+                    <text class='txt_floor'>6666666666666666666666666666666666666666666666666666666666</text>
+                  </view>
+                </view>
+                <text class='txt_title'>回复量50条></text>
+              </view>
+              <view>
+                <text class='inline'>5-11</text>
+                <text class='inline'>刚刚</text>
+              </view>
+            </view>
+          </view>
+          <view class='inline area_user'>
+            <image src='{{item.pic}}'></image>
+            <view class='inline'>
+              <view>
+                <text>{{item.initiator}}</text>
+                <text class='sex'>{{item.sex_sign}}{{item.age}}</text>
+              </view>
+              <view>
+                <text>皮!</text>
+              </view>
+              <view>
+                <view>
+                  <view>
+                    <text class='txt_title'>来自火星的:</text>
+                    <text class='txt_floor'>6666666666666666666666666666666666666666666666666666666666</text>
+                  </view>
+                  <view>
+                    <text class='txt_title'>来自火星的:</text>
+                    <text class='txt_floor'>6666666666666666666666666666666666666666666666666666666666</text>
+                  </view>
+                  <view>
+                    <text class='txt_title'>来自火星的:</text>
+                    <text class='txt_floor'>6666666666666666666666666666666666666666666666666666666666</text>
+                  </view>
+                  <view>
+                    <text class='txt_title'>来自火星的:</text>
+                    <text class='txt_floor'>6666666666666666666666666666666666666666666666666666666666</text>
+                  </view>
+                </view>
+                <text class='txt_title'>回复量50条></text>
+              </view>
+              <view>
+                <text class='inline'>5-11</text>
+                <text class='inline'>刚刚</text>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class='area_speak'>
+          <view>
+            <view>
+              <input placeholder="说点啥..."></input>
+            </view>
+            <image src='/image/icon/laugh.png'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

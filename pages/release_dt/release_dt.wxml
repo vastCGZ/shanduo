@@ -1,0 +1,26 @@
+<!-- release_dt.wxml -->
+<view class='container'>
+  <view class='release_header'>
+    <text class='left_text inline'>取消</text>
+    <text class='center_text inline'>动态发布</text>
+    <text class='right_text inline'>发送</text>
+  </view>
+  <view class='release_section'>
+    <textarea placeholder='说说你觉得有趣的事吧!'placeholder-class="psection"></textarea>
+  </view>
+  <view class='release_footer pos_rel'>
+    <image wx:if='{{avatarUrl!=null}}' class='release_footer_pic' src="{{avatarUrl}}"></image>
+    <view class='pic_left' bindtap="bindViewTap">
+      <view>
+        <image src='/image/icon/bitmap.png'></image>
+      </view>
+      <text>拍照 / 相片</text>
+    </view>
+    <view class='pic_center pos_abs'>
+      <image src='/image/icon/laugh.png'></image>
+    </view>
+    <view class='pic_right pos_abs'>
+      <image src='/image/icon/position.png'></image>
+    </view>
+  </view>
+</view>

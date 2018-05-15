@@ -14,7 +14,7 @@
       <image class='img_special' src='/image/icon/search.png' bindtap="bindFocus"></image>
     </view>
   </view>
-  <swiper wx:if="{{currentTab1 == 0 && currentTab == 0}}" current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange" style='height:{{798+354*(length-1)}}rpx'>
+  <swiper wx:if="{{currentTab1 == 0 && currentTab == 0}}" current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange" style='height:{{816+390*(length-1)}}rpx'>
     <!-- 活动 -->
     <swiper-item>
       <view>
@@ -39,17 +39,17 @@
         <!-- 热门活动 -->
         <swiper-item class='sw_item'>
           <scroll-view scroll-y="{{true}}">
-            <block wx:for="{{ posts_key }}" wx:key="navItems"  wx:for-item="item" wx:for-index="idx">
+            <block wx:for="{{ posts_hot }}" wx:key="navItems"  wx:for-item="item" wx:for-index="idx">
               <view class='frame'>
                 <view>
-                  <view class='inline flo_left'>
+                  <view class='inline'>
                     <view>
                       <text>类别:</text>
-                      <text>{{item.category}}</text>
+                      <text>{{item.activityType}}</text>
                     </view>
                     <view>
                       <text>时间:</text>
-                      <text>{{item.time}}</text>
+                      <text>{{item.activityStartTime}}</text>
                     </view>
                     <view>
                       <text>方式:</text>
@@ -57,39 +57,40 @@
                     </view>
                     <view>
                       <text>男:</text>
-                      <text>{{item.male_people}}</text>
+                      <text>{{item.manSum}}/{{item.manNumber}}</text>
                       <text class='m_left'>女:</text>
-                      <text>{{item.female_people}}</text>
-                    </view>
-                    <view>
-                      <text>发起人:</text>
-                      <text>{{item.initiator}}</text>
+                      <text>{{item.womenSum}}/{{item.womanNumber}}</text>
                     </view>
                   </view>
                   <view class='inline'>
                     <view>
-                      <image src='{{item.pic}}'></image>
+                      <image src='https://app.yapinkeji.com/picture/{{item.headPortraitId}}'></image>
                     </view>
                     <view>
-                      <text class='sex'>{{item.sex_sign}}{{item.age}}</text>
-                      <text class='level'>{{item.level}}</text>
+                      <text class='sex'><text class='sex_on' wx:if='{{item.gender}}'>♂</text><text class='sex_on' wx:else>♀</text>{{item.age}}</text>
+                      <text class='level'>SVIP1</text>
                     </view>
                   </view>
                 </view>
                 <view>
                   <view>
-                    <text>备注:</text>
-                    <text>{{item.notes}}</text>
+                    <text>发起人:</text>
+                    <text>{{item.userName}}</text>
                   </view>
                   <view>
                     <text>地点:</text>
-                    <text>{{item.place}}</text>
+                    <text>{{item.activityAddress}}</text>
                     <image class='location' src='/image/icon/location.png'></image>
-                    <text class='color_ls'>{{item.distance}}</text>
+                    <text class='color_ls'>{{item.location}}km</text>
+                  </view>
+                  <view>
+                    <text>备注:</text>
+                    <text>{{item.remarks}}</text>
                   </view>
                 </view>
                 <view>
-                  <text class='end'>{{item.deadline}}</text>
+                  <text class='end'>截止时间:</text>
+                  <text class='end'>{{item.activityCutoffTime}}</text>
                   <view class='inline flo_right'>
                     <text class='historical'>历史评价</text>
                     <view class='inline evaluate'>
@@ -105,10 +106,16 @@
             </block>
           </scroll-view>
         </swiper-item>
+        <!-- 附近活动 -->
+        <swiper-item>
+        </swiper-item>
+        <!-- 好友活动 -->
+        <swiper-item>
+        </swiper-item>
       </swiper>
     </swiper-item>
   </swiper>
-  <swiper wx:elif="{{currentTab1 == 1 && currentTab == 0}}" current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange" style='height:430rpx'>
+  <swiper wx:if="{{currentTab1 == 1 && currentTab == 0}}" current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange" style='height:{{816+390*(length-1)}}rpx'>
     <!-- 活动 -->
     <swiper-item>
       <view>
@@ -130,9 +137,81 @@
         <view class="swiper-tab-list1 {{currentTab1==2 ? 'on1' : ''}}" data-current="2" bindtap="swichNav1">好友活动</view>
       </view>
       <swiper current="{{currentTab1}}" class="swiper-box1" duration="300" bindchange="bindChange1">
+        <!-- 热门活动 -->
+        <swiper-item>
+        </swiper-item>
         <!-- 附近活动 -->
         <swiper-item class='sw_item'>
-          <view>附近活动</view>
+          <scroll-view scroll-y="{{true}}">
+            <block wx:for="{{ posts_hot }}" wx:key="navItems"  wx:for-item="item" wx:for-index="idx">
+              <view class='frame'>
+                <view>
+                  <view class='inline'>
+                    <view>
+                      <text>类别:</text>
+                      <text>{{item.activityType}}</text>
+                    </view>
+                    <view>
+                      <text>时间:</text>
+                      <text>{{item.activityStartTime}}</text>
+                    </view>
+                    <view>
+                      <text>方式:</text>
+                      <text>{{item.mode}}</text>
+                    </view>
+                    <view>
+                      <text>男:</text>
+                      <text>{{item.manSum}}/{{item.manNumber}}</text>
+                      <text class='m_left'>女:</text>
+                      <text>{{item.womenSum}}/{{item.womanNumber}}</text>
+                    </view>
+                  </view>
+                  <view class='inline'>
+                    <view>
+                      <image src='https://app.yapinkeji.com/picture/{{item.headPortraitId}}'></image>
+                    </view>
+                    <view>
+                      <text class='sex'><text class='sex_on' wx:if='{{item.gender}}'>♂</text><text class='sex_on' wx:else>♀</text>{{item.age}}</text>
+                      <text class='level'>SVIP1</text>
+                    </view>
+                  </view>
+                </view>
+                <view>
+                  <view>
+                    <text>发起人:</text>
+                    <text>{{item.userName}}</text>
+                  </view>
+                  <view>
+                    <text>地点:</text>
+                    <text>{{item.activityAddress}}</text>
+                    <image class='location' src='/image/icon/location.png'></image>
+                    <text class='color_ls'>{{item.location}}km</text>
+                  </view>
+                  <view>
+                    <text>备注:</text>
+                    <text>{{item.remarks}}</text>
+                  </view>
+                </view>
+                <view>
+                  <text class='end'>截止时间:</text>
+                  <text class='end'>{{item.activityCutoffTime}}</text>
+                  <view class='inline flo_right'>
+                    <text class='historical'>历史评价</text>
+                    <view class='inline evaluate'>
+                      <text class='evaluate_txt'>去报名</text>
+                      <image class='evaluate_pic' src='/image/icon/icon-1.png'></image>
+                    </view>
+                    <image class='more' src='/image/icon/more.png'></image>
+                  </view>
+                  <view class='cl_both'></view>
+                </view>
+                <view class='cl_both'></view>
+              </view>
+            </block>
+          </scroll-view>
+        </swiper-item>
+        <!-- 好友活动 -->
+        <swiper-item>
         </swiper-item>
       </swiper>
     </swiper-item>
@@ -159,6 +238,12 @@
         <view class="swiper-tab-list1 {{currentTab1==2 ? 'on1' : ''}}" data-current="2" bindtap="swichNav1">好友活动</view>
       </view>
       <swiper current="{{currentTab1}}" class="swiper-box1" duration="300" bindchange="bindChange1">
+        <!-- 热门活动 -->
+        <swiper-item>
+        </swiper-item>
+        <!-- 附近活动 -->
+        <swiper-item>
+        </swiper-item>
         <!-- 好友活动 -->
         <swiper-item class='sw_item'>
           <view>好友活动</view>
@@ -166,7 +251,7 @@
       </swiper>
     </swiper-item>
   </swiper>
-  <swiper wx:if="{{currentTab1 == 0 && currentTab == 1}}" current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange" style='height:{{430+455*length}}rpx'>
+  <swiper wx:if="{{currentTab1 == 0 && currentTab == 1}}" current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange" style='height:2000rpx'>
     <!-- 活动 -->
     <swiper-item>
     </swiper-item>
@@ -233,6 +318,9 @@
             </block>
           </scroll-view>
         </swiper-item>
+        <!-- 好友动态 -->
+        <swiper-item>
+        </swiper-item>
       </swiper>
     </swiper-item>
   </swiper>
@@ -262,7 +350,6 @@
       <swiper current="{{currentTab1}}" class="swiper-box1" duration="300" bindchange="bindChange1">
         <!-- 附近动态 -->
         <swiper-item class='sw_item'>
-          <view>附近动态</view>
         </swiper-item>
         <!-- 好友动态 -->
         <swiper-item class='sw_item'>
@@ -295,6 +382,12 @@
         <view class="swiper-tab-list1 {{currentTab1==1 ? 'on1' : ''}}" data-current="1" bindtap="swichNav1">好友动态</view>
       </view>
       <swiper current="{{0}}" class="swiper-box1" duration="300" bindchange="bindChange1">
+        <!-- 附近活动 -->
+        <swiper-item>
+        </swiper-item>
+        <!-- 好友活动 -->
+        <swiper-item>
+        </swiper-item>
         <!-- 附近动态 -->
         <swiper-item class='sw_item'>
           <scroll-view>

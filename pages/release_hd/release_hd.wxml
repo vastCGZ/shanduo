@@ -1,0 +1,71 @@
+<!-- release_hd.wxml -->
+<view class='container block'>
+  <view class='release_header'>
+    <text class='left_text inline'>取消</text>
+    <text class='center_text inline'>活动发布</text>
+    <text class='right_text inline'></text>
+  </view>
+  <view class='release_section'>
+    <view>
+      <input name='title' placeholder='请输入活动主题(最多输入20字符)' placeholder-class="psection_ipt"></input>
+    </view>
+    <view>
+      <textarea name='content' placeholder='请输入活动内容(禁止发违禁文字)' placeholder-class="psection_text"></textarea>
+    </view>
+    <view class="people">
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" class='inline'>
+        <view>
+          <image src='/image/icon/nan.png'></image>
+          <text>{{array[index]}}<text>人</text></text>
+        </view>
+      </picker>
+      <picker name='people' bindchange="bindPickerChange1" value="{{index1}}" range="{{array1}}" class='inline'>
+        <view>
+          <image src='/image/icon/nv.png'></image>
+          <text>{{array1[index1]}}<text>人</text></text>
+        </view>
+      </picker>
+    </view>
+    <view class='time'>
+      <image src='/image/icon/time.png'></image>
+      <text>活动时间:</text>
+      <picker name='time' class='inline'>
+        <view>
+          <text>设置活动时间</text>
+          <image src='/image/icon/icon-0.png'></image>
+        </view>
+      </picker>
+    </view>
+    <view class='time'>
+      <image src='/image/icon/money.png'></image>
+      <text>支付方式:</text>
+      <picker name='payment' class='inline'>
+        <view>
+          <text>选择支付方式</text>
+          <image src='/image/icon/icon-0.png'></image>
+        </view>
+      </picker>
+    </view>
+    <view class='time'>
+      <image src='/image/icon/position.png'></image>
+      <text>活动地点:</text>
+      <picker name='place' class='inline'>
+        <view>
+          <text>小区/写字楼/商城</text>
+          <image src='/image/icon/icon-0.png'></image>
+        </view>
+      </picker>
+    </view>
+    <view class='address'>
+      <textarea name='address' placeholder='请输入详细地址' placeholder-class="psection_address"></textarea>
+    </view>
+  </view>
+  <view class='release_footer'>
+    <view>
+      <text>活动置顶</text>
+    </view>
+    <view>
+      <text>活动发布</text>
+    </view>
+  </view>
+</view>

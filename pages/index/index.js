@@ -1,6 +1,7 @@
 //index.js  
 var postsData = require('../../data/posts_data.js')
-const req = require('../../utils/util.js')  
+// const req = require('../../utils/util.js')  
+const network = require("../../request/request.js")  
 //获取应用实例  
 var app = getApp()
 Page({
@@ -19,22 +20,43 @@ Page({
     //扫一扫
     show: null,
     //请求的活动数据
+    posts_hot: null,
+    posts_hot_sex: null,
     posts_key: null,
     //活动数据的长度
     length: 0,
+    length1: 0,
     //
     current: 0,
     imgUrls: []
   },
   onLoad: function () {
-    var that = this;
-    //调接口
-    req.GetByParams('activity/showHotActivity')//看这里  看这里  看这里  
-      .then(d => this.setData({ imgUrls: d, loading: false }))
-      .catch(e => {
-        this.setData({ imgUrls: [], loading: false })
-      })
-    console.log(this.data.imgUrls)
+    var that = this;    //调接口
+    //写入参数  
+    var params = new Object()
+    params.type = 1;
+    params.lon = 113.91;
+    params.lat = 22.50;
+    params.page = 1;
+    params.pageSize = 5;
+
+    //发起请求  
+    network.GET(
+      {
+        params: params,
+        success: function (res) {
+          //拿到解密后的数据，进行代码逻辑  
+          that.setData({
+            posts_hot: res.data.result.list,
+            length: res.data.result.list.length
+          });
+        },
+        fail: function () {
+          //失败后的逻辑  
+
+        },
+      }
+    ) 
     /** 
      * 获取系统信息 
      */
@@ -52,9 +74,8 @@ Page({
     });
     that.setData({
       posts_key: postsData.postList,
-      length: postsData.postList.length
+      length1: postsData.postList.length
     });
-    console.log(postsData.postList.length)
   },
   /** 
      * 滑动切换活动，动态 
@@ -86,7 +107,7 @@ Page({
   bindChange1: function (e) {
 
     var that = this;
-    that.setData({ currentTab1: e.detail.current });
+    that.setData({ currentTab1: e.detail.current});
 
   },
   /** 
@@ -95,6 +116,7 @@ Page({
   swichNav1: function (e) {
 
     var that = this;
+    var type_on = parseInt(e.target.dataset.current)+1
 
     if (this.data.currentTab1 === e.target.dataset.current) {
       return false;
@@ -103,6 +125,31 @@ Page({
         currentTab1: e.target.dataset.current
       })
     }
+    //调接口
+    //写入参数  
+    var params = new Object()
+    params.type = type_on;
+    params.lon = 113.91;
+    params.lat = 22.50;
+    params.page = 1;
+    params.pageSize = 5;
+
+    //发起请求  
+    network.GET(
+      {
+        params: params,
+        success: function (res) {
+          //拿到解密后的数据，进行代码逻辑  
+          that.setData({
+            posts_hot: res.data.result.list,
+            length: res.data.result.list.length
+          });
+        },
+        fail: function () {
+          //失败后的逻辑  
+
+        },
+      }) 
   },
   /**
    * 扫一扫

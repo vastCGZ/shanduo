@@ -95,7 +95,7 @@ Page({
     wx.request({
       url: app.host + '/activity/showHotActivity',
       data: {
-        token: app.globalData.userInfo.token,
+        token: app.globalData.userInfo,
         type: that.data.currentTab1 + 1,
         lon: that.data.longitude,
         lat: that.data.latitude,

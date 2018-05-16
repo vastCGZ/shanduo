@@ -1,0 +1,44 @@
+.container{
+  background-color: #fefefe;
+}
+.comment_header{
+  position: fixed;
+  height: 100rpx;
+  width: 100%;
+  line-height: 100rpx;
+  text-align: left;
+  background-color: #fff;
+}
+.comment_header>image{
+  height: 50rpx;
+  width: 50rpx;
+  vertical-align: middle;
+}
+.comment_header>text{
+  width: 90%;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+}
+.comment_body{
+  margin-top: 100rpx;
+  width: 100%;
+}
+.comment_body>.area_user:nth-child(1){
+  background-color: #fff;
+}
+.area_user>view>view:nth-child(1){
+  margin-top: 20rpx;
+}
+.area_user>view>view>.txt_cl{
+  color: #999;
+}
+.area_user>view>view:nth-child(2)>text:nth-child(2){
+ margin-left: 5%;
+}
+.area_user>view>view:nth-child(3)>.aite{
+  color: rgb(70, 96, 255);
+}
+.comment_footer>view{
+  background-color: #fefefe;
+}

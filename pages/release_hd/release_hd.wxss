@@ -12,6 +12,7 @@
   border-bottom: 1rpx solid #eaeaea;
 }
 .release_section>view>input{
+  margin-top: 102rpx;
   padding: 20rpx;
   width: 94%;
 }

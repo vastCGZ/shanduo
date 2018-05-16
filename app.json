@@ -1,16 +1,18 @@
 {
   "pages":[
+    "pages/friends/friends",
     "pages/index/index",
     "pages/login/login",
     "pages/register/register",
     "pages/chat/chat",
     "pages/activity/activity",
-    "pages/friends/friends",
     "pages/personal/personal",
-    "pages/search/search",
     "pages/release_hd/release_hd",
+    "pages/release_dt/release_dt",
+    "pages/comment/comment",
     "pages/dynamic/dynamic",
-    "pages/release_dt/release_dt"
+    "pages/mydynamic/mydynamic",
+    "pages/Chatting/Chatting"
   ],
   "window":{
     "backgroundTextStyle":"dark",

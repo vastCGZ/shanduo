@@ -1,65 +1,244 @@
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    
+    // 当前选择的导航字母
+    selected: 0,
+    // 选择字母视图滚动的位置id
+    scrollIntoView: '   ',
+    // 导航字母
+    letters: ['   ','A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
+      'U', 'V', 'W', 'X', 'Y', 'Z'],
+    groups: [
+    {
+        groupName: '   ',
+      users: [
+        {
+          name: '新的朋友',
+          avatar: '../../image/portrait.png'
+        },
+        {
+          name: '群聊',
+          avatar: '../../image/portrait.png'
+        },
+        {
+          name: '标签',
+          avatar: '../../image/portrait.png'
+        },
+        {
+          name: '公众号',
+          avatar: '../../image/portrait.png'
+        }
+      ]
+    },
+    {
+      groupName: 'A',
+      users: [
+        {
+          name: '阿码',
+          avatar: '../../image/portrait.png'
+        }
+      ]
+    },
+    {
+      groupName: 'B',
+      users: [
+        {
+          name: '白娘子',
+          avatar: '../../image/portrait.png'
+        },
+        {
+          name: '包天齐',
+          avatar: '../../image/portrait.png'
+        }
+      ]
+    },
+    {
+      groupName: 'C',
+      users: [
+        {
+          name: '陈大年',
+          avatar: '../../image/portrait.png'
+        },
+        {
+          name: '丛云山',
+          avatar: '../../image/portrait.png'
+        },
+        {
+          name: '崔鸣贵',
+          avatar: '../../image/portrait.png'
+        }
+      ]
+    },
+    {
+      groupName: 'D',
+      users: [
+        {
+          name: '邓牛牛',
+          avatar: '../../image/portrait.png'
+        },
+        {
+          name: '刁仁衣',
+          avatar: '../../image/portrait.png'
+        },
+        {
+          name: '杜长城',
+          avatar: '../../image/portrait.png'
+        }
+      ]
+    },
+    {
+      groupName: 'F',
+      users: [
+        {
+          name: '范长龙',
+          avatar: '../../image/portrait.png'
+        },
+        {
+          name: '冯肖晓',
+          avatar: '../../image/portrait.png'
+        }
+      ]
+    },
+    {
+      groupName: 'G',
+      users: [
+        {
+          name: '甘地',
+          avatar: '../../image/portrait.png'
+        },
+        {
+          name: '高墙',
+          avatar: '../../image/portrait.png'
+        },
+        {
+          name: '宫都举',
+          avatar: '../../image/portrait.png'
+        }
+      ]
+    },
+    {
+      groupName: 'H',
+      users: [
+        {
+          name: '何芸',
+          avatar: '../../image/portrait.png'
+        },
+        {
+          name: '胡坨坨',
+          avatar: '../../image/portrait.png'
+        },
+        {
+          name: '黄坨坨',
+          avatar: '../../image/portrait.png'
+        }
+      ]
+    },
+    {
+      groupName: 'T',
+      users: [
+        {
+          name: '谭老头儿',
+          avatar: '../../image/portrait.png'
+        },
+        {
+          name: '汤云西',
+          avatar: '../../image/portrait.png'
+        },
+        {
+          name: '图图',
+          avatar: '../../image/portrait.png'
+        }
+      ]
+    },
+    {
+      groupName: 'X',
+      users: [
+        {
+          name: '夏一天',
+          avatar: '../../image/portrait.png'
+        },
+        {
+          name: '鲜轰轰',
+          avatar: '../../image/portrait.png'
+        },
+        {
+          name: '谢大佩',
+          avatar: '../../image/portrait.png'
+        }
+      ]
+    }
+    ]
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-    
-  },
+    const res = wx.getSystemInfoSync(),
+      letters = this.data.letters;
+    // 设备信息
+    this.setData({
+      windowHeight: res.windowHeight,
+      windowWidth: res.windowWidth,
+      pixelRatio: res.pixelRatio
+    });
+    // 第一个字母距离顶部高度，css中定义nav高度为94%，所以 *0.94
+    const navHeight = this.data.windowHeight * 0.94, // 
+      eachLetterHeight = navHeight / 26,
+      comTop = (this.data.windowHeight - navHeight) / 2,
+      temp = [];
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
-  },
+    this.setData({
+      eachLetterHeight: eachLetterHeight
+    });
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    
-  },
+    // 求各字母距离设备左上角所处位置
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-    
+    for (let i = 0, len = letters.length; i < len; i++) {
+      const x = this.data.windowWidth - (10 + 50) / this.data.pixelRatio,
+        y = comTop + (i * eachLetterHeight);
+      temp.push([x, y]);
+    }
+    this.setData({
+      lettersPosition: temp
+    })
   },
+  tabLetter(e) {
+    const index = e.currentTarget.dataset.index;
+    this.setData({
+      selected: index,
+      scrollIntoView: index
+    })
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-    
+    this.cleanAcitvedStatus();
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    
+  // 清除字母选中状态
+  cleanAcitvedStatus() {
+    setTimeout(() => {
+      this.setData({
+        selected: 0
+      })
+    }, 500);
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    
+  touchmove(e) {
+    const x = e.touches[0].clientX,
+      y = e.touches[0].clientY,
+      lettersPosition = this.data.lettersPosition,
+      eachLetterHeight = this.data.eachLetterHeight,
+      letters = this.data.letters;
+    console.log(y);
+    // 判断触摸点是否在字母导航栏上
+    if (x >= lettersPosition[0][0]) {
+      for (let i = 0, len = lettersPosition.length; i < len; i++) {
+        // 判断落在哪个字母区域，取出对应字母所在数组的索引，根据索引更新selected及scroll-into-view的值
+        const _y = lettersPosition[i][1], // 单个字母所处高度
+          __y = _y + eachLetterHeight; // 单个字母最大高度取值范围
+        if (y >= _y && y <= __y) {
+          this.setData({
+            selected: letters[i],
+            scrollIntoView: letters[i]
+          });
+          break;
+        }
+      }
+    }
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-    
+  touchend(e) {
+    this.cleanAcitvedStatus();
   }
 })

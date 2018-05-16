@@ -12,6 +12,7 @@
 
 view {
   font-size: 28rpx;
+  font-family: "Microsoft YaHei";
 }
 
 swiper {
@@ -19,6 +20,7 @@ swiper {
 }
 
 text {
+  font-family: "Microsoft YaHei";
   color: #333;
 }
 
@@ -55,12 +57,14 @@ text {
   clear: both;
 }
 
-.pos_rel{
+.pos_rel {
   position: relative;
 }
-.pos_abs{
+
+.pos_abs {
   position: absolute;
 }
+
 .inline {
   display: inline-block;
 }
@@ -255,41 +259,305 @@ form {
   width: 100%;
   height: 100%;
 }
+
 /*发布*/
-page{
+
+page {
   height: 100%;
 }
-.release_header{
-  background-color: #ffffff;
-  height:100rpx;
-  width:100%;
+
+.release_header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100rpx;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content:space-between;
+  background-color: #fff;
+  justify-content: space-between;
   border-bottom: 2rpx solid #eaeaea;
-
+  z-index: 100;
 }
-.release_header>text{
+
+.release_header>text {
   width: 20%;
 }
-.release_header>.left_text{
+
+.release_header>.left_text {
   text-align: left;
   padding-left: 5%;
-  color: #999999;
+  color: #999;
 }
-.release_header>.center_text{
+
+.release_header>.center_text {
   width: 60%;
   text-align: center;
-  color: #333333;
+  color: #333;
   font-size: 32rpx;
 }
-.release_header>.right_text{
+
+.release_header>.right_text {
   text-align: right;
   padding-right: 5%;
   color: #4660ff;
 }
-.release_section{
-  background-color: #ffffff;
+
+.release_section {
+  background-color: #fff;
   width: 100%;
+}
+
+/*评论的发言框*/
+
+.area_speak {
+  height: 100rpx;
+  position: relative;
+}
+
+.area_speak>view {
+  border-top: 1rpx solid #eaeaea;
+  background-color: #fff;
+  width: 100%;
+  height: 100rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+
+.area_speak>view>view {
+  display: inline-block;
+  width: 90%;
+  height: 100%;
+}
+
+.area_speak>view>view>input {
+  display: inline-block;
+  padding-left: 40rpx;
+  width: 70%;
+  height: 100%;
+}
+
+.area_speak>view>image {
+  margin-bottom: 20rpx;
+  width: 50rpx;
+  height: 50rpx;
+  vertical-align: bottom;
+}
+
+.area_speak>view>view>button {
+  position: absolute;
+  z-index: 1001;
+  bottom: 15rpx;
+  right: 100rpx;
+}
+
+/*评论*/
+
+.area_user {
+  width: 100%;
+  height: 100%;
+  padding-bottom: 50rpx;
+  border-bottom: 1rpx solid #eaeaea;
+}
+
+.area_user:last-child {
+  border-bottom: 0;
+}
+
+/*头像*/
+
+.area_user>image {
+  border-radius: 50%;
+  margin: 20rpx 20rpx 20rpx 20rpx;
+  width: 100rpx;
+  height: 100rpx;
+  float: left;
+}
+
+.area_user>view {
+  vertical-align: middle;
+  width: 80%;
+}
+
+/*名字*/
+
+.area_user>view>view:nth-child(1) {
+  margin-top: 30rpx;
+}
+
+.area_user>view>view:nth-child(1)>text:nth-child(1) {
+  color: #999;
+}
+
+.area_user>view>view:nth-child(1)>text:nth-child(2) {
+  margin-left: 2%;
+}
+
+/*男*/
+
+.area_user>view>view:nth-child(1)>.sex_nan {
+  background-color: #029fd9;
+}
+
+/*动态的*/
+
+.nearby {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  padding-top: 102rpx;
+  border-radius: 10rpx;
+}
+
+.location {
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: bottom;
+}
+
+.nearby>view {
+  padding: 20rpx 30rpx 20rpx 30rpx;
+  border-bottom: 1rpx solid #eaeaea;
+}
+
+.nearby>.believe {
+  border-bottom: 0;
+}
+
+/*第二个view*/
+
+.nearby>view:nth-child(2)>view {
+  margin-top: 10rpx;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.nearby>view:nth-child(2)>text {
+  color: #999;
+}
+.col_hui {
+  color: #999;
+}
+.col_huang {
+  color: rgba(255, 220, 20, 1);
+}
+.nearby>view:nth-child(2)>view>image {
+  width: 220rpx;
+  height: 220rpx;
+  border-radius: 10rpx;
+  flex-shrink: 0;
+  margin-bottom: 16rpx;
+  margin-right: 15rpx;
+}
+
+.nearby>view:nth-child(2)>view>image:nth-child(3n+0) {
+  margin-right: 0;
+}
+
+/*一张图片或者两张图片放大,加类名 big */
+
+.nearby>view:nth-child(2)>view>.big {
+  width: 48.8%;
+  height: 350rpx;
+  margin-right: 0;
+}
+
+.nearby>view:nth-child(2)>view>.big:nth-child(even) {
+  margin-left: 16rpx;
+}
+
+.nearby>view:nth-child(2)>view:nth-child(3)>text {
+  color: #999;
+}
+
+/*第三个view*/
+
+.nearby>view:nth-child(3) {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  height: 100rpx;
+  line-height: 100rpx;
+  padding: 0 30rpx 0 30rpx;
+}
+
+.nearby>view:nth-child(3)>view {
+  width: 50%;
+}
+
+.nearby>view:nth-child(3)>view>image {
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 10rpx;
+  vertical-align: text-bottom;
+}
+
+.nearby>view:nth-child(3)>view>text {
+  color: #999;
+  margin-right: 10rpx;
+}
+
+.nearby>view:nth-child(3)>view:nth-child(2) {
+  display: flex;
+  justify-content: flex-end;
+  align-self: center;
+}
+
+.nearby>view:nth-child(3)>view:nth-child(2)>image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.nearby>.pl_area {
+  border-top: 10rpx solid #eaeaea;
+  padding: 0;
+}
+/*转发*/
+.sare_frame{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(51,51,51,.5);
+  z-index: 1;
+  display: none;
+}
+.sare_frame>.share{
+  width: 90%;
+  height: 22%;
+  padding: 20rpx; 
+  display: flex;
+  position: fixed;
+  bottom: 2%;
+  left: 2%;
+  flex-direction: row;
+  flex-wrap:wrap;
+  align-items: center;
+  background-color: #fff;
+  align-content:space-around;
+  border-radius: 20rpx;
+  z-index: 100;
+}
+.sare_frame>.share>view{
+  width: 112rpx;
+  height: 112rpx;
+  text-align: center;
+}
+.sare_frame>.share>view>image{
+  margin: 0 auto;
+  display: block;
+  width: 64rpx;
+  height: 64rpx;
+}
+.sare_frame>.share>view>text{
+  font-size: 24rpx;
+  color: #999;
+  display: inline-block;
+  width: 100%;
+  vertical-align: middle;
 }

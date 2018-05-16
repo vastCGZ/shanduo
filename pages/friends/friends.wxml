@@ -1,3 +1,22 @@
-<view>
-好友
+<view class="flex box box-lr">
+  <scroll-view class="flex groups box box-tb" scroll-y="true" scroll-into-view="{{scrollIntoView}}">
+    <block wx:for="{{groups}}" wx:for-item="group" wx:key="navItems">
+      <view class="flex" id="{{group.groupName}}">
+        <view class="group-name">{{group.groupName}}</view>
+        <view class="flex group-users">
+          <view wx:for="{{group.users}}" wx:for-item="user" wx:key="navItem" class="user box box-lr">
+            <view class="user-avatar box box-lr box-pack-center box-align-center">
+              <image class="user-avatar-img" src="{{user.avatar}}"></image>
+            </view>
+            <view class="flex user-name">{{user.name}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+  <view class="nav box box-tb" bindtouchmove="touchmove" bindtouchcancel="touchcancel" bindtouchend="touchend">
+    <view bindtap="tabLetter" data-index="{{item}}" wx:for="{{letters}}" wx:for-index="idx" wx:key="nav"class="flex box box-align-center box-pack-center letter">
+      <text class="letter-text iconfont {{selected == item ? 'letter-actived' : ''}}  {{selected == '' ? 'letter-actived' : ''}} {{letters[idx] == 0 ? 'icon-fangdajing' : ''}}">{{item}}</text>
+    </view>
+  </view>
 </view>

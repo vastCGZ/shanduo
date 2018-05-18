@@ -1,3 +1,4 @@
-<view>
-活动
+<view class='btns'>
+  <button type='primary' bindtap='pushActivity'>发布活动</button>
+  <button type='primary' bindtap='pushDynamic'>发布动态</button>
 </view>

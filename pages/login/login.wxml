@@ -3,7 +3,7 @@
   <form form-type='submit'>
     <view class='header'>
       <view class='header_left'>
-        <image src='/image/icon/off.png'></image>
+        <image src='/image/icon/off.png' bindtap='closeLoginView'></image>
       </view>
       <view class='header_right'>
         <text bindtap='onTap'>去注册</text>

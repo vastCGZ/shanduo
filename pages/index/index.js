@@ -1,11 +1,7 @@
-//index.js  
-//获取应用实例  
 var app = getApp()
+var util = require('../../utils/util.js');
 Page({
   data: {
-    /** 
-        * 页面配置 
-        */
     winWidth: 0,
     winHeight: 0,
     vi_Height: 0,
@@ -14,15 +10,38 @@ Page({
     currentTab: 0,
     // 活动内的切换  
     currentTab1: 0,
+    // 动态内的切换
+    currentTab2: 0,
     //扫一扫
     show: null,
-    //请求的活动数据
-    posts_key: null,
-    //活动数据的长度
-    length: 0,
+    //定义活动数组
+    activitys: [{
+      currentPage: 1,
+      totalpage: 0,
+      arrayResult: []
+    }, {
+      currentPage: 1,
+      totalpage: 0,
+      arrayResult: []
+    }, {
+      currentPage: 1,
+      totalpage: 0,
+      arrayResult: []
+    }],
+    //定义动态数组
+    dynamics: [{
+      currentPage: 1,
+      totalpage: 0,
+      arrayResult: []
+    }, {
+      currentPage: 1,
+      totalpage: 0,
+      arrayResult: []
+    }],
     latitude: 0,
     longitude: 0,
-    host: null
+    host: null,
+    pageSize: 20
   },
   onLoad: function () {
     var that = this;
@@ -39,35 +58,93 @@ Page({
           sw_Height: res.windowHeight / 2 - 100
         });
       }
-
     });
-    wx.getLocation({
-      success: function (res) {
-        that.setData({ latitude: res.latitude });
-        that.setData({ longitude: res.longitude });
-        that.getActivityData();
+    var location = app.globalData.location;
+    if (location) {
+      that.setData({ latitude: location.lat, longitude: location.lon });
+      that.getActivityData();
+    }else{
+      wx.getLocation({
+        success: function(res) {
+          app.globalData.location.lat = res.latitude;
+          app.globalData.location.lon = res.longitude;
+        },
+        fail:(res)=>{
+          wx.openSetting({
+            success:(res)=>{
+              wx.getLocation({
+                success: function(res) {
+                  var location = {};
+                  location.lat = res.latitude;
+                  location.lon = res.longitude;
+                  app.globalData.location = location;
+                },
+              })
+            }
+          })
+        }
+      })
+    }
+  },
+  //下拉刷新
+  onPullDownRefresh: function () {
+    if (this.data.currentTab == 0) {
+      this.getActivityData();
+    } else {
+      this.getDynamicData();
+    }
+  },
+  //上拉加载更多
+  onReachBottom: function () {
+    if (this.data.currentTab == 0) {
+      var _index = this.data.activitys[this.data.currentTab1].currentPage;
+      if (this.data.activitys[this.data.currentTab1].totalpage > _index) {
+        this.data.activitys[this.data.currentTab1].currentPage = parseInt(_index) + 1;
+        this.setData({ activitys: this.data.activitys });
+        this.getActivityData();
+      } else {
+        util.toast('没有更多')
       }
-    });
+    } else {
+      var _index = this.data.dynamics[this.data.currentTab2].currentPage;
+      if (this.data.dynamics[this.data.currentTab2].totalpage > _index) {
+        this.data.dynamics[this.data.currentTab2].currentPage = parseInt(_index) + 1;
+        this.setData({ dynamics: this.data.dynamics });
+        this.getDynamicData();
+      } else {
+        wx.showToast({
+          title: '没有更多',
+          icon: 'none'
+        })
+      }
+    }
+
   },
   /** 
      * 滑动切换活动，动态 
      */
   bindChange: function (e) {
-    console.log(e.target.dataset.current);
-    var that = this;
-    that.setData({ currentTab: e.target.dataset.current });
+    this.setData({ currentTab: e.target.dataset.current });
+    if (this.data.currentTab == 0) {
+      this.getActivityData();
+    } else {
+      this.getDynamicData();
+    }
   },
   /** 
    * 点击活动，动态切换 
    */
   swichNav: function (e) {
-    var that = this;
     if (this.data.currentTab === e.target.dataset.current) {
       return;
+    }
+    this.setData({
+      currentTab: e.target.dataset.current
+    })
+    if (this.data.currentTab == 0) {
+      this.getActivityData();
     } else {
-      that.setData({
-        currentTab: e.target.dataset.current
-      })
+      this.getDynamicData();
     }
   },
   /** 
@@ -76,9 +153,32 @@ Page({
   bindChange1: function (e) {
     var that = this;
     that.setData({ currentTab1: e.detail.current });
+    var ary = that.data.activitys[that.data.currentTab1].arrayResult;
+    ary.splice(0, ary.length);
+    that.data.activitys[that.data.currentTab1].arrayResult = ary;
+    that.data.activitys[that.data.currentTab1].currentPage = 1;
+    that.data.activitys[that.data.currentTab1].totalpage = 0;
+    that.setData({
+      activitys: that.data.activitys
+    })
+    that.getActivityData();
+  },
+  //滑动切换动态内的Tab
+  bindChange2: function (e) {
+    var that = this;
+    that.setData({ currentTab2: e.detail.current });
+    var ary = that.data.activitys[that.data.currentTab2].arrayResult;
+    ary.splice(0, ary.length);
+    that.data.dynamics[that.data.currentTab2].arrayResult = ary;
+    that.data.dynamics[that.data.currentTab2].currentPage = 1;
+    that.data.dynamics[that.data.currentTab2].totalpage = 0;
+    that.setData({
+      dynamics: that.data.dynamics
+    })
+    that.getDynamicData();
   },
   /** 
-   * 点击活动，动态切换 
+   * 点击活动tab切换 
    */
   swichNav1: function (e) {
     var that = this;
@@ -89,32 +189,123 @@ Page({
       currentTab1: e.target.dataset.current
     })
     that.getActivityData();
+
   },
-  getActivityData: function () {
+  /** 
+   * 点击动态tab切换 
+   */
+  swichNav2: function (e) {
     var that = this;
+    if (this.data.currentTab2 === e.target.dataset.current) {
+      return;
+    }
+    that.setData({
+      currentTab2: e.target.dataset.current
+    })
+    that.getDynamicData();
+  },
+  //远程获取活动数据
+  getActivityData: function () {
+    wx.showLoading();
+    var that = this;
+    var token = '';
+    if (app.globalData.userInfo) {
+      token = app.globalData.userInfo.token;
+    }
     wx.request({
       url: app.host + '/activity/showHotActivity',
       data: {
-        token: app.globalData.userInfo.token,
-        type: that.data.currentTab1 + 1,
+        token: token,
+        type: parseInt(that.data.currentTab1) + 1,
         lon: that.data.longitude,
         lat: that.data.latitude,
-        page: 1,
-        pageSize: 10
+        page: that.data.activitys[that.data.currentTab1].currentPage,
+        pageSize: that.data.pageSize
       },
       dataType: 'json',
       success: function (res) {
         if (res.data.success) {
-          that.setData({
-            posts_key: res.data.result.list,
-            length: res.data.result.list.length
-          });
+          var array = that.data.activitys[that.data.currentTab1].arrayResult;
+          that.data.activitys[that.data.currentTab1].arrayResult = array.concat(res.data.result.list);
+          that.data.activitys[that.data.currentTab1].totalpage = res.data.result.totalpage;
+          that.setData(
+            { activitys: that.data.activitys }
+          );
+
+        } else {
+          wx.showToast({
+            title: res.data.errorCode,
+            icon: 'none'
+          })
         }
       }, fail: function (res) {
         console.log(res.errorMsg);
+      }, complete: function () {
+        wx.hideLoading()
       }, method: 'GET'
     });
   },
+  //远程获取动态数据
+  getDynamicData: function () {
+    wx.showLoading();
+    var that = this;
+    var token = '';
+    if (app.globalData.userInfo) {
+      token = app.globalData.userInfo.token;
+    }
+    wx.request({
+      url: app.host + '/jdynamic/homeList',
+      data: {
+        token: token,
+        typeId: parseInt(that.data.currentTab2) + 1,
+        lon: that.data.longitude,
+        lat: that.data.latitude,
+        page: that.data.dynamics[that.data.currentTab2].currentPage,
+        pageSize: that.data.pageSize
+      },
+      dataType: 'json',
+      success: function (res) {
+        if (res.data.success) {
+          var array = that.data.dynamics[that.data.currentTab2].arrayResult;
+          that.data.dynamics[that.data.currentTab2].arrayResult = array.concat(res.data.result.list);
+          that.data.dynamics[that.data.currentTab2].totalpage = res.data.result.totalPage;
+          that.setData(
+            { dynamics: that.data.dynamics }
+          );
+        } else {
+          wx.showToast({
+            title: res.data.errorCode,
+            icon: 'none'
+          })
+        }
+      }, fail: function (res) {
+        console.log(res.errorMsg);
+      }, complete: function () {
+        wx.hideLoading()
+      }, method: 'GET'
+    });
+  },
+  // emptyData: function () {
+  //   if (that.data.currentTab == 0) {
+  //     var ary = that.data.activitys[that.data.currentTab1].arrayResult;
+  //     ary.splice(0, ary.length);
+  //     that.data.activitys[that.data.currentTab1].arrayResult = ary;
+  //     that.data.activitys[that.data.currentTab1].currentPage = 1;
+  //     that.data.activitys[that.data.currentTab1].totalpage = 0;
+  //     that.setData({
+  //       activitys: that.data.activitys
+  //     })
+  //   } else {
+  //     var ary = that.data.dynamics[that.data.currentTab2].arrayResult;
+  //     ary.splice(0, ary.length);
+  //     that.data.dynamics[that.data.currentTab2].arrayResult = ary;
+  //     that.data.dynamics[that.data.currentTab2].currentPage = 1;
+  //     that.data.dynamics[that.data.currentTab2].totalpage = 0;
+  //     that.setData({
+  //       dynamics: that.data.dynamics
+  //     })
+  //   }
+  // },
   /**
    * 扫一扫
    */

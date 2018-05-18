@@ -59,7 +59,7 @@ Page({
         password: that.data.password
       },
       header: {
-        'content-type': 'application/json' // 默认值
+        'content-type': 'application/x-www-form-urlencoded'
       },
       dataType: 'json',
       success: function (res) {
@@ -69,17 +69,20 @@ Page({
             key: 'localUser',
             data: res.data.result
           })
-          wx.showModal({
-            title: '提示',
-            content: '登陆成功'
+          wx.showToast({
+            title: '登陆成功',
+            icon: 'success'
           })
-          wx.switchTab({
-            url: '/pages/personal/personal'
-          });
+          setTimeout(function(){
+            wx.switchTab({
+              url: '/pages/personal/personal'
+            });
+          },500);
+        
         } else {
-          wx.showModal({
-            title: '提示',
-            content: '用户名或密码错误'
+          wx.showToast({
+            title: '登陆错误',
+            image: '/image/icon/error.gif'
           })
         }
       },
@@ -91,7 +94,12 @@ Page({
       complete: function () {
         wx.hideLoading()
       },
-      method: 'GET'
+      method: 'POST'
     })
+  },
+  closeLoginView: function () {
+    wx.switchTab({
+      url: '/pages/index/index'
+    });
   }
 })

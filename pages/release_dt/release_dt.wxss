@@ -22,20 +22,21 @@
 }
 
 .release_footer_pic{
-  width: 250rpx;
-  height: 250rpx;
+  width: 220rpx;
+  height: 220rpx;
   border-radius: 20rpx;
   vertical-align: bottom;
   margin-left:30rpx;
+  margin-top:20rpx;
 }
 .release_footer>.pic_left{
   margin-left:30rpx;
   background-color: #eaeaea;
   border-radius: 20rpx;
-  width: 250rpx;
-  height: 250rpx;
+  width: 220rpx;
+  height: 220rpx;
   text-align: center;
-  line-height: 250rpx;
+  line-height: 220rpx;
 }
 .release_footer>.pic_left>text{
   font-size: 24rpx;

@@ -1,46 +1,47 @@
-/**index.wxss**/
-
-.msgs-wrapper{position: absolute;bottom:100rpx;left:10rpx;right:10rpx;}
-.msgs{max-width:80%;display:block;padding:5rpx;background:rgba(255,255,255,.7);margin:5rpx 0;word-wrap:break-word}
-.msg-item{padding:8rpx 5rpx;border-radius:4rpx;font-size:14px;}
-.nickname{color:#ff7906}
-
-.input-section{
-  position: absolute;
-  bottom:10rpx;
-  left:10rpx;
-  right:10rpx;
-}
-
-.input-section input{
-  background:#fff;
-  margin-right:100rpx;
-  padding:10rpx;
-}
-
-.input-section .love{
-  background:url(http://avc.qcloud.com/demo/webim/biggroup/mobile/img/like_hover.png);
-  background-size:100%;
-  width:70rpx;height:70rpx;
-  display: block;
-  position: absolute;
-  right:10rpx;
-  bottom:0;
-  border:0;
-  outline: 0;
-}
-.input-section .love:after{border:0}
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  /* align-items: center; */
-  justify-content: space-between;
-  padding: 200rpx 20rpx;
-  box-sizing: border-box;
-}
 page{
-
-  background:url(http://avc.qcloud.com/demo/webim/biggroup/mobile/img/back-img2.png);
-  background-size:100%;
+  background-color: rgba(250, 250, 250, 1);
+}
+.right_text{
+  width: 44rpx;
+  height: 44rpx;
+}
+.release_header>.center_text {
+  margin-left:-10%;
+}
+.Chatting_body{
+  width: 100%;
+}
+.body_li:first-child{
+  margin-top: 102rpx;
+}
+.body_li{
+  background-color: #fff;
+  padding:20rpx 0 20rpx 20rpx;
+  border-bottom: 1rpx solid #eaeaea;
+}
+.believe>.believe_left{
+  width: 75%;
+}
+.believe>.believe_right{
+  width: 25%;
+}
+.believe>.believe_right>text{  
+  font-size: 24rpx;
+}
+.believe>.believe_left>view>view:first-child>text:first-child{
+  font-size: 24rpx;
+  font-weight: 600;
+  margin-right: 10rpx;
+}
+.bubble{
+  width: 40rpx;
+  height: 40rpx;
+  text-align: center;
+  line-height: 40rpx;
+  display: inline-block;
+  background-color: rgba(255, 0, 0, 1);
+  color: #fff;
+  border-radius: 50%;
+  top: -50rpx;
+  right: -10rpx;
 }

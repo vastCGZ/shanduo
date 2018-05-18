@@ -26,7 +26,7 @@ text {
 
 .sex, .level {
   display: inline-block;
-  background-color: #f5c724;
+  background-color: #ffde20;
   color: #fff;
   font-size: 22rpx;
   padding: 0 10rpx;
@@ -167,6 +167,11 @@ form {
   height: 172rpx;
 }
 
+/*男*/
+
+.sex_nan {
+  background-color: #029fd9;
+}
 /*页脚*/
 
 .footer {
@@ -401,6 +406,21 @@ page {
   background-color: #029fd9;
 }
 
+/*女*/
+
+.sex_nv {
+  background-color: #ff9bf0;
+}
+/*vip*/
+
+.my_VIP {
+  background-color: #ff6369;
+}
+/*等级*/
+
+.my_DJ {
+  background-color: #5175ff;
+}
 /*动态的*/
 
 .nearby {
@@ -443,7 +463,7 @@ page {
   color: #999;
 }
 .col_huang {
-  color: rgba(255, 220, 20, 1);
+  color: #f5c724;
 }
 .nearby>view:nth-child(2)>view>image {
   width: 220rpx;
@@ -560,4 +580,10 @@ page {
   display: inline-block;
   width: 100%;
   vertical-align: middle;
+}
+/*文本溢出省略号*/
+.text_ell{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }

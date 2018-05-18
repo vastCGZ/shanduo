@@ -1,0 +1,38 @@
+<view class="container">
+  <view class='release_header'>
+    <image src='/image/icon/copy_0.png' class='left_text inline'></image>
+    <text class='center_text inline'>聊天</text>
+    <image src='/image/icon/copy_1_1.png' class='right_text inline'></image>
+  </view>
+  <view class="msgs-wrapper">
+    <view class="msgs" wx:for="{{msgs}}" wx:key='items'>
+      <text class="msg-item"><text class="nickname">{{item.fromAccountNick}}</text> : {{item.content}}</text>
+    </view>
+  </view>
+  <view class="input-section">
+      <input value="{{msgContent}}"  placeholder="请输入消息" bindinput='inputMsg'/>
+      <button class="love" bindtap="sendMsg">发送</button>
+  </view>
+  <view class='release_footer'>
+    <image src='/image/icon/copy_1_1.png' class='right_text inline'></image>
+    <image src='/image/icon/copy_1_1.png' class='right_text inline'></image>
+    <image src='/image/icon/copy_1_1.png' class='right_text inline'></image>
+    <image src='/image/icon/copy_1_1.png' class='right_text inline'></image>
+    <image src='/image/icon/copy_1_1.png' class='right_text inline'></image>
+    <image src='/image/icon/copy_1_1.png' class='right_text inline'></image>
+  </view>
+</view>
+
+<!-- 原来的 -->
+<!-- <view class="container">
+  <view class="msgs-wrapper">
+    <view class="msgs" wx:for="{{msgs}}">
+      <text class="msg-item"><text class="nickname">{{item.fromAccountNick}}</text> : {{item.content}}</text>
+    </view>
+  </view>
+
+  <view class="input-section">
+      <input value="{{msgContent}}"  placeholder="请输入聊天内容" bindinput='inputMsg'/>
+      <button class="love" bindtap="sendMsg"></button>
+  </view>
+</view> -->

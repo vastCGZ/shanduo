@@ -1,22 +1,90 @@
 <view class="flex box box-lr">
-  <scroll-view class="flex groups box box-tb" scroll-y="true" scroll-into-view="{{scrollIntoView}}">
-    <block wx:for="{{groups}}" wx:for-item="group" wx:key="navItems">
-      <view class="flex" id="{{group.groupName}}">
-        <view class="group-name">{{group.groupName}}</view>
-        <view class="flex group-users">
-          <view wx:for="{{group.users}}" wx:for-item="user" wx:key="navItem" class="user box box-lr">
-            <view class="user-avatar box box-lr box-pack-center box-align-center">
-              <image class="user-avatar-img" src="{{user.avatar}}"></image>
+  <form>
+  <!-- scroll-into-view="{{scrollIntoView}}"  -->
+    <scroll-view class="flex groups box box-tb" scroll-y="true">
+      <view class='release_header'>
+        <text class='left_text inline'></text>
+        <text class='center_text inline'>聊天</text>
+        <image src='/image/icon/plus.png' class='right_text inline'></image>
+      </view>
+      <view class='inp_box'>
+        <view>
+          <image src='/image/icon/bitmap_copy.png'></image>
+          <input placeholder="搜索好友"></input>
+        </view>
+        <button size='mini' type='warn' form-type='submit'>搜索</button>
+      </view>
+      <view wx:if="{{!currentTab}}" class="flex" wx:for="{{groups}}" wx:for-item="group" wx:key="navItems" wx:for-index="indexs" id="{{group.groupName}}">
+        <view class="group-name" wx:if='{{indexs}}'>{{group.groupName}}</view>
+        <view class="flex group-users user_li{{indexs}}" wx:if='{{indexs}}'>
+          <block wx:for="{{group.users}}" wx:for-item="user" wx:key="navItem" wx:for-index="index">
+            <view class="user box box-lr" wx:hidden='{{ index == 0 }}'>
+              <view class="user-avatar box box-lr box-pack-center box-align-center">
+                <image class="user-avatar-img" src="{{user.avatar}}"></image>
+              </view>
+              <view class="flex user-name believe">
+                <view class='inline believe_left'>
+                  <view class='inline'>
+                    <view class='text_ell'>
+                    <!--判断是否是VIP如果是加 col_huang  -->
+                      <text class='col_huang'>{{user.name}}</text>
+                    <!--判断是男是女是男加 sex_nan  -->
+                      <text class='sex'>♂18</text>
+                    <!--判断是VIP还是SVIP如果是VIP加 my_VIP-->
+                      <!--还需判断是否是VIP或者SVIP如果不是 隐藏  -->
+                      <text wx:if='{{true}}' class='level'>SVIP1</text>
+                    </view>
+                    <view class='text_ell'>
+                      <text class='col_hui'>[{{user.WiFi}}]</text>
+                      <text class='col_hui'>{{user.title}}</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
             </view>
-            <view class="flex user-name">{{user.name}}</view>
-          </view>
+          </block>
+        </view>
+        <view class="flex group-users user_li{{indexs}}" wx:else>
+            <view class="user box box-lr">
+              <text class="{{currentTab==0 ? 'userLi_actived ' : ''}}" data-current="0" bindtap="swichNav">我的好友</text>
+            </view>
+            <view class="user box box-lr">
+              <text class="{{currentTab==1 ? 'userLi_actived ' : ''}}" data-current="1" bindtap="swichNav">我的群组</text>
+            </view>
         </view>
       </view>
-    </block>
-  </scroll-view>
-  <view class="nav box box-tb" bindtouchmove="touchmove" bindtouchcancel="touchcancel" bindtouchend="touchend">
-    <view bindtap="tabLetter" data-index="{{item}}" wx:for="{{letters}}" wx:for-index="idx" wx:key="nav"class="flex box box-align-center box-pack-center letter">
-      <text class="letter-text iconfont {{selected == item ? 'letter-actived' : ''}}  {{selected == '' ? 'letter-actived' : ''}} {{letters[idx] == 0 ? 'icon-fangdajing' : ''}}">{{item}}</text>
+      <view wx:eles wx:if='{{!currentTab==0}}'>
+        <view class="flex group-users user_li0">
+            <view class="user box box-lr">
+              <text class="{{currentTab==0 ? 'userLi_actived ' : ''}}" data-current="0" bindtap="swichNav">我的好友</text>
+            </view>
+            <view class="user box box-lr">
+              <text class="{{currentTab==1 ? 'userLi_actived ' : ''}}" data-current="1" bindtap="swichNav">我的群组</text>
+            </view>
+        </view>
+        <view>hahaha</view>
+      </view>
+    </scroll-view>
+    <view class="nav box box-tb" bindtouchmove="touchmove" bindtouchcancel="touchcancel" bindtouchend="touchend">
+      <view wx:for="{{letters}}" wx:for-index="idx" wx:key="nav" bindtap="tabLetter" data-index="{{item}}" class="flex box box-align-center box-pack-center letter">
+        <text wx:if='{{ idx != 0}}' class="letter-text {{selected == item ? 'letter-actived' : ''}}">{{item}}</text>
+        <text wx:else class="letter-text iconfont icon-fangdajing {{selected == item ? 'letter-actived' : ''}}"></text>
+      </view>
     </view>
+  </form>
+</view>
+
+
+
+<view class="container">
+  <view class="msgs-wrapper">
+    <view class="msgs" wx:for="{{msgs}}">
+      <text class="msg-item"><text class="nickname">{{item.fromAccountNick}}</text> : {{item.content}}</text>
+    </view>
+  </view>
+
+  <view class="input-section">
+      <input value="{{msgContent}}"  placeholder="请输入聊天内容" bindinput='inputMsg'/>
+      <button class="love" bindtap="sendMsg"></button>
   </view>
 </view>

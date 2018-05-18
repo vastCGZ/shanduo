@@ -1,0 +1,119 @@
+/**index.wxss**/
+
+.msgs-wrapper{position: absolute;bottom:100rpx;left:10rpx;right:10rpx;}
+.msgs{max-width:80%;display:block;padding:5rpx;background:rgba(255,255,255,.7);margin:5rpx 0;word-wrap:break-word}
+.msg-item{padding:8rpx 5rpx;border-radius:4rpx;font-size:14px;}
+.nickname{color:#ff7906}
+
+.input-section{
+  position: absolute;
+  bottom:80rpx;
+  left:0;
+  right:0;
+  background-color: #fff;
+}
+
+.input-section input{
+  background:#fff;
+  margin-right:120rpx;
+  padding:10rpx 10rpx 10rpx 20rpx;
+}
+
+.input-section .love{
+  width:100rpx;
+  height:50rpx;
+  display: block;
+  position: absolute;
+  right:10rpx;
+  bottom:10rpx;
+  border:0;
+  outline: 0;
+  font-size: 26rpx;
+  color: #fff;
+  background: #5e75ff;
+  line-height: 50rpx;
+  padding: 0;
+  border-radius: 50rpx;
+}
+.input-section .love:after{border:0}
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: space-between;
+  padding: 200rpx 20rpx;
+  box-sizing: border-box;
+}
+page{
+   background:#f7f8ff; 
+  /* background:url(http://avc.qcloud.com/demo/webim/biggroup/mobile/img/back-img2.png); */
+  background-size:100%;
+}
+.right_text,.left_text {
+  width: 44rpx;
+  height: 44rpx;
+}
+.release_footer{
+  display: inline-flex;
+  justify-content:space-around;
+  align-items:center;
+  width: 100%;
+  height: 80rpx;
+  position: fixed;
+  bottom: 0rpx;
+  left: 0;
+  background-color: #fff;
+}
+.release_footer>image{
+  line-height: 80rpx;
+}
+
+
+
+/* 原来的 */
+/* 
+.msgs-wrapper{position: absolute;bottom:100rpx;left:10rpx;right:10rpx;}
+.msgs{max-width:80%;display:block;padding:5rpx;background:rgba(255,255,255,.7);margin:5rpx 0;word-wrap:break-word}
+.msg-item{padding:8rpx 5rpx;border-radius:4rpx;font-size:14px;}
+.nickname{color:#ff7906}
+
+.input-section{
+  position: absolute;
+  bottom:10rpx;
+  left:10rpx;
+  right:10rpx;
+}
+
+.input-section input{
+  background:#fff;
+  margin-right:100rpx;
+  padding:10rpx;
+}
+
+.input-section .love{
+  background:url(http://avc.qcloud.com/demo/webim/biggroup/mobile/img/like_hover.png);
+  background-size:100%;
+  width:70rpx;height:70rpx;
+  display: block;
+  position: absolute;
+  right:10rpx;
+  bottom:0;
+  border:0;
+  outline: 0;
+}
+.input-section .love:after{border:0}
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  / align-items: center; /
+  justify-content: space-between;
+  padding: 200rpx 20rpx;
+  box-sizing: border-box;
+}
+page{
+
+  background:url(http://avc.qcloud.com/demo/webim/biggroup/mobile/img/back-img2.png);
+  background-size:100%;
+} */

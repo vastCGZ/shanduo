@@ -18,7 +18,7 @@ page {
 
 .believe {
   height: 180rpx;
-  margin: 10rpx 0;
+  margin: 105rpx 0 5rpx;
 }
 
 .believe>.believe_left>image {
@@ -86,7 +86,15 @@ page {
 }
 
 .nav>.nav_right>image {
-  width: 30rpx;
-  height: 30rpx;
+  width: 15rpx;
+  height: 28rpx;
   margin-right: 20rpx;
+}
+.right_text {
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.release_header>.center_text {
+  margin-left:-22%;
 }

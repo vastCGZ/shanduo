@@ -1,194 +1,51 @@
-
 .nearby {
-  width: 100%;
-  height: 100%;
-  background-color: #ffffff;
-  border-radius: 10rpx;
-}
-
-.location {
-  width: 30rpx;
-  height: 30rpx;
-  vertical-align: bottom;
-}
-.nearby>view{
-  padding: 0 30rpx 20rpx 30rpx;
-  border-bottom: 1rpx solid #eaeaea;
-}
-.nearby>.believe{
-  border-bottom: 0;
-}
-/*第二个view*/
-.nearby>view:nth-child(2)>view {
-  margin-top: 10rpx;
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  overflow: hidden;
-}
-
-.nearby>view:nth-child(2)>text {
-  color: #999;
-}
-
-.nearby>view:nth-child(2)>view>image {
-  width: 220rpx;
-  height: 220rpx;
-  border-radius: 10rpx;
-  flex-shrink: 0;
-  margin-bottom: 16rpx;
-  margin-right: 15rpx;
-}
-.nearby>view:nth-child(2)>view>image:nth-child(3n+0) {
-  margin-right: 0;
-}
-/*一张图片或者两张图片放大,加类名 big */
-.nearby>view:nth-child(2)>view>.big{
-  width: 48.8%;
-  height: 350rpx;
-  margin-right: 0;
-}
-.nearby>view:nth-child(2)>view>.big:nth-child(even) {
-  margin-left: 16rpx;
-}
-.nearby>view:nth-child(2)>view:nth-child(3)>text{
-  color: #999;
-}
-/*第三个view*/
-.nearby>view:nth-child(3){
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  height: 100rpx;
-  line-height: 100rpx;
-  padding: 0 30rpx 0 30rpx;
-}
-.nearby>view:nth-child(3)>view{
-  width: 50%;
-}
-.nearby>view:nth-child(3)>view>image {
-  width: 50rpx;
-  height: 50rpx;
-  margin-right: 10rpx;
-  vertical-align: text-bottom;
-}
-.nearby>view:nth-child(3)>view>text {
-  color: #999;
-  margin-right: 10rpx;
-}
-.nearby>view:nth-child(3)>view:nth-child(2){
-  display: flex;
-  justify-content:flex-end;
-  align-self:center;
-}
-.nearby>view:nth-child(3)>view:nth-child(2)>image{
-  width: 40rpx;
-  height: 10rpx;
-}
-.nearby>.pl_area{
-  border-top: 10rpx solid #eaeaea;
   padding: 0;
 }
-.pl_area>.area_top{
+.pl_area>.area_top {
   width: 100%;
   height: 60rpx;
   line-height: 60rpx;
   padding-left: 30rpx;
   border-bottom: 1rpx solid #eaeaea;
 }
-.area_content>.area_user{
-  width: 100%;
-  height: 100%;
-  padding-bottom: 50rpx;
-  border-bottom: 1rpx solid #eaeaea;
-}
-.area_content>.area_user:last-child{
-  border-bottom: 0;
-}
-/*头像*/
-.area_content>.area_user>image{
-  border-radius:50%;
-  margin:20rpx 20rpx 20rpx 20rpx;
-  width:100rpx;
-  height:100rpx;
-  float: left;
-}
-.area_content>.area_user>view{
-  vertical-align: middle;
-  width: 80%;
-}
-/*名字*/
-.area_content>.area_user>view>view:nth-child(1){
-  margin-top: 30rpx;
-}
-.area_content>.area_user>view>view:nth-child(1)>text:nth-child(1){
-  color: #999;
-}
-.area_content>.area_user>view>view:nth-child(1)>text:nth-child(2){
-  margin-left: 2%;
-}
-/*男*/
-.area_content>.area_user>view>view:nth-child(1)>.sex_nan{
-  background-color:#029fd9;
-}
-/*评论*/
-.area_content>.area_user>view>view:nth-child(2){
-  margin-bottom: 15rpx;
-}
+
 /*评论楼*/
-.area_content>.area_user>view>view:nth-child(3){
+
+.area_content>.area_user>view>view:nth-child(3) {
   padding: 25rpx;
-  background-color: rgba(70, 96, 255, .1);
+  background-color: rgba(70, 96, 255, 0.1);
 }
-.area_content>.area_user>view>view:nth-child(3)>view{
+
+.area_content>.area_user>view>view:nth-child(3)>view {
   width: 100%;
   max-height: 465rpx;
-  word-break:break-all;
+  word-break: break-all;
   overflow: hidden;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
 }
-.area_content>.area_user>view>view:nth-child(3) .txt_title{
+
+.area_content>.area_user>view>view:nth-child(3) .txt_title {
   color: rgb(70, 96, 255);
 }
-.area_content>.area_user>view>view:nth-child(3)>view>.txt_floor{
+
+.area_content>.area_user>view>view:nth-child(3)>view>.txt_floor {
   color: #999;
   font-size: 26rpx;
-  margin-left: 2%; 
+  margin-left: 2%;
 }
+
+/*评论*/
+
+.area_user>view>view:nth-child(2) {
+  margin-bottom: 15rpx;
+}
+
 /*发言时间*/
-.area_content>.area_user>view>view:nth-child(4)>text{
+
+.area_content>.area_user>view>view:nth-child(4)>text {
   color: #999;
 }
-.area_content>.area_user>view>view:nth-child(4)>text:nth-child(2){
+
+.area_content>.area_user>view>view:nth-child(4)>text:nth-child(2) {
   margin-left: 5%;
-}
-/*发言框*/
-.area_speak{
-  height: 100rpx;
-  position: relative;
-}
-.area_speak>view{
-  border-top: 1rpx solid #eaeaea;
-  background-color: #fff;
-  width: 100%;
-  height: 100rpx;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-}
-.area_speak>view>view{
-  display: inline-block;
-  width: 90%;
-  height: 100%;
-}
-.area_speak>view>view>input{
-  display: inline-block;
-  padding-left: 40rpx;
-  width: 100%;
-  height: 100%;
-}
-.area_speak>view>image{
-  margin-bottom: 20rpx;
-  width: 50rpx;
-  height: 50rpx;
 }

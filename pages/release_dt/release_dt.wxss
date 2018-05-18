@@ -3,6 +3,7 @@
   background-color: #eaeaea;
 }
 .release_section>textarea{
+  margin-top: 102rpx;
   padding: 30rpx;
   width: 92%;
 }

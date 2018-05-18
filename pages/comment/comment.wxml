@@ -1,0 +1,92 @@
+<view class='container'>
+  <form bindsubmit=''>
+    <view class='comment_header'>
+      <image src='/image/icon/return_1.png'></image>
+      <text>40条回复</text>
+    </view>
+    <view class='comment_body'>
+    <block wx:for="{{ posts_key }}" wx:key="navItems"  wx:for-item="item" wx:for-index="idx">
+      <view class='area_user'>
+        <image src='{{item.pic}}'></image>
+        <view class='inline'>
+          <view>
+            <text>{{item.initiator}}</text>
+            <!--判断是否有年龄性别  -->
+            <block wx:if='{{ true }}'>
+              <text class='sex'>{{item.sex_sign}}{{item.age}}</text>
+            </block>
+          </view>
+          <view>
+            <text class='txt_cl'>5-11</text>
+            <text class='txt_cl'>刚刚</text>
+          </view>
+          <view>
+            <!--判断是否是回复别人  -->
+            <block wx:if='{{ true }}'>
+              <text class='txt_cl'>回复 </text>
+              <text class='aite'>@三只狗</text>
+              <text>:</text>
+            </block>
+            <text>真的皮!</text>
+          </view>
+        </view>
+      </view>
+      <view class='area_user'>
+        <image src='{{item.pic}}'></image>
+        <view class='inline'>
+          <view>
+            <text>{{item.initiator}}</text>
+            <block wx:if='{{ false }}'>
+              <text class='sex'>{{item.sex_sign}}{{item.age}}</text>
+            </block>
+          </view>
+          <view>
+            <text class='txt_cl'>5-11</text>
+            <text class='txt_cl'>刚刚</text>
+          </view>
+          <view>
+            <block wx:if='{{ true }}'>
+              <text class='txt_cl'>回复 </text>
+              <text class='aite'>@三只狗</text>
+              <text>: </text>
+            </block>
+            <text>皮!</text>
+          </view>
+        </view>
+      </view>
+      <view class='area_user'>
+        <image src='{{item.pic}}'></image>
+        <view class='inline'>
+          <view>
+            <text>{{item.initiator}}</text>
+            <block wx:if='{{ false }}'>
+              <text class='sex'>{{item.sex_sign}}{{item.age}}</text>
+            </block>
+          </view>
+          <view>
+            <text class='txt_cl'>5-11</text>
+            <text class='txt_cl'>刚刚</text>
+          </view>
+          <view>
+            <block wx:if='{{ false }}'>
+              <text class='txt_cl'>回复 </text>
+              <text class='aite'>@三只狗</text>
+              <text>: </text>
+            </block>
+            <text>皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!皮!</text>
+          </view>
+        </view>
+      </view>
+    </block>
+    </view>
+    <view class='comment_footer area_speak'>
+      <view>
+        <view>
+          <input placeholder="说点啥..."></input>
+              <button size='mini' type='warn' form-type='submit'>发送</button>
+        </view>
+        <image src='/image/icon/laugh.png'></image>
+      </view>
+    </view>
+  </form>
+</view>

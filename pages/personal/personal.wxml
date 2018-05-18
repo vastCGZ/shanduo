@@ -1,14 +1,23 @@
 <view class='container'>
   <view class='bg_body'>
+    <view class='release_header'>
+      <text class='left_text inline'></text>
+      <text class='center_text inline'>我的</text>
+      <image src='/image/icon/icon-6.png' class='right_text inline'></image>
+    </view>
     <view class='believe'>
       <view class='inline believe_left'>
         <image src='{{headImg}}'></image>
         <view class='inline'>
           <view>
+          <!--判断是否是VIP如果是加 col_huang  -->
             <text>{{userInfo.name}}</text>
           </view>
           <view>
+          <!--判断是男是女是男加 sex_nan  -->
             <text class='sex'>♀23</text>
+          <!--判断是VIP还是SVIP如果是VIP加 my_VIP-->
+            <!--还需判断是否是VIP或者SVIP如果不是 隐藏  -->
             <text class='level'>SVIP2</text>
           </view>
         </view>
@@ -22,35 +31,35 @@
     </view>
     <view class='nav'>
       <view class='inline nav_left'>
-        <image src='/image/icon/icon-4.png'></image>
+        <image src='/image/icon/icon-5.png'></image>
         <view>
           <text>我的活动</text>
         </view>
       </view>
       <view class='inline nav_right'>
-        <image src='/image/icon/icon-0.png'></image>
+        <image src='/image/icon/icon-2.png'></image>
       </view>
     </view>
     <view class='nav'>
       <view class='inline nav_left'>
-        <image src='/image/icon/icon-2.png'></image>
+        <image src='/image/icon/icon-3.png'></image>
         <view>
           <text>我的动态</text>
         </view>
       </view>
       <view class='inline nav_right'>
-        <image src='/image/icon/icon-0.png'></image>
+        <image src='/image/icon/icon-2.png'></image>
       </view>
     </view>
     <view class='nav'>
       <view class='inline nav_left'>
-        <image src='/image/icon/icon-9.png'></image>
+        <image src='/image/icon/icon-8.png'></image>
         <view>
-          <text>收藏</text>
+          <text>信用中心</text>
         </view>
       </view>
       <view class='inline nav_right'>
-        <image src='/image/icon/icon-0.png'></image>
+        <image src='/image/icon/icon-2.png'></image>
       </view>
     </view>
     <view class='nav'>
@@ -61,21 +70,21 @@
         </view>
       </view>
       <view class='inline nav_right'>
-        <image src='/image/icon/icon-0.png'></image>
+        <image src='/image/icon/icon-2.png'></image>
       </view>
     </view>
     <view class='nav'>
       <view class='inline nav_left'>
-        <image src='/image/icon/icon-3.png'></image>
+        <image src='/image/icon/icon-4.png'></image>
         <view>
           <text>会员中心</text>
         </view>
       </view>
       <view class='inline nav_right'>
-        <image src='/image/icon/icon-0.png'></image>
+        <image src='/image/icon/icon-2.png'></image>
       </view>
     </view>
-    <view class='nav'>
+    <!-- <view class='nav'>
       <view class='inline nav_left'>
         <image src='/image/icon/icon-10.png'></image>
         <view>
@@ -83,7 +92,7 @@
         </view>
       </view>
       <view class='inline nav_right'>
-        <image src='/image/icon/icon-0.png'></image>
+        <image src='/image/icon/icon-2.png'></image>
       </view>
     </view>
     <view class='nav nav_top'>
@@ -94,8 +103,8 @@
         </view>
       </view>
       <view class='inline nav_right'>
-        <image src='/image/icon/icon-0.png'></image>
+        <image src='/image/icon/icon-2.png'></image>
       </view>
-    </view>
+    </view> -->
   </view>
 </view>

@@ -4,7 +4,7 @@
     <scroll-view class="flex groups box box-tb" scroll-y="true">
       <view class='release_header'>
         <text class='left_text inline'></text>
-        <text class='center_text inline'>聊天</text>
+        <text class='center_text inline'>通讯录</text>
         <image src='/image/icon/plus.png' class='right_text inline'></image>
       </view>
       <view class='inp_box'>
@@ -72,19 +72,4 @@
       </view>
     </view>
   </form>
-</view>
-
-
-
-<view class="container">
-  <view class="msgs-wrapper">
-    <view class="msgs" wx:for="{{msgs}}">
-      <text class="msg-item"><text class="nickname">{{item.fromAccountNick}}</text> : {{item.content}}</text>
-    </view>
-  </view>
-
-  <view class="input-section">
-      <input value="{{msgContent}}"  placeholder="请输入聊天内容" bindinput='inputMsg'/>
-      <button class="love" bindtap="sendMsg"></button>
-  </view>
 </view>

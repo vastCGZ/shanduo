@@ -12,7 +12,7 @@ var local_activity = [
     place: "xx市xx区xx路xx饭店",
     distance: "1.6km",
     deadline: "2018/5/4/21:30",
-    pic: "/image/icon/image_1.png",
+    pic: "/image/icon/portrait.png",
     sex: "男",
     sex_sign: "♂",
     age: "25",

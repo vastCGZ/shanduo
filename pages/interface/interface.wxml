@@ -1,7 +1,11 @@
 <view class="container">
   <view class='release_header'>
     <image src='/image/icon/copy_0.png' class='left_text inline'></image>
-    <text class='center_text inline'>聊天</text>
+    <text class='center_text inline'>
+          <!--判断是否是VIP如果是加 col_huang  -->
+      <text class='block'>聊天人物</text>
+      <text class='block center_text_zt'>聊天状态</text>
+    </text>
     <image src='/image/icon/copy_1_1.png' class='right_text inline'></image>
   </view>
   <view class="msgs-wrapper">

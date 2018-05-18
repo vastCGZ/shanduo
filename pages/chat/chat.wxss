@@ -6,7 +6,7 @@ page{
   height: 44rpx;
 }
 .release_header>.center_text {
-  margin-left:-10%;
+  margin-left:-14%;
 }
 .Chatting_body{
   width: 100%;

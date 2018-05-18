@@ -4,7 +4,7 @@
 }
 
 .release_header>.center_text {
-  margin-left:-10%;
+  margin-left:-14%;
 }
 page {
   background-color: #fff;

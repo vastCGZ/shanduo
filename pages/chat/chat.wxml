@@ -12,10 +12,12 @@
             <image src='{{item.pic}}'></image>
             <view class='inline'>
               <view>
-              <!--判断是否是VIP如果是加 col_huang  -->
+          <!--判断是否是VIP如果是加 col_huang  -->
                 <text class='col_huang'>{{item.initiator}}</text>
+          <!--判断是男是女是男加 sex_nan  -->
                 <text class='sex'>{{item.sex_sign}}{{item.age}}</text>
-                <!--判断是否是VIP如果不是 隐藏  -->
+          <!--判断是VIP还是SVIP如果是VIP加 my_VIP-->
+            <!--还需判断是否是VIP或者SVIP如果不是 隐藏  -->
                 <text wx:if='{{ false }}' class='level'>{{item.level}}</text>
               </view>
               <view>

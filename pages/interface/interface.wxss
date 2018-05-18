@@ -68,7 +68,9 @@ page{
 .release_footer>image{
   line-height: 80rpx;
 }
-
+.center_text_zt{
+  font-size: 22rpx;
+}
 
 
 /* 原来的 */

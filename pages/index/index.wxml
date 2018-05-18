@@ -71,7 +71,10 @@
                       <image src='{{host}}/picture/{{item.headPortraitId}}'></image>
                     </view>
                     <view>
+                    <!--判断是男是女是男加 sex_nan  -->
                       <text class='sex'><text class='sex_on' wx:if='{{item.gender}}=="1"'>♂</text><text class='sex_on' wx:else>♀</text>{{item.age}}</text>
+                  <!--判断是VIP还是SVIP如果是VIP加 my_VIP-->
+                    <!--还需判断是否是VIP或者SVIP如果不是 隐藏  -->
                       <text class='level'>SVIP1</text>
                     </view>
                   </view>

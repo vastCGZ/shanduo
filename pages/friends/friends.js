@@ -5,7 +5,7 @@ Page({
     // 当前选择的导航字母
     selected: 0,
     // 选择字母视图滚动的位置id
-    scrollIntoView: 'Z',
+    scrollIntoView: 'A',
     // 导航字母
     letters: ['fenzu','A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
       'U', 'V', 'W', 'X', 'Y', 'Z'],

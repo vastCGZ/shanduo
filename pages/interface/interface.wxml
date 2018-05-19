@@ -8,22 +8,41 @@
     </text>
     <image src='/image/icon/copy_1_1.png' class='right_text inline'></image>
   </view>
-  <view class="msgs-wrapper">
-    <view class="msgs" wx:for="{{msgs}}" wx:key='items'>
-      <text class="msg-item"><text class="nickname">{{item.fromAccountNick}}</text> : {{item.content}}</text>
-    </view>
+    <view class="msgs-wrapper">
+      <!--判断是谁发的  -->
+      <!--如果是别人就为true  显示  -->
+      <view class="msgs">
+        <view class='inline'>
+          <image src='/image/icon/portrait.png' class="nickname"></image>
+        </view>
+        <view class='inline msg-item msg-item_left'>
+          <text class="msg-item_text">我昨天上王者了流不流弊我昨天上王者了，流不流弊！我昨天上王者了，流不流弊！我昨天上王者了，流不流弊！</text>
+          <view class='arrow'></view>
+        </view>
+      </view>
+      <!--为false就显示自己发的  -->
+      <view class="msgs flo_right">
+        <view class='inline msg-item msg-item_right'>
+          <text class="msg-item_text">我昨天上王者了，流不流弊！我昨天上王者了，流不流弊！我昨天上王者了，流不流弊！我昨天上王者了，流不流弊！</text>
+          <view class='arrow'></view>
+        </view>
+        <view class='inline'>
+          <image src='/image/icon/portrait.png' class="nickname"></image>
+        </view>
+      </view>
+      <view class='cl_both'></view>
   </view>
   <view class="input-section">
-      <input value="{{msgContent}}"  placeholder="请输入消息" bindinput='inputMsg'/>
-      <button class="love" bindtap="sendMsg">发送</button>
+      <input value="{{msgContent}}"  placeholder="请输入消息"/>
+      <button class="love">发送</button>
   </view>
   <view class='release_footer'>
-    <image src='/image/icon/copy_1_1.png' class='right_text inline'></image>
-    <image src='/image/icon/copy_1_1.png' class='right_text inline'></image>
-    <image src='/image/icon/copy_1_1.png' class='right_text inline'></image>
-    <image src='/image/icon/copy_1_1.png' class='right_text inline'></image>
-    <image src='/image/icon/copy_1_1.png' class='right_text inline'></image>
-    <image src='/image/icon/copy_1_1.png' class='right_text inline'></image>
+    <image src='/image/icon/laugh_5.png' class='right_text inline'></image>
+    <image src='/image/icon/laugh_4.png' class='right_text inline'></image>
+    <image src='/image/icon/laugh_6.png' class='right_text inline'></image>
+    <image src='/image/icon/laugh_3.png' class='right_text inline'></image>
+    <image src='/image/icon/laugh_1.png' class='right_text inline'></image>
+    <image src='/image/icon/position_1.png' class='right_text inline'></image>
   </view>
 </view>
 

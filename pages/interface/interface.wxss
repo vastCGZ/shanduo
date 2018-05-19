@@ -1,32 +1,90 @@
 /**index.wxss**/
 
-.msgs-wrapper{position: absolute;bottom:100rpx;left:10rpx;right:10rpx;}
-.msgs{max-width:80%;display:block;padding:5rpx;background:rgba(255,255,255,.7);margin:5rpx 0;word-wrap:break-word}
-.msg-item{padding:8rpx 5rpx;border-radius:4rpx;font-size:14px;}
-.nickname{color:#ff7906}
-
-.input-section{
+.msgs-wrapper {
   position: absolute;
-  bottom:80rpx;
-  left:0;
-  right:0;
+  left: 10rpx;
+  right: 10rpx;
+  padding-bottom: 200rpx;
+}
+
+.msgs {
+  max-width: 82%;
+  display: block;
+  padding: 20rpx;
+  margin: 5rpx 0;
+  word-wrap: break-word;
+}
+.msgs>.msg-item{
+  position: relative;
+  height: 100%;
+  width: 66%;
+  vertical-align:top;
+  padding: 20rpx;
+  border-radius: 20rpx;
+}
+.msgs>.msg-item>.arrow {
+  position:absolute;
+  top:45rpx;
+  width:0;
+  height:0;
+  font-size:0;
+  border:solid 8px;
+}
+.msg-item_text {
+  width: 250rpx;
+  font-size: 14px;
+}
+.msgs>.msg-item_left {
+  background: #5e75ff;
+  margin-left: 30rpx;
+}
+.msgs>.msg-item_left>.arrow {
+  left:-32rpx; /* 圆角的位置需要细心调试哦 */
+  border-color:#f7f8ff #5e75ff #f7f8ff #f7f8ff;
+}
+.msgs>.msg-item_right>.arrow {
+  right:-32rpx; /* 圆角的位置需要细心调试哦 */
+  border-color:#f7f8ff #f7f8ff #f7f8ff #5e75ff;
+}
+
+.msgs>.msg-item_right {
+  background: #5e75ff;
+  margin-left: 0;
+  margin-right: 30rpx;
+}
+.msgs>.msg-item_right>.msg-item_text {
+  color: #fff;
+}
+
+.nickname {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.input-section {
+  position: fixed;
+  bottom: 80rpx;
+  left: 0;
+  right: 0;
   background-color: #fff;
 }
 
-.input-section input{
-  background:#fff;
-  margin-right:120rpx;
-  padding:10rpx 10rpx 10rpx 20rpx;
+.input-section input {
+  background: #fff;
+  margin-right: 120rpx;
+  padding: 10rpx 10rpx 10rpx 20rpx;
 }
 
-.input-section .love{
-  width:100rpx;
-  height:50rpx;
+.input-section .love {
+  width: 100rpx;
+  height: 50rpx;
   display: block;
   position: absolute;
-  right:10rpx;
-  bottom:10rpx;
-  border:0;
+  right: 10rpx;
+  bottom: 10rpx;
+  border: 0;
   outline: 0;
   font-size: 26rpx;
   color: #fff;
@@ -35,29 +93,36 @@
   padding: 0;
   border-radius: 50rpx;
 }
-.input-section .love:after{border:0}
+
+.input-section .love:after {
+  border: 0;
+}
+
 .container {
   height: 100%;
   display: flex;
   flex-direction: column;
   /* align-items: center; */
   justify-content: space-between;
-  padding: 200rpx 20rpx;
+  padding: 150rpx 20rpx 200rpx;
   box-sizing: border-box;
 }
-page{
-   background:#f7f8ff; 
+
+page {
+  background: #f7f8ff;
   /* background:url(http://avc.qcloud.com/demo/webim/biggroup/mobile/img/back-img2.png); */
-  background-size:100%;
+  background-size: 100%;
 }
-.right_text,.left_text {
+
+.right_text, .left_text {
   width: 44rpx;
   height: 44rpx;
 }
-.release_footer{
+
+.release_footer {
   display: inline-flex;
-  justify-content:space-around;
-  align-items:center;
+  justify-content: space-around;
+  align-items: center;
   width: 100%;
   height: 80rpx;
   position: fixed;
@@ -65,15 +130,17 @@ page{
   left: 0;
   background-color: #fff;
 }
-.release_footer>image{
+
+.release_footer>image {
   line-height: 80rpx;
 }
-.center_text_zt{
+
+.center_text_zt {
   font-size: 22rpx;
 }
 
-
 /* 原来的 */
+
 /* 
 .msgs-wrapper{position: absolute;bottom:100rpx;left:10rpx;right:10rpx;}
 .msgs{max-width:80%;display:block;padding:5rpx;background:rgba(255,255,255,.7);margin:5rpx 0;word-wrap:break-word}

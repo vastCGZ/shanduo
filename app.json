@@ -4,15 +4,16 @@
     "pages/login/login",
     "pages/register/register",
     "pages/chat/chat",
+    "pages/interface/interface",
     "pages/activity/activity",
     "pages/friends/friends",
     "pages/personal/personal",
     "pages/release_hd/release_hd",
     "pages/release_dt/release_dt",
-    "pages/comment/comment",
     "pages/dynamic/dynamic",
     "pages/mydynamic/mydynamic",
-    "pages/interface/interface"
+    "pages/myactivity/myactivity",
+    "pages/comment/comment"
   ],
   "window":{
     "backgroundTextStyle":"dark",

@@ -1,5 +1,7 @@
+
+
 .container{
-  background-color: #fefefe;
+  background-color: #f7f8ff;
 }
 .comment_header{
   position: fixed;
@@ -41,4 +43,7 @@
 }
 .comment_footer>view{
   background-color: #fefefe;
+}
+.area_speak>view>view>button{
+  background-color: #5e75ff;
 }

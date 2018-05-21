@@ -290,3 +290,25 @@
 .activity_block:nth-child(2){
   border-bottom: 0;
 }
+.sare_frame {
+  background-color:rgba(51,51,51,.1);
+}
+.item-ans {
+  position: relative;
+}
+.sare_frame>.share {
+  width:90%;
+  height:85%;
+  padding:20rpx;
+  display:flex;
+  position:absolute;
+  top: 2%;
+  bottom: 2%;
+  left: 2%;
+  right: 2%;
+  flex-direction:row;
+  flex-wrap:wrap;
+  align-items:center;
+  background-color:#fff;
+  align-content:space-around;
+}

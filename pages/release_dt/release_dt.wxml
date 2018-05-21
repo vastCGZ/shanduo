@@ -13,13 +13,22 @@
       <image class='release_footer_pic' src="{{item}}"></image>
     </block>
     <view class='pic_left' bindtap="bindViewTap">
-      <view>
-        <image src='/image/icon/bitmap.png'></image>
-      </view>
-      <text>拍照 / 相片</text>
+      <image src='/image/icon/bitmap_1.png'></image>
     </view>
     <view class='pic_right pos_abs'>
-      <image src='/image/icon/laugh.png'></image>
+      <image src='/image/icon/location.png'></image>
+      <text>长沙五一广场</text>
     </view>
+  </view>
+  <view class='footer_IM'>
+    <image src='/image/icon/copy_2_1.png'></image>
+    <image src='/image/icon/copy_6_1.png'></image>
+    <image src='/image/icon/copy_4_1.png'></image>
+  </view>
+  <view class='footer_di'>
+    <image src='/image/icon/laugh_1.png'></image>
+    <image src='/image/icon/laugh_6.png'></image>
+    <image src='/image/icon/laugh_4.png'></image>
+    <image src='/image/icon/laugh_8.png'></image>
   </view>
 </view>

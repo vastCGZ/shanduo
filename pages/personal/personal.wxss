@@ -18,7 +18,7 @@ page {
 
 .believe {
   height: 180rpx;
-  margin: 105rpx 0 5rpx;
+  margin-top: 10rpx;
 }
 
 .believe>.believe_left>image {
@@ -31,16 +31,10 @@ page {
   font-size: 22rpx;
   margin-right: 20rpx;
   border-radius: 25rpx;
-  padding: 5rpx 10rpx 5rpx 20rpx;
+  padding: 8rpx 20rpx 8rpx 20rpx;
   background-color: #4660ff;
 }
 .believe>.believe_right>view>text {
-  color: #fefefe;
-  vertical-align: middle;
-}
-.believe>.believe_right>view>image {
-  width: 20rpx;
-  height: 20rpx;
   color: #fefefe;
   vertical-align: middle;
 }
@@ -48,10 +42,12 @@ page {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  height: 90rpx;
-  margin-bottom: 3rpx;
+  height: 100rpx;
+  margin-top: 10rpx;
 }
-
+.nav:nth-child(5), .nav:nth-child(6) {
+  margin-top: 0;
+}
 .nav_top {
   margin: 10rpx 0 0;
 }
@@ -89,12 +85,4 @@ page {
   width: 15rpx;
   height: 28rpx;
   margin-right: 20rpx;
-}
-.right_text {
-  width: 44rpx;
-  height: 44rpx;
-}
-
-.release_header>.center_text {
-  margin-left:-22%;
 }

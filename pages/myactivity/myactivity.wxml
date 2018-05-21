@@ -1,10 +1,5 @@
 <!--pages/myactivity/myactivity.wxml-->
 <view class='container'>
-  <view class='release_header'>
-    <image src='/image/icon/return_1.png' class='left_text inline'></image >
-    <text class='center_text inline'>我的活动</text>
-    <text class='right_text inline'></text>
-  </view>
   <view class='myactivity_body'>
     <scroll-view scroll-x="true" class="bodyTag inline" scroll-left="{{scrollLeft}}">
       <view class='Tag_edge inline'>
@@ -20,73 +15,162 @@
     <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
     style="height:{{winHeight}}rpx">
       <!--for循环 已参加，已报名，我的 -->
-      <swiper-item  wx:for="{{expertList}}" wx:for-item="items" wx:key="navs" wx:for-index="indexs">
+      <swiper-item wx:for="{{expertList}}" wx:for-item="items" wx:key="navs" wx:for-index="indexs">
         <scroll-view scroll-y="true" class="scoll-h" >
         <!--for循环  -->
           <block  wx:for="{{items}}" wx:for-item="item" wx:key="nav" wx:for-index="index">
-            <view class="item-ans">
-              <view class='activity_block'>
-                <view class='activity_people'>
-                  <image class="img" src="/image/icon/portrait.png"></image>
-                  <view class="expertInfo inline">
-                    <view class="name">{{item.name}}</view>
-                    <view class="tag">
-                    <!--判断男女是男加 sex_nan -->
-                      <text class='sex'>♀23</text>
-                    <!--判断是什么会员 -->
-                      <text class='level'>SVIP</text>
-                      <text class='my_VIP'>VIP</text>
-                      <text class='my_DJ'>LV90</text>
+            <form>
+              <view class="item-ans">
+                <view class='activity_block'>
+                  <view class='activity_people'>
+                    <image class="img" src="/image/icon/portrait.png"></image>
+                    <view class="expertInfo inline">
+                      <view class="name">{{item.name}}</view>
+                      <view class="tag">
+                      <!--判断男女是男加 sex_nan -->
+                        <text class='sex'>♀23</text>
+                      <!--判断是什么会员 -->
+                        <text class='level'>SVIP</text>
+                        <text class='my_VIP'>VIP</text>
+                        <text class='my_DJ'>LV90</text>
+                      </view>
+                    </view>
+                  </view>
+                  <view class='activity_time'>
+                    <view class=''>
+                      <text class='block col_lan'>2018/4/24/14:03星期二</text>
+                      <text class='block col_hui'>报名截止18：00</text>
+                      <text class='block col_hui'>报名截止2018/4/24/18：00</text>
                     </view>
                   </view>
                 </view>
-                <view class='activity_time'>
-                  <view class=''>
-                    <text class='block col_lan'>2018/4/24/14:03星期二</text>
-                    <text class='block col_hui'>报名截止18：00</text>
-                    <text class='block col_hui'>报名截止2018/4/24/18：00</text>
+                <view class='activity_block'>
+                  <view class='activity_theme'>
+                    <text>主题：</text>
+                    <text>一起吃火锅</text>
+                    <text class='inline text_koge'></text>
+                    <text>AA制</text>
+                  </view>
+                  <view class='activity_place'>
+                    <text>活动地点：</text>
+                    <text>xx市xx区xx路xxx火锅店</text>
+                    <image src='/image/icon/location.png'></image>
+                    <text class='col_lan'>1.6km</text>
+                  </view>
+                  <view class='activity_content'>
+                    <text>活动内容：</text>
+                    <text>还等什么赶紧报名吧! 到了打电话15873024293。</text>
+                  </view>
+                </view>
+                <view class='activity_block'>
+                  <view>
+                    <view class='inline'>
+                      <image src='/image/icon/nan.png'></image>
+                      <text>01/05</text>
+                    </view>
+                    <view class='inline'>
+                      <image src='/image/icon/nv.png'></image>
+                      <text>01/05</text>
+                    </view>
+                  </view>
+                  <view wx:if='{{currentTab == 0}}'>
+                    <button>信誉轨迹</button>
+                    <button>删除</button>
+                    <image src='/image/icon/copy.png'></image>
+                  </view>
+                  <view wx:elif='{{currentTab == 1}}'>
+                    <button>信誉轨迹</button>
+                    <button>取消报名</button>
+                    <image src='/image/icon/copy.png'></image>
+                  </view>
+                  <view wx:else>
+                    <button>信誉轨迹</button>
+                    <button>置顶</button>
+                    <image src='/image/icon/copy.png'></image>
                   </view>
                 </view>
               </view>
-              <view class='activity_block'>
-                <view class='activity_theme'>
-                  <text>主题：</text>
-                  <text>一起吃火锅</text>
-                  <text class='inline text_koge'></text>
-                  <text>AA制</text>
-                </view>
-                <view class='activity_place'>
-                  <text>活动地点：</text>
-                  <text>xx市xx区xx路xxx火锅店</text>
-                  <image src='/image/icon/location.png'></image>
-                  <text class='col_lan'>1.6km</text>
-                </view>
-                <view class='activity_content'>
-                  <text>活动内容：</text>
-                  <text>还等什么赶紧报名吧! 到了打电话15873024293。</text>
-                </view>
-              </view>
-              <view class='activity_block'>
-                <view>
-                  <view class='inline'>
-                    <image src='/image/icon/nan.png'></image>
-                    <text>01/05</text>
-                  </view>
-                  <view class='inline'>
-                    <image src='/image/icon/nv.png'></image>
-                    <text>01/05</text>
-                  </view>
-                </view>
-                <view>
-                  <button>信誉轨迹</button>
-                  <button>取消报名</button>
-                  <image src='/image/icon/copy.png'></image>
-                </view>
-              </view>
-            </view>
+            </form>
           </block>
         </scroll-view>
       </swiper-item>
     </swiper>
+    <!--判断是哪个活动的置顶  -->
+    <view wx:if='{{currentTab==2}}' hidden='{{true}}' class='payment'>
+      <view>
+      <!--标题  -->
+        <view class='payment_title'>
+            <image src='/image/icon/off.png'></image >
+            <text>普通置顶</text>
+        </view>
+        <!--支付详情  -->
+        <view class='payment_details'>
+          <view class='details_money'>
+            <view>
+              <text class='col_lan details_da'>2</text>
+              <text class='col_lan'>元</text>
+              <text>/12小时</text>
+            </view>
+          </view>
+          <view class='details_payment'>
+            <view>
+              <image src='/image/icon/copy_10.png'></image>
+              <text>余额支付</text>
+            </view>
+          </view>
+          <view class='details_payment'>
+            <view>
+              <image src='/image/icon/copy_2_1.png'></image>
+              <text class='col_hui'>微信支付</text>
+            </view>
+          </view>
+          <view class='details_payment'>
+            <view>
+              <image src='/image/icon/copy_9.png'></image>
+              <text class='col_hui'>支付宝支付</text>
+            </view>
+          </view>
+          <view class='details_upgrade'>
+            <view>
+              <text class='col_hui'>开通置顶VIP费用低至1.5元！</text>
+              <text class='col_lan details_xiao'>去开通>></text>
+            </view>
+          </view>
+        </view>
+        <!--确认,取消  -->
+        <view class='payment_whether'>
+          <button class='payment_cancel'>取消</button>
+          <button class='payment_confirm'>确认支付</button>
+        </view>
+      </view>
+    </view>
+    <!--判断是否确认支付  -->
+    <view wx:if='{{currentTab==2}}' hidden='{{true}}' class='pwd_payment'>
+      <view>
+      <!--标题  -->
+        <view class='payment_title'>
+            <image src='/image/icon/off.png'></image >
+            <text>支付密码</text>
+        </view>
+        <!--支付密码  -->
+        <view class='payment_pwd'>
+          <view>
+            <text class='col_hui'>请输入六位支付密码</text>
+          </view>
+          <view class="payPass_box_m">  
+              <view class="payPass_box_m_in">  
+                  <view class="payPass_box_m_in_in" wx:for="{{6}}" wx:key="KeyItem">  
+                      <input type="number" maxlength="1" password="{{true}}"/>  
+                  </view>  
+              </view> 
+          </view>
+        </view>
+        <!--确认,返回  -->
+        <view class='payment_whether'>
+          <button class='payment_cancel'>返回</button>
+          <button class='payment_confirm'>确认</button>
+        </view>
+      </view>
+    </view>
   </view>
 </view> 

@@ -40,6 +40,7 @@
         <swiper-item class='sw_item'>
           <scroll-view scroll-y="{{true}}">
             <block wx:for="{{activitys[0].arrayResult}}" wx:key="navItems" wx:for-item="item" wx:for-index="idx">
+            <!--老代码 ↓ ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
               <!-- <view class='frame'>
                 <view>
                   <view class='inline flo_left'>
@@ -103,7 +104,7 @@
                 </view>
                 <view class='cl_both'></view>
               </view> -->
-
+              <!--老代码 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  -->
 
               <view class="item-ans">
                 <view class='activity_block'>
@@ -163,6 +164,39 @@
                     <button>信誉轨迹</button>
                     <button>去报名</button>
                     <image src='/image/icon/copy.png'></image>
+                  </view>
+                </view>
+                <!--判断当前弹出框是否隐藏  -->
+                <view class='sare_frame' wx:if='{{false}}'> 
+                  <view class='share'>
+                    <view class='inline'>
+                      <image src='/image/icon/copy_1.png'></image>
+                      <text>闪多好友</text>
+                    </view>
+                    <view class='inline'>
+                      <image src='/image/icon/copy_2.png'></image>
+                      <text>微信好友</text>
+                    </view>
+                    <view class='inline'>
+                      <image src='/image/icon/copy_3.png'></image>
+                      <text>朋友圈</text>
+                    </view>
+                    <view class='inline'>
+                      <image src='/image/icon/copy_4.png'></image>
+                      <text>QQ好友</text>
+                    </view>
+                    <view class='inline'>
+                      <image src='/image/icon/copy_5.png'></image>
+                      <text>QQ空间</text>
+                    </view>
+                    <view class='inline'>
+                      <image src='/image/icon/copy_6.png'></image>
+                      <text>微博</text>
+                    </view>
+                    <view class='inline'>
+                      <image src='/image/icon/copy_7.png'></image>
+                      <text>举报</text>
+                    </view>
                   </view>
                 </view>
               </view>

@@ -1,6 +1,8 @@
+page{
+  height: 0;
+}
 .container{
   display: block;
-  background-color: #eaeaea;
 }
 .release_section>textarea{
   margin-top: 102rpx;
@@ -12,46 +14,37 @@
   font-size: 32rpx;
 }
 .release_footer{
-  border-bottom-left-radius: 20rpx;
-  border-bottom-right-radius: 20rpx;
+  border-bottom: 2rpx solid #eaeaea;
   background-color: #ffffff;
   width:100%;
-  padding-bottom: 30rpx; 
+  padding: 0 30rpx 70rpx; 
 }
 .release_footer>view{
   display: inline-block;
 }
 
 .release_footer_pic{
-  width: 220rpx;
-  height: 220rpx;
+  width: 210rpx;
+  height: 210rpx;
   border-radius: 20rpx;
   vertical-align: bottom;
-  margin-left:30rpx;
+  margin-right:30rpx;
   margin-top:20rpx;
 }
+.release_footer_pic:nth-child(3n+0){
+  margin-right: 0;
+}
 .release_footer>.pic_left{
-  margin-left:30rpx;
   background-color: #eaeaea;
   border-radius: 20rpx;
-  width: 220rpx;
-  height: 220rpx;
+  width: 210rpx;
+  height: 210rpx;
   text-align: center;
   line-height: 220rpx;
 }
-.release_footer>.pic_left>text{
-  font-size: 24rpx;
-  color: #999999;
-}
-.release_footer>.pic_left>view{
-  display: block;
-  width: 60rpx;
-  height: 30rpx;
-  margin: 0 auto;
-}
-.release_footer>.pic_left>view>image{
-  width: 60rpx;
-  height: 48rpx;
+.release_footer>.pic_left>image{
+  width: 100%;
+  height: 100%;
 }
 .release_footer>.pic_center{
   bottom: 30rpx;
@@ -62,11 +55,45 @@
   height: 44rpx;
 }
 .release_footer>.pic_right{
-  bottom: 30rpx;
-  right: 30rpx;
+  bottom: 25rpx;
+  left: 30rpx;
+}
+.release_footer>.pic_right{
+  text-align: right;
 }
 .release_footer>.pic_right>image{
-  text-align: right;
-  width: 48rpx;
-  height: 48rpx;
+  width: 45rpx;
+  height: 45rpx;
+  vertical-align: middle;
+}
+.release_footer>.pic_right>text{
+  color: #4d99ff;
+}
+.footer_IM{
+  margin: 20rpx 0 120rpx;
+}
+.footer_IM>image{
+  width: 50rpx;
+  height: 50rpx;
+  margin-left: 20rpx;
+}
+.footer_IM>image:nth-child(1){
+  width: 45rpx;
+  height: 45rpx;
+}
+.footer_di{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100rpx;
+  border: 1rpx solid #eaeaea;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fff;
+}
+.footer_di>image{
+  width: 54rpx;
+  height: 54rpx;
 }

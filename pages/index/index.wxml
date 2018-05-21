@@ -117,8 +117,8 @@
                         <text class='sex'><text class='sex_on' wx:if='{{item.gender=="1"}}'>♂</text>
                         <text class='sex_on' wx:else>♀</text>{{item.age}}</text>
                       <!--判断是什么会员 -->
-                        <text class='level'>SVIP</text>
-                        <text class='my_VIP'>VIP</text>
+                        <text class='level'>SVIP9</text>
+                        <text class='my_VIP'>VIP7</text>
                         <text class='my_DJ'>LV90</text>
                       </view>
                     </view>
@@ -162,7 +162,8 @@
                   </view>
                   <view>
                     <button>信誉轨迹</button>
-                    <button>去报名</button>
+                    <!--判断活动过期加 disabled -->
+                    <button class='disabled'>去报名</button>
                     <image src='/image/icon/copy.png'></image>
                   </view>
                 </view>

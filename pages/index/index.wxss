@@ -1,7 +1,6 @@
 /*index.wxss*/
 
 /*祖容器  */
-
 .container {
   height: 110rpx;
   display: flex;
@@ -311,4 +310,8 @@
   align-items:center;
   background-color:#fff;
   align-content:space-around;
+}
+.disabled{
+  background: #fff
+  color：
 }

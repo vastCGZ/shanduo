@@ -28,7 +28,8 @@ text {
   display: inline-block;
   background-color: #ffde20;
   color: #fff;
-  font-size: 22rpx;
+  width: 50rpx;
+  font-size: 21rpx;
   padding: 0 10rpx;
   border-radius: 50rpx;
   text-align: center;
@@ -620,7 +621,7 @@ page {
 }
 
 .item-ans>.activity_block>.activity_people{
-  width: 55%;
+  width: 57%;
 }
 /*头像*/
 .activity_people>image{

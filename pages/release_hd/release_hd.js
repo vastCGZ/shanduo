@@ -80,9 +80,15 @@ Page({
     })
   },
   pushActivity: function () {
+    var that = this;
+    var startDate = new Date(that.data.activity.activityStartTime);
+    var cutoffDate = new Date(that.data.activity.activityCutoffTime);
+    if (startDate.getTime() <= cutoffDate.getTime()) {
+      util.toast('活动截止时间已过');
+      return;
+    }
     wx.showLoading()
     console.log(this.data.activity);
-    var that = this;
     if (this.checkInputData()) {
       wx.request({
         url: app.host + '/activity/saveactivity',
@@ -151,7 +157,7 @@ Page({
       util.toast('请输入活动内容');
       return false;
     }
-    if (!activity.manNumber && !activity.womanNumber) {
+    if (!activity.manNumber || !activity.womanNumber) {
       util.toast('请输入活动人数');
       return false;
     }

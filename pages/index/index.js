@@ -56,31 +56,28 @@ Page({
         });
       }
     });
-    var location = app.globalData.location;
-    if (location) {
-      that.setData({ latitude: location.lat, longitude: location.lon });
-    } else {
-      wx.getLocation({
-        success: function (res) {
-          app.globalData.location.lat = res.latitude;
-          app.globalData.location.lon = res.longitude;
-        },
-        fail: (res) => {
-          wx.openSetting({
-            success: (res) => {
-              wx.getLocation({
-                success: function (res) {
-                  var location = {};
-                  location.lat = res.latitude;
-                  location.lon = res.longitude;
-                  app.globalData.location = location;
-                },
-              })
-            }
-          })
-        }
-      })
-    }
+    wx.getLocation({
+      success: function (res) {
+        app.globalData.location.lat = res.latitude;
+        app.globalData.location.lon = res.longitude;
+        that.setData({ latitude: res.latitude, longitude: res.longitude });
+      },
+      fail: (res) => {
+        wx.openSetting({
+          success: (res) => {
+            wx.getLocation({
+              success: function (res) {
+                var location = {};
+                location.lat = res.latitude;
+                location.lon = res.longitude;
+                app.globalData.location = location;
+                that.setData({ latitude: res.latitude, longitude: res.longitude });
+              },
+            })
+          }
+        })
+      }
+    })
     that.getActivityData();
   },
   //下拉刷新
@@ -150,28 +147,14 @@ Page({
   bindChange1: function (e) {
     var that = this;
     that.setData({ currentTab1: e.detail.current });
-    var ary = that.data.activitys[that.data.currentTab1].arrayResult;
-    ary.splice(0, ary.length);
-    that.data.activitys[that.data.currentTab1].arrayResult = ary;
-    that.data.activitys[that.data.currentTab1].currentPage = 1;
-    that.data.activitys[that.data.currentTab1].totalpage = 0;
-    that.setData({
-      activitys: that.data.activitys
-    })
+    that.emptyData();
     that.getActivityData();
   },
   //滑动切换动态内的Tab
   bindChange2: function (e) {
     var that = this;
     that.setData({ currentTab2: e.detail.current });
-    var ary = that.data.activitys[that.data.currentTab2].arrayResult;
-    ary.splice(0, ary.length);
-    that.data.dynamics[that.data.currentTab2].arrayResult = ary;
-    that.data.dynamics[that.data.currentTab2].currentPage = 1;
-    that.data.dynamics[that.data.currentTab2].totalpage = 0;
-    that.setData({
-      dynamics: that.data.dynamics
-    })
+    that.emptyData();
     that.getDynamicData();
   },
   /** 
@@ -184,7 +167,8 @@ Page({
     }
     that.setData({
       currentTab1: e.target.dataset.current
-    })
+    });
+    that.emptyData();
     that.getActivityData();
 
   },
@@ -198,7 +182,8 @@ Page({
     }
     that.setData({
       currentTab2: e.target.dataset.current
-    })
+    });
+    that.emptyData();
     that.getDynamicData();
   },
   //远程获取活动数据
@@ -282,27 +267,28 @@ Page({
       }, method: 'GET'
     });
   },
-  // emptyData: function () {
-  //   if (that.data.currentTab == 0) {
-  //     var ary = that.data.activitys[that.data.currentTab1].arrayResult;
-  //     ary.splice(0, ary.length);
-  //     that.data.activitys[that.data.currentTab1].arrayResult = ary;
-  //     that.data.activitys[that.data.currentTab1].currentPage = 1;
-  //     that.data.activitys[that.data.currentTab1].totalpage = 0;
-  //     that.setData({
-  //       activitys: that.data.activitys
-  //     })
-  //   } else {
-  //     var ary = that.data.dynamics[that.data.currentTab2].arrayResult;
-  //     ary.splice(0, ary.length);
-  //     that.data.dynamics[that.data.currentTab2].arrayResult = ary;
-  //     that.data.dynamics[that.data.currentTab2].currentPage = 1;
-  //     that.data.dynamics[that.data.currentTab2].totalpage = 0;
-  //     that.setData({
-  //       dynamics: that.data.dynamics
-  //     })
-  //   }
-  // },
+  emptyData: function () {
+    var that = this;
+    if (that.data.currentTab == 0) {
+      var ary = that.data.activitys[that.data.currentTab1].arrayResult;
+      ary.splice(0, ary.length);
+      that.data.activitys[that.data.currentTab1].arrayResult = ary;
+      that.data.activitys[that.data.currentTab1].currentPage = 1;
+      that.data.activitys[that.data.currentTab1].totalpage = 0;
+      that.setData({
+        activitys: that.data.activitys
+      })
+    } else {
+      var ary = that.data.dynamics[that.data.currentTab2].arrayResult;
+      ary.splice(0, ary.length);
+      that.data.dynamics[that.data.currentTab2].arrayResult = ary;
+      that.data.dynamics[that.data.currentTab2].currentPage = 1;
+      that.data.dynamics[that.data.currentTab2].totalpage = 0;
+      that.setData({
+        dynamics: that.data.dynamics
+      })
+    }
+  },
   /**
    * 扫一扫
    */

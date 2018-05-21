@@ -143,17 +143,18 @@ Page({
       if (res.ActionStatus === 'FAIL') {
         switch (res.ErrorCode) {
           case '20009':
-          //双方互相不是好友，禁止发送
+            //双方互相不是好友，禁止发送
             break;
           case '20010':
-          //自己不是对方的好友（单向关系），禁止发送
+            //自己不是对方的好友（单向关系），禁止发送
             break;
           case '20011':
-          //对方不是自己的好友（单向关系），禁止发送
+            //对方不是自己的好友（单向关系），禁止发送
             break;
         }
+      } else {
+        that.clearInput();
       }
-      // that.clearInput();
     })
   }
 })

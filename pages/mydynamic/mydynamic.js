@@ -43,7 +43,6 @@ Page({
       dataType: 'json',
       method: 'GET',
       success: (res) => {
-        console.log(res);
         if (res.data.success) {
           var newData = res.data.result.list;
           if (newData.length > 0) {

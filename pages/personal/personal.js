@@ -81,6 +81,11 @@ Page({
       url: '/pages/mydynamic/mydynamic'
     })
   },
+  gotoMyActivityView:function(){
+    wx.navigateTo({
+      url: '/pages/myactivity/myactivity'
+    })
+  },
   signin: function () {
     var that = this;
     wx.request({

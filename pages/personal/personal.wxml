@@ -29,7 +29,7 @@
         </view>
       </view>
     </view>
-    <view class='nav'>
+    <view class='nav' bindtap='gotoMyActivityView'>
       <view class='inline nav_left'>
         <image src='/image/icon/icon-5.png'></image>
         <view>

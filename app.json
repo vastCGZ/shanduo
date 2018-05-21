@@ -4,7 +4,6 @@
     "pages/login/login",
     "pages/register/register",
     "pages/chat/chat",
-    "pages/interface/interface",
     "pages/activity/activity",
     "pages/friends/friends",
     "pages/personal/personal",
@@ -12,6 +11,8 @@
     "pages/release_dt/release_dt",
     "pages/dynamic/dynamic",
     "pages/mydynamic/mydynamic",
+    "pages/interface/interface",
+    "pages/search/search",
     "pages/myactivity/myactivity",
     "pages/comment/comment"
   ],

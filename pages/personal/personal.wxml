@@ -18,12 +18,12 @@
         </view>
       </view>
       <view class='inline believe_right'>
-        <view>
+        <view bindtap='signin'>
           <text>签到</text>
         </view>
       </view>
     </view>
-    <view class='nav'>
+    <view class='nav' bindtap='gotoMyActivityView'>
       <view class='inline nav_left'>
         <image src='/image/icon/icon-5.png'></image>
         <view>
@@ -34,7 +34,7 @@
         <image src='/image/icon/icon-2.png'></image>
       </view>
     </view>
-    <view class='nav'>
+    <view class='nav' bindtap='gotoMydynamicView'>
       <view class='inline nav_left'>
         <image src='/image/icon/icon-3.png'></image>
         <view>

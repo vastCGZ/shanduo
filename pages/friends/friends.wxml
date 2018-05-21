@@ -18,9 +18,9 @@
         <view class="group-name" wx:if='{{indexs}}'>{{group.groupName}}</view>
         <view class="flex group-users user_li{{indexs}}" wx:if='{{indexs}}'>
           <block wx:for="{{group.users}}" wx:for-item="user" wx:key="navItem" wx:for-index="index">
-            <view class="user box box-lr" wx:hidden='{{ index == 0 }}'>
+            <view class="user box box-lr" wx:hidden='{{ index == 0 }}' data-current="{{user.userId}},{{user.name}}" bindtap='openSession'>
               <view class="user-avatar box box-lr box-pack-center box-align-center">
-                <image class="user-avatar-img" src="{{user.avatar}}"></image>
+                <image class="user-avatar-img" src="{{host}}/picture/{{user.picture}}"></image>
               </view>
               <view class="flex user-name believe">
                 <view class='inline believe_left'>
@@ -35,8 +35,8 @@
                       <text wx:if='{{true}}' class='level'>SVIP1</text>
                     </view>
                     <view class='text_ell'>
-                      <text class='col_hui'>[{{user.WiFi}}]</text>
-                      <text class='col_hui'>{{user.title}}</text>
+                      <text class='col_hui'>[{{user.vip}}]</text>
+                      <text class='col_hui'>{{user.signature}}</text>
                     </view>
                   </view>
                 </view>

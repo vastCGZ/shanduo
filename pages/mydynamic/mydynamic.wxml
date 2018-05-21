@@ -1,21 +1,21 @@
 <view class='container'>
   <view class='release_header'>
-    <image src='/image/icon/return_1.png' class='left_text inline'></image >
+    <image src='/image/icon/return_1.png' class='left_text inline'></image>
     <text class='center_text inline'>我的动态</text>
-    <text class='right_text inline'>发布</text>
+    <text class='right_text inline' bindtap='pushDynamic'>发布</text>
   </view>
-  <block wx:for="{{ posts_key }}" wx:key="navItems"  wx:for-item="item" wx:for-index="idx">
+  <block wx:for="{{ dynamics }}" wx:key="navItems" wx:for-item="item" wx:for-index="idx">
     <view class='nearby'>
       <view class='believe'>
         <view class='inline believe_left'>
-          <image src='{{item.pic}}'></image>
+          <image src='{{host}}/picture/{{item.portraitId}}'></image>
           <view class='inline'>
             <view>
-              <text>{{item.initiator}}</text>
+              <text>{{item.name}}</text>
             </view>
             <view>
-              <text class='sex'>{{item.sex_sign}}{{item.age}}</text>
-              <text class='level'>{{item.level}}</text>
+              <text class='sex'>{{item.gender}}{{item.age}}</text>
+              <text class='level'>{{item.vip}}</text>
             </view>
           </view>
         </view>
@@ -25,23 +25,23 @@
         </view>
       </view>
       <view>
-        <text>{{item.say}}</text>
+        <text>{{item.content}}</text>
         <view>
-          <block wx:for="{{ item.say_pic }}" wx:key="navItems"  wx:for-item="ite" wx:for-index="index" >
-          <!--判断一张图片或者两张图片需放大,加类名 big   -->
-            <image src='{{ite.pic}}'></image>
+          <block wx:for="{{ item.picture }}" wx:key="navItems" wx:for-item="ite" wx:for-index="index">
+            <!--判断一张图片或者两张图片需放大,加类名 big   -->
+            <image src='{{host}}/picture/{{ite}}'></image>
           </block>
         </view>
         <view>
-          <text>刚刚发布</text>
+          <text>{{item.createDate}}发布</text>
         </view>
       </view>
       <view>
         <view>
           <image src='/image/icon/comment_1.png'></image>
-          <text>863</text>
+          <text>{{item.dynamicCount}}</text>
           <image src='/image/icon/fabulous_1.png'></image>
-          <text>863</text>
+          <text>{{item.praise}}</text>
         </view>
         <view>
           <image src='/image/icon/copy.png'></image>
@@ -49,7 +49,7 @@
       </view>
     </view>
     <!--判断是否隐藏  -->
-    <view class='sare_frame'> 
+    <view class='sare_frame'>
       <view class='share'>
         <view class='inline'>
           <image src='/image/icon/copy_1.png'></image>
@@ -85,5 +85,5 @@
         </view>
       </view>
     </view>
-  </block> 
+  </block>
 </view>

@@ -6,8 +6,7 @@ var selToID
     ,accountType
     ,sdkAppID
     ,avChatRoomId
-  , selType ='webim.SESSION_TYPE.C2C'
-  , selToID = '10000'
+    ,selType
     ,selSess
     ,selSessHeadUrl
     ;
@@ -101,7 +100,7 @@ function sdkLogin(userInfo, listeners, options,avChatRoomId) {
             //initEmotionUL();//初始化表情
         },
         function (err) {
-          console.error('webim登录失败:'+err.ErrorInfo);
+            console.error(err.ErrorInfo);
         }
     );//
 }
@@ -611,8 +610,7 @@ function onSendMsg(msg,callback) {
         //showDiscussTool();//显示评论工具栏
         //hideDiscussEmotion();//隐藏表情
     }, function (err) {
-        webim.Log.error("发消息失败:" + err.ErrorInfo);
-        console.error("发消息失败:" + err.ErrorInfo);
+        callback && callback(err);
     });
 }
 

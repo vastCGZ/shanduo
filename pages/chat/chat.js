@@ -18,4 +18,7 @@ Page({
       posts_key: postsData.postList
     });
   },
+  gotoSessionView:function(){
+    wx.navigateTo({ url:'/pages/interface/interface'});
+  }
 })

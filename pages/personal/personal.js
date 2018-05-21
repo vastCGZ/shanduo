@@ -1,4 +1,5 @@
 const app = getApp();
+var toastutil = require('../../utils/util.js');
 Page({
 
   /**
@@ -20,10 +21,10 @@ Page({
       })
     } else {
       this.setData({ userInfo: localUserInfo });
-      if (localUserInfo.picture){
+      if (localUserInfo.picture) {
         this.setData({ headImg: app.host + '/picture/' + localUserInfo.picture })
       }
-     
+
     }
   },
 
@@ -74,5 +75,25 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  gotoMydynamicView: function () {
+    wx.navigateTo({
+      url: '/pages/mydynamic/mydynamic'
+    })
+  },
+  signin: function () {
+    var that = this;
+    wx.request({
+      url: app.host + '/experience/signin',
+      data: { token: app.globalData.userInfo.token },
+      success: (res) => {
+        console.log(res);
+        if (res.data.success) {
+          toastutil.toast(res.data.result);
+        }else{
+          toastutil.toast(res.data.errorCode);
+        }
+      }
+    })
   }
 })

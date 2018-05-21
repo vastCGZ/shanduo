@@ -51,7 +51,6 @@ Page({
         'token': app.globalData.userInfo.token
       },
       success: (res) => {
-        console.log(res);
         if (res.statusCode == 200) {
           var back = JSON.parse(res.data);
           if (back.success) {
@@ -99,7 +98,6 @@ Page({
       }, fail: (res) => {
         util.toast(res.errorMsg);
       }, complete: (res) => {
-        console.log(res);
         wx.hideLoading();
       }
     })

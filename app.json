@@ -12,7 +12,8 @@
     "pages/comment/comment",
     "pages/dynamic/dynamic",
     "pages/mydynamic/mydynamic",
-    "pages/interface/interface"
+    "pages/interface/interface",
+    "pages/search/search"
   ],
   "window":{
     "backgroundTextStyle":"dark",

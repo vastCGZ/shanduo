@@ -1,15 +1,13 @@
 //获取应用实例
 var webim = require('../../utils/webim.js');
 var webimhandler = require('../../utils/webim_handler.js');
-
-
 var Config = {
-  sdkappid: 1400088239
-  , accountType: 25943
-  , accountMode: 0 //帐号模式，0-表示独立模式，1-表示托管模式
+  sdkappid: 1400088239,
+  accountType: 25943,
+  accountMode: 0 //帐号模式，0-表示独立模式，1-表示托管模式
 };
-
 var app = getApp()
+var toUserId, toUserName
 Page({
 
   /**
@@ -17,7 +15,9 @@ Page({
    */
   data: {
     msgContent: null,
-    userInfo: null
+    userInfo: null,
+    actionStatus: '',
+    toUserName: ''
   },
 
   /**
@@ -25,8 +25,10 @@ Page({
    */
   onLoad: function (options) {
     var localUserInfo = app.globalData.userInfo;
+    toUserId = options.toUserId;
+    toUserName = options.toUserName;
     if (localUserInfo) {
-      this.setData({ userInfo: localUserInfo });
+      this.setData({ userInfo: localUserInfo, toUserName: toUserName });
       this.initIM();
     }
   },
@@ -44,42 +46,11 @@ Page({
   onShow: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  clearInput: function () {
+    this.setData({
+      msgContent: ""
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-
   receiveMsgs: function (data) {
     var msgs = this.data.msgs || [];
     msgs.push(data);
@@ -94,15 +65,14 @@ Page({
   },
   initIM: function () {
     var that = this;
-
-    var avChatRoomId = '@TGS#aWTBZTDFW';
+    // var avChatRoomId = '@TGS#aWTBZTDFW';
     webimhandler.init({
       accountMode: Config.accountMode
       , accountType: Config.accountType
       , sdkAppID: Config.sdkappid
-      , avChatRoomId: avChatRoomId //默认房间群ID，群类型必须是直播聊天室（AVChatRoom），这个为官方测试ID(托管模式)
-      , selType: webim.SESSION_TYPE.GROUP
-      , selToID: avChatRoomId
+      // , avChatRoomId: avChatRoomId //默认房间群ID，群类型必须是直播聊天室（AVChatRoom），这个为官方测试ID(托管模式)
+      , selType: webim.SESSION_TYPE.C2C
+      , selToID: toUserId
       , selSess: null //当前聊天会话
     });
     //当前用户身份
@@ -126,10 +96,11 @@ Page({
     var onConnNotify = function (resp) {
       switch (resp.ErrorCode) {
         case webim.CONNECTION_STATUS.ON:
-          webim.Log.warn('连接状态正常...');
+          that.setData({ actionStatus: '在线' });
           break;
         case webim.CONNECTION_STATUS.OFF:
           webim.Log.warn('连接已断开，无法收到新消息，请检查下你的网络是否正常');
+          that.setData({ actionStatus: '离线' });
           break;
         default:
           webim.Log.error('未知连接状态,status=' + resp.ErrorCode);
@@ -140,15 +111,11 @@ Page({
 
     //监听事件
     var listeners = {
-      "onConnNotify": webimhandler.onConnNotify, //选填
-      "onBigGroupMsgNotify": function (msg) {
-        webimhandler.onBigGroupMsgNotify(msg, function (msgs) {
-          that.receiveMsgs(msgs);
-        })
-      }, //监听新消息(大群)事件，必填
+      "onConnNotify": onConnNotify, //选填, 
+      //监听新消息(大群)事件，必填
       "onMsgNotify": webimhandler.onMsgNotify,//监听新消息(私聊(包括普通消息和全员推送消息)，普通群(非直播聊天室)消息)事件，必填
-      "onGroupSystemNotifys": webimhandler.onGroupSystemNotifys, //监听（多终端同步）群系统消息事件，必填
-      "onGroupInfoChangeNotify": webimhandler.onGroupInfoChangeNotify//监听群资料变化事件，选填
+      "onGroupSystemNotifys": onGroupSystemNotifys, //监听（多终端同步）群系统消息事件，必填
+      "onGroupInfoChangeNotify": webimhandler.onGroupInfoChangeNotify,//监听群资料变化事件，选填
     };
 
     //其他对象，选填
@@ -156,20 +123,37 @@ Page({
       'isAccessFormalEnv': true,//是否访问正式环境，默认访问正式，选填
       'isLogOn': true//是否开启控制台打印日志,默认开启，选填
     };
-    //sdk登录
-    webimhandler.sdkLogin(loginInfo, listeners, options);
+
+    if (Config.accountMode == 1) {//托管模式
+      webimhandler.sdkLogin(loginInfo, listeners, options, avChatRoomId);
+    } else {//独立模式
+      //sdk登录
+      webimhandler.sdkLogin(loginInfo, listeners, options);
+    }
   },
   inputMsg: function (event) {
     this.setData({ msgContent: event.detail.value })
   },
   sendMsg: function () {
-    if (this.data.userInfo) {
-      webimhandler.onSendMsg(this.data.msgContent);
-    } else {
-      wx.showModal({
-        title: '提示',
-        content: '用户没有登录'
-      })
-    }
+    var that = this;
+    var content = that.data.msgContent;
+    if (!content.replace(/^\s*|\s*$/g, '')) return;
+    webimhandler.selType = webim.SESSION_TYPE.C2C;
+    webimhandler.onSendMsg(content, function (res) {
+      if (res.ActionStatus === 'FAIL') {
+        switch (res.ErrorCode) {
+          case '20009':
+          //双方互相不是好友，禁止发送
+            break;
+          case '20010':
+          //自己不是对方的好友（单向关系），禁止发送
+            break;
+          case '20011':
+          //对方不是自己的好友（单向关系），禁止发送
+            break;
+        }
+      }
+      // that.clearInput();
+    })
   }
 })

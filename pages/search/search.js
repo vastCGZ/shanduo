@@ -12,7 +12,6 @@ Page({
     this.setData({
       inputValue: e.detail.value
     })
-    console.log('bindInput' + this.data.inputValue)
   },
   setSearchStorage: function () {
     let data;
@@ -54,7 +53,6 @@ Page({
     // this.onLoad();
   },
   onLoad: function () {
-    console.log('search is onLoad');
   },
   onShow: function () {
     var getSearch = wx.getStorageSync('searchData');
@@ -62,16 +60,13 @@ Page({
       getSearch: getSearch,
       inputValue: ''
     })
-    console.log('search is onshow')
   },
   onHide: function () {
-    console.log('search is onHide')
     wx.redirectTo({
       url: '../search/search'
     })
   },
   bindchange: function (e) {
-    console.log('bindchange')
   },
   clearInput: function () {
     this.setData({

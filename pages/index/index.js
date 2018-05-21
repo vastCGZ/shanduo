@@ -45,10 +45,7 @@ Page({
   },
   onLoad: function () {
     var that = this;
-    that.setData({ host: app.host });
-    /** 
-     * 获取系统信息 
-     */
+    that.setData({ host: app.host })
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
@@ -62,18 +59,17 @@ Page({
     var location = app.globalData.location;
     if (location) {
       that.setData({ latitude: location.lat, longitude: location.lon });
-      that.getActivityData();
-    }else{
+    } else {
       wx.getLocation({
-        success: function(res) {
+        success: function (res) {
           app.globalData.location.lat = res.latitude;
           app.globalData.location.lon = res.longitude;
         },
-        fail:(res)=>{
+        fail: (res) => {
           wx.openSetting({
-            success:(res)=>{
+            success: (res) => {
               wx.getLocation({
-                success: function(res) {
+                success: function (res) {
                   var location = {};
                   location.lat = res.latitude;
                   location.lon = res.longitude;
@@ -85,6 +81,7 @@ Page({
         }
       })
     }
+    that.getActivityData();
   },
   //下拉刷新
   onPullDownRefresh: function () {
@@ -97,18 +94,18 @@ Page({
   //上拉加载更多
   onReachBottom: function () {
     if (this.data.currentTab == 0) {
-      var _index = this.data.activitys[this.data.currentTab1].currentPage;
-      if (this.data.activitys[this.data.currentTab1].totalpage > _index) {
-        this.data.activitys[this.data.currentTab1].currentPage = parseInt(_index) + 1;
+      var currentIndex = this.data.activitys[this.data.currentTab1].currentPage;
+      if (this.data.activitys[this.data.currentTab1].totalpage > currentIndex) {
+        this.data.activitys[this.data.currentTab1].currentPage = parseInt(currentIndex) + 1;
         this.setData({ activitys: this.data.activitys });
         this.getActivityData();
       } else {
         util.toast('没有更多')
       }
     } else {
-      var _index = this.data.dynamics[this.data.currentTab2].currentPage;
-      if (this.data.dynamics[this.data.currentTab2].totalpage > _index) {
-        this.data.dynamics[this.data.currentTab2].currentPage = parseInt(_index) + 1;
+      var currentIndex = this.data.dynamics[this.data.currentTab2].currentPage;
+      if (this.data.dynamics[this.data.currentTab2].totalpage > currentIndex) {
+        this.data.dynamics[this.data.currentTab2].currentPage = parseInt(currentIndex) + 1;
         this.setData({ dynamics: this.data.dynamics });
         this.getDynamicData();
       } else {
@@ -124,7 +121,7 @@ Page({
      * 滑动切换活动，动态 
      */
   bindChange: function (e) {
-    this.setData({ currentTab: e.target.dataset.current });
+    this.setData({ currentTab: e.detail.current });
     if (this.data.currentTab == 0) {
       this.getActivityData();
     } else {
@@ -339,5 +336,13 @@ Page({
     wx.navigateTo({
       url: '/pages/search/search'
     })
+  },
+  gotoDynamicDetails: function (e) {
+    var id = e.target.dataset.current;
+    wx.navigateTo({ url: '/pages/dynamic/dynamic?dynamicId=' + id + '' });
+  },
+  seeComments: function (e) {
+    var id = e.target.dataset.current;
+    wx.navigateTo({ url: '/pages/comment/comment?dynamicId=' + id + '' });
   }
 }) 

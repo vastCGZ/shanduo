@@ -14,7 +14,7 @@
       <image class='img_special' src='/image/icon/search.png' bindtap="bindFocus"></image>
     </view>
   </view>
-  <swiper wx:if="{{currentTab1 == 0 && currentTab == 0}}" current="{{currentTab}}" class="swiper-box" duration="300" style='height:{{444+354*(activitys[0].arrayResult.length)}}rpx'>
+  <swiper wx:if="{{currentTab1 == 0 && currentTab == 0}}" current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange" style='height:{{444+354*(activitys[0].arrayResult.length)}}rpx'>
     <!-- 活动 -->
     <swiper-item>
       <view>
@@ -111,6 +111,9 @@
         <swiper-item>
         </swiper-item>
       </swiper>
+    </swiper-item>
+    <!--动态  -->
+    <swiper-item>
     </swiper-item>
   </swiper>
   <swiper wx:elif="{{currentTab1 == 1 && currentTab == 0}}" current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange" style='height:{{444+354*(activitys[1].arrayResult.length)}}rpx'>
@@ -211,6 +214,9 @@
         </swiper-item>
       </swiper>
     </swiper-item>
+    <!--动态  -->
+    <swiper-item>
+    </swiper-item>
   </swiper>
   <swiper wx:elif="{{currentTab1 == 2 && currentTab == 0}}" current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange" style='height:{{444+354*(activitys[2].arrayResult.length)}}rpx'>
     <!-- 活动 -->
@@ -310,6 +316,9 @@
         </swiper-item>
       </swiper>
     </swiper-item>
+    <!--动态  -->
+    <swiper-item>
+    </swiper-item>
   </swiper>
   <swiper wx:if="{{currentTab2 == 0 && currentTab == 1}}" current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange" style='height:{{430+455*(dynamics[0].arrayResult.length)}}rpx'>
     <!-- 活动 -->
@@ -368,11 +377,11 @@
                 <view>
                   <view>
                     <image src='/image/icon/fabulous.png'></image>
-                    <image src='/image/icon/comment.png'></image>
+                    <image src='/image/icon/comment.png' data-current="{{item.id}}" bindtap='seeComments'></image>
                     <image src='/image/icon/turn.png'></image>
                   </view>
                   <view>
-                    <image src='/image/icon/more2.png'></image>
+                    <image src='/image/icon/more2.png' data-current="{{item.id}}"  bindtap='gotoDynamicDetails'></image>
                   </view>
                 </view>
               </view>
@@ -443,11 +452,11 @@
                 <view>
                   <view>
                     <image src='/image/icon/fabulous.png'></image>
-                    <image src='/image/icon/comment.png'></image>
+                    <image src='/image/icon/comment.png' data-current="{{item.id}}" bindtap='seeComments'></image>
                     <image src='/image/icon/turn.png'></image>
                   </view>
                   <view>
-                    <image src='/image/icon/more2.png'></image>
+                    <image src='/image/icon/more2.png' data-current="{{item.id}}"  bindtap='gotoDynamicDetails'></image>
                   </view>
                 </view>
               </view>

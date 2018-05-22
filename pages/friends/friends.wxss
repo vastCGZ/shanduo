@@ -129,7 +129,7 @@ page {
 }
 /**/
 .groups{
-  /* padding-top: 286rpx; */
+   padding-top: 286rpx; 
 }
 /*搜索*/
 .inp_box{

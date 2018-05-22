@@ -30,11 +30,11 @@
           </swiper-item>
         </swiper>
       </view>
-      <view class="swiper-tab1">
+      <scroll-view scroll-y class="swiper-tab1" bindscrolltoupper='upper' style='position:{{position}};top:{{top}};height:84rpx;'>
         <view class="swiper-tab-list1 {{currentTab1==0 ? 'on1' : ''}}" data-current="0" bindtap="swichNav1">热门活动</view>
         <view class="swiper-tab-list1 {{currentTab1==1 ? 'on1' : ''}}" data-current="1" bindtap="swichNav1">附近活动</view>
         <view class="swiper-tab-list1 {{currentTab1==2 ? 'on1' : ''}}" data-current="2" bindtap="swichNav1">好友活动</view>
-      </view>
+      </scroll-view>
       <swiper current="{{currentTab1}}" class="swiper-box1" duration="300" bindchange="bindChange1">
         <!-- 热门活动 -->
         <swiper-item class='sw_item'>

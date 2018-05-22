@@ -41,7 +41,15 @@ Page({
     latitude: 0,
     longitude: 0,
     host: null,
-    pageSize: 20
+    pageSize: 20,
+    top:0,
+    position:''
+  },
+  upper: function () {
+    var that = this;
+    that.setData({
+      position:'fixed',
+    })
   },
   onLoad: function () {
     var that = this;

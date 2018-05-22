@@ -79,7 +79,7 @@
                     <text>活动地点：</text>
                     <text>{{item.activityAddress}}</text>
                     <image src='/image/icon/location.png'></image>
-                    <text class='col_lan'>1.6km</text>
+                    <text class='col_lan'>{{item.location}}km</text>
                   </view>
                   <view class='activity_content'>
                     <text>活动内容：</text>
@@ -217,7 +217,7 @@
                     <text>活动地点：</text>
                     <text>{{item.activityAddress}}</text>
                     <image src='/image/icon/location.png'></image>
-                    <text class='col_lan'>1.6km</text>
+                    <text class='col_lan'>{{item.location}}km</text>
                   </view>
                   <view class='activity_content'>
                     <text>活动内容：</text>
@@ -321,7 +321,7 @@
                     <text>活动地点：</text>
                     <text>{{item.activityAddress}}</text>
                     <image src='/image/icon/location.png'></image>
-                    <text class='col_lan'>1.6km</text>
+                    <text class='col_lan'>{{item.location}}km</text>
                   </view>
                   <view class='activity_content'>
                     <text>活动内容：</text>
@@ -383,7 +383,7 @@
         <swiper-item class='sw_item'>
           <scroll-view>
             <block wx:for="{{ dynamics[0].arrayResult }}" wx:key="navItems" wx:for-item="item" wx:for-index="idx">
-              <view class='nearby' data-current="{{item.id}}" bindtap='gotoDynamicDetails'>
+              <view class='nearby'>
                 <view class='believe'>
                   <view class='inline believe_left'>
                     <image src='{{host}}/picture/{{item.portraitId}}'></image>
@@ -403,7 +403,7 @@
                     <text class='color_ls'>{{item.distance}}</text>
                   </view>
                 </view>
-                <view>
+                <view data-current="{{item.id}}" bindtap='gotoDynamicDetails'>
                   <text>{{item.content}}</text>
                   <view>
                     <block wx:for="{{ item.picture }}" wx:key="navItems" wx:for-item="ite" wx:for-index="index">
@@ -417,9 +417,9 @@
                 </view>
                 <view>
                   <view>
-                    <image src='/image/icon/comment_1.png' bindtap='seeComments'></image>
+                    <image src='/image/icon/comment_1.png' data-current="{{item.id}}" bindtap='gotoDynamicDetails'></image>
                     <text>{{item.dynamicCount}}</text>
-                    <image src='/image/icon/fabulous_1.png' data-current="{{item.id}}"></image>
+                    <image src='/image/icon/fabulous_1.png'></image>
                     <text>{{item.praise}}</text>
                   </view>
                   <view>
@@ -485,7 +485,7 @@
                     <text class='color_ls'>{{item.distance}}</text>
                   </view>
                 </view>
-                <view>
+                <view data-current="{{item.id}}" bindtap='gotoDynamicDetails'>
                   <text>{{item.content}}</text>
                   <view>
                     <block wx:for="{{ item.picture }}" wx:key="navItems" wx:for-item="ite" wx:for-index="index">
@@ -499,13 +499,13 @@
                 </view>
                 <view>
                   <view>
-                    <image src='/image/icon/comment_1.png'></image>
-                    <text>863</text>
-                    <image src='/image/icon/fabulous_1.png' data-current="{{item.id}}" bindtap='seeComments'></image>
-                    <text>863</text>
+                    <image src='/image/icon/comment_1.png' data-current="{{item.id}}" bindtap='gotoDynamicDetails'></image>
+                    <text>{{item.dynamicCount}}</text>
+                    <image src='/image/icon/fabulous_1.png'></image>
+                    <text>{{item.praise}}</text>
                   </view>
                   <view>
-                    <image src='/image/icon/copy.png' data-current="{{item.id}}" bindtap='gotoDynamicDetails'></image>
+                    <image src='/image/icon/copy.png'></image>
                   </view>
                 </view>
               </view>

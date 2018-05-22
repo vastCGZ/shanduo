@@ -63,6 +63,7 @@ Page({
         app.globalData.location.lat = res.latitude;
         app.globalData.location.lon = res.longitude;
         that.setData({ latitude: res.latitude, longitude: res.longitude });
+        that.getActivityData();
       },
       fail: (res) => {
         wx.openSetting({
@@ -74,6 +75,7 @@ Page({
                 location.lon = res.longitude;
                 app.globalData.location = location;
                 that.setData({ latitude: res.latitude, longitude: res.longitude });
+                that.getActivityData();
               },
             })
           }
@@ -81,7 +83,6 @@ Page({
       }
     })
     that.advertise();
-    that.getActivityData();
   },
   //下拉刷新
   onPullDownRefresh: function () {
@@ -338,11 +339,6 @@ Page({
   gotoDynamicDetails: function (e) {
     var id = e.currentTarget.dataset.current;
     wx.navigateTo({ url: '/pages/dynamic/dynamic?dynamicId=' + id + '' });
-  },
-  //评论列表
-  seeComments: function (e) {
-    var id = e.target.dataset.current;
-    wx.navigateTo({ url: '/pages/comment/comment?dynamicId=' + id + '' });
   },
   //广告轮播图
   advertise: function () {

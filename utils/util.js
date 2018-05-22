@@ -1,4 +1,4 @@
-const app=getApp();
+const app = getApp();
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -17,14 +17,26 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
-function toast(msg){
+function toast(msg) {
   wx.showToast({
     title: msg,
-    icon:'none'
+    icon: 'none'
   })
+}
+
+function checkInput(input) {
+  if (!input) {
+    return false;
+  }
+  input = input.replace(/\s/g, '');
+  if (input.length == 0) {
+    return false;
+  }
+  return true;
 }
 
 module.exports = {
   formatTime: formatTime,
-  toast:toast
+  toast: toast,
+  checkInput: checkInput
 }

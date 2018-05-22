@@ -24,6 +24,9 @@ Page({
     dynamicId = options.dynamicId;
     this.loadDynamicDetails();
     this.loadCommentList();
+    wx.showShareMenu({
+      withShareTicket: true
+    })
   },
   //下拉刷新
   onPullDownRefresh: function () {
@@ -67,7 +70,7 @@ Page({
       dataType: 'json',
       method: 'GET',
       success: (res) => {
-        
+        console.log(res);
         if (res.data.success) {
           var oldList = that.data.commentList;
           var newList = res.data.result.list;
@@ -88,8 +91,7 @@ Page({
   sendComments: function () {
     var that = this;
     var comments = that.data.comments;
-    comments = comments.replace(/\s/g, '');
-    if (comments.length == 0) {
+    if (!util.checkInput(comments)) {
       util.toast('不能发送空白内容');
       return;
     }
@@ -111,7 +113,7 @@ Page({
       }
     })
   },
-  dynamicPraise:function(){
+  dynamicPraise: function () {
     wx.request({
       url: app.host + '/jdynamic/ispraise',
       data: {
@@ -121,11 +123,15 @@ Page({
       dataType: 'json',
       method: 'GET',
       success: (res) => {
-        console.log(res);
         if (res.data.success) {
           util.toast(res.data.result);
         }
       }
     })
+  },
+  //评论列表
+  seeComments: function (e) {
+    var id = e.target.dataset.current;
+    wx.navigateTo({ url: '/pages/comment/comment?dynamicId=' + id + '' });
   }
 })

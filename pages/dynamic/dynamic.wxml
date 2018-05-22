@@ -68,7 +68,7 @@
                   <text class='txt_title'>回复量50条></text>
                 </view> -->
                 <view>
-                  <text class='inline'>{{item.createDate}}</text>
+                  <text class='inline'>{{item.createDate}}评论</text>
                 </view>
               </view>
             </view>

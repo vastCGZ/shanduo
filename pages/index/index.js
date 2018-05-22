@@ -1,5 +1,6 @@
 var app = getApp()
 var util = require('../../utils/util.js');
+var date_util = require('../../utils/date_util.js');
 Page({
   data: {
     winWidth: 0,
@@ -153,6 +154,7 @@ Page({
   //滑动切换动态内的Tab
   bindChange2: function (e) {
     var that = this;
+    console.log(2);
     that.setData({ currentTab2: e.detail.current });
     that.emptyData();
     that.getDynamicData();
@@ -247,13 +249,20 @@ Page({
       },
       dataType: 'json',
       success: function (res) {
+        //createDate
         if (res.data.success) {
-          var array = that.data.dynamics[that.data.currentTab2].arrayResult;
-          that.data.dynamics[that.data.currentTab2].arrayResult = array.concat(res.data.result.list);
-          that.data.dynamics[that.data.currentTab2].totalpage = res.data.result.totalPage;
-          that.setData(
-            { dynamics: that.data.dynamics }
-          );
+          var newData = res.data.result.list;
+          if (newData.length > 0) {
+            for(var i in newData){
+              newData[i].createDate = date_util.formatMsgTime(newData[i].createDate);
+            }
+            var array = that.data.dynamics[that.data.currentTab2].arrayResult;
+            that.data.dynamics[that.data.currentTab2].arrayResult = array.concat(newData);
+            that.data.dynamics[that.data.currentTab2].totalpage = res.data.result.totalPage;
+            that.setData(
+              { dynamics: that.data.dynamics }
+            );
+          }
         } else {
           wx.showToast({
             title: res.data.errorCode,
@@ -324,7 +333,7 @@ Page({
     })
   },
   gotoDynamicDetails: function (e) {
-    var id = e.target.dataset.current;
+    var id = e.currentTarget.dataset.current;
     wx.navigateTo({ url: '/pages/dynamic/dynamic?dynamicId=' + id + '' });
   },
   seeComments: function (e) {

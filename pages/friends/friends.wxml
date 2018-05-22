@@ -62,7 +62,7 @@
               <text class="{{currentTab==1 ? 'userLi_actived ' : ''}}" data-current="1" bindtap="swichNav">我的群组</text>
             </view>
         </view>
-        <view>hahaha</view>
+        <view>hggggggggggggggggahaha</view>
       </view>
     </scroll-view>
     <view class="nav box box-tb" bindtouchmove="touchmove" bindtouchcancel="touchcancel" bindtouchend="touchend">

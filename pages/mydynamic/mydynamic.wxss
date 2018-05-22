@@ -15,6 +15,9 @@ page{
 .nearby{
   background-color: #eaeaea;
 }
+.nearby:nth-child(n+2){
+  padding-top: 2rpx;
+}
 .nearby>view{
   background-color: #fff;
 }

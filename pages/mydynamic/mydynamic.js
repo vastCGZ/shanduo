@@ -12,7 +12,8 @@ Page({
     totalPage: 0,
     pageSize: 20,
     lat: 0,
-    lon: 0
+    lon: 0,
+    isShow:false
   },
 
   /**
@@ -59,5 +60,13 @@ Page({
   },
   pushDynamic: function () {
     wx.navigateTo({ url: '/pages/release_dt/release_dt' });
+  },
+  share:function(){
+    this.setData({ isShow:true});
+  },
+  closeDialog:function(){
+    if(this.data.isShow){
+      this.setData({ isShow: false });
+    }
   }
 })

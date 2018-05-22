@@ -36,8 +36,10 @@ Page({
   launchDynamic: function () {
     if (this.data.avatarUrl) {
       this.uploadImg(this.data.avatarUrl);
-    } else {
-      util.toast('请选图');
+    } else if (this.data.dynamic.content){
+      this.pushDynamic();
+    }else{
+      util.toast('请输入想说的话或分享图片');
     }
   },
   uploadImg: function (pics) {
@@ -104,13 +106,14 @@ Page({
   },
   onLoad: function () {
     var that = this;
-    var location = app.globalData.location;
-    if (location) {
-      that.data.dynamic.token = app.globalData.userInfo.token;
-      that.data.dynamic.lat = location.lat;
-      that.data.dynamic.lon = location.lon;
-      that.setData({ dynamic: that.data.dynamic });
-    }
+    that.data.dynamic.token = app.globalData.userInfo.token;
+    wx.getLocation({
+      success: function(res) {
+        that.data.dynamic.lat = res.latitude
+        that.data.dynamic.lon = res.longitude
+        that.setData({ dynamic: that.data.dynamic });
+      }
+    })
   },
   inputContent: function (env) {
     this.data.dynamic.content = env.detail.value;

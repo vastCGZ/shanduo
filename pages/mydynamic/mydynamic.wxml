@@ -44,12 +44,12 @@
           <text>{{item.praise}}</text>
         </view>
         <view>
-          <image src='/image/icon/copy.png'></image>
+          <image src='/image/icon/copy.png' bindtap='share'></image>
         </view>
       </view>
     </view>
     <!--判断是否隐藏  -->
-    <view class='sare_frame'>
+    <view class='sare_frame' wx:if='{{isShow}}' bindtap='closeDialog'>
       <view class='share'>
         <view class='inline'>
           <image src='/image/icon/copy_1.png'></image>

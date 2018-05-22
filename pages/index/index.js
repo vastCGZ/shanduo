@@ -43,14 +43,7 @@ Page({
     longitude: 0,
     host: null,
     pageSize: 20,
-    top:0,
-    position:''
-  },
-  upper: function () {
-    var that = this;
-    that.setData({
-      position:'fixed',
-    })
+    advertise: null
   },
   onLoad: function () {
     var that = this;
@@ -87,6 +80,7 @@ Page({
         })
       }
     })
+    that.advertise();
     that.getActivityData();
   },
   //下拉刷新
@@ -261,7 +255,7 @@ Page({
         if (res.data.success) {
           var newData = res.data.result.list;
           if (newData.length > 0) {
-            for(var i in newData){
+            for (var i in newData) {
               newData[i].createDate = date_util.formatMsgTime(newData[i].createDate);
             }
             var array = that.data.dynamics[that.data.currentTab2].arrayResult;
@@ -340,12 +334,27 @@ Page({
       url: '/pages/search/search'
     })
   },
+  //跳转动态详情
   gotoDynamicDetails: function (e) {
     var id = e.currentTarget.dataset.current;
     wx.navigateTo({ url: '/pages/dynamic/dynamic?dynamicId=' + id + '' });
   },
+  //评论列表
   seeComments: function (e) {
     var id = e.target.dataset.current;
     wx.navigateTo({ url: '/pages/comment/comment?dynamicId=' + id + '' });
+  },
+  //广告轮播图
+  advertise: function () {
+    var that = this;
+    wx.request({
+      url: app.host + '/jcarousel/carouselList',
+      data: 'json',
+      success: (res) => {
+        if (res.data.success) {
+          that.setData({ advertise: res.data.result });
+        }
+      }
+    })
   }
 }) 

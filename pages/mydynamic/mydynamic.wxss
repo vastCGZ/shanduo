@@ -13,6 +13,7 @@ page{
   width: 50rpx;
   height: 50rpx;
 }
+
 .nearby{
   background-color: #eaeaea;
   padding-top: 2rpx;

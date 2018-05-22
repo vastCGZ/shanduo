@@ -19,15 +19,11 @@
     <swiper-item>
       <view>
         <swiper style='height:350rpx' indicator-dots='true' autoplay='true' interval='4000' indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#fff" circular="true">
-          <swiper-item>
-            <image style='width: 100%; height: 100%;' src='//car0.autoimg.cn/upload/2013/1/30/t_201301302218396183796.jpg'></image>
-          </swiper-item>
-          <swiper-item>
-            <image style='width: 100%; height: 100%;' src='//car0.autoimg.cn/upload/2013/1/30/t_201301302218132383796.jpg'></image>
-          </swiper-item>
-          <swiper-item>
-            <image style='width: 100%; height: 100%;' src='//car0.autoimg.cn/upload/2013/1/30/t_201301302217392773796.jpg'></image>
-          </swiper-item>
+          <block wx:for="{{advertise}}" wx:key="navItems">
+            <swiper-item>
+              <image style='width: 100%; height: 100%;' src='{{host}}/picture/{{item.picture}}'></image>
+            </swiper-item>
+          </block>
         </swiper>
       </view>
       <scroll-view scroll-y class="swiper-tab1" bindscrolltoupper='upper' style='position:{{position}};top:{{top}};height:84rpx;'>
@@ -47,9 +43,10 @@
                     <view class="expertInfo inline">
                       <view class="name">{{item.userName}}</view>
                       <view class="tag">
-                      <!--判断男女是男加 sex_nan    加在sex 后面-->
+                        <!--判断男女是男加 sex_nan    加在sex 后面-->
                         <text class='sex'><text class='sex_on' wx:if='{{item.gender=="1"}}'>♂</text>
                         <text class='sex_on' wx:else>♀</text>{{item.age}}</text>
+
                       <!--判断是什么会员 -->
                         <text class='level'>SVIP9</text>
                         <text class='my_VIP'>VIP7</text>
@@ -102,7 +99,7 @@
                   </view>
                 </view>
                 <!--判断当前弹出框是否隐藏  -->
-                <view class='sare_frame' wx:if='{{false}}'> 
+                <view class='sare_frame' wx:if='{{false}}'>
                   <view class='share'>
                     <view class='inline'>
                       <image src='/image/icon/copy_1.png'></image>
@@ -153,15 +150,11 @@
     <swiper-item>
       <view>
         <swiper style='height:350rpx' indicator-dots='true' autoplay='true' interval='4000' indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#fff" circular="true">
-          <swiper-item>
-            <image style='width: 100%; height: 100%;' src='//car0.autoimg.cn/upload/2013/1/30/t_201301302218396183796.jpg'></image>
-          </swiper-item>
-          <swiper-item>
-            <image style='width: 100%; height: 100%;' src='//car0.autoimg.cn/upload/2013/1/30/t_201301302218132383796.jpg'></image>
-          </swiper-item>
-          <swiper-item>
-            <image style='width: 100%; height: 100%;' src='//car0.autoimg.cn/upload/2013/1/30/t_201301302217392773796.jpg'></image>
-          </swiper-item>
+          <block wx:for="{{advertise}}" wx:key="navItems">
+            <swiper-item>
+              <image style='width: 100%; height: 100%;' src='{{host}}/picture/{{item.picture}}'></image>
+            </swiper-item>
+          </block>
         </swiper>
       </view>
       <view class="swiper-tab1">
@@ -183,10 +176,10 @@
                     <view class="expertInfo inline">
                       <view class="name">{{item.userName}}</view>
                       <view class="tag">
-                      <!--判断男女是男加 sex_nan    加在sex 后面-->
+                        <!--判断男女是男加 sex_nan    加在sex 后面-->
                         <text class='sex'><text class='sex_on' wx:if='{{item.gender=="1"}}'>♂</text>
                         <text class='sex_on' wx:else>♀</text>{{item.age}}</text>
-                      <!--判断是什么会员 -->
+                        <!--判断是什么会员 -->
                         <text class='level'>SVIP</text>
                         <text class='my_VIP'>VIP</text>
                         <text class='my_DJ'>LV90</text>
@@ -253,15 +246,11 @@
     <swiper-item>
       <view>
         <swiper style='height:350rpx' indicator-dots='true' autoplay='true' interval='4000' indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#fff" circular="true">
-          <swiper-item>
-            <image style='width: 100%; height: 100%;' src='//car0.autoimg.cn/upload/2013/1/30/t_201301302218396183796.jpg'></image>
-          </swiper-item>
-          <swiper-item>
-            <image style='width: 100%; height: 100%;' src='//car0.autoimg.cn/upload/2013/1/30/t_201301302218132383796.jpg'></image>
-          </swiper-item>
-          <swiper-item>
-            <image style='width: 100%; height: 100%;' src='//car0.autoimg.cn/upload/2013/1/30/t_201301302217392773796.jpg'></image>
-          </swiper-item>
+          <block wx:for="{{advertise}}" wx:key="navItems">
+            <swiper-item>
+              <image style='width: 100%; height: 100%;' src='{{host}}/picture/{{item.picture}}'></image>
+            </swiper-item>
+          </block>
         </swiper>
       </view>
       <view class="swiper-tab1">
@@ -285,10 +274,10 @@
                     <view class="expertInfo inline">
                       <view class="name">{{item.userName}}</view>
                       <view class="tag">
-                      <!--判断男女是男加 sex_nan    加在sex 后面-->
+                        <!--判断男女是男加 sex_nan    加在sex 后面-->
                         <text class='sex'><text class='sex_on' wx:if='{{item.gender=="1"}}'>♂</text>
                         <text class='sex_on' wx:else>♀</text>{{item.age}}</text>
-                      <!--判断是什么会员 -->
+                        <!--判断是什么会员 -->
                         <text class='level'>SVIP</text>
                         <text class='my_VIP'>VIP</text>
                         <text class='my_DJ'>LV90</text>
@@ -356,15 +345,11 @@
     <swiper-item class="dynamic">
       <view>
         <swiper style='height:350rpx' indicator-dots='true' autoplay='true' interval='4000' indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#fff" circular="true">
-          <swiper-item>
-            <image style='width: 100%; height: 100%;' src='//car0.autoimg.cn/upload/2013/1/30/t_201301302218396183796.jpg'></image>
-          </swiper-item>
-          <swiper-item>
-            <image style='width: 100%; height: 100%;' src='//car0.autoimg.cn/upload/2013/1/30/t_201301302218132383796.jpg'></image>
-          </swiper-item>
-          <swiper-item>
-            <image style='width: 100%; height: 100%;' src='//car0.autoimg.cn/upload/2013/1/30/t_201301302217392773796.jpg'></image>
-          </swiper-item>
+          <block wx:for="{{advertise}}" wx:key="navItems">
+            <swiper-item>
+              <image style='width: 100%; height: 100%;' src='{{host}}/picture/{{item.picture}}'></image>
+            </swiper-item>
+          </block>
         </swiper>
       </view>
       <view class="swiper-tab1">
@@ -376,7 +361,7 @@
         <swiper-item class='sw_item'>
           <scroll-view>
             <block wx:for="{{ dynamics[0].arrayResult }}" wx:key="navItems" wx:for-item="item" wx:for-index="idx">
-              <view class='nearby' data-current="{{item.id}}"  bindtap='gotoDynamicDetails'>
+              <view class='nearby' data-current="{{item.id}}" bindtap='gotoDynamicDetails'>
                 <view class='believe'>
                   <view class='inline believe_left'>
                     <image src='{{host}}/picture/{{item.portraitId}}'></image>
@@ -399,8 +384,8 @@
                 <view>
                   <text>{{item.content}}</text>
                   <view>
-                    <block wx:for="{{ item.picture }}" wx:key="navItems" wx:for-item="ite" wx:for-index="index" >
-                  <!--判断一张图片或者两张图片需放大,加类名 big   -->
+                    <block wx:for="{{ item.picture }}" wx:key="navItems" wx:for-item="ite" wx:for-index="index">
+                      <!--判断一张图片或者两张图片需放大,加类名 big   -->
                       <image src='{{host}}/picture/{{ite}}'></image>
                     </block>
                   </view>
@@ -436,15 +421,11 @@
     <swiper-item class="dynamic">
       <view>
         <swiper style='height:350rpx' indicator-dots='true' autoplay='true' interval='4000' indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#fff" circular="true">
-          <swiper-item>
-            <image style='width: 100%; height: 100%;' src='//car0.autoimg.cn/upload/2013/1/30/t_201301302218396183796.jpg'></image>
-          </swiper-item>
-          <swiper-item>
-            <image style='width: 100%; height: 100%;' src='//car0.autoimg.cn/upload/2013/1/30/t_201301302218132383796.jpg'></image>
-          </swiper-item>
-          <swiper-item>
-            <image style='width: 100%; height: 100%;' src='//car0.autoimg.cn/upload/2013/1/30/t_201301302217392773796.jpg'></image>
-          </swiper-item>
+          <block wx:for="{{advertise}}" wx:key="navItems">
+            <swiper-item>
+              <image style='width: 100%; height: 100%;' src='{{host}}/picture/{{item.picture}}'></image>
+            </swiper-item>
+          </block>
         </swiper>
       </view>
       <view class="swiper-tab1">
@@ -481,8 +462,8 @@
                 <view>
                   <text>{{item.content}}</text>
                   <view>
-                    <block wx:for="{{ item.picture }}" wx:key="navItems" wx:for-item="ite" wx:for-index="index" >
-                  <!--判断一张图片或者两张图片需放大,加类名 big   -->
+                    <block wx:for="{{ item.picture }}" wx:key="navItems" wx:for-item="ite" wx:for-index="index">
+                      <!--判断一张图片或者两张图片需放大,加类名 big   -->
                       <image src='{{host}}/picture/{{ite}}'></image>
                     </block>
                   </view>

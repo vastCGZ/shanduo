@@ -15,6 +15,9 @@ page{
 .nearby{
   background-color: #eaeaea;
 }
+.nearby{
+  padding-top: 0;
+}
 .nearby>view{
   background-color: #fff;
 }

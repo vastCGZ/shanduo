@@ -9,17 +9,17 @@ page{
   flex-wrap:wrap;
 }
 .wallet_block_li{
-  width: 50%;
+  width: 49.7%;
   height: 50%;
   display: flex;
   justify-content:center;
   align-items:center;
   flex-direction: column;
   background-color: #fff;
-  margin-top: 5rpx;
+  border-top: 5rpx solid #f7f8ff;
 }
-.wallet_block_li{
-
+.wallet_block_li:nth-child(odd){
+  border-right: 5rpx solid #f7f8ff;
 }
 .wallet_block_li>.col_lan{
   font-size: 60rpx;

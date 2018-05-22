@@ -1,5 +1,7 @@
 /*load.wxss*/
-
+.container{
+  background:url(/image/icon/bottom_img.png) no-repeat;
+}
 /*.header里所有view里所有image*/
 
 .header>view>image {

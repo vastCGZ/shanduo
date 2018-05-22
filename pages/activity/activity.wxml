@@ -1,4 +1,28 @@
 <view class='btns'>
-  <button type='primary' bindtap='pushActivity'>发布活动</button>
-  <button type='primary' bindtap='pushDynamic'>发布动态</button>
 </view>
+<!--pages/myactivity/myactivity.wxml-->
+<view class='container'>
+  <view class='myactivity_body'>
+    <scroll-view scroll-x="true" class="bodyTag inline" scroll-left="{{scrollLeft}}">
+      <view class='Tag_edge inline'>
+        <text class="{{currentTab==0 ? 'userLi_actived ' : ''}}" data-current="0" bindtap="swichNav">发布活动</text>
+      </view>
+      <view class='Tag_edge inline'>
+        <text class="{{currentTab==1 ? 'userLi_actived ' : ''}}" data-current="1" bindtap="swichNav">发布动态</text>
+      </view>
+    </scroll-view>
+    <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
+    style="height:{{winHeight}}rpx">
+      <swiper-item>
+        <scroll-view scroll-y="true" class="scoll-h" >
+          <button type='primary' bindtap='pushActivity'>发布活动</button>
+        </scroll-view>
+      </swiper-item>
+      <swiper-item>
+        <scroll-view scroll-y="true" class="scoll-h" >
+          <button type='primary' bindtap='pushDynamic'>发布动态</button>
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+  </view>
+</view> 

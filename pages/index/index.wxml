@@ -26,11 +26,11 @@
           </block>
         </swiper>
       </view>
-      <view class="swiper-tab1">
+      <scroll-view scroll-y class="swiper-tab1" bindscrolltoupper='upper' style='position:{{position}};top:{{top}};height:84rpx;'>
         <view class="swiper-tab-list1 {{currentTab1==0 ? 'on1' : ''}}" data-current="0" bindtap="swichNav1">热门活动</view>
         <view class="swiper-tab-list1 {{currentTab1==1 ? 'on1' : ''}}" data-current="1" bindtap="swichNav1">附近活动</view>
         <view class="swiper-tab-list1 {{currentTab1==2 ? 'on1' : ''}}" data-current="2" bindtap="swichNav1">好友活动</view>
-      </view>
+      </scroll-view>
       <swiper current="{{currentTab1}}" class="swiper-box1" duration="300" bindchange="bindChange1">
         <!-- 热门活动 -->
         <swiper-item class='sw_item'>
@@ -46,9 +46,10 @@
                         <!--判断男女是男加 sex_nan    加在sex 后面-->
                         <text class='sex'><text class='sex_on' wx:if='{{item.gender=="1"}}'>♂</text>
                         <text class='sex_on' wx:else>♀</text>{{item.age}}</text>
-                        <!--判断是什么会员 -->
-                        <text class='level'>SVIP</text>
-                        <text class='my_VIP'>VIP</text>
+
+                      <!--判断是什么会员 -->
+                        <text class='level'>SVIP9</text>
+                        <text class='my_VIP'>VIP7</text>
                         <text class='my_DJ'>LV90</text>
                       </view>
                     </view>
@@ -92,7 +93,8 @@
                   </view>
                   <view>
                     <button>信誉轨迹</button>
-                    <button>去报名</button>
+                    <!--判断活动过期加 disabled -->
+                    <button class='disabled'>去报名</button>
                     <image src='/image/icon/copy.png'></image>
                   </view>
                 </view>

@@ -58,15 +58,15 @@
                 <view>
                   <text>{{item.comment}}</text>
                 </view>
-                <!-- <view>
+                <view>
                   <view>
                     <view>
                       <text class='txt_title'>来自火星的:</text>
                       <text class='txt_floor'>6666666666666666666666666666666666666666666666666666666666</text>
                     </view>
                   </view>
-                  <text class='txt_title'>回复量50条></text>
-                </view> -->
+                  <text class='txt_title' data-current="{{item.id}}" bindtap='seeComments'>回复量50条></text>
+                </view>
                 <view>
                   <text class='inline'>{{item.createDate}}评论</text>
                 </view>

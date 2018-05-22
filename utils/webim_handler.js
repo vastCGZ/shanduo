@@ -25,6 +25,8 @@ function onBigGroupMsgNotify(msgList,callback) {
 //监听新消息(私聊(包括普通消息、全员推送消息)，普通群(非直播聊天室)消息)事件
 //newMsgList 为新消息数组，结构为[Msg]
 function onMsgNotify(newMsgList) {
+  console.log('dfdfd');
+  console.log(newMsgList);
     var newMsg;
     for (var j in newMsgList) {//遍历新消息
         newMsg = newMsgList[j];

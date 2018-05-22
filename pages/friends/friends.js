@@ -1,5 +1,6 @@
 const app = getApp()
 const unicode_util = require('../../utils/unicode_util.js')
+var webim = require('../../utils/webim.js')
 Page({
   data: {
     //
@@ -7,7 +8,7 @@ Page({
     // 当前选择的导航字母
     selected: 0,
     // 选择字母视图滚动的位置id
-    scrollIntoView: 'A',
+    scrollIntoView: 'F',
     // 导航字母
     letters: ['fenzu', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
       'U', 'V', 'W', 'X', 'Y', 'Z'],
@@ -136,6 +137,9 @@ Page({
           for (var i in array) {
             var item = array[i];
             var tag = unicode_util.makePy(item.name.substr(0, 1))[0];
+            if (/^[0-9]$/.test(tag)) {
+              tag = '#';
+            }
             var atGroup = false;
             for (var j in groups) {
               var foundGroup = groups[j];
@@ -162,7 +166,6 @@ Page({
     })
   },
   openSession: function (e) {
-    console.log(e);
     var data = e.currentTarget.dataset.current.split(',');
     wx.navigateTo({
       url: '/pages/interface/interface?toUserId=' + data[0] + '&toUserName=' + data[1] + ''

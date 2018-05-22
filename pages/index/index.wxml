@@ -26,10 +26,16 @@
           </block>
         </swiper>
       </view>
-      <scroll-view scroll-y class="swiper-tab1" bindscrolltoupper='upper' style='position:{{position}};top:{{top}};height:84rpx;'>
-        <view class="swiper-tab-list1 {{currentTab1==0 ? 'on1' : ''}}" data-current="0" bindtap="swichNav1">热门活动</view>
-        <view class="swiper-tab-list1 {{currentTab1==1 ? 'on1' : ''}}" data-current="1" bindtap="swichNav1">附近活动</view>
-        <view class="swiper-tab-list1 {{currentTab1==2 ? 'on1' : ''}}" data-current="2" bindtap="swichNav1">好友活动</view>
+      <scroll-view class="swiper-tab1">
+        <view class="swiper-tab-list1">
+          <text class="{{currentTab1==0 ? 'on1' : ''}}" data-current="0" bindtap="swichNav1">热门活动</text>
+        </view>
+        <view class="swiper-tab-list1">
+          <text class="{{currentTab1==1 ? 'on1' : ''}}" data-current="1" bindtap="swichNav1">附近活动</text>
+        </view>
+        <view class="swiper-tab-list1">
+          <text class="{{currentTab1==2 ? 'on1' : ''}}" data-current="2" bindtap="swichNav1">好友活动</text>
+        </view>
       </scroll-view>
       <swiper current="{{currentTab1}}" class="swiper-box1" duration="300" bindchange="bindChange1">
         <!-- 热门活动 -->
@@ -57,8 +63,8 @@
                   <view class='activity_time'>
                     <view class=''>
                       <text class='block col_lan'>{{item.activityStartTime}}</text>
-                      <text class='block col_hui'>报名截止</text>
-                      <text class='block col_hui'>{{item.activityCutoffTime}}</text>
+                      <text class='block col_hui'></text>
+                      <text class='block col_hui'>报名截止:{{item.activityCutoffTime}}</text>
                     </view>
                   </view>
                 </view>
@@ -157,11 +163,17 @@
           </block>
         </swiper>
       </view>
-      <view class="swiper-tab1">
-        <view class="swiper-tab-list1 {{currentTab1==0 ? 'on1' : ''}}" data-current="0" bindtap="swichNav1">热门活动</view>
-        <view class="swiper-tab-list1 {{currentTab1==1 ? 'on1' : ''}}" data-current="1" bindtap="swichNav1">附近活动</view>
-        <view class="swiper-tab-list1 {{currentTab1==2 ? 'on1' : ''}}" data-current="2" bindtap="swichNav1">好友活动</view>
-      </view>
+      <scroll-view class="swiper-tab1">
+        <view class="swiper-tab-list1">
+          <text class="{{currentTab1==0 ? 'on1' : ''}}" data-current="0" bindtap="swichNav1">热门活动</text>
+        </view>
+        <view class="swiper-tab-list1">
+          <text class="{{currentTab1==1 ? 'on1' : ''}}" data-current="1" bindtap="swichNav1">附近活动</text>
+        </view>
+        <view class="swiper-tab-list1">
+          <text class="{{currentTab1==2 ? 'on1' : ''}}" data-current="2" bindtap="swichNav1">好友活动</text>
+        </view>
+      </scroll-view>
       <swiper current="{{currentTab1}}" class="swiper-box1" duration="300" bindchange="bindChange1">
         <swiper-item>
         </swiper-item>
@@ -253,11 +265,17 @@
           </block>
         </swiper>
       </view>
-      <view class="swiper-tab1">
-        <view class="swiper-tab-list1 {{currentTab1==0 ? 'on1' : ''}}" data-current="0" bindtap="swichNav1">热门活动</view>
-        <view class="swiper-tab-list1 {{currentTab1==1 ? 'on1' : ''}}" data-current="1" bindtap="swichNav1">附近活动</view>
-        <view class="swiper-tab-list1 {{currentTab1==2 ? 'on1' : ''}}" data-current="2" bindtap="swichNav1">好友活动</view>
-      </view>
+      <scroll-view class="swiper-tab1">
+        <view class="swiper-tab-list1">
+          <text class="{{currentTab1==0 ? 'on1' : ''}}" data-current="0" bindtap="swichNav1">热门活动</text>
+        </view>
+        <view class="swiper-tab-list1">
+          <text class="{{currentTab1==1 ? 'on1' : ''}}" data-current="1" bindtap="swichNav1">附近活动</text>
+        </view>
+        <view class="swiper-tab-list1">
+          <text class="{{currentTab1==2 ? 'on1' : ''}}" data-current="2" bindtap="swichNav1">好友活动</text>
+        </view>
+      </scroll-view>
       <swiper current="{{currentTab1}}" class="swiper-box1" duration="300" bindchange="bindChange1">
         <swiper-item>
         </swiper-item>
@@ -352,10 +370,14 @@
           </block>
         </swiper>
       </view>
-      <view class="swiper-tab1">
-        <view class="swiper-tab-list1 {{currentTab2==0 ? 'on1' : ''}}" data-current="0" bindtap="swichNav2">附近动态</view>
-        <view class="swiper-tab-list1 {{currentTab2==1 ? 'on1' : ''}}" data-current="1" bindtap="swichNav2">好友动态</view>
-      </view>
+      <scroll-view class="swiper-tab1">
+        <view class="swiper-tab-list1">
+          <text class="{{currentTab2==0 ? 'on1' : ''}}" data-current="0" bindtap="swichNav2">附近动态</text>
+        </view>
+        <view class="swiper-tab-list1">
+          <text class="{{currentTab2==1 ? 'on1' : ''}}" data-current="1" bindtap="swichNav2">好友动态</text>
+        </view>
+      </scroll-view>
       <swiper current="{{currentTab2}}" class="swiper-box1" duration="300" bindchange="bindChange2">
         <!-- 附近动态 -->
         <swiper-item class='sw_item'>
@@ -428,10 +450,14 @@
           </block>
         </swiper>
       </view>
-      <view class="swiper-tab1">
-        <view class="swiper-tab-list1 {{currentTab2==0 ? 'on1' : ''}}" data-current="0" bindtap="swichNav2">附近动态</view>
-        <view class="swiper-tab-list1 {{currentTab2==1 ? 'on1' : ''}}" data-current="1" bindtap="swichNav2">好友动态</view>
-      </view>
+      <scroll-view class="swiper-tab1">
+        <view class="swiper-tab-list1">
+          <text class="{{currentTab2==0 ? 'on1' : ''}}" data-current="0" bindtap="swichNav2">附近动态</text>
+        </view>
+        <view class="swiper-tab-list1">
+          <text class="{{currentTab2==1 ? 'on1' : ''}}" data-current="1" bindtap="swichNav2">好友动态</text>
+        </view>
+      </scroll-view>
       <swiper current="{{currentTab2}}" class="swiper-box1" duration="300" bindchange="bindChange2">
         <swiper-item>
         </swiper-item>

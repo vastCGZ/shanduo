@@ -1,5 +1,8 @@
 /*index.wxss*/
 
+page{
+  background-color: #f7f8ff;
+}
 /*祖容器  */
 .container {
   height: 110rpx;
@@ -8,6 +11,7 @@
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
+  background-color: #fff;
 }
 
 .img_special {
@@ -81,26 +85,31 @@
 .swiper-tab1 {
   text-align: center;
   width: 100%;
+  background-color: #fff;
   line-height: 50rpx;
   border-top-left-radius: 30rpx;
   border-top-right-radius: 30rpx;
+  border-bottom: 2rpx solid #eaeaea;
 }
 
 /*选项卡标题元素*/
 
-.swiper-tab-list1 {
+.swiper-tab-list1{
   display: inline-block;
-  width: 30%;
+  width: 33%;
   height: 60rpx;
-  margin: 10rpx auto;
-  color: #9a9a9a;
+  padding: 10rpx 0;
 }
-
+.swiper-tab-list1>text{
+  display: inline-block;
+  color: #999;
+  height: 100%;
+}
 /*选项卡标题选中状态*/
 
-.on1 {
-  color: #000;
-  border-bottom: 5rpx solid #000;
+.swiper-tab-list1>.on1{
+  color: #333;
+  border-bottom: 5rpx solid #5e75ff;
 }
 
 /*选项卡内容容器*/
@@ -279,6 +288,7 @@
 /*老版本 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑*/
 .nearby{
   padding: 0;
+  margin-top: 10rpx;
 }
 .nearby>view:nth-child(1){
   padding-bottom: 0;

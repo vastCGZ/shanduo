@@ -1,5 +1,4 @@
 /*app.wxss*/
-
 .container {
   height: 100%;
   width: 100%;
@@ -430,7 +429,6 @@ page {
   width: 100%;
   height: 100%;
   background-color: #fff;
-  padding-top: 102rpx;
   border-radius: 10rpx;
 }
 
@@ -442,9 +440,13 @@ page {
 
 .nearby>view {
   padding: 20rpx 30rpx 20rpx 30rpx;
+}
+.nearby>view:nth-child(2) {
   border-bottom: 1rpx solid #eaeaea;
 }
-
+.nearby>view:nth-child(3){
+  margin-bottom: 5rpx; 
+}
 .nearby>.believe {
   border-bottom: 0;
 }

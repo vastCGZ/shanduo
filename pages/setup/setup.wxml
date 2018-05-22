@@ -1,0 +1,30 @@
+<view class='container'>
+  <view class='bg_body'>
+    <view class='nav'>
+      <view>
+        <text>账号与安全</text>
+      </view>
+    </view>
+    <view class='nav'>
+      <view>
+        <text>消息通知</text>
+      </view>
+    </view>
+    <view class='nav'>
+      <view>
+        <text>隐私</text>
+      </view>
+    </view>
+    <view class='nav'>
+      <view>
+        <text>通用</text>
+      </view>
+    </view>
+    <view class='nav'>
+      <view>
+        <text>清除缓存</text>
+      </view>
+    </view>
+    <button class='btn'>退出登录</button>
+  </view>
+</view>

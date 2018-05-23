@@ -15,15 +15,17 @@
 
 .footer>.footer_name>view>button {
   position: absolute;
-  top: 8rpx;
-  right: -24rpx;
+  top: 50rpx;
+  right: -180rpx;
   z-index: 100;
   border-radius: 30rpx;
+  width: 140rpx;
   height: 50rpx;
   line-height: 50rpx;
   margin-left: 40rpx;
   font-size: 20rpx;
   padding: 0 10rpx;
+  background-color: #6980FF;
 }
 
 /*.footer里所有view里所有view里所有input*/
@@ -38,31 +40,15 @@
   vertical-align: middle;
 }
 
-/*协议里的文字*/
-
-.footer>.footer_text>label {
-  color: #999;
-  font-size: 20rpx;
+.footer>.footer_test{
+  border-bottom:1rpx solid #eaeaea;
+  background-color:#fff;
+  height:150rpx;
+  width:600rpx;
+  margin:0 auto;
+  text-align:left;
 }
-
-/*  重写 radio 样式  */
-
-/* 未选中的 背景样式 */
-
-.footer>.footer_text>label>radio .wx-radio-input {
-  width: 30rpx;
-  height: 30rpx;
-}
-
-/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
-
-.footer>.footer_text>label>radio .wx-radio-input.wx-radio-input-checked::before {
-  width: 30rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
-  height: 30rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
-  line-height: 30rpx;
-  font-size: 30rpx; /* 对勾大小 30rpx */
-}
-
-.footer>.footer_text>label>text {
-  color: #e37c80;
+/*input提示文字*/
+.psection {
+  font-size: 26rpx;
 }

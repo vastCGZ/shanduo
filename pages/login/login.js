@@ -10,8 +10,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    focus_1: true,
-    focus_2: true,
     username: null,
     password: null
   },
@@ -20,26 +18,6 @@ Page({
     wx.navigateTo({
       url: '../register/register',
     });
-  },
-  focusInputEvent1: function () {
-    this.setData({
-      focus_1: false
-    })
-  },
-  blurInputEvent1: function () {
-    this.setData({
-      focus_1: true
-    })
-  },
-  focusInputEvent2: function () {
-    this.setData({
-      focus_2: false
-    })
-  },
-  blurInputEvent2: function () {
-    this.setData({
-      focus_2: true
-    })
   },
   inputUserId: function (event) {
     this.setData({ username: event.detail.value })

@@ -1,12 +1,9 @@
 /*load.wxss*/
-.container{
-  background:url(/image/icon/bottom_img.png) no-repeat;
-}
 /*.header里所有view里所有image*/
 
 .header>view>image {
-  width: 30rpx;
-  height: 30rpx;
+  width: 60rpx;
+  height: 60rpx;
 }
 
 /*页眉里的右边的view*/
@@ -20,19 +17,23 @@
 .header_right>text {
   vertical-align: middle;
   font-size: 30rpx;
-  color: #333;
-}
-
-/*右箭头图片*/
-
-.header_right>image {
+  color: #fff;
   padding-right: 30rpx;
 }
 
-/*注册/找回,对半分*/
+/*input提示文字*/
+.psection {
+  font-size: 26rpx;
+}
+.footer>view{
+  width: 100%;
+}
 
-.footer>.footer_text>view {
-  width: 50%;
+/*找回*/
+.footer>.footer_text>text {
+  font-size: 26rpx;
+  color: #fff;
+  text-decoration: underline;
 }
 
 /*注册/找回里的文字*/

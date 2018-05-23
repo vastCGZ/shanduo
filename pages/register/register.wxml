@@ -11,33 +11,24 @@
     </view>
     <view class='footer'>
       <view class='footer_name'>
-        <image wx:if='{{focus_1}}' src='/image/icon/icon_name_unchecked.png'></image>
-        <image wx:else='{{focus_1}}' src='/image/icon/icon_name_checked.png'></image>
+        <image src='/image/icon/icon_name_checked.png'></image>
         <view>
-          <input type='number' name='uname' placeholder="请输入手机号" placeholder-class="psection" bindblur="blurInputEvent1" bindfocus="focusInputEvent1" bindinput='inputPhone'></input>
-          <button size='mini' type='warn' bindtap='sendMSM'>{{hint}}</button>
+          <input type='number' name='uname' placeholder="请输入手机号" placeholder-class="psection" bindinput='inputPhone'></input>
+          <button disabled='{{disabled}}' size='mini' type='warn' bindtap='sendMSM' bindtap="getVerificationCode">{{hint}}</button>
         </view>
       </view>
       <view class='footer_test'>
-        <image wx:if='{{focus_2}}' src='/image/icon/icon_code_unchecked.png'></image>
-        <image wx:else='{{focus_2}}' src='/image/icon/icon_code_checked.png'></image>
+        <image src='/image/icon/icon_code_checked.png'></image>
         <view>
-          <input type='number' name='test' placeholder="请输入收到的验证码" placeholder-class="psection" bindblur="blurInputEvent2" bindfocus="focusInputEvent2" bindinput='inputAuthCode'></input>
+          <input type='number' name='test' placeholder="请输入六位验证码" placeholder-class="psection" bindinput='inputAuthCode'></input>
         </view>
       </view>
       <view class='footer_pwd'>
-        <image wx:if='{{focus_3}}' src='/image/icon/icon_password_unchecked.png'></image>
-        <image wx:else='{{focus_3}}' src='/image/icon/icon_pwd_checked.png'></image>
+        <image src='/image/icon/icon_pwd_checked.png'></image>
         <view>
-          <input type='text' name='upwd' password='{{true}}' placeholder="设置用户密码8-16位" placeholder-class="psection" bindblur="blurInputEvent3" bindfocus="focusInputEvent3" bindinput='inputPwd'></input>
+          <input type='text' name='upwd' password='{{true}}' placeholder="设置用户密码8-16位" placeholder-class="psection" bindinput='inputPwd'></input>
         </view>
       </view>
-      <radio-group class='footer_text'>
-        <label>
-          <radio value="xy" checked="{{focus_4}}" bindtap="tapfocus" />我阅读并同意
-          <text>《闪多用户协议》</text>
-        </label>
-      </radio-group>
       <view class='footer_button'>
         <button size='mini' type='warn' bindtap='register'>立即注册</button>
       </view>

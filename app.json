@@ -14,8 +14,9 @@
     "pages/interface/interface",
     "pages/search/search",
     "pages/myactivity/myactivity",
-    "pages/comment/comment",
-    "pages/setup/setup"
+    "pages/comment/comment"
+    "pages/setup/setup",
+    "pages/wallet/wallet"
   ],
   "window":{
     "backgroundTextStyle":"dark",

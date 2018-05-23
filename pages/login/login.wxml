@@ -3,11 +3,10 @@
   <form form-type='submit'>
     <view class='header'>
       <view class='header_left'>
-        <image src='/image/icon/off.png' bindtap='closeLoginView'></image>
+        <image src='/image/icon/off_1.png' bindtap='closeLoginView'></image>
       </view>
       <view class='header_right'>
-        <text bindtap='onTap'>去注册</text>
-        <image bindtap='onTap' src='/image/icon/return_2.png'></image>
+        <text bindtap='onTap'>注册</text>
       </view>
     </view>
     <view class='article'>
@@ -15,33 +14,26 @@
     </view>
     <view class='footer'>
       <view class='footer_name'>
-        <image wx:if='{{focus_1}}' src='/image/icon/icon_name_unchecked.png'></image>
-        <image wx:else='{{focus_1}}' src='/image/icon/icon_name_checked.png'></image>
+        <image src='/image/icon/icon_name_checked.png'></image>
         <view>
-          <input type='text' name='uname' placeholder="手机号 / 闪多号" placeholder-class="psection" bindblur="blurInputEvent1" bindfocus="focusInputEvent1" bindinput='inputUserId'></input>
+          <input type='text' name='uname' placeholder="手机号 / 闪多号" placeholder-class="psection" bindinput='inputUserId'></input>
         </view>
       </view>
       <view class='footer_pwd'>
-        <image wx:if='{{focus_2}}' src='/image/icon/icon_password_unchecked.png'></image>
-        <image wx:else='{{focus_2}}' src='/image/icon/icon_pwd_checked.png'></image>
+        <image src='/image/icon/icon_pwd_checked.png'></image>
         <view>
-          <input placeholder="输入登录密码" placeholder-class="psection" type='text' name='upwd' password='{{true}}' bindblur="blurInputEvent2" bindfocus="focusInputEvent2" bindinput='inputPwd'></input>
-        </view>
-      </view>
-      <view class='footer_text'>
-        <view class='footer_text_left'>
-          <text>忘记密码?</text>
-        </view>
-        <view class='footer_text_right'>
-          <text bindtap='onTap'>还没有账号?</text>
+          <input placeholder="请输入登录密码" placeholder-class="psection" type='text' name='upwd' password='{{true}}' bindinput='inputPwd'></input>
         </view>
       </view>
       <view class='footer_button'>
         <button size='mini' type='warn' bindtap='userLogin'>立即登录</button>
       </view>
-    </view>
-    <view class='bottom_img'>
-      <image src='/image/icon/bottom_img.png'></image>
+      <view class='footer_text'>
+        <text>忘记了密码?</text>
+      </view>
     </view>
   </form>
+  <view class='bottom_img'>
+    <image src='/image/icon/bottom_img.png'></image>
+  </view>
 </view>

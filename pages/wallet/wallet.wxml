@@ -1,0 +1,21 @@
+<!--pages/wallet/wallet.wxml-->
+<view class='container'>
+  <view class='wallet_block_ul'>
+    <view class='wallet_block_li'>
+      <text class='col_lan'>0.00</text>
+      <text class='col_hui'>钱包余额</text>
+    </view>
+    <view class='wallet_block_li'>
+      <text class='col_lan'>50</text>
+      <text class='col_hui'>闪多豆</text>
+    </view>
+    <view class='wallet_block_li'>
+      <image src='/image/icon/copy_10_1.png'></image>
+      <text>充值</text>
+    </view>
+    <view class='wallet_block_li'>
+      <image src='/image/icon/copy_10_2.png'></image>
+      <text>交易记录</text>
+    </view>
+  </view>
+</view>

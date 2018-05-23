@@ -181,8 +181,8 @@ form {
 /*头像*/
 
 .article>image {
-  width: 172rpx;
-  height: 172rpx;
+  width: 180rpx;
+  height: 180rpx;
 }
 
 /*男*/
@@ -204,18 +204,32 @@ form {
   margin-bottom: 30rpx;
 }
 
+/*登录*/
 /*密码*/
 
-.footer>.footer_pwd {
-  margin: 0;
+.footer>.footer_pwd, .footer>.footer_name {
+  background-color: #fff;
+  height: 150rpx;
+  width: 600rpx;
+  margin: 0 auto;
+  text-align: left;
 }
-
+.footer>.footer_name {
+  border-bottom: 1rpx solid #eaeaea;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+}
+.footer>.footer_pwd{
+  border-bottom-left-radius: 20rpx;
+  border-bottom-right-radius: 20rpx;
+}
 /*input前面的图片*/
 
 .footer>view>image {
   width: 50rpx;
   height: 50rpx;
-  margin-right: 15rpx;
+  margin-left: 15rpx;
+  vertical-align: middle;
 }
 
 /*input在一行内*/
@@ -228,15 +242,13 @@ form {
 
 .footer>view>view>input {
   width: 100%;
-  height: 60rpx;
-  line-height: 60rpx;
+  height: 150rpx;
+  line-height: 150rpx;
   padding-left: 15rpx;
   padding-right: 15rpx;
-  border: 1rpx solid rgba(227, 124, 128, 0.3);
-  border-radius: 30rpx;
   text-align: left;
   display: inline-block;
-  box-shadow: 0 0 10rpx rgba(227, 124, 128, 0.3) inset;
+  vertical-align: middle;
 }
 
 /*input提示文字*/
@@ -247,33 +259,38 @@ form {
 }
 
 .footer>.footer_text {
-  margin: 0 0 60rpx;
+  margin-top: 50rpx;
 }
 
 /*登录注册*/
 
 .footer>.footer_button {
   width: 100%;
+  margin-top: 40rpx;
 }
 
 /*立即登录注册按钮*/
 
 .footer>.footer_button>button {
-  border-radius: 30rpx;
-  width: 58%;
-  height: 60rpx;
-  line-height: 60rpx;
+  border-radius: 50rpx;
+  width: 35%;
+  height: 90rpx;
+  line-height: 90rpx;
   font-size: 30rpx;
+  color: #fff;
+  border: 1rpx solid #fff;
+  background-color: transparent;
 }
 
 /*底部风景图*/
 
 .bottom_img {
-  position: fixed;
+  position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 343rpx;
+  height: 100%;
+  z-index: -1;
 }
 
 /*底部风景图里的所有的image*/
@@ -374,6 +391,10 @@ page {
   z-index: 1001;
   bottom: 15rpx;
   right: 100rpx;
+  background-color:#5e75ff;
+}
+.area_speak>view>view>.button-hover {
+  background-color:#5e75ff;
 }
 
 /*评论*/

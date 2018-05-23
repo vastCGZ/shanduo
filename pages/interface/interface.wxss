@@ -9,7 +9,7 @@
 
 .msgs {
   max-width: 82%;
-  display: block;
+  display: flex;
   padding: 20rpx;
   margin: 5rpx 0;
   word-wrap: break-word;
@@ -24,7 +24,7 @@
 }
 .msgs>.msg-item>.arrow {
   position:absolute;
-  top:45rpx;
+  top:30%;
   width:0;
   height:0;
   font-size:0;

@@ -886,6 +886,38 @@ function init(opts) {
   selType = opts.selType;
   selToID = opts.selToID;
 }
+var getLastC2CHistoryMsgs = function (cbOk, cbError) {
+  if (selType == webim.SESSION_TYPE.GROUP) {
+    // alert('当前的聊天类型为群聊天，不能进行拉取好友历史消息操作');
+    return;
+  }
+  var lastMsgTime = 0;//第一次拉取好友历史消息时，必须传 0
+  var msgKey = '';
+  var options = {
+    'Peer_Account': selToID, //好友帐号
+    'MaxCnt': reqMsgCount, //拉取消息条数
+    'LastMsgTime': lastMsgTime, //最近的消息时间，即从这个时间点向前拉取历史消息
+    'MsgKey': msgKey
+  };
+  webim.getC2CHistoryMsgs(
+    options,
+    function (resp) {
+      var complete = resp.Complete;//是否还有历史消息可以拉取，1-表示没有，0-表示有
+      var retMsgCount = resp.MsgCount;//返回的消息条数，小于或等于请求的消息条数，小于的时候，说明没有历史消息可拉取了
+      if (resp.MsgList.length == 0) {
+        webim.Log.error("没有历史消息了:data=" + JSON.stringify(options));
+        return;
+      }
+      getPrePageC2CHistroyMsgInfoMap[selToID] = {//保留服务器返回的最近消息时间和消息Key,用于下次向前拉取历史消息
+        'LastMsgTime': resp.LastMsgTime,
+        'MsgKey': resp.MsgKey
+      };
+      if (cbOk)
+        cbOk(resp.MsgList);
+    },
+    cbError
+  );
+};
 
 module.exports = {
   init: init,
@@ -937,4 +969,5 @@ module.exports = {
   onCustomGroupNotify: onCustomGroupNotify,
   onGroupInfoChangeNotify: onGroupInfoChangeNotify,
   showGroupSystemMsg: showGroupSystemMsg,
+  getLastC2CHistoryMsgs: getLastC2CHistoryMsgs,
 };

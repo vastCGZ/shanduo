@@ -158,11 +158,11 @@ Page({
               // console.error('收到一条c2c消息(好友消息或者全员推送消息): 发送人=' + fromAccountNick + ", 内容=" + contentHtml);
               if (fromAccountNick == toUserId) {
                 var oldMessageBody = that.data.messageBody;
-                that.data.messageBody = oldMessageBody.push({
+                oldMessageBody.push({
                   fromAccountNick: fromAccountNick,
                   content: contentHtml
                 });
-                that.setData({ messageBody: that.data.messageBody })
+                that.setData({ messageBody: oldMessageBody })
               }
               break;
           }
@@ -204,14 +204,12 @@ Page({
       util.toast('不能发送空白内容');
       return;
     }
-    webimhandler.selType = webim.SESSION_TYPE.C2C;
     webimhandler.onSendMsg(content, function (res) {
-      console.log(res);
       that.clearInput();
       if (res) {
         var oldMessageBody = that.data.messageBody;
-        that.data.messageBody = oldMessageBody.concat(res);
-        that.setData({ messageBody: that.data.messageBody })
+        oldMessageBody.push(res);
+        that.setData({ messageBody: oldMessageBody })
       }
     }, function (res) {
       if (res && res.ActionStatus === 'FAIL') {
@@ -238,7 +236,7 @@ Page({
   addFriend2: function () {
     var add_friend_item = [
       {
-        'To_Account': '10006',
+        'To_Account': '10000',
         "AddSource": "AddSource_Type_Unknow",
         "AddWording": '你好，我们做朋友吧' //加好友附言，可为空
       }
@@ -288,7 +286,5 @@ Page({
       }, function () {
 
       });
-  }, listenerNewMsg: function () {
-
   }
 })

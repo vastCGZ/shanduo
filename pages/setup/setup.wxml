@@ -25,6 +25,6 @@
         <text>清除缓存</text>
       </view>
     </view>
-    <button class='btn'>退出登录</button>
+    <button class='btn' bindtap='logout'>退出登录</button>
   </view>
 </view>

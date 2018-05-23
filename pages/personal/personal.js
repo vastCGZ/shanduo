@@ -39,7 +39,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
 
   /**
@@ -99,6 +98,10 @@ Page({
           toastutil.toast(res.data.errorCode);
         }
       }
+    })
+  }, getoSettingView:function(){
+    wx.navigateTo({
+      url: '/pages/setup/setup',
     })
   }
 })

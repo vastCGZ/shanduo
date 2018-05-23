@@ -391,6 +391,10 @@ page {
   z-index: 1001;
   bottom: 15rpx;
   right: 100rpx;
+  background-color:#5e75ff;
+}
+.area_speak>view>view>.button-hover {
+  background-color:#5e75ff;
 }
 
 /*评论*/

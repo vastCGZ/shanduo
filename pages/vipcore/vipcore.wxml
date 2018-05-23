@@ -1,7 +1,30 @@
 <!--pages/vipcore/vipcore.wxml-->
 <view class='container'>
-  <view class='vipcore_header'>
-    <image src=''></image>
+  <view class='vipcore_header pos_rel'>
+    <view class='believe pos_abs'>
+      <view class='inline believe_left'>
+        <image src='/image/icon/portrait.png'></image>
+        <view class='inline'>
+          <view>
+          <!--判断是否是VIP如果是加 col_huang  -->
+            <text>小猪佩奇</text>
+          </view>
+          <view>
+          <!--判断是男是女是男加 sex_nan  -->
+            <text class='sex'>♀23</text>
+          <!--判断是VIP还是SVIP如果是VIP加 my_VIP-->
+            <!--还需判断是否是VIP或者SVIP如果不是 隐藏  -->
+            <text class='level'>SVIP2</text>
+          </view>
+        </view>
+      </view>
+      <view class='inline believe_right'>
+        <view bindtap='signin'>
+          <text>开通/续费</text>
+        </view>
+      </view>
+    </view>
+    <image class='pos_abs vip_hea_bg' src='/image/icon/portrait.png'></image>
   </view>
   <view class='vipcore_body'></view>
   <view class='vipcore_footer'></view>

@@ -158,11 +158,11 @@ Page({
               // console.error('收到一条c2c消息(好友消息或者全员推送消息): 发送人=' + fromAccountNick + ", 内容=" + contentHtml);
               if (fromAccountNick == toUserId) {
                 var oldMessageBody = that.data.messageBody;
-                that.data.messageBody = oldMessageBody.push({
+                oldMessageBody.push({
                   fromAccountNick: fromAccountNick,
                   content: contentHtml
                 });
-                that.setData({ messageBody: that.data.messageBody })
+                that.setData({ messageBody: oldMessageBody })
               }
               break;
           }
@@ -210,8 +210,8 @@ Page({
       that.clearInput();
       if (res) {
         var oldMessageBody = that.data.messageBody;
-        that.data.messageBody = oldMessageBody.concat(res);
-        that.setData({ messageBody: that.data.messageBody })
+       oldMessageBody.push(res);
+       that.setData({ messageBody: oldMessageBody })
       }
     }, function (res) {
       if (res && res.ActionStatus === 'FAIL') {

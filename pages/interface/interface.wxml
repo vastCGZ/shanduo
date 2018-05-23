@@ -22,6 +22,7 @@
             <image src='/image/icon/portrait.png' class="nickname"></image>
           </view>
         </view>
+        <view class='cl_both'></view>
       </block>
       <block wx:else>
         <view class="msgs">
@@ -35,7 +36,6 @@
         </view>
       </block>
     </block>
-    <view class='cl_both'></view>
   </view>
   <view class="input-section">
     <input value="{{msgContent}}" placeholder="请输入消息" bindinput='inputMsg' />

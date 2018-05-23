@@ -2,31 +2,36 @@ const app = getApp()
 var util = require('../../utils/util.js');
 Page({
   data: {
-    avatarUrl: null,
+    avatarUrl: [],
     dynamic: {
       token: null,
       content: null,
       picture: [],
       lat: null,
       lon: null
-    }
+    },
+    pictureSize:9
   },
   bindViewTap: function () {
     var that = this;
+    if (that.data.avatarUrl.length==9){
+      util.toast('最多选择9张');
+      return;
+    }
+    var imgCount = parseInt(that.data.pictureSize) - that.data.avatarUrl.length;
     wx.chooseImage({
+      count: imgCount,
       sizeType: ['compressed'],
-      sourceType: ['album'],
       success: function (res) {
-        var tempFilePaths = res.tempFilePaths;
+        var oldAvatarUrl = that.data.avatarUrl;
+        that.data.avatarUrl = oldAvatarUrl.concat(res.tempFilePaths)
         that.setData({
-          avatarUrl: tempFilePaths
+          avatarUrl: that.data.avatarUrl
         })
       },
       fail: function (res) {
-        // fail
       },
       complete: function (res) {
-        // complete
       }
     })
   },
@@ -36,9 +41,9 @@ Page({
   launchDynamic: function () {
     if (this.data.avatarUrl) {
       this.uploadImg(this.data.avatarUrl);
-    } else if (this.data.dynamic.content){
+    } else if (this.data.dynamic.content) {
       this.pushDynamic();
-    }else{
+    } else {
       util.toast('请输入想说的话或分享图片');
     }
   },
@@ -108,7 +113,7 @@ Page({
     var that = this;
     that.data.dynamic.token = app.globalData.userInfo.token;
     wx.getLocation({
-      success: function(res) {
+      success: function (res) {
         that.data.dynamic.lat = res.latitude
         that.data.dynamic.lon = res.longitude
         that.setData({ dynamic: that.data.dynamic });

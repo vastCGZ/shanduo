@@ -1,6 +1,5 @@
 {
   "pages":[
-    "pages/setup/setup",
     "pages/index/index",
     "pages/login/login",
     "pages/register/register",
@@ -15,7 +14,8 @@
     "pages/interface/interface",
     "pages/search/search",
     "pages/myactivity/myactivity",
-    "pages/comment/comment"
+    "pages/comment/comment",
+    "pages/setup/setup"
   ],
   "window":{
     "backgroundTextStyle":"dark",

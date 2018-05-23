@@ -18,7 +18,8 @@ Page({
     msgContent: null,
     userInfo: null,
     actionStatus: '',
-    toUserName: ''
+    toUserName: '',
+    messageBody: []
   },
 
   /**
@@ -108,13 +109,74 @@ Page({
           break;
       }
     };
+    //监听新消息(私聊(包括普通消息、全员推送消息)，普通群(非直播聊天室)消息)事件
+    //newMsgList 为新消息数组，结构为[Msg]
+    function onMsgNotify(newMsgList) {
+      var newMsg;
+      for (var j in newMsgList) {//遍历新消息
+        newMsg = newMsgList[j];
+        handlderMsg(newMsg);//处理新消息
+      }
+    }
 
+    //处理消息（私聊(包括普通消息和全员推送消息)，普通群(非直播聊天室)消息）
+    function handlderMsg(msg) {
+      var fromAccount, fromAccountNick, sessType, subType, contentHtml;
+      fromAccount = msg.getFromAccount();
+      if (!fromAccount) {
+        fromAccount = '';
+      }
+      fromAccountNick = msg.getFromAccountNick();
+      if (!fromAccountNick) {
+        fromAccountNick = fromAccount;
+      }
+
+      //解析消息
+      //获取会话类型
+      //webim.SESSION_TYPE.GROUP-群聊，
+      //webim.SESSION_TYPE.C2C-私聊，
+      sessType = msg.getSession().type();
+      //获取消息子类型
+      //会话类型为群聊时，子类型为：webim.GROUP_MSG_SUB_TYPE
+      //会话类型为私聊时，子类型为：webim.C2C_MSG_SUB_TYPE
+      subType = msg.getSubType();
+
+      switch (sessType) {
+        case webim.SESSION_TYPE.C2C://私聊消息
+          switch (subType) {
+            case webim.C2C_MSG_SUB_TYPE.COMMON://c2c普通消息
+              //业务可以根据发送者帐号fromAccount是否为app管理员帐号，来判断c2c消息是否为全员推送消息，还是普通好友消息
+              //或者业务在发送全员推送消息时，发送自定义类型(webim.MSG_ELEMENT_TYPE.CUSTOM,即TIMCustomElem)的消息，在里面增加一个字段来标识消息是否为推送消息
+              contentHtml = webimhandler.convertMsgtoHtml(msg);
+              webim.Log.warn('receive a new c2c msg: fromAccountNick=' + fromAccountNick + ", content=" + contentHtml);
+              //c2c消息一定要调用已读上报接口
+              var opts = {
+                'To_Account': fromAccount,//好友帐号
+                'LastedMsgTime': msg.getTime()//消息时间戳
+              };
+              webim.c2CMsgReaded(opts);
+              // console.error('收到一条c2c消息(好友消息或者全员推送消息): 发送人=' + fromAccountNick + ", 内容=" + contentHtml);
+              if (fromAccountNick == toUserId) {
+                var oldMessageBody = that.data.messageBody;
+                that.data.messageBody = oldMessageBody.push({
+                  fromAccountNick: fromAccountNick,
+                  content: contentHtml
+                });
+                that.setData({ messageBody: that.data.messageBody })
+              }
+              break;
+          }
+          break;
+        case webim.SESSION_TYPE.GROUP://普通群消息，对于直播聊天室场景，不需要作处理
+          break;
+      }
+    }
 
     //监听事件
     var listeners = {
       "onConnNotify": onConnNotify, //选填, 
       //监听新消息(大群)事件，必填
-      "onMsgNotify": webimhandler.onMsgNotify,//监听新消息(私聊(包括普通消息和全员推送消息)，普通群(非直播聊天室)消息)事件，必填
+      "onMsgNotify": onMsgNotify,//监听新消息(私聊(包括普通消息和全员推送消息)，普通群(非直播聊天室)消息)事件，必填
       "onGroupSystemNotifys": onGroupSystemNotifys, //监听（多终端同步）群系统消息事件，必填
       "onGroupInfoChangeNotify": webimhandler.onGroupInfoChangeNotify,//监听群资料变化事件，选填
     };
@@ -144,7 +206,14 @@ Page({
     }
     webimhandler.selType = webim.SESSION_TYPE.C2C;
     webimhandler.onSendMsg(content, function (res) {
-      console.log("发送消息成功");
+      console.log(res);
+      that.clearInput();
+      if (res) {
+        var oldMessageBody = that.data.messageBody;
+        that.data.messageBody = oldMessageBody.concat(res);
+        that.setData({ messageBody: that.data.messageBody })
+      }
+    }, function (res) {
       if (res && res.ActionStatus === 'FAIL') {
         switch (res.ErrorCode) {
           case 20003:
@@ -163,8 +232,6 @@ Page({
             util.toast('对方不是自己的好友');
             break;
         }
-      } else {
-        that.clearInput();
       }
     })
   },
@@ -218,6 +285,10 @@ Page({
       options,
       function (resp) {
         console.log(resp);
+      }, function () {
+
       });
+  }, listenerNewMsg: function () {
+
   }
 })

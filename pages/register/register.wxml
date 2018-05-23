@@ -14,7 +14,7 @@
         <image src='/image/icon/icon_name_checked.png'></image>
         <view>
           <input type='number' name='uname' placeholder="请输入手机号" placeholder-class="psection" bindinput='inputPhone'></input>
-          <button disabled='{{disabled}}' size='mini' type='warn' bindtap='sendMSM' bindtap="getVerificationCode">{{hint}}</button>
+          <button disabled='{{disabled}}' size='mini' type='warn' bindtap='sendMSM'>{{hint}}</button>
         </view>
       </view>
       <view class='footer_test'>

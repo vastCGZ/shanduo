@@ -1,0 +1,8 @@
+<!--pages/vipcore/vipcore.wxml-->
+<view class='container'>
+  <view class='vipcore_header'>
+    <image src=''></image>
+  </view>
+  <view class='vipcore_body'></view>
+  <view class='vipcore_footer'></view>
+</view>

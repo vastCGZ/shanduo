@@ -34,13 +34,6 @@ Page({
       }
     }, 1000)
   },
-  getVerificationCode() {
-    this.getCode();
-    var that = this
-    that.setData({
-      disabled: true
-    })
-  },
   onTap: function () {
     //返回上一页面或者多级页面
     wx.navigateBack({
@@ -58,6 +51,10 @@ Page({
   },
   sendMSM: function () {
     var that = this;
+    that.getCode();
+    that.setData({
+      disabled: true
+    })
     if (this.data.phone) {
       wx.request({
         url: app.host + '/sms/envoyer',

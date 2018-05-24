@@ -47,7 +47,7 @@
           </view>
           <view class='believe'>
             <view class='inline believe_left'>
-              <image src='/image/icon/'></image>
+              <image src='/image/icon/portrait.png'></image>
               <view class='inline'>
                 <view>
                 <!--判断是否是VIP如果是加 col_huang  -->
@@ -60,7 +60,7 @@
                 </view>
                 <view class='text_mood'>
                   <text class='col_hui'>[4G在线]</text>
-                  <text class='col_hui text_mood'>这是一段个性签名呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊</text>
+                  <text class='col_hui'>这是一段个性签名呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊</text>
                 </view>
               </view>
             </view>

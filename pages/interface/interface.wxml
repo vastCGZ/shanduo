@@ -43,12 +43,12 @@
     <button class="love" bindtap="sendMsg">发送</button>
   </view>
   <view class='release_footer'>
-    <image src='/image/icon/laugh_5.png' class='right_text inline'></image>
+    <!-- <image src='/image/icon/laugh_5.png' class='right_text inline'></image>
     <image src='/image/icon/laugh_4.png' class='right_text inline' bindtap='choosePicture'></image>
     <image src='/image/icon/laugh_6.png' class='right_text inline'></image>
     <image src='/image/icon/laugh_3.png' class='right_text inline' bindtap='chooseVideo'></image>
     <image src='/image/icon/laugh_1.png' class='right_text inline'></image>
-    <image src='/image/icon/position_1.png' class='right_text inline'></image>
+    <image src='/image/icon/position_1.png' class='right_text inline'></image> -->
   </view>
 </view>
 

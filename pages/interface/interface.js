@@ -82,18 +82,6 @@ Page({
       msgContent: ""
     })
   },
-  receiveMsgs: function (data) {
-    var msgs = this.data.msgs || [];
-    msgs.push(data);
-    //最多展示10条信息
-    if (msgs.length > 10) {
-      msgs.splice(0, msgs.length - 10)
-    }
-
-    this.setData({
-      msgs: msgs
-    })
-  },
   initIM: function (cbOk) {
     var that = this;
     // var avChatRoomId = '@TGS#aWTBZTDFW';
@@ -114,13 +102,6 @@ Page({
       'identifier': that.data.userInfo.userId, //当前用户ID,必须是否字符串类型，选填
       'identifierNick': that.data.userInfo.name, //当前用户昵称，选填
       'userSig': that.data.userInfo.userSig, //当前用户身份凭证，必须是字符串类型，选填
-    };
-
-    //监听（多终端同步）群系统消息方法，方法都定义在demo_group_notice.js文件中
-    var onGroupSystemNotifys = {
-      "5": webimhandler.onDestoryGroupNotify, //群被解散(全员接收)
-      "11": webimhandler.onRevokeGroupNotify, //群已被回收(全员接收)
-      "255": webimhandler.onCustomGroupNotify//用户自定义通知(默认全员接收)
     };
 
     //监听连接状态回调变化事件
@@ -209,8 +190,6 @@ Page({
       "onConnNotify": onConnNotify, //选填, 
       //监听新消息(大群)事件，必填
       "onMsgNotify": onMsgNotify,//监听新消息(私聊(包括普通消息和全员推送消息)，普通群(非直播聊天室)消息)事件，必填
-      "onGroupSystemNotifys": onGroupSystemNotifys, //监听（多终端同步）群系统消息事件，必填
-      "onGroupInfoChangeNotify": webimhandler.onGroupInfoChangeNotify,//监听群资料变化事件，选填
     };
 
     //其他对象，选填
@@ -218,13 +197,8 @@ Page({
       'isAccessFormalEnv': true,//是否访问正式环境，默认访问正式，选填
       'isLogOn': false//是否开启控制台打印日志,默认开启，选填
     };
-
-    if (Config.accountMode == 1) {//托管模式
-      webimhandler.sdkLogin(loginInfo, listeners, options, avChatRoomId);
-    } else {//独立模式
-      //sdk登录
-      webimhandler.sdkLogin(loginInfo, listeners, options, cbOk);
-    }
+    //sdk登录
+    webimhandler.sdkLogin(loginInfo, listeners, options, cbOk);
   },
   inputMsg: function (event) {
     this.setData({ msgContent: event.detail.value })
@@ -335,8 +309,14 @@ Page({
     wx.chooseVideo({
       maxDuration: 8,
       success: function (res) {
-        console.log(res);
+        //tempFilePath
+        //size
+        //选择的文件
+        util.encodeBase64(res.tempFilePath,function(res){
+          console.log(res);
+        });
       }
-    })
+    });
   }
+
 })

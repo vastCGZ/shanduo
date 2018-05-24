@@ -27,18 +27,19 @@
                     <view class="name">{{item.userName}}</view>
                     <view class="tag">
                     <!--判断男女是男加 sex_nan -->
-                      <text class='sex'>♀23</text>
+                      <text><text class='sex' wx:if='{{item.gender=="1"}}'>♂</text><text wx:else>♀</text>{{item.age}}</text>
                     <!--判断是什么会员 -->
-                      <text class='level'>SVIP</text>
+                    <block wx:if='{{item.vipGrade>0}}'>
+                      <text class='level'>SVIP9</text>
                       <text class='my_VIP'>VIP</text>
                       <text class='my_DJ'>LV90</text>
+                      </block>
                     </view>
                   </view>
                 </view>
                 <view class='activity_time'>
                   <view class=''>
-                    <text class='block col_lan'>2018/4/24/14:03星期二</text>
-                    <text class='block col_hui'>报名截止18：00</text>
+                    <text class='block col_lan'>{{item.activityStartTime}}</text>
                     <text class='block col_hui'>报名截止{{item.activityCutoffTime}}</text>
                   </view>
                 </view>
@@ -46,30 +47,30 @@
               <view class='activity_block'>
                 <view class='activity_theme'>
                   <text>主题：</text>
-                  <text>一起吃火锅</text>
+                  <text>{{item.activityName}}</text>
                   <text class='inline text_koge'></text>
-                  <text>AA制</text>
+                  <text>{{item.mode}}</text>
                 </view>
                 <view class='activity_place'>
                   <text>活动地点：</text>
-                  <text>xx市xx区xx路xxx火锅店</text>
+                  <text>{{item.activityAddress}}</text>
                   <image src='/image/icon/location.png'></image>
-                  <text class='col_lan'>1.6km</text>
+                  <text class='col_lan'>{{item.location}}km</text>
                 </view>
                 <view class='activity_content'>
                   <text>活动内容：</text>
-                  <text>还等什么赶紧报名吧! 到了打电话15873024293。</text>
+                  <text>{{item.remarks}}</text>
                 </view>
               </view>
               <view class='activity_block'>
                 <view>
                   <view class='inline'>
                     <image src='/image/icon/nan.png'></image>
-                    <text>01/05</text>
+                    <text>{{item.manNumber}}</text>
                   </view>
                   <view class='inline'>
                     <image src='/image/icon/nv.png'></image>
-                    <text>01/05</text>
+                    <text>{{item.womanNumber}}</text>
                   </view>
                 </view>
                 <view>

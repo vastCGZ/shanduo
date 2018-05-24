@@ -88,7 +88,6 @@ Page({
       return;
     }
     wx.showLoading()
-    console.log(this.data.activity);
     if (this.checkInputData()) {
       wx.request({
         url: app.host + '/activity/saveactivity',
@@ -157,7 +156,7 @@ Page({
       util.toast('请输入活动内容');
       return false;
     }
-    if (!activity.manNumber || !activity.womanNumber) {
+    if (!activity.manNumber && !activity.womanNumber) {
       util.toast('请输入活动人数');
       return false;
     }

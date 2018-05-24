@@ -29,7 +29,7 @@ page{
   border-radius: 20rpx;
   vertical-align: bottom;
   margin-right:30rpx;
-  margin-top:20rpx;
+  margin-bottom: 20rpx;
 }
 .release_footer_pic:nth-child(3n+0){
   margin-right: 0;
@@ -40,11 +40,12 @@ page{
   width: 210rpx;
   height: 210rpx;
   text-align: center;
-  line-height: 220rpx;
+  line-height: 210rpx;
 }
 .release_footer>.pic_left>image{
   width: 100%;
   height: 100%;
+  margin-top: 20rpx;
 }
 .release_footer>.pic_center{
   bottom: 30rpx;

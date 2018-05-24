@@ -11,7 +11,7 @@
       <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">动态</view>
     </view>
     <view>
-      <image class='img_special' src='/image/icon/search.png' bindtap="bindFocus"></image>
+      <image class='img_special' src='/image/icon/search.png'></image>
     </view>
   </view>
   <swiper wx:if="{{currentTab1 == 0 && currentTab == 0}}" current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange" style='height:{{444+354*(activitys[0].arrayResult.length)}}rpx'>

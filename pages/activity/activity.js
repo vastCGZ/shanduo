@@ -57,9 +57,6 @@ Page({
 
 
   
-  onShareAppMessage: function () {
-
-  },
   pushActivity: function () {
     if (app.globalData.userInfo != null) {
       wx.navigateTo({ url: '/pages/release_hd/release_hd' });

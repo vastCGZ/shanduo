@@ -1,7 +1,7 @@
 <!--pages/vipcore/vipcore.wxml-->
 <view class='container'>
   <view class='vipcore_header pos_rel'>
-    <view class='believe pos_abs'>
+    <view class='believe'>
       <view class='inline believe_left'>
         <image src='/image/icon/portrait.png'></image>
         <view class='inline'>
@@ -26,6 +26,28 @@
     </view>
     <image class='pos_abs vip_hea_bg' src='/image/icon/portrait.png'></image>
   </view>
-  <view class='vipcore_body'></view>
-  <view class='vipcore_footer'></view>
+  <view class='vipcore_body'>
+    <image class='vip_bodt_pic' src='/image/icon/rectangle_copy.png'></image>
+    <text class='col_hui'>查看详细特权></text>
+  </view>
+  <view class='vipcore_footer'>
+    <text>全部特权</text>
+    <view class='vip_foo'>
+      <view>
+        <image src='/image/icon/rectangle_copy_1.png'></image>
+        <text class='block'>身份铭牌</text>
+        <text class='block col_hui'>如影随形，尊贵身份</text>
+      </view>
+      <view>
+        <image src='/image/icon/rectangle_copy_1.png'></image>
+        <text class='block'>红色昵称</text>
+        <text class='block col_hui'>尊贵的红，与众不同</text>
+      </view>
+      <view>
+        <image src='/image/icon/rectangle_copy_2.png'></image>
+        <text class='block'>500人群</text>
+        <text class='block col_hui'>可创建或升级500人群组</text>
+      </view>
+    </view>
+  </view>
 </view>

@@ -139,6 +139,11 @@ page {
   font-size: 22rpx;
 }
 
+.msgs-wrapper>text.block.col_hui{
+  text-align: center;
+}
+
+
 /* 原来的 */
 
 /* 

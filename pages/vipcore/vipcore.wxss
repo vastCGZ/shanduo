@@ -3,6 +3,10 @@ page{
   width: 100%;
   height: 100%;
 }
+.container{
+  justify-content: flex-start;
+  text-align: center;
+}
 .vipcore_header {
   width: 100%;
   background-color: transparent;
@@ -17,7 +21,6 @@ page{
   height: 260rpx;
   margin-top: 10rpx;
   background-color: transparent;
-  z-index: 10;
 }
 
 .believe>.believe_left>image {
@@ -30,7 +33,7 @@ page{
   font-size: 22rpx;
   margin-right: 50rpx;
   border-radius: 25rpx;
-  padding: 8rpx 20rpx 8rpx 20rpx;
+  padding: 10rpx 20rpx 10rpx 20rpx;
   background-color: #4660ff;
 }
 .believe>.believe_right>view>text {
@@ -42,5 +45,39 @@ page{
   height: 100%;
   left: 0;
   top: 0;
-  z-index: 11;
+  z-index: -1;
+}
+.vipcore_body{
+  width: 100%;
+  border-bottom: 1rpx solid #eaeaea;
+}
+.vip_bodt_pic{
+  width: 100%;
+  height: 450rpx;
+}
+.vipcore_body>text{
+  display: inline-block;
+  margin-bottom: 50rpx;
+}
+.vipcore_footer{
+  width: 100%;
+}
+.vipcore_footer>text{
+  display: inline-block;
+  margin: 20rpx 0;
+}
+.vip_foo{
+  display: flex;
+  width: 100%;
+}
+.vip_foo>view{
+  width: 210rpx;
+  margin: 0 20rpx;
+}
+.vip_foo>view>image{
+  width: 100%;
+  height: 200rpx;
+}
+vip_foo .col_hui {
+  font-size:19rpx;
 }

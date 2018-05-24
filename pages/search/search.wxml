@@ -1,22 +1,82 @@
 <!--search.wxml-->
-<view class="page">
-  <view class="nav-header"> 
-    <view class="search"> 
-        <view>
-            <input class="search-input" placeholder="请输入搜索的商品" auto-focus
-            bindinput="bindInput"  bindchange="bindchange" value="{{inputValue}}"/>
-        </view>
-        <button class="clearInput" style="display:inline-block" bindtap="clearInput">×</button>
-        <button  style="display:inline-block" bindtap="setSearchStorage">搜索</button>
-    </view>
+<view class='container'>
+  <view class='myactivity_body'>
+    <scroll-view scroll-x="true" class="bodyTag inline" scroll-left="{{scrollLeft}}">
+      <view class='Tag_edge inline'>
+        <text class="{{currentTab==0 ? 'userLi_actived ' : ''}}" data-current="0" bindtap="swichNav">找人</text>
+      </view>
+      <view class='Tag_edge inline'>
+        <text class="{{currentTab==1 ? 'userLi_actived ' : ''}}" data-current="1" bindtap="swichNav">找群</text>
+      </view>
+    </scroll-view>
+    <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
+    style="height:{{winHeight}}rpx">
+      <swiper-item>
+        <scroll-view scroll-y="true">
+          <view class="inp_box_div">
+            <view class='inp_box'>
+              <view>
+                <image src='/image/icon/bitmap_copy.png'></image>
+                <input placeholder="搜索手机号/用户名"></input>
+              </view>
+            </view>
+          </view>
+          <view class='nav'>
+            <view class='inline nav_left'>
+              <image src='/image/icon/copy_10_3.png'></image>
+              <view>
+                <text>添加通讯录好友</text>
+              </view>
+            </view>
+          </view>
+          <view class='nav'>
+            <view class='inline nav_left'>
+              <image src='/image/icon/copy_2.png'></image>
+              <view>
+                <text>添加微信好友</text>
+              </view>
+            </view>
+          </view>
+          <view class='nav'>
+            <view class='inline nav_left'>
+              <image src='/image/icon/copy_4.png'></image>
+              <view>
+                <text>添加QQ好友</text>
+              </view>
+            </view>
+          </view>
+          <view class='believe'>
+            <view class='inline believe_left'>
+              <image src='/image/icon/'></image>
+              <view class='inline'>
+                <view>
+                <!--判断是否是VIP如果是加 col_huang  -->
+                  <text>小黄猫</text>
+                <!--判断是男是女是男加 sex_nan  -->
+                  <text class='sex'>♀23</text>
+                <!--判断是VIP还是SVIP如果是VIP加 my_VIP-->
+                  <!--还需判断是否是VIP或者SVIP如果不是 隐藏  -->
+                  <text class='level'>SVIP2</text>
+                </view>
+                <view class='text_mood'>
+                  <text class='col_hui'>[4G在线]</text>
+                  <text class='col_hui text_mood'>这是一段个性签名呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊</text>
+                </view>
+              </view>
+            </view>
+            <view class='inline believe_right'>
+              <view bindtap='signin'>
+                <text>签到</text>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+      </swiper-item>
+      <swiper-item>
+        <scroll-view scroll-y="true">
+          <button type='primary'>找群</button>
+        </scroll-view>
+      </swiper-item>
+    </swiper>
   </view>
-  <view class="zong">
-    <view class="local" wx:for="{{getSearch}}" wx:for-index="idx" wx:for-item="itemName" wx:key="idx" >
-      <view wx:if="{{itemName != ''}}"> {{itemName}} </view>
-    </view>
-    <modal class="modal" hidden="{{modalHidden}}" bindconfirm="modalChangeConfirm" bindcancel="modalChangeCancel">
-      <view> 是否删掉本地记录 </view>
-    </modal>
-    <button style="display:inline-block" bindtap="clearSearchStorage">清空浏览记录</button>
-  </view>
-</view>
+</view> 

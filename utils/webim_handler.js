@@ -1,5 +1,6 @@
 
 var webim = require('webim.js');
+var util = require('util.js');
 var selToID
   , loginInfo
   , accountMode
@@ -183,6 +184,7 @@ function showMsg(msg) {
   return {
     fromAccountNick: fromAccountNick,
     content: content,
+    time: util.getLocalTime(msg.getTime()),
     me: isSelfSend
   }
 }

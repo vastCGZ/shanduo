@@ -103,5 +103,13 @@ Page({
     wx.navigateTo({
       url: '/pages/setup/setup',
     })
+  }, gotoMyWalletView:function(){
+    wx.navigateTo({
+      url: '/pages/wallet/wallet',
+    })
+  }, gotoMemberCenterView:function(){
+    wx.navigateTo({
+      url: '/pages/vipcore/vipcore',
+    })
   }
 })

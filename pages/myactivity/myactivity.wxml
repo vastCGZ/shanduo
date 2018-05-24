@@ -27,7 +27,11 @@
                     <view class="name">{{item.userName}}</view>
                     <view class="tag">
                     <!--判断男女是男加 sex_nan -->
-                      <text><text class='sex' wx:if='{{item.gender=="1"}}'>♂</text><text wx:else>♀</text>{{item.age}}</text>
+                      <text>
+                        <text class='sex' wx:if='{{item.gender=="1"}}'>♂</text>
+                        <text wx:else>♀</text>
+                      {{item.age}}
+                      </text>
                     <!--判断是什么会员 -->
                     <block wx:if='{{item.vipGrade>0}}'>
                       <text class='level'>SVIP9</text>

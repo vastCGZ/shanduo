@@ -23,7 +23,9 @@ function toast(msg) {
     icon: 'none'
   })
 }
-
+function getLocalTime(nS) {
+  return new Date(parseInt(nS) * 1000).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ");
+}
 function checkInput(input) {
   if (!input) {
     return false;
@@ -34,9 +36,15 @@ function checkInput(input) {
   }
   return true;
 }
-
+/*验证手机号*/
+function checkPhone(str) {
+  var myreg = /^(((13[0-9])|(15[0-9])|16[678]|17[0135678]|(18[0-9]))+\d{8})$/;
+  return checkInput(str) && myreg.test(str);
+}
 module.exports = {
   formatTime: formatTime,
   toast: toast,
-  checkInput: checkInput
+  checkInput: checkInput,
+  getLocalTime: getLocalTime,
+  checkPhone: checkPhone
 }

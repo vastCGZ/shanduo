@@ -4,6 +4,7 @@ var webimhandler = require('../../utils/webim_handler.js');
 var util = require('../../utils/util.js');
 var app = getApp();
 var toUserId, toUserName;
+var bottom;
 var Config = {
   sdkappid: 1400088239,
   accountType: 25943,
@@ -42,6 +43,7 @@ Page({
               var msgbody = historyMsgList[i]
               msg.fromAccountNick = msgbody.fromAccountNick;
               msg.content = msgbody.elems[0].content.text;
+              msg.time = util.getLocalTime(msgbody.time);
               if (msgbody.fromAccount == app.globalData.userInfo.userId) {
                 msg.me = true;
               }
@@ -71,7 +73,7 @@ Page({
     wx.createSelectorQuery().select('#messageBox').boundingClientRect(function (rect) {
       // 使页面滚动到底部  
       wx.pageScrollTo({
-        scrollTop: rect.bottom
+        scrollTop: bottom = bottom ? bottom : rect.bottom
       })
     }).exec()
   },
@@ -188,7 +190,8 @@ Page({
                 var oldMessageBody = that.data.messageBody;
                 oldMessageBody.push({
                   fromAccountNick: fromAccountNick,
-                  content: contentHtml
+                  content: contentHtml,
+                  time: util.getLocalTime(msg.getTime())
                 });
                 that.setData({ messageBody: oldMessageBody });
                 that.pageScrollToBottom();
@@ -263,10 +266,10 @@ Page({
       }
     })
   },
-  addFriend2: function () {
+  addFriend: function () {
     var add_friend_item = [
       {
-        'To_Account': '10000',
+        'To_Account': toUserId,
         "AddSource": "AddSource_Type_Unknow",
         "AddWording": '你好，我们做朋友吧' //加好友附言，可为空
       }
@@ -281,7 +284,7 @@ Page({
       console.log(res);
     });
   },
-  addFriend: function () {
+  cloneFriendRequest: function () {
     var options = {
       'From_Account': app.globalData.userInfo.userId,
       'PendencyType': 'Pendency_Type_ComeIn',
@@ -328,7 +331,7 @@ Page({
         });
       },
     })
-  }, chooseVideo:function(){
+  }, chooseVideo: function () {
     wx.chooseVideo({
       maxDuration: 8,
       success: function (res) {

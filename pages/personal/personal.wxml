@@ -10,10 +10,12 @@
           </view>
           <view>
           <!--判断是男是女是男加 sex_nan  -->
-            <text class='sex'>♀23</text>
+            <text class='{{userInfo.gender=="0"?"sex":"sex_nan"}}' wx:if='{{userInfo.gender=="0"}}'>♀{{userInfo.age}}</text><text wx:else>♂{{userInfo.age}}</text>
           <!--判断是VIP还是SVIP如果是VIP加 my_VIP-->
             <!--还需判断是否是VIP或者SVIP如果不是 隐藏  -->
+            <block wx:if='{{userInfo.vip>0}}'>
             <text class='level'>SVIP2</text>
+            </block>
           </view>
         </view>
       </view>
@@ -56,7 +58,7 @@
         <image src='/image/icon/icon-2.png'></image>
       </view>
     </view>
-    <view class='nav'>
+    <view class='nav' bindtap='gotoMyWalletView'>
       <view class='inline nav_left'>
         <image src='/image/icon/icon-7.png'></image>
         <view>
@@ -67,7 +69,7 @@
         <image src='/image/icon/icon-2.png'></image>
       </view>
     </view>
-    <view class='nav'>
+    <view class='nav' bindtap='gotoMemberCenterView'>
       <view class='inline nav_left'>
         <image src='/image/icon/icon-4.png'></image>
         <view>

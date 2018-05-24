@@ -70,7 +70,6 @@ Page({
       dataType: 'json',
       method: 'GET',
       success: (res) => {
-        console.log(res);
         if (res.data.success) {
           var oldList = that.data.commentList;
           var newList = res.data.result.list;

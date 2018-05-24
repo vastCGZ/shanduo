@@ -87,9 +87,9 @@ Page({
   //下拉刷新
   onPullDownRefresh: function () {
     if (this.data.currentTab == 0) {
-      this.getActivityData();
+      this.getActivityData(true);
     } else {
-      this.getDynamicData();
+      this.getDynamicData(true);
     }
   },
   //上拉加载更多
@@ -192,7 +192,7 @@ Page({
     that.getDynamicData();
   },
   //远程获取活动数据
-  getActivityData: function () {
+  getActivityData: function (refresh) {
     wx.showLoading();
     var that = this;
     var token = '';
@@ -218,7 +218,7 @@ Page({
           that.setData(
             { activitys: that.data.activitys }
           );
-
+          
         } else {
           wx.showToast({
             title: res.data.errorCode,
@@ -228,12 +228,13 @@ Page({
       }, fail: function (res) {
         console.log(res.errorMsg);
       }, complete: function () {
-        wx.hideLoading()
+        wx.hideLoading();
+        if (refresh) wx.stopPullDownRefresh();
       }, method: 'GET'
     });
   },
   //远程获取动态数据
-  getDynamicData: function () {
+  getDynamicData: function (refresh) {
     wx.showLoading();
     var that = this;
     var token = '';
@@ -265,6 +266,7 @@ Page({
             that.setData(
               { dynamics: that.data.dynamics }
             );
+            
           }
         } else {
           wx.showToast({
@@ -275,7 +277,8 @@ Page({
       }, fail: function (res) {
         console.log(res.errorMsg);
       }, complete: function () {
-        wx.hideLoading()
+        wx.hideLoading();
+        if (refresh) wx.stopPullDownRefresh();
       }, method: 'GET'
     });
   },

@@ -85,7 +85,6 @@ Page({
       method: 'GET',
       success: function (res) {
         var data = res.data;
-        console.log(data);
         if (data.success && data.result.list.length > 0) {
           that.data.activities[that.data.currentTab].totalpage = data.result.totalpage;
           var array = that.data.activities[that.data.currentTab].arrayResult;

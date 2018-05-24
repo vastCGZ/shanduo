@@ -3,7 +3,7 @@
   <form form-type='submit'>
     <view class='header'>
       <view class='header_left'>
-        <image bindtap='onTap' src='/image/icon/return_1.png'></image>
+        <image bindtap='onTap' src='/image/icon/return_1_1.png'></image>
       </view>
     </view>
     <view class='article'>

@@ -7,7 +7,30 @@ Page({
   data: {
     winHeight: "",//窗口高度
     currentTab: 0, //预设当前项的值
-    scrollLeft: 0 //tab标题的滚动条位置
+    scrollLeft: 0, //tab标题的滚动条位置
+    focus1: true,
+    focus2: true,
+  },
+  /*搜索时的隐藏 */
+  focusInputEvent1:function (e) {
+    this.setData({
+      focus1: !this.data.focus1
+    })
+  },
+  blurInputEvent1: function (e) {
+    this.setData({
+      focus1: !this.data.focus1
+    })
+  },
+  focusInputEvent2: function (e) {
+    this.setData({
+      focus2: !this.data.focus2
+    })
+  },
+  blurInputEvent2: function (e) {
+    this.setData({
+      focus2: !this.data.focus2
+    })
   },
   // 滚动切换标签样式
   switchTab: function (e) {

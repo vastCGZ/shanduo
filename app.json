@@ -1,6 +1,5 @@
 {
   "pages":[
-    "pages/search/search",
     "pages/index/index",
     "pages/login/login",
     "pages/register/register",
@@ -17,7 +16,9 @@
     "pages/comment/comment",
     "pages/setup/setup",
     "pages/wallet/wallet",
-    "pages/vipcore/vipcore"
+    "pages/vipcore/vipcore",
+    "pages/search/search",
+    "pages/edit/edit"
   ],
   "window":{
     "backgroundTextStyle":"dark",

@@ -11,13 +11,14 @@
     </scroll-view>
     <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
     style="height:{{winHeight}}rpx">
+      <!--找人  -->
       <swiper-item>
         <scroll-view scroll-y="true">
           <view class="inp_box_div">
             <view class='inp_box'>
               <view>
                 <image src='/image/icon/bitmap_copy.png'></image>
-                <input placeholder="搜索手机号/用户名"></input>
+                <input placeholder="搜索手机号/用户名" bindfocus="focusInputEvent1" bindblur="blurInputEvent1"></input>
               </view>
             </view>
           </view>
@@ -25,33 +26,36 @@
             <view class='inline nav_left'>
               <image src='/image/icon/copy_10_3.png'></image>
               <view>
-                <text>添加通讯录好友</text>
+                <text wx:if='{{focus1}}'>添加通讯录好友</text>
+                <text wx:else>搜索通讯录好友</text>
               </view>
             </view>
           </view>
-          <view class='nav'>
+          <view class='nav' wx:if='{{!focus1}}'>
             <view class='inline nav_left'>
               <image src='/image/icon/copy_2.png'></image>
               <view>
-                <text>添加微信好友</text>
+                <text wx:if='{{focus1}}'>添加微信好友</text>
+                <text wx:else>搜索微信好友</text>
               </view>
             </view>
           </view>
-          <view class='nav'>
+          <view class='nav' wx:if='{{!focus1}}'>
             <view class='inline nav_left'>
               <image src='/image/icon/copy_4.png'></image>
               <view>
-                <text>添加QQ好友</text>
+                <text wx:if='{{focus1}}'>添加QQ好友</text>
+                <text wx:else>搜索QQ好友</text>
               </view>
             </view>
           </view>
-          <view class='believe'>
+          <view class='believe believe{{idx}}' wx:if='{{focus1}}' wx:for='{{1}}' wx:key='only' wx:for-index="idx" wx:for-item="item">
             <view class='inline believe_left'>
               <image src='/image/icon/portrait.png'></image>
               <view class='inline'>
                 <view>
                 <!--判断是否是VIP如果是加 col_huang  -->
-                  <text>小黄猫</text>
+                  <text class='text_right'>小黄猫</text>
                 <!--判断是男是女是男加 sex_nan  -->
                   <text class='sex'>♀23</text>
                 <!--判断是VIP还是SVIP如果是VIP加 my_VIP-->
@@ -59,22 +63,75 @@
                   <text class='level'>SVIP2</text>
                 </view>
                 <view class='text_mood'>
-                  <text class='col_hui'>[4G在线]</text>
+                  <text class='col_hui text_right'>[4G在线]</text>
                   <text class='col_hui'>这是一段个性签名呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊呀啊</text>
                 </view>
               </view>
             </view>
             <view class='inline believe_right'>
               <view bindtap='signin'>
-                <text>签到</text>
+                <text>关注</text>
               </view>
             </view>
           </view>
         </scroll-view>
       </swiper-item>
+      <!--找群  -->
       <swiper-item>
         <scroll-view scroll-y="true">
-          <button type='primary'>找群</button>
+          <view class="inp_box_div">
+            <view class='inp_box'>
+              <view>
+                <image src='/image/icon/bitmap_copy.png'></image>
+                <input placeholder="搜索群组名字或群号" bindfocus="focusInputEvent2" bindblur="blurInputEvent2"></input>
+              </view>
+            </view>
+          </view>
+          <view class='nav' wx:if='{{!focus2}}'>
+            <view class='inline nav_left'>
+              <image src='/image/icon/copy_11_2.png'></image>
+              <view>
+                <text>搜索用户</text>
+              </view>
+            </view>
+          </view>
+          <view class='nav'>
+            <view class='inline nav_left'>
+              <image src='/image/icon/copy_11_2.png'></image>
+              <view>
+                <text wx:if='{{focus2}}'>创建群组</text>
+                <text wx:else>搜索群组</text>
+              </view>
+            </view>
+          </view>
+          <view class='nav'>
+            <view class='inline nav_left'>
+              <image src='/image/icon/copy_2_2.png'></image>
+              <view>
+                <text wx:if='{{focus2}}'>创建多人群聊</text>
+                <text wx:else>搜索多人群聊</text>
+              </view>
+            </view>
+          </view>
+          <view class='believe believe{{idx}}' wx:if='{{focus2}}' wx:for='{{1}}' wx:key='only' wx:for-index="idx" wx:for-item="item">
+            <view class='inline believe_left'>
+              <image src='/image/icon/portrait.png'></image>
+              <view class='inline'>
+                <view>
+                <!--判断是否是VIP如果是加 col_huang  -->
+                  <text class='text_right'>长沙UI设计师交流总群</text>
+                </view>
+                <view class='text_mood'>
+                  <text class='col_hui'>群成员-共1048人</text>
+                </view>
+              </view>
+            </view>
+            <view class='inline believe_right'>
+              <view bindtap='signin'>
+                <text>加入</text>
+              </view>
+            </view>
+          </view>
         </scroll-view>
       </swiper-item>
     </swiper>

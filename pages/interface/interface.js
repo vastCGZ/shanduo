@@ -3,7 +3,7 @@ var webim = require('../../utils/webim.js');
 var webimhandler = require('../../utils/webim_handler.js');
 var util = require('../../utils/util.js');
 var app = getApp();
-var toUserId, toUserName;
+var toUserId, toUserName, bottom;
 var Config = {
   sdkappid: 1400088239,
   accountType: 25943,
@@ -71,7 +71,7 @@ Page({
     wx.createSelectorQuery().select('#messageBox').boundingClientRect(function (rect) {
       // 使页面滚动到底部  
       wx.pageScrollTo({
-        scrollTop: rect.bottom
+        scrollTop: bottom = bottom ?bottom:rect.bottom
       })
     }).exec()
   },

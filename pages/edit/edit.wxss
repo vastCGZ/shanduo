@@ -1,0 +1,90 @@
+/* pages/edit/edit.wxss */
+.pic_box{
+  position: relative;
+  height: 430rpx;
+}
+/*背景*/
+.pic_box>image{
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+.pic_box_content{
+  display: flex;
+  flex-direction:column;
+  justify-content:center;
+  align-content:center;
+  align-items:center;
+  width: 100%;
+  height: 100%;
+}
+.pic_box_content>image{
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  box-shadow: 0px 0px 0px 10rpx rgba(255, 255, 255, .4);
+}
+.pic_box_content>text{
+  margin: 20rpx 0;
+   color: #fff; 
+}
+.pic_box_img{
+  width: 150rpx;
+  height: 50rpx;
+  line-height: 40rpx;
+  text-align: center;
+  border-radius: 50rpx;
+  border: 1rpx solid #fff;
+}
+.pic_box_img>image{
+  width: 35rpx;
+  height: 35rpx;
+  vertical-align: middle;
+}
+.pic_box_img>text{
+   color: #fff; 
+   font-size: 22rpx;
+  vertical-align: middle;
+}
+.edit_body>view{
+  padding-left: 30rpx;
+}
+.edit_title{
+  height: 60rpx;
+  line-height: 60rpx;
+  background-color: #f4f4f4;
+}
+.edit_title>text{
+  border-left: 5rpx solid #D2282D;
+  padding-left: 10rpx;
+  color: #030303;
+}
+/**/
+.edit_option{
+  padding: 20rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #f4f4f4;
+}
+.edit_option>text{
+  vertical-align: middle;
+  color: #030303;
+}
+.edit_option>picker{
+  float: right;
+}
+.edit_option>picker>view{
+  width: 500rpx;
+}
+.edit_option view>text{
+  color: #999;
+  margin-right: 5rpx;
+  vertical-align: middle;
+}
+.edit_option view>image{
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+}

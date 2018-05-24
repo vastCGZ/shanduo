@@ -8,7 +8,7 @@
     </text>
     <image src='/image/icon/copy_1_1.png' class='right_text inline' bindtap='addFriend2'></image>
   </view>
-  <view class="msgs-wrapper">
+  <view class="msgs-wrapper" id='messageBox'>
     <!--判断是谁发的  -->
     <!--如果是别人就为true  显示  -->
     <block wx:for="{{messageBody}}" wx:key="navItems">
@@ -44,9 +44,9 @@
   </view>
   <view class='release_footer'>
     <image src='/image/icon/laugh_5.png' class='right_text inline'></image>
-    <image src='/image/icon/laugh_4.png' class='right_text inline'></image>
+    <image src='/image/icon/laugh_4.png' class='right_text inline' bindtap='choosePicture'></image>
     <image src='/image/icon/laugh_6.png' class='right_text inline'></image>
-    <image src='/image/icon/laugh_3.png' class='right_text inline'></image>
+    <image src='/image/icon/laugh_3.png' class='right_text inline' bindtap='chooseVideo'></image>
     <image src='/image/icon/laugh_1.png' class='right_text inline'></image>
     <image src='/image/icon/position_1.png' class='right_text inline'></image>
   </view>

@@ -97,6 +97,11 @@ Page({
         success: function (res) {
           if (res.data.success) {
             util.toast('发布成功')
+            setTimeout(function () {
+              wx.switchTab({
+                url: '/pages/activity/activity'
+              })
+            }, 500)
           } else {
             util.toast(res.data.errorCode);
           }

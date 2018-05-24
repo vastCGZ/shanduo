@@ -78,7 +78,7 @@ function handlderMsg(msg) {
 }
 
 //sdk登录
-function sdkLogin(userInfo, listeners, options, avChatRoomId) {
+function sdkLogin(userInfo, listeners, options, cbOk) {
   //web sdk 登录
   webim.login(userInfo, listeners, options,
     function (identifierNick) {
@@ -86,6 +86,7 @@ function sdkLogin(userInfo, listeners, options, avChatRoomId) {
       //identifierNick为登录用户昵称(没有设置时，为帐号)，无登录态时为空
       console.debug(identifierNick);
       webim.Log.info('webim登录成功');
+      cbOk && cbOk();
       loginInfo = userInfo;
       setProfilePortrait({
         'ProfileItem': [{
@@ -182,7 +183,7 @@ function showMsg(msg) {
   return {
     fromAccountNick: fromAccountNick,
     content: content,
-    me:true
+    me: isSelfSend
   }
 }
 
@@ -502,7 +503,6 @@ function smsPicClick() {
 
 //发送消息(普通消息)
 function onSendMsg(msg, cbOk, cbErr) {
-  console.log('accountMode', accountMode);
   if (!loginInfo.identifier) {//未登录
     if (accountMode == 1) {//托管模式
       //将account_type保存到cookie中,有效期是1天
@@ -886,7 +886,7 @@ function init(opts) {
   selType = opts.selType;
   selToID = opts.selToID;
 }
-var getLastC2CHistoryMsgs = function (cbOk, cbError) {
+function getLastC2CHistoryMsgs(reqMsgCount, cbOk, cbError) {
   if (selType == webim.SESSION_TYPE.GROUP) {
     // alert('当前的聊天类型为群聊天，不能进行拉取好友历史消息操作');
     return;
@@ -908,16 +908,93 @@ var getLastC2CHistoryMsgs = function (cbOk, cbError) {
         webim.Log.error("没有历史消息了:data=" + JSON.stringify(options));
         return;
       }
-      getPrePageC2CHistroyMsgInfoMap[selToID] = {//保留服务器返回的最近消息时间和消息Key,用于下次向前拉取历史消息
-        'LastMsgTime': resp.LastMsgTime,
-        'MsgKey': resp.MsgKey
-      };
-      if (cbOk)
-        cbOk(resp.MsgList);
+      //保留服务器返回的最近消息时间和消息Key,用于下次向前拉取历史消息
+      // getPrePageC2CHistroyMsgInfoMap[selToID] = {
+      //   'LastMsgTime': resp.LastMsgTime,
+      //   'MsgKey': resp.MsgKey
+      // };
+      if (cbOk) {
+        var data = {};
+        data.historyMsgList = resp.MsgList;
+        data.complete = complete === 0
+        cbOk(data);
+      }
     },
     cbError
+  )
+}
+//上传图片
+function uploadPic(imgFile, cbOk, cbErr) {
+  var businessType;//业务类型，1-发群图片，2-向好友发图片
+  if (selType == webim.SESSION_TYPE.C2C) {//向好友发图片
+    businessType = webim.UPLOAD_PIC_BUSSINESS_TYPE.C2C_MSG;
+  } else if (selType == webim.SESSION_TYPE.GROUP) {//发群图片
+    businessType = webim.UPLOAD_PIC_BUSSINESS_TYPE.GROUP_MSG;
+  }
+  //封装上传图片请求
+  var opt = {
+    'file': imgFile, //图片对象
+    // 'onProgressCallBack': onProgressCallBack, //上传图片进度条回调函数
+    //'abortButton': document.getElementById('upd_abort'), //停止上传图片按钮
+    'From_Account': loginInfo.identifier, //发送者帐号
+    'To_Account': selToID, //接收者
+    'businessType': businessType//业务类型
+  };
+  //上传图片
+  webim.uploadPic(opt,
+    function (resp) {
+      //上传成功发送图片
+      sendPic(resp, function (res) {
+        cbOk && cbOk(res);
+      }, function (res) {
+        cbErr && cbErr(res.ErrorInfo);
+      });
+    },
+    function (err) {
+      cbErr && cbErr(err.ErrorInfo);
+    }
   );
-};
+}
+//发送图片
+function sendPic(images, cbOk, cbErr) {
+  if (!selToID) {
+    alert("您还没有好友，暂不能聊天");
+    return;
+  }
+  if (!selSess) {
+    selSess = new webim.Session(selType, selToID, selToID, friendHeadUrl,
+      Math.round(new Date().getTime() / 1000));
+  }
+  var msg = new webim.Msg(selSess, true);
+  var images_obj = new webim.Msg.Elem.Images(images.File_UUID);
+  for (var i in images.URL_INFO) {
+    var img = images.URL_INFO[i];
+    var newImg;
+    var type;
+    switch (img.PIC_TYPE) {
+      case 1://原图
+        type = 1;//原图
+        break;
+      case 2://小图（缩略图）
+        type = 3;//小图
+        break;
+      case 4://大图
+        type = 2;//大图
+        break;
+    }
+    newImg = new webim.Msg.Elem.Images.Image(type, img.PIC_Size, img.PIC_Width,
+      img.PIC_Height, img.DownUrl);
+    images_obj.addImage(newImg);
+  }
+  msg.addImage(images_obj);
+  //调用发送图片接口
+  webim.sendMsg(msg, function (resp) {
+    console.log(resp);
+    cbOk && cbOk(showMsg(msg));
+  }, function (err) {
+    cbErr && cbErr(err.ErrorInfo);
+  });
+}
 
 module.exports = {
   init: init,
@@ -970,4 +1047,5 @@ module.exports = {
   onGroupInfoChangeNotify: onGroupInfoChangeNotify,
   showGroupSystemMsg: showGroupSystemMsg,
   getLastC2CHistoryMsgs: getLastC2CHistoryMsgs,
+  uploadPic: uploadPic
 };

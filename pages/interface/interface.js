@@ -3,7 +3,7 @@ var webim = require('../../utils/webim.js');
 var webimhandler = require('../../utils/webim_handler.js');
 var util = require('../../utils/util.js');
 var app = getApp();
-var toUserId, toUserName
+var toUserId, toUserName;
 var Config = {
   sdkappid: 1400088239,
   accountType: 25943,
@@ -26,12 +26,31 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     var localUserInfo = app.globalData.userInfo;
     toUserId = options.toUserId;
     toUserName = options.toUserName;
     if (localUserInfo) {
-      this.setData({ userInfo: localUserInfo, toUserName: toUserName });
-      this.initIM();
+      that.setData({ userInfo: localUserInfo, toUserName: toUserName });
+      that.initIM(function () {
+        webimhandler.getLastC2CHistoryMsgs(10, function (res) {
+          if (res) {
+            var historyMsgList = res.historyMsgList;
+            var oldMessageBody = that.data.messageBody;
+            for (var i in historyMsgList) {
+              var msg = {};
+              var msgbody = historyMsgList[i]
+              msg.fromAccountNick = msgbody.fromAccountNick;
+              msg.content = msgbody.elems[0].content.text;
+              if (msgbody.fromAccount == app.globalData.userInfo.userId) {
+                msg.me = true;
+              }
+              oldMessageBody.push(msg);
+              that.setData({ messageBody: oldMessageBody })
+            }
+          }
+        });
+      });
     }
   },
 
@@ -47,6 +66,14 @@ Page({
    */
   onShow: function () {
 
+  },
+  pageScrollToBottom: function () {
+    wx.createSelectorQuery().select('#messageBox').boundingClientRect(function (rect) {
+      // 使页面滚动到底部  
+      wx.pageScrollTo({
+        scrollTop: rect.bottom
+      })
+    }).exec()
   },
   clearInput: function () {
     this.setData({
@@ -65,7 +92,7 @@ Page({
       msgs: msgs
     })
   },
-  initIM: function () {
+  initIM: function (cbOk) {
     var that = this;
     // var avChatRoomId = '@TGS#aWTBZTDFW';
     webimhandler.init({
@@ -106,6 +133,7 @@ Page({
           break;
         default:
           webim.Log.error('未知连接状态,status=' + resp.ErrorCode);
+          that.setData({ actionStatus: '未知' });
           break;
       }
     };
@@ -162,7 +190,8 @@ Page({
                   fromAccountNick: fromAccountNick,
                   content: contentHtml
                 });
-                that.setData({ messageBody: oldMessageBody })
+                that.setData({ messageBody: oldMessageBody });
+                that.pageScrollToBottom();
               }
               break;
           }
@@ -184,14 +213,14 @@ Page({
     //其他对象，选填
     var options = {
       'isAccessFormalEnv': true,//是否访问正式环境，默认访问正式，选填
-      'isLogOn': true//是否开启控制台打印日志,默认开启，选填
+      'isLogOn': false//是否开启控制台打印日志,默认开启，选填
     };
 
     if (Config.accountMode == 1) {//托管模式
       webimhandler.sdkLogin(loginInfo, listeners, options, avChatRoomId);
     } else {//独立模式
       //sdk登录
-      webimhandler.sdkLogin(loginInfo, listeners, options);
+      webimhandler.sdkLogin(loginInfo, listeners, options, cbOk);
     }
   },
   inputMsg: function (event) {
@@ -209,7 +238,8 @@ Page({
       if (res) {
         var oldMessageBody = that.data.messageBody;
         oldMessageBody.push(res);
-        that.setData({ messageBody: oldMessageBody })
+        that.setData({ messageBody: oldMessageBody });
+        that.pageScrollToBottom();
       }
     }, function (res) {
       if (res && res.ActionStatus === 'FAIL') {
@@ -286,5 +316,24 @@ Page({
       }, function () {
 
       });
+  }, choosePicture: function () {
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed'],
+      success: function (res) {
+        webimhandler.uploadPic(res.tempFiles[0], function (res) {
+          console.log(res);
+        }, function (res) {
+          console.log(res);
+        });
+      },
+    })
+  }, chooseVideo:function(){
+    wx.chooseVideo({
+      maxDuration: 8,
+      success: function (res) {
+        console.log(res);
+      }
+    })
   }
 })

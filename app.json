@@ -45,7 +45,7 @@
       },
       {
         "pagePath": "pages/activity/activity",
-        "text": "活动",
+        "text": "发布",
         "iconPath": "/image/icon/activity.png",
         "selectedIconPath": "/image/icon/activity.png"
       },

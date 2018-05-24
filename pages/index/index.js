@@ -333,11 +333,6 @@ Page({
       }
     })
   },
-  bindFocus: function () {
-    wx.navigateTo({
-      url: '/pages/search/search'
-    })
-  },
   //跳转动态详情
   gotoDynamicDetails: function (e) {
     var id = e.currentTarget.dataset.current;

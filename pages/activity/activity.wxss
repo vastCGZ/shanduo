@@ -1,8 +1,4 @@
-.btns {
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-}
+
 /*分类*/
 .myactivity_body{
   width: 100%;

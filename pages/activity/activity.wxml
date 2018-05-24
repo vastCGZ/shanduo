@@ -1,5 +1,3 @@
-<view class='btns'>
-</view>
 <!--pages/myactivity/myactivity.wxml-->
 <view class='container'>
   <view class='myactivity_body'>

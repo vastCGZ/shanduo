@@ -12,6 +12,7 @@
     <!--判断是谁发的  -->
     <!--如果是别人就为true  显示  -->
     <block wx:for="{{messageBody}}" wx:key="navItems">
+      <text class='block col_hui'>16:00</text>
       <block wx:if='{{item.me}}'>
         <view class="msgs flo_right">
           <view class='inline msg-item msg-item_right'>

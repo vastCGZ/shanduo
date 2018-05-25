@@ -98,7 +98,7 @@ Page({
           });
           setTimeout(function () {
             wx.switchTab({
-              url: '/pages/activity/activity'
+              url: '/pages/launch/launch'
             })
           }, 500)
         }

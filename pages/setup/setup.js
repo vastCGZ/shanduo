@@ -1,5 +1,6 @@
 const app = getApp();
 var toastutil = require('../../utils/util.js');
+var webim = require('../../utils/webim.js');
 Page({
 
   /**
@@ -13,14 +14,17 @@ Page({
       content: '确定退出当前账号？',
       success: (res) => {
         if (res.confirm) {
-          app.globalData.userInfo = null,
-            wx.removeStorage({
-              key: 'localUser',
-              success: function (res) {
-                wx.reLaunch({ url: '/pages/personal/personal' });
-              }
-            })
+          webim.logout((res)=>{
+            app.globalData.userInfo = null,
+              wx.removeStorage({
+                key: 'localUser',
+                success: function (res) {
+                  wx.reLaunch({ url: '/pages/personal/personal' });
+                }
+              })
+          }, (res)=>{
 
+          });
         }
       }
     })

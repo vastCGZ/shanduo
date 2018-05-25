@@ -2,14 +2,10 @@
 var webim = require('../../utils/webim.js');
 var webimhandler = require('../../utils/webim_handler.js');
 var util = require('../../utils/util.js');
+var WxNotificationCenter = require('../../utils/WxNotificationCenter.js');
 var app = getApp();
 var toUserId, toUserName;
 var bottom;
-var Config = {
-  sdkappid: 1400088239,
-  accountType: 25943,
-  accountMode: 0 //帐号模式，0-表示独立模式，1-表示托管模式
-};
 Page({
 
   /**
@@ -32,30 +28,55 @@ Page({
     toUserId = options.toUserId;
     toUserName = options.toUserName;
     if (localUserInfo) {
-      that.setData({ userInfo: localUserInfo, toUserName: toUserName });
-      that.initIM(function () {
-        webimhandler.getLastC2CHistoryMsgs(10, function (res) {
-          if (res) {
-            var historyMsgList = res.historyMsgList;
-            var oldMessageBody = that.data.messageBody;
-            for (var i in historyMsgList) {
-              var msg = {};
-              var msgbody = historyMsgList[i]
-              msg.fromAccountNick = msgbody.fromAccountNick;
-              msg.content = msgbody.elems[0].content.text;
-              msg.time = util.getLocalTime(msgbody.time);
-              if (msgbody.fromAccount == app.globalData.userInfo.userId) {
-                msg.me = true;
-              }
-              oldMessageBody.push(msg);
-              that.setData({ messageBody: oldMessageBody })
+      that.setData({ userInfo: localUserInfo, toUserName: toUserName, actionStatus: app.globalData.actionStatus });
+      webimhandler.init({
+        selType: webim.SESSION_TYPE.C2C
+        , selToID: toUserId
+        , selSess: null //当前聊天会话
+      });
+      webimhandler.getLastC2CHistoryMsgs(10, function (res) {
+        if (res) {
+          var historyMsgList = res.historyMsgList;
+          var oldMessageBody = that.data.messageBody;
+          for (var i in historyMsgList) {
+            var msg = {};
+            var msgbody = historyMsgList[i]
+            msg.fromAccountNick = msgbody.fromAccountNick;
+            msg.content = msgbody.elems[0].content.text;
+            msg.time = util.getLocalTime(msgbody.time);
+            if (msgbody.fromAccountNick == app.globalData.userInfo.userId) {
+              msg.me = true;
             }
+            oldMessageBody.push(msg);
+            that.setData({ messageBody: oldMessageBody })
           }
-        });
+        }
       });
     }
+    //注册通知
+    WxNotificationCenter.addNotification('onConnNotify', that.onConnNotify, that);
+    WxNotificationCenter.addNotification('newMessageNotification', that.newMessageNotification, that);
   },
-
+  onUnload:function(){
+    WxNotificationCenter.removeNotification('onConnNotify', this);
+    WxNotificationCenter.removeNotification('newMessageNotification', this);
+  },
+  //连接状态通知处理
+  onConnNotify: function (obj) {
+    this.setData({ actionStatus: obj })
+  },
+  newMessageNotification: function (obj) {
+    if (obj.selToID == toUserId) {
+      var oldMessageBody = this.data.messageBody;
+      oldMessageBody.push({
+        fromAccountNick: obj.selToID,
+        content: obj.content,
+        time: obj.time
+      });
+      this.setData({ messageBody: oldMessageBody });
+      this.pageScrollToBottom();
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -81,124 +102,6 @@ Page({
     this.setData({
       msgContent: ""
     })
-  },
-  initIM: function (cbOk) {
-    var that = this;
-    // var avChatRoomId = '@TGS#aWTBZTDFW';
-    webimhandler.init({
-      accountMode: Config.accountMode
-      , accountType: Config.accountType
-      , sdkAppID: Config.sdkappid
-      // , avChatRoomId: avChatRoomId //默认房间群ID，群类型必须是直播聊天室（AVChatRoom），这个为官方测试ID(托管模式)
-      , selType: webim.SESSION_TYPE.C2C
-      , selToID: toUserId
-      , selSess: null //当前聊天会话
-    });
-    //当前用户身份
-    var loginInfo = {
-      'sdkAppID': Config.sdkappid, //用户所属应用id,必填
-      'appIDAt3rd': Config.sdkappid, //用户所属应用id，必填
-      'accountType': Config.accountType, //用户所属应用帐号类型，必填
-      'identifier': that.data.userInfo.userId, //当前用户ID,必须是否字符串类型，选填
-      'identifierNick': that.data.userInfo.name, //当前用户昵称，选填
-      'userSig': that.data.userInfo.userSig, //当前用户身份凭证，必须是字符串类型，选填
-    };
-
-    //监听连接状态回调变化事件
-    var onConnNotify = function (resp) {
-      switch (resp.ErrorCode) {
-        case webim.CONNECTION_STATUS.ON:
-          that.setData({ actionStatus: '在线' });
-          break;
-        case webim.CONNECTION_STATUS.OFF:
-          webim.Log.warn('连接已断开，无法收到新消息，请检查下你的网络是否正常');
-          that.setData({ actionStatus: '离线' });
-          break;
-        default:
-          webim.Log.error('未知连接状态,status=' + resp.ErrorCode);
-          that.setData({ actionStatus: '未知' });
-          break;
-      }
-    };
-    //监听新消息(私聊(包括普通消息、全员推送消息)，普通群(非直播聊天室)消息)事件
-    //newMsgList 为新消息数组，结构为[Msg]
-    function onMsgNotify(newMsgList) {
-      var newMsg;
-      for (var j in newMsgList) {//遍历新消息
-        newMsg = newMsgList[j];
-        handlderMsg(newMsg);//处理新消息
-      }
-    }
-
-    //处理消息（私聊(包括普通消息和全员推送消息)，普通群(非直播聊天室)消息）
-    function handlderMsg(msg) {
-      var fromAccount, fromAccountNick, sessType, subType, contentHtml;
-      fromAccount = msg.getFromAccount();
-      if (!fromAccount) {
-        fromAccount = '';
-      }
-      fromAccountNick = msg.getFromAccountNick();
-      if (!fromAccountNick) {
-        fromAccountNick = fromAccount;
-      }
-
-      //解析消息
-      //获取会话类型
-      //webim.SESSION_TYPE.GROUP-群聊，
-      //webim.SESSION_TYPE.C2C-私聊，
-      sessType = msg.getSession().type();
-      //获取消息子类型
-      //会话类型为群聊时，子类型为：webim.GROUP_MSG_SUB_TYPE
-      //会话类型为私聊时，子类型为：webim.C2C_MSG_SUB_TYPE
-      subType = msg.getSubType();
-
-      switch (sessType) {
-        case webim.SESSION_TYPE.C2C://私聊消息
-          switch (subType) {
-            case webim.C2C_MSG_SUB_TYPE.COMMON://c2c普通消息
-              //业务可以根据发送者帐号fromAccount是否为app管理员帐号，来判断c2c消息是否为全员推送消息，还是普通好友消息
-              //或者业务在发送全员推送消息时，发送自定义类型(webim.MSG_ELEMENT_TYPE.CUSTOM,即TIMCustomElem)的消息，在里面增加一个字段来标识消息是否为推送消息
-              contentHtml = webimhandler.convertMsgtoHtml(msg);
-              webim.Log.warn('receive a new c2c msg: fromAccountNick=' + fromAccountNick + ", content=" + contentHtml);
-              //c2c消息一定要调用已读上报接口
-              var opts = {
-                'To_Account': fromAccount,//好友帐号
-                'LastedMsgTime': msg.getTime()//消息时间戳
-              };
-              webim.c2CMsgReaded(opts);
-              // console.error('收到一条c2c消息(好友消息或者全员推送消息): 发送人=' + fromAccountNick + ", 内容=" + contentHtml);
-              if (fromAccountNick == toUserId) {
-                var oldMessageBody = that.data.messageBody;
-                oldMessageBody.push({
-                  fromAccountNick: fromAccountNick,
-                  content: contentHtml,
-                  time: util.getLocalTime(msg.getTime())
-                });
-                that.setData({ messageBody: oldMessageBody });
-                that.pageScrollToBottom();
-              }
-              break;
-          }
-          break;
-        case webim.SESSION_TYPE.GROUP://普通群消息，对于直播聊天室场景，不需要作处理
-          break;
-      }
-    }
-
-    //监听事件
-    var listeners = {
-      "onConnNotify": onConnNotify, //选填, 
-      //监听新消息(大群)事件，必填
-      "onMsgNotify": onMsgNotify,//监听新消息(私聊(包括普通消息和全员推送消息)，普通群(非直播聊天室)消息)事件，必填
-    };
-
-    //其他对象，选填
-    var options = {
-      'isAccessFormalEnv': true,//是否访问正式环境，默认访问正式，选填
-      'isLogOn': false//是否开启控制台打印日志,默认开启，选填
-    };
-    //sdk登录
-    webimhandler.sdkLogin(loginInfo, listeners, options, cbOk);
   },
   inputMsg: function (event) {
     this.setData({ msgContent: event.detail.value })
@@ -237,6 +140,8 @@ Page({
             util.toast('对方不是自己的好友');
             break;
         }
+      }else{
+        util.toast(res);
       }
     })
   },
@@ -312,7 +217,7 @@ Page({
         //tempFilePath
         //size
         //选择的文件
-        util.encodeBase64(res.tempFilePath,function(res){
+        util.encodeBase64(res.tempFilePath, function (res) {
           console.log(res);
         });
       }

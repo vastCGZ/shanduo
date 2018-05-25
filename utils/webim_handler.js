@@ -1,5 +1,6 @@
 var webim = require('webim.js');
 var util = require('util.js');
+var WxNotificationCenter = require('WxNotificationCenter.js');
 var selToID
   , loginInfo
   , accountMode
@@ -21,7 +22,22 @@ function onBigGroupMsgNotify(msgList, callback) {
     //showMsg(msg);
   }
 }
-
+//监听连接状态回调变化事件
+function onConnNotify(resp) {
+  var actionStatus = '';
+  switch (resp.ErrorCode) {
+    case webim.CONNECTION_STATUS.ON:
+      actionStatus = '正常';
+      break;
+    case webim.CONNECTION_STATUS.OFF:
+      actionStatus = '离线';
+      break;
+    default:
+      actionStatus = '未知';
+      break;
+  }
+  WxNotificationCenter.postNotificationName('onConnNotify', actionStatus);
+}
 //监听新消息(私聊(包括普通消息、全员推送消息)，普通群(非直播聊天室)消息)事件
 //newMsgList 为新消息数组，结构为[Msg]
 function onMsgNotify(newMsgList) {
@@ -68,7 +84,11 @@ function handlderMsg(msg) {
             'LastedMsgTime': msg.getTime()//消息时间戳
           };
           webim.c2CMsgReaded(opts);
-          console.error('收到一条c2c消息(好友消息或者全员推送消息): 发送人=' + fromAccountNick + ", 内容=" + contentHtml);
+          WxNotificationCenter.postNotificationName('newMessageNotification', {
+            selToID: fromAccountNick,
+            content: contentHtml,
+            time: util.getLocalTime(msg.getTime())
+          });
           break;
       }
       break;
@@ -538,11 +558,10 @@ function onSendMsg(msg, cbOk, cbErr) {
     errInfo = "消息长度超出限制(最多" + Math.round(maxLen / 3) + "汉字)";
   }
   if (msgLen > maxLen) {
-    console.error(errInfo);
+    cbErr(errInfo);
     return;
   }
-
-  if (!selSess) {
+  if (!selSess || selSess._impl.id != selToID) {
     selSess = new webim.Session(selType, selToID, selToID, selSessHeadUrl, Math.round(new Date().getTime() / 1000));
   }
   var isSend = true;//是否为自己发送
@@ -1106,5 +1125,6 @@ module.exports = {
   onGroupInfoChangeNotify: onGroupInfoChangeNotify,
   showGroupSystemMsg: showGroupSystemMsg,
   getLastC2CHistoryMsgs: getLastC2CHistoryMsgs,
-  uploadPic: uploadPic
+  uploadPic: uploadPic,
+  onConnNotify: onConnNotify
 };

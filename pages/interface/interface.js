@@ -39,11 +39,11 @@ Page({
           var oldMessageBody = that.data.messageBody;
           for (var i in historyMsgList) {
             var msg = {};
-            var msgbody = historyMsgList[i]
-            msg.fromAccountNick = msgbody.fromAccountNick;
+            var msgbody = historyMsgList[i];
+            msg.fromAccount = msgbody.fromAccount;
             msg.content = msgbody.elems[0].content.text;
             msg.time = util.getLocalTime(msgbody.time);
-            if (msgbody.fromAccountNick == app.globalData.userInfo.userId) {
+            if (msgbody.fromAccount == app.globalData.userInfo.userId) {
               msg.me = true;
             }
             oldMessageBody.push(msg);
@@ -65,10 +65,10 @@ Page({
     this.setData({ actionStatus: obj })
   },
   newMessageNotification: function (obj) {
-    if (obj.selToID == toUserId) {
+    if (obj.fromAccount == toUserId) {
       var oldMessageBody = this.data.messageBody;
       oldMessageBody.push({
-        fromAccountNick: obj.selToID,
+        fromAccount: obj.fromAccount,
         content: obj.content,
         time: obj.time
       });

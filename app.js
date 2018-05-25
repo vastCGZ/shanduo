@@ -35,6 +35,8 @@ App({
       'identifier': that.globalData.userInfo.userId, //当前用户ID,必须是否字符串类型，选填
       'identifierNick': that.globalData.userInfo.name, //当前用户昵称，选填
       'userSig': that.globalData.userInfo.userSig, //当前用户身份凭证，必须是字符串类型，选填
+      'headimg': that.host + '/picture/' + that.globalData.userInfo.picture,
+      'gender': that.globalData.userInfo.gender
     };
     //监听事件
     var listeners = {

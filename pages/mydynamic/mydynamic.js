@@ -35,7 +35,7 @@ Page({
       url: app.host + '/jdynamic/dynamicList',
       data: {
         token: app.globalData.userInfo.token,
-        typeId: 1,
+        typeId: 3,
         lat: that.data.lat,
         lon: that.data.lon,
         page: that.data.pageIndex,

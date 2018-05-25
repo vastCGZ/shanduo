@@ -6,7 +6,7 @@
       <text class='block'>聊天人物({{toUserName}})</text>
     <text class='block center_text_zt'>连线状态({{actionStatus}})</text>
     </text>
-    <image src='/image/icon/copy_1_1.png' class='right_text inline' bindtap='cloneFriendRequest'></image>
+    <image src='/image/icon/copy_1_1.png' class='right_text inline' bindtap='addFriend'></image>
   </view>
   <view class="msgs-wrapper" id='messageBox'>
     <!--判断是谁发的  -->

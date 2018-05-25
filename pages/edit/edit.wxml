@@ -1,0 +1,102 @@
+<!--pages/edit/edit.wxml-->
+<view>
+  <view class='pic_box'>
+    <view class='pic_box_content'>
+      <image src='/image/icon/portrait.png'></image>
+      <text>玥玥</text>
+      <view class='pic_box_img'>
+        <image src='/image/icon/photo.png'></image>
+        <text>更换背景</text>
+      </view>
+    </view>
+    <image src='/image/icon/portrait.png'></image>
+  </view>
+  <view class='edit_body'>
+    <view class='edit_title'>
+      <text>基本资料</text>
+    </view>
+    <view class='edit_option'>
+      <text>闪多号</text>
+      <picker name='payment' class='inline' value="{{modesIndex}}" range="{{modes}}" bindchange='selectMode'>
+        <view>
+          <text wx:if='{{modesIndex}}'>{{modes[modesIndex]}}</text>
+          <text wx:else>1996517</text>
+          <image src='/image/icon/icon-0.png'></image>
+        </view>
+      </picker>
+    </view>
+    <view class='edit_option'>
+      <text>性别</text>
+      <picker name='payment' class='inline' value="{{modesIndex}}" range="{{modes}}" bindchange='selectMode'>
+        <view>
+          <text wx:if='{{modesIndex}}'>{{modes[modesIndex]}}</text>
+          <text wx:else>女</text>
+          <image src='/image/icon/icon-0.png'></image>
+        </view>
+      </picker>
+    </view>
+    <view class='edit_option'>
+      <text>出生日期</text>
+      <picker name='payment' class='inline' value="{{modesIndex}}" range="{{modes}}" bindchange='selectMode'>
+        <view>
+          <text wx:if='{{modesIndex}}'>{{modes[modesIndex]}}</text>
+          <text wx:else>1996-5-17</text>
+          <image src='/image/icon/icon-0.png'></image>
+        </view>
+      </picker>
+    </view>
+    <view class='edit_option'>
+      <text>情感状态</text>
+      <picker name='payment' class='inline' value="{{modesIndex}}" range="{{modes}}" bindchange='selectMode'>
+        <view>
+          <text wx:if='{{modesIndex}}'>{{modes[modesIndex]}}</text>
+          <text wx:else>保密</text>
+          <image src='/image/icon/icon-0.png'></image>
+        </view>
+      </picker>
+    </view>
+    <view class='edit_title'>
+      <text>个人信息</text>
+    </view>
+    <view class='edit_option'>
+      <text>个性签名</text>
+      <picker name='payment' class='inline' value="{{modesIndex}}" range="{{modes}}" bindchange='selectMode'>
+        <view>
+          <text wx:if='{{modesIndex}}'>{{modes[modesIndex]}}</text>
+          <text wx:else></text>
+          <image src='/image/icon/icon-0.png'></image>
+        </view>
+      </picker>
+    </view>
+    <view class='edit_option'>
+      <text>家乡</text>
+      <picker name='payment' class='inline' value="{{modesIndex}}" range="{{modes}}" bindchange='selectMode'>
+        <view>
+          <text wx:if='{{modesIndex}}'>{{modes[modesIndex]}}</text>
+          <text wx:else></text>
+          <image src='/image/icon/icon-0.png'></image>
+        </view>
+      </picker>
+    </view>
+    <view class='edit_option'>
+      <text>职业</text>
+      <picker name='payment' class='inline' value="{{modesIndex}}" range="{{modes}}" bindchange='selectMode'>
+        <view>
+          <text wx:if='{{modesIndex}}'>{{modes[modesIndex]}}</text>
+          <text wx:else></text>
+          <image src='/image/icon/icon-0.png'></image>
+        </view>
+      </picker>
+    </view>
+    <view class='edit_option'>
+      <text>学校</text>
+      <picker name='payment' class='inline' value="{{modesIndex}}" range="{{modes}}" bindchange='selectMode'>
+        <view>
+          <text wx:if='{{modesIndex}}'>{{modes[modesIndex]}}</text>
+          <text wx:else></text>
+          <image src='/image/icon/icon-0.png'></image>
+        </view>
+      </picker>
+    </view>
+  </view>
+</view>

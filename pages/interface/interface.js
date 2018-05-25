@@ -4,8 +4,7 @@ var webimhandler = require('../../utils/webim_handler.js');
 var util = require('../../utils/util.js');
 var WxNotificationCenter = require('../../utils/WxNotificationCenter.js');
 var app = getApp();
-var toUserId, toUserName;
-var bottom;
+var toUserId, toUserName, bottom;
 Page({
 
   /**

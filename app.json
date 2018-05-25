@@ -17,7 +17,8 @@
     "pages/setup/setup",
     "pages/wallet/wallet",
     "pages/vipcore/vipcore",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/edit/edit"
   ],
   "window":{
     "backgroundTextStyle":"dark",

@@ -6,32 +6,37 @@
   </view>
   <view class='Chatting_body'>
     <view class='body_ul'>
-      <block wx:for="{{ posts_key }}" wx:key="navItems"  wx:for-item="item" wx:for-index="idx">
-        <view class='body_li believe' bindtap='gotoSessionView'>
-          <view class='inline believe_left'>
-            <image src='{{item.pic}}'></image>
-            <view class='inline'>
-              <view>
-          <!--判断是否是VIP如果是加 col_huang  -->
-                <text class='col_huang'>{{item.initiator}}</text>
-          <!--判断是男是女是男加 sex_nan  -->
-                <text class='sex'>{{item.sex_sign}}{{item.age}}</text>
-          <!--判断是VIP还是SVIP如果是VIP加 my_VIP-->
-            <!--还需判断是否是VIP或者SVIP如果不是 隐藏  -->
-                <text wx:if='{{ false }}' class='level'>{{item.level}}</text>
-              </view>
-              <view>
-                <text class='col_hui'>hahah</text>
-              </view>
+        <view class="container">
+          <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{items}}" wx:key="navItems"  wx:for-item="item" wx:for-index="index">
+            <view class="content">
+              <view class='body_li believe' bindtap='gotoSessionView'>
+                <view class='inline believe_left'>
+                  <image src='{{posts_key[index].pic}}'></image>
+                  <view class='inline'>
+                    <view>
+                <!--判断是否是VIP如果是加 col_huang  -->
+                      <text class='col_huang'>{{posts_key[index].initiator}}</text>
+                <!--判断是男是女是男加 sex_nan  -->
+                      <text class='sex'>{{posts_key[index].sex_sign}}{{posts_key[index].age}}</text>
+                <!--判断是VIP还是SVIP如果是VIP加 my_VIP-->
+                  <!--还需判断是否是VIP或者SVIP如果不是 隐藏  -->
+                      <text wx:if='{{ false }}' class='level'>{{posts_key[index].level}}</text>
+                    </view>
+                    <view>
+                      <text class='col_hui'>hahah</text>
+                    </view>
+                  </view>
+                </view>
+                <view class='believe_right pos_rel'>
+                  <!--判断是否有消息如果没有 隐藏   -->
+                  <text wx:if='{{ false }}' class='pos_abs bubble'>1</text>
+                  <text class='col_hui'>下午3:00</text>
+                </view>
+              </view> 
             </view>
-          </view>
-          <view class='believe_right pos_rel'>
-            <!--判断是否有消息如果没有 隐藏   -->
-            <text wx:if='{{ false }}' class='pos_abs bubble'>1</text>
-            <text class='col_hui'>下午3:00</text>
+            <view class="del" catchtap="del" data-index="{{index}}">删除</view>
           </view>
         </view>
-      </block>
     </view>
   </view>
 </view>

@@ -1,0 +1,4 @@
+/* pages/activityevaluation_fq/activityevaluation_fq.wxss */
+page{
+  background-color: #f7f8ff;
+}

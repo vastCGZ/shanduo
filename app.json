@@ -1,6 +1,8 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/activityevaluation_fq/activityevaluation_fq",
+    "pages/activityevaluation_cy/activityevaluation_cy",
     "pages/login/login",
     "pages/register/register",
     "pages/chat/chat",

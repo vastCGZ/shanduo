@@ -1,0 +1,95 @@
+<view class='container'>
+  <view class='bg_body'>
+    <view class='believe'>
+      <view class='inline believe_left'>
+        <image src='{{headImg}}'></image>
+        <view class='inline'>
+          <view>
+          <!--判断是否是VIP如果是加 col_huang  -->
+            <text>{{userInfo.name}}</text>
+          </view>
+          <view>
+          <!--判断是男是女是男加 sex_nan  -->
+            <text class='{{userInfo.gender=="0"?"sex":"sex_nan"}}' wx:if='{{userInfo.gender=="0"}}'>♀{{userInfo.age}}</text><text wx:else>♂{{userInfo.age}}</text>
+          <!--判断是VIP还是SVIP如果是VIP加 my_VIP-->
+            <!--还需判断是否是VIP或者SVIP如果不是 隐藏  -->
+            <block wx:if='{{userInfo.vip>0}}'>
+            <text class='level'>SVIP2</text>
+            </block>
+          </view>
+        </view>
+      </view>
+      <view class='inline believe_right'>
+        <view bindtap='signin'>
+          <text>签到</text>
+        </view>
+      </view>
+    </view>
+    <view class='nav' bindtap='gotoMyActivityView'>
+      <view class='inline nav_left'>
+        <image src='/image/icon/icon-5.png'></image>
+        <view>
+          <text>我的活动</text>
+        </view>
+      </view>
+      <view class='inline nav_right'>
+        <image src='/image/icon/icon-2.png'></image>
+      </view>
+    </view>
+    <view class='nav' bindtap='gotoMydynamicView'>
+      <view class='inline nav_left'>
+        <image src='/image/icon/icon-3.png'></image>
+        <view>
+          <text>我的动态</text>
+        </view>
+      </view>
+      <view class='inline nav_right'>
+        <image src='/image/icon/icon-2.png'></image>
+      </view>
+    </view>
+    <view class='nav'>
+      <view class='inline nav_left'>
+        <image src='/image/icon/icon-8.png'></image>
+        <view>
+          <text>信用中心</text>
+        </view>
+      </view>
+      <view class='inline nav_right'>
+        <image src='/image/icon/icon-2.png'></image>
+      </view>
+    </view>
+    <view class='nav' bindtap='gotoMyWalletView'>
+      <view class='inline nav_left'>
+        <image src='/image/icon/icon-7.png'></image>
+        <view>
+          <text>我的钱包</text>
+        </view>
+      </view>
+      <view class='inline nav_right'>
+        <image src='/image/icon/icon-2.png'></image>
+      </view>
+    </view>
+    <view class='nav' bindtap='gotoMemberCenterView'>
+      <view class='inline nav_left'>
+        <image src='/image/icon/icon-4.png'></image>
+        <view>
+          <text>会员中心</text>
+        </view>
+      </view>
+      <view class='inline nav_right'>
+        <image src='/image/icon/icon-2.png'></image>
+      </view>
+    </view>
+    <view class='nav' bindtap='getoSettingView'> 
+      <view class='inline nav_left'>
+        <image src='/image/icon/icon-6_1.png'></image>
+        <view>
+          <text>设置</text>
+        </view>
+      </view>
+      <view class='inline nav_right'>
+        <image src='/image/icon/icon-2.png'></image>
+      </view>
+    </view>
+  </view>
+</view>

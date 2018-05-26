@@ -36,8 +36,10 @@ Page({
       //错误回调
     });
   },
+  onUnload:function(){
+    WxNotificationCenter.removeNotification('newMessageNotification', this);
+  },
   newMessageNotification: function (obj) {
-    console.log(obj);
     var that = this;
     var oldRecentContact = that.data.recentContact;
     var atList = false;
@@ -46,11 +48,11 @@ Page({
         atList = true;
         var count = oldRecentContact[i].UnreadMsgCount;
         oldRecentContact[i].UnreadMsgCount = count + 1;
+        oldRecentContact[i].MsgShow = obj.content;
         that.setData({ recentContact: oldRecentContact });
         break;
       }
     }
-    console.log(that.data.recentContact);
     if (!atList) {
       var newItem = {};
       newItem.MsgShow = obj.content;

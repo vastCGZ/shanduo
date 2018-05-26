@@ -2,14 +2,14 @@
 <view>
   <view class='pic_box'>
     <view class='pic_box_content'>
-      <image src='/image/icon/portrait.png'></image>
-      <text>玥玥</text>
+      <image src='{{userInfo.picture}}'></image>
+      <text>{{userInfo.name}}</text>
       <view class='pic_box_img'>
         <image src='/image/icon/photo.png'></image>
-        <text>更换背景</text>
+        <text bindtap='chooseImage'>更换头像</text>
       </view>
     </view>
-    <image src='/image/icon/portrait.png'></image>
+    <image src='#' style='background:red;'></image>
   </view>
   <view class='edit_body'>
     <view class='edit_title'>
@@ -17,19 +17,19 @@
     </view>
     <view class='edit_option'>
       <text>闪多号</text>
-      <picker name='payment' class='inline' value="{{modesIndex}}" range="{{modes}}" bindchange='selectMode'>
+      <picker name='payment' class='inline' value="{{modesIndex}}" range="{{modes}}" bindchange='selectMode' disabled='true'>
         <view>
           <text wx:if='{{modesIndex}}'>{{modes[modesIndex]}}</text>
-          <text wx:else>1996517</text>
+          <text wx:else>{{userInfo.userId}}</text>
           <image src='/image/icon/icon-0.png'></image>
         </view>
       </picker>
     </view>
     <view class='edit_option'>
       <text>性别</text>
-      <picker name='payment' class='inline' value="{{modesIndex}}" range="{{modes}}" bindchange='selectMode'>
+      <picker name='payment' class='inline' value="{{genderIndex}}" range="{{gender}}" bindchange='selectGender'>
         <view>
-          <text wx:if='{{modesIndex}}'>{{modes[modesIndex]}}</text>
+          <text wx:if='{{genderIndex}}'>{{gender[genderIndex]}}</text>
           <text wx:else>女</text>
           <image src='/image/icon/icon-0.png'></image>
         </view>
@@ -37,10 +37,9 @@
     </view>
     <view class='edit_option'>
       <text>出生日期</text>
-      <picker name='payment' class='inline' value="{{modesIndex}}" range="{{modes}}" bindchange='selectMode'>
+      <picker name='payment' class='inline' mode='date' bindchange='selectBirthday'>
         <view>
-          <text wx:if='{{modesIndex}}'>{{modes[modesIndex]}}</text>
-          <text wx:else>1996-5-17</text>
+          <text>{{userInfo.birthday}}</text>
           <image src='/image/icon/icon-0.png'></image>
         </view>
       </picker>
@@ -70,10 +69,9 @@
     </view>
     <view class='edit_option'>
       <text>家乡</text>
-      <picker name='payment' class='inline' value="{{modesIndex}}" range="{{modes}}" bindchange='selectMode'>
+      <picker name='payment' class='inline' value="{{modesIndex}}" mode='region' range="{{modes}}" bindchange='selectMode'>
         <view>
-          <text wx:if='{{modesIndex}}'>{{modes[modesIndex]}}</text>
-          <text wx:else></text>
+          <text></text>
           <image src='/image/icon/icon-0.png'></image>
         </view>
       </picker>

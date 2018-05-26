@@ -6,8 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: null,
-    headImg: null
+    userInfo: null
   },
 
   /**
@@ -21,10 +20,6 @@ Page({
       })
     } else {
       this.setData({ userInfo: localUserInfo });
-      if (localUserInfo.picture) {
-        this.setData({ headImg: app.host + '/picture/' + localUserInfo.picture })
-      }
-
     }
   },
 
@@ -101,15 +96,19 @@ Page({
     })
   }, getoSettingView:function(){
     wx.navigateTo({
-      url: '/pages/setup/setup',
+      url: '/pages/setup/setup'
     })
   }, gotoMyWalletView:function(){
     wx.navigateTo({
-      url: '/pages/wallet/wallet',
+      url: '/pages/wallet/wallet'
     })
   }, gotoMemberCenterView:function(){
     wx.navigateTo({
-      url: '/pages/vipcore/vipcore',
+      url: '/pages/vipcore/vipcore'
+    })
+  }, gotoBaseSettingView:function(){
+    wx.navigateTo({
+      url: '/pages/edit/edit'
     })
   }
 })

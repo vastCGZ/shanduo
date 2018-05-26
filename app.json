@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/index/index",
     "pages/activityevaluation_fq/activityevaluation_fq",
+    "pages/index/index",
     "pages/activityevaluation_cy/activityevaluation_cy",
     "pages/login/login",
     "pages/register/register",

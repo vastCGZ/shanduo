@@ -1,4 +1,16 @@
 <!--pages/activityevaluation_fq/activityevaluation_fq.wxml-->
-<view class='fq_'>
-  <view class=''></view>
+<view class='fq_whole'>
+  <view class='fq_header'>
+    <view>
+      <text>主题:</text>
+      <text>一起吃火锅</text>
+      <text>AA制</text>
+    </view>
+    <view>
+      <text>已结算</text>
+      <text>参与者10人</text>
+    </view>
+  </view>
+  <view class='fq_body'></view>
+  <view class='fq_footer'></view>
 </view>

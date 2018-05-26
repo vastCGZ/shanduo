@@ -1,14 +1,6 @@
 
 var postsData = require('../../data/posts_data.js')
 var app = getApp()
-var initdata = function (that) {
-  var list = that.data.list
-  for (var i = 0; i < list.length; i++) {
-    list[i].txtStyle = ""
-  }
-  that.setData({ list: list })
-} 
-
 Page({
 
   /**

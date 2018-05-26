@@ -2,3 +2,13 @@
 page{
   background-color: #f7f8ff;
 }
+.fq_whole{
+  padding: 20rpx;
+}
+.fq_header, .fq_body{
+  background-color: #fff;
+}
+.fq_header{
+  width: 100%;
+  height: 100rpx;
+}

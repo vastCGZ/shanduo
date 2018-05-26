@@ -20,7 +20,7 @@
             <view class='arrow'></view>
           </view>
           <view class='inline'>
-            <image src='/image/icon/portrait.png' class="nickname"></image>
+            <image src='{{userInfo.picture}}' class="nickname"></image>
           </view>
         </view>
         <view class='cl_both'></view>
@@ -28,7 +28,7 @@
       <block wx:else>
         <view class="msgs">
           <view class='inline'>
-            <image src='/image/icon/portrait.png' class="nickname"></image>
+            <image src='{{recentContact.Image}}' class="nickname"></image>
           </view>
           <view class='inline msg-item msg-item_left'>
             <text class="msg-item_text">{{item.content}}</text>

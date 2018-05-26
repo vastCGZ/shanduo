@@ -37,8 +37,8 @@ Page({
         that.setData({
           recentContact: sessions
         });
+        that.searchProfileByUserId(ids)
       }
-      that.searchProfileByUserId(ids)
     }, function (resp) {
       //错误回调
     })
@@ -202,10 +202,21 @@ Page({
   },
   //删除事件
   del: function (e) {
-    console.log(e);
-    this.data.recentContact.splice(e.currentTarget.dataset.index, 1)
-    this.setData({
-      recentContact: this.data.recentContact
-    })
+    var that=this;
+    var val=e.currentTarget.dataset.index.split(',');
+    //sess_type == 'C2C' ? 1 : 2;
+    var data = {
+      'To_Account': val[1],
+      'chatType': 1
+    }
+    webim.deleteChat(
+      data,
+      function (resp) {
+        that.data.recentContact.splice(val[0], 1)
+        that.setData({
+          recentContact: that.data.recentContact
+        })
+      }
+    );
   }
 })

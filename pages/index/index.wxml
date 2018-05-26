@@ -100,7 +100,7 @@
                   <view>
                     <button>信誉轨迹</button>
                     <!--判断活动过期加 disabled -->
-                    <button class='disabled'>去报名</button>
+                    <button class='disabled' bindtap='gotoApplyView'>去报名</button>
                     <image src='/image/icon/copy.png'></image>
                   </view>
                 </view>
@@ -237,7 +237,7 @@
                   </view>
                   <view>
                     <button>信誉轨迹</button>
-                    <button>去报名</button>
+                    <button bindtap='gotoApplyView'>去报名</button>
                     <image src='/image/icon/copy.png'></image>
                   </view>
                 </view>
@@ -341,7 +341,7 @@
                   </view>
                   <view>
                     <button>信誉轨迹</button>
-                    <button>去报名</button>
+                    <button bindtap='gotoApplyView'>去报名</button>
                     <image src='/image/icon/copy.png'></image>
                   </view>
                 </view>

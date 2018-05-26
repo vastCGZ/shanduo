@@ -207,6 +207,7 @@ Page({
       dataType: 'json',
       success: function (res) {
         if (res.data.success) {
+          console.log(res.data);
           var array = that.data.activitys[that.data.currentTab1].arrayResult;
           that.data.activitys[that.data.currentTab1].arrayResult = array.concat(res.data.result.list);
           that.data.activitys[that.data.currentTab1].totalpage = res.data.result.totalpage;
@@ -344,6 +345,10 @@ Page({
           that.setData({ advertise: res.data.result });
         }
       }
+    })
+  }, gotoApplyView:function(e){
+    wx.navigateTo({
+      url: '/pages/signup/signup'
     })
   }
 }) 

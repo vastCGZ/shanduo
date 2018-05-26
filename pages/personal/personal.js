@@ -75,7 +75,7 @@ Page({
       url: '/pages/mydynamic/mydynamic'
     })
   },
-  gotoMyActivityView:function(){
+  gotoMyActivityView: function () {
     wx.navigateTo({
       url: '/pages/myactivity/myactivity'
     })
@@ -89,20 +89,20 @@ Page({
         console.log(res);
         if (res.data.success) {
           toastutil.toast(res.data.result);
-        }else{
+        } else {
           toastutil.toast(res.data.errorCode);
         }
       }
     })
-  }, getoSettingView:function(){
+  }, getoSettingView: function () {
     wx.navigateTo({
       url: '/pages/setup/setup'
     })
-  }, gotoMyWalletView:function(){
+  }, gotoMyWalletView: function () {
     wx.navigateTo({
       url: '/pages/wallet/wallet'
     })
-  }, gotoMemberCenterView:function(){
+  }, gotoMemberCenterView: function () {
     wx.navigateTo({
       url: '/pages/vipcore/vipcore'
     })

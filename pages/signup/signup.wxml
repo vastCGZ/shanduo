@@ -1,0 +1,131 @@
+<!--pages/signup/signup.wxml-->
+<view>
+  <view class='signup_header'>
+    <view class='release_header'>
+      <image src='/image/icon/return_1.png' class='left_text inline'></image>
+      <text class='center_text inline'>报名</text>
+      <image src='/image/icon/copy.png' class='right_text inline'></image>
+    </view>
+  </view>
+  <view class="item-ans">
+    <view class='activity_block'>
+      <view class='activity_people'>
+        <image class="img" src="{{host}}/picture/{{item.headPortraitId}}"></image>
+        <view class="expertInfo inline">
+          <view class="name">{{item.userName}}</view>
+          <view class="tag">
+            <!--判断男女是男加 sex_nan    加在sex 后面-->
+            <text class='sex'><text class='sex_on' wx:if='{{item.gender=="1"}}'>♂</text>
+            <text class='sex_on' wx:else>♀</text>{{item.age}}</text>
+
+          <!--判断是什么会员 -->
+            <text class='level'>SVIP9</text>
+            <text class='my_VIP'>VIP7</text>
+            <text class='my_DJ'>LV90</text>
+          </view>
+        </view>
+      </view>
+      <view class='activity_time'>
+        <view class=''>
+          <text class='block col_lan'>{{item.activityStartTime}}</text>
+          <text class='block col_hui'></text>
+          <text class='block col_hui'>报名截止:{{item.activityCutoffTime}}</text>
+        </view>
+      </view>
+    </view>
+    <view class='activity_block'>
+      <view class='activity_theme'>
+        <text>主题：</text>
+        <text>{{item.activityName}}</text>
+        <text class='inline text_koge'></text>
+        <text>{{item.mode}}</text>
+      </view>
+      <view class='activity_place'>
+        <text>活动地点：</text>
+        <text>{{item.activityAddress}}</text>
+        <image src='/image/icon/location.png'></image>
+        <text class='col_lan'>{{item.location}}km</text>
+      </view>
+      <view class='activity_content'>
+        <text>活动内容：</text>
+        <text>{{item.remarks}}</text>
+      </view>
+    </view>
+    <view class='activity_block'>
+      <view>
+        <view class='inline'>
+          <image src='/image/icon/nan.png'></image>
+          <text>{{item.manNumber}}</text>
+        </view>
+        <view class='inline'>
+          <image src='/image/icon/nv.png'></image>
+          <text>{{item.womanNumber}}</text>
+        </view>
+      </view>
+      <view>
+        <button>信誉轨迹</button>
+        <!--判断活动过期加 disabled -->
+        <button class='disabled'>去报名</button>
+        <image src='/image/icon/copy.png'></image>
+      </view>
+    </view>
+    <!--判断当前弹出框是否隐藏  -->
+    <view class='sare_frame' wx:if='{{false}}'>
+      <view class='share'>
+        <view class='inline'>
+          <image src='/image/icon/copy_1.png'></image>
+          <text>闪多好友</text>
+        </view>
+        <view class='inline'>
+          <image src='/image/icon/copy_2.png'></image>
+          <text>微信好友</text>
+        </view>
+        <view class='inline'>
+          <image src='/image/icon/copy_3.png'></image>
+          <text>朋友圈</text>
+        </view>
+        <view class='inline'>
+          <image src='/image/icon/copy_4.png'></image>
+          <text>QQ好友</text>
+        </view>
+        <view class='inline'>
+          <image src='/image/icon/copy_5.png'></image>
+          <text>QQ空间</text>
+        </view>
+        <view class='inline'>
+          <image src='/image/icon/copy_6.png'></image>
+          <text>微博</text>
+        </view>
+        <view class='inline'>
+          <image src='/image/icon/copy_7.png'></image>
+          <text>举报</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view>
+    <text class='block text_title_left'>报名成员</text>
+    <scroll-view scroll-x="true">
+      <view class="signup_personnel">
+        <view>
+          <image src='' class='block'></image>
+          <text class='block'>胖虎</text>
+        </view>
+        <view>
+          <image src='' class='block'></image>
+          <text class='block'>小夫</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class='information_footer'>
+    <view>
+      <view>
+        <text class='inline text_footer_left'>取消</text>
+      </view>
+      <view>
+        <text class='inline text_footer_right'>确认报名</text>
+      </view>
+    </view>
+  </view>
+</view>

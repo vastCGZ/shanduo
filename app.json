@@ -1,6 +1,8 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/activityevaluation_fq/activityevaluation_fq",
+    "pages/activityevaluation_cy/activityevaluation_cy",
     "pages/login/login",
     "pages/register/register",
     "pages/chat/chat",
@@ -18,7 +20,9 @@
     "pages/wallet/wallet",
     "pages/vipcore/vipcore",
     "pages/search/search",
-    "pages/edit/edit"
+    "pages/edit/edit",
+    "pages/information/information",
+    "pages/signup/signup"
   ],
   "window":{
     "backgroundTextStyle":"dark",

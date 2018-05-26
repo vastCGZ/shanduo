@@ -129,7 +129,7 @@ page {
 }
 /**/
 .groups{
-   padding-top: 286rpx; 
+   padding-top: 186rpx; 
 }
 /*搜索*/
 .inp_box{
@@ -187,7 +187,7 @@ page {
 /*分组*/
 .user_li0{
   position: fixed;
-  top: 185rpx;
+  top: 184rpx;
   left: 0;
   background-color: #fff;
   width: 100%;
@@ -208,8 +208,8 @@ page {
   border-bottom: 6rpx solid #5e75ff;
 }
 
-view.flex#A{
-  margin-top:286rpx;
+view.flex#fenzu{
+  margin-top:100rpx;
 }
 
 

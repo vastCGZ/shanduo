@@ -6,22 +6,27 @@
   </view>
   <view class='Chatting_body'>
     <view class='body_ul'>
-      <block wx:for="{{ recentContact }}" wx:key="navItems"  wx:for-item="item" wx:for-index="idx">
-        <view class='body_li believe' data-current="{{item.To_Account}},{{item.Nick}}" bindtap='gotoSessionView'>
-          <view class='inline believe_left'>
-            <image src='{{item.Image}}'></image>
-            <view class='inline'>
-              <view>
-          <!--判断是否是VIP如果是加 col_huang  -->
-                <text class='col_huang'>{{item.Nick}}</text>
-          <!--判断是男是女是男加 sex_nan  -->
-                <text class='sex'>{{item.Gender}}{{item.age}}</text>
-          <!--判断是VIP还是SVIP如果是VIP加 my_VIP-->
-            <!--还需判断是否是VIP或者SVIP如果不是 隐藏  -->
-                <text wx:if='{{ false }}' class='level'>{{item.level}}</text>
-              </view>
-              <view>
-                <text class='col_hui'>{{item.MsgShow}}</text>
+		  <view class="container">
+        <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{recentContact}}" wx:key="navItems"  wx:for-item="item" wx:for-index="index">
+          <view class="content">
+            <view class='body_li believe' data-current="{{item.To_Account}},{{item.Nick}}" bindtap='gotoSessionView'>
+              <view class='inline believe_left'>
+                <image src='{{item.Image}}'></image>
+                <view class='inline'>
+                  <view>
+              <!--判断是否是VIP如果是加 col_huang  -->
+                    <text class='col_huang'>{{item.Nick}}</text>
+              <!--判断是男是女是男加 sex_nan  -->
+                    <text class='sex'>{{item.Gender}}{{item.age}}</text>
+              <!--判断是VIP还是SVIP如果是VIP加 my_VIP-->
+                <!--还需判断是否是VIP或者SVIP如果不是 隐藏  -->
+                    <text wx:if='{{ false }}' class='level'>{{item.level}}</text>
+                  </view>
+                  <view>
+                    <text class='col_hui'>{{item.MsgShow}}</text>
+                  </view>
+                </view>
+                <view class="del" catchtap="del" data-index="{{index}}">删除</view>
               </view>
             </view>
           </view>
@@ -30,8 +35,8 @@
             <text wx:if='{{ item.UnreadMsgCount>0 }}' class='pos_abs bubble'>{{item.UnreadMsgCount}}</text>
             <text class='col_hui'>{{item.MsgTimeStamp}}</text>
           </view>
-        </view>
-      </block>
+        </view> 
+      </view>
     </view>
   </view>
 </view>

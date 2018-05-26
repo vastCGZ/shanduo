@@ -4,11 +4,11 @@
     <view>
       <text>主题:</text>
       <text>一起吃火锅</text>
-      <text>AA制</text>
+      <text class='fq_text_left'>AA制</text>
     </view>
     <view>
       <text>已结算</text>
-      <text>参与者10人</text>
+      <text class='fq_text_left'>参与者10人</text>
     </view>
   </view>
   <view class='fq_body'></view>

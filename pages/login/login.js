@@ -42,7 +42,6 @@ Page({
       dataType: 'json',
       success: function (res) {
         if (res.data.success) {
-          app.globalData.userInfo = res.data.result
           wx.setStorage({
             key: 'localUser',
             data: res.data.result
@@ -56,7 +55,7 @@ Page({
               url: '/pages/personal/personal'
             });
           },500);
-        
+          app.onLaunch();
         } else {
           wx.showToast({
             title: '登陆错误',

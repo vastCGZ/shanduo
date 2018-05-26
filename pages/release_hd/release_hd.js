@@ -99,7 +99,7 @@ Page({
             util.toast('发布成功')
             setTimeout(function () {
               wx.switchTab({
-                url: '/pages/activity/activity'
+                url: '/pages/launch/launch'
               })
             }, 500)
           } else {
@@ -142,7 +142,7 @@ Page({
         // address	详细地址
         // latitude	纬度，浮点数，范围为 - 90~90，负数表示南纬
         // longitude	经度，浮点数，范围为 - 180~180，负数表示西经
-        that.data.activity.activityAddress = res.address;
+        that.data.activity.activityAddress = res.name;
         that.data.activity.lon = res.longitude;
         that.data.activity.lat = res.latitude;
         that.setData({

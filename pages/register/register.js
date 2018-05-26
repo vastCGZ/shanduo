@@ -4,19 +4,19 @@ const util = require('../../utils/util.js')
 
 const app = getApp()
 var interval = null //倒计时函数
+var phone = null,
+  auth_code = null,
+  pwd = null;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    phone: null,
-    auth_code: null,
-    pwd: null,
     hint: '发送验证码',
     currentTime: 60
   },
-  getCode: function (options) {
+  countDown: function (options) {
     var that = this;
     var currentTime = that.data.currentTime
     interval = setInterval(function () {
@@ -41,29 +41,29 @@ Page({
     });
   },
   inputPhone: function (env) {
-    this.setData({ phone: env.detail.value });
+    phone = env.detail.value;
   },
   inputAuthCode: function (env) {
-    this.setData({ auth_code: env.detail.value });
+    auth_code = env.detail.value;
   },
   inputPwd: function (env) {
-    this.setData({ pwd: env.detail.value });
+    pwd = env.detail.value;
   },
   sendMSM: function () {
     var that = this;
-    that.getCode();
-    that.setData({
-      disabled: true
-    })
-    if (this.data.phone) {
+    if (phone && util.checkPhone(phone)) {
       wx.request({
         url: app.host + '/sms/envoyer',
-        data: { phone: that.data.phone, typeId: 1 },
+        data: { phone: phone, typeId: 1 },
         dataType: 'json',
         success: function (res) {
-          if (res.success) {
+          if (res.data.success) {
+            that.setData({
+              disabled: true
+            })
+            that.countDown();
             wx.showToast({
-              title: res.result,
+              title: res.data.result,
               icon: 'none',
               duration: 2000
             });
@@ -78,29 +78,41 @@ Page({
       })
     }
   },
+  checkRegisterInput: function (cbErr) {
+    //!phone || !auth_code || !pwd
+    if (!phone || !util.checkInput(phone) || !util.checkPhone(phone)) {
+      cbErr && cbErr('手机号格式不对');
+      return false;
+    }
+    if (!auth_code || !util.checkInput(auth_code)) {
+      cbErr && cbErr('验证码没填');
+      return false;
+    }
+    if (!pwd || !util.checkInput(pwd) || pwd.length < 8) {
+      cbErr && cbErr('密码没填或长度不够');
+      return false;
+    }
+    return true;
+  },
   register: function () {
-    var phone = this.data.phone;
-    var code = this.data.auth_code;
-    var pwd = this.data.pwd;
-    if (!phone || !code || !pwd) {
+    if (!this.checkRegisterInput(function (res) {
       wx.showToast({
-        title: '请输入注册信息',
+        title: res,
         icon: 'none',
         duration: 2000
       });
+    })) {
       return;
     }
-
     wx.request({
       url: app.host + '/juser/saveuser',
       data: {
         phone: phone,
-        code: code,
+        code: auth_code,
         password: pwd
       },
       dataType: 'json',
       success: function (res) {
-        console.log(res.data);
         if (res.data.success) {
           app.globalData.userInfo = res.data.result;
           wx.setStorage({
@@ -112,7 +124,7 @@ Page({
             icon: 'none',
             duration: 2000
           });
-          wx.switchTab({ url: '/pages/index/index' });
+          wx.switchTab({ url: '/pages/personal/personal' });
         } else {
           wx.showToast({
             title: res.data.errorCode,

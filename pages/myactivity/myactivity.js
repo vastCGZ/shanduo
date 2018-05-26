@@ -1,7 +1,7 @@
 // pages/myactivity/myactivity.js
 const app = getApp();
 var user;
-var location;
+var lat,lon;
 var pageSize = 20;
 Page({
   data: {
@@ -54,7 +54,13 @@ Page({
   onLoad: function () {
     var that = this;
     user = app.globalData.userInfo;
-    location = app.globalData.location;
+    wx.getLocation({
+      success: function(res) {
+        lat=res.latitude;
+        lon=res.longitude;
+        that.loadActivities();
+      },
+    })
     // 高度自适应
     wx.getSystemInfo({
       success: function (res) {
@@ -67,7 +73,7 @@ Page({
         });
       }
     });
-    that.loadActivities();
+    
   },
   loadActivities: function () {
     var that = this;
@@ -77,8 +83,8 @@ Page({
         token: user.token,
         page: that.data.activities[that.data.currentTab].currentPage,
         pageSize: pageSize,
-        lat: location.lat,
-        lon: location.lon,
+        lat: lat,
+        lon: lon,
         type: parseInt(that.data.currentTab) + 1
       },
       dataType: 'json',

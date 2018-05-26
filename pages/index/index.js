@@ -60,8 +60,6 @@ Page({
     });
     wx.getLocation({
       success: function (res) {
-        app.globalData.location.lat = res.latitude;
-        app.globalData.location.lon = res.longitude;
         that.setData({ latitude: res.latitude, longitude: res.longitude });
         that.getActivityData();
       },
@@ -70,10 +68,6 @@ Page({
           success: (res) => {
             wx.getLocation({
               success: function (res) {
-                var location = {};
-                location.lat = res.latitude;
-                location.lon = res.longitude;
-                app.globalData.location = location;
                 that.setData({ latitude: res.latitude, longitude: res.longitude });
                 that.getActivityData();
               },

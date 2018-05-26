@@ -1,5 +1,6 @@
-
 var webim = require('webim.js');
+var util = require('util.js');
+var WxNotificationCenter = require('WxNotificationCenter.js');
 var selToID
   , loginInfo
   , accountMode
@@ -21,7 +22,22 @@ function onBigGroupMsgNotify(msgList, callback) {
     //showMsg(msg);
   }
 }
-
+//监听连接状态回调变化事件
+function onConnNotify(resp) {
+  var actionStatus = '';
+  switch (resp.ErrorCode) {
+    case webim.CONNECTION_STATUS.ON:
+      actionStatus = '正常';
+      break;
+    case webim.CONNECTION_STATUS.OFF:
+      actionStatus = '离线';
+      break;
+    default:
+      actionStatus = '未知';
+      break;
+  }
+  WxNotificationCenter.postNotificationName('onConnNotify', actionStatus);
+}
 //监听新消息(私聊(包括普通消息、全员推送消息)，普通群(非直播聊天室)消息)事件
 //newMsgList 为新消息数组，结构为[Msg]
 function onMsgNotify(newMsgList) {
@@ -68,7 +84,11 @@ function handlderMsg(msg) {
             'LastedMsgTime': msg.getTime()//消息时间戳
           };
           webim.c2CMsgReaded(opts);
-          console.error('收到一条c2c消息(好友消息或者全员推送消息): 发送人=' + fromAccountNick + ", 内容=" + contentHtml);
+          WxNotificationCenter.postNotificationName('newMessageNotification', {
+            selToID: fromAccountNick,
+            content: contentHtml,
+            time: util.getLocalTime(msg.getTime())
+          });
           break;
       }
       break;
@@ -94,7 +114,7 @@ function sdkLogin(userInfo, listeners, options, cbOk) {
           "Value": userInfo.identifierNick
         }]
       }, function () {
-        applyJoinBigGroup(avChatRoomId);//加入大群
+        //applyJoinBigGroup(avChatRoomId);//加入大群
       })
       //hideDiscussForm();//隐藏评论表单
       //initEmotionUL();//初始化表情
@@ -183,6 +203,7 @@ function showMsg(msg) {
   return {
     fromAccountNick: fromAccountNick,
     content: content,
+    time: util.getLocalTime(msg.getTime()),
     me: isSelfSend
   }
 }
@@ -537,11 +558,10 @@ function onSendMsg(msg, cbOk, cbErr) {
     errInfo = "消息长度超出限制(最多" + Math.round(maxLen / 3) + "汉字)";
   }
   if (msgLen > maxLen) {
-    console.error(errInfo);
+    cbErr(errInfo);
     return;
   }
-
-  if (!selSess) {
+  if (!selSess || selSess._impl.id != selToID) {
     selSess = new webim.Session(selType, selToID, selToID, selSessHeadUrl, Math.round(new Date().getTime() / 1000));
   }
   var isSend = true;//是否为自己发送
@@ -995,7 +1015,65 @@ function sendPic(images, cbOk, cbErr) {
     cbErr && cbErr(err.ErrorInfo);
   });
 }
+//上传文件(通过base64编码)
+function uploadFileByBase64(digest, size, binary) {
+  var businessType;//业务类型，1-发群文件，2-向好友发文件
+  if (selType == webim.SESSION_TYPE.C2C) {//向好友发文件
+    businessType = webim.UPLOAD_PIC_BUSSINESS_TYPE.C2C_MSG;
+  } else if (selType == webim.SESSION_TYPE.GROUP) {//发群文件
+    businessType = webim.UPLOAD_PIC_BUSSINESS_TYPE.GROUP_MSG;
+  }
+  //封装上传文件请求
+  var opt = {
+    'toAccount': selToID, //接收者
+    'businessType': businessType,//文件的使用业务类型
+    'fileType': webim.UPLOAD_RES_TYPE.FILE,//表示文件
+    'fileMd5': digest, //文件md5
+    'totalSize': size, //文件大小,Byte
+    'base64Str': binary //文件base64编码
 
+  };
+  webim.uploadPicByBase64(opt,
+    function (resp) {
+      //alert('success');
+      //发送文件
+      console.log(resp);
+      // sendFile(resp);
+    },
+    function (err) {
+      alert(err.ErrorInfo);
+    }
+  );
+}
+function sendFile(file, fileName) {
+  if (!selToID) {
+    alert("您还没有好友，暂不能聊天");
+    return;
+  }
+
+  if (!selSess) {
+    selSess = new webim.Session(selType, selToID, selToID, friendHeadUrl, Math.round(new Date().getTime() / 1000));
+  }
+  var msg = new webim.Msg(selSess, true, -1, -1, -1, loginInfo.identifier, 0, loginInfo.identifierNick);
+  var uuid = file.File_UUID;//文件UUID
+  var fileSize = file.File_Size;//文件大小
+  var senderId = loginInfo.identifier;
+  var downloadFlag = file.Download_Flag;
+  if (!fileName) {
+    var random = Math.round(Math.random() * 4294967296);
+    fileName = random.toString();
+  }
+  var fileObj = new webim.Msg.Elem.File(uuid, fileName, fileSize, senderId, selToID, downloadFlag, selType);
+  msg.addFile(fileObj);
+  //调用发送文件消息接口
+  webim.sendMsg(msg, function (resp) {
+    if (selType == webim.SESSION_TYPE.C2C) {//私聊时，在聊天窗口手动添加一条发的消息，群聊时，长轮询接口会返回自己发的消息
+      addMsg(msg);
+    }
+  }, function (err) {
+    alert(err.ErrorInfo);
+  });
+}
 module.exports = {
   init: init,
   onBigGroupMsgNotify: onBigGroupMsgNotify,
@@ -1047,5 +1125,6 @@ module.exports = {
   onGroupInfoChangeNotify: onGroupInfoChangeNotify,
   showGroupSystemMsg: showGroupSystemMsg,
   getLastC2CHistoryMsgs: getLastC2CHistoryMsgs,
-  uploadPic: uploadPic
+  uploadPic: uploadPic,
+  onConnNotify: onConnNotify
 };

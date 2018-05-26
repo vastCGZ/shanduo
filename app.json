@@ -4,7 +4,7 @@
     "pages/login/login",
     "pages/register/register",
     "pages/chat/chat",
-    "pages/activity/activity",
+    "pages/launch/launch",
     "pages/friends/friends",
     "pages/personal/personal",
     "pages/release_hd/release_hd",
@@ -47,7 +47,7 @@
         "selectedIconPath": "/image/icon/chat_1.png"
       },
       {
-        "pagePath": "pages/activity/activity",
+        "pagePath": "pages/launch/launch",
         "text": "发布",
         "iconPath": "/image/icon/activity.png",
         "selectedIconPath": "/image/icon/activity.png"

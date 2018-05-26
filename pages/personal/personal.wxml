@@ -13,7 +13,7 @@
             <text class='sex'>♀23</text>
           <!--判断是VIP还是SVIP如果是VIP加 my_VIP-->
             <!--还需判断是否是VIP或者SVIP如果不是 隐藏  -->
-            <text class='level'>SVIP2</text>
+            <text class='level'>SVIP11</text>
           </view>
         </view>
       </view>

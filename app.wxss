@@ -650,7 +650,7 @@ page {
 .activity_people>image{
   border-radius:50%;
   margin-right:10rpx;
-  width:100rpx;
+  width:110rpx;
   height:100rpx;
 }
 /*发起人信息*/

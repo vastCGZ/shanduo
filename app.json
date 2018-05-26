@@ -18,7 +18,9 @@
     "pages/wallet/wallet",
     "pages/vipcore/vipcore",
     "pages/search/search",
-    "pages/edit/edit"
+    "pages/edit/edit",
+    "pages/information/information",
+    "pages/signup/signup"
   ],
   "window":{
     "backgroundTextStyle":"dark",

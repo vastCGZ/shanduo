@@ -1,0 +1,81 @@
+/* pages/signup/signup.wxss */
+.release_header>image {
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.signup_header{
+  height: 100rpx;
+  width: 100%;
+}
+.activity_block:nth-child(2){
+  border-bottom: 0;
+}
+.activity_block:nth-child(3){
+  border-bottom: 6rpx solid #f7f8ff;
+}
+
+
+
+
+
+.text_title_left{
+  margin: 20rpx 0 0 20rpx;
+}
+.signup_personnel{
+  display: flex;
+  text-align: center;
+  width: 100%;
+}
+scroll-view{
+  margin-right: 20rpx;
+}
+.signup_personnel>view{
+  padding: 0 12rpx 0 12rpx;
+}
+.signup_personnel>view>image{
+  width: 127rpx;
+  height: 127rpx;
+  border-radius: 50%;
+  background-color: red;
+  margin-top: 16rpx;
+}
+.signup_personnel>view>image:nth-child(1){
+}
+
+
+
+
+.information_footer{
+  width: 100%;
+  height: 100rpx;
+}
+.information_footer>view{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+}
+.information_footer>view>view{
+  border-top: 1rpx solid #f7f8ff;
+  display: inline-block;
+  width: 50%;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+}
+.information_footer>view>view:nth-child(1){
+  border-top-left-radius: 50rpx;
+}
+.information_footer>view>view:nth-child(2){
+  border-top-right-radius: 50rpx;
+}
+.text_footer_left, .text_footer_right{
+  width: 100%;
+  height: 30rpx;
+  line-height: 30rpx;
+}
+.text_footer_right{
+  border-left: 2rpx solid #AFBBFF;
+}

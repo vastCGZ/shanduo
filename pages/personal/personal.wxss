@@ -86,3 +86,6 @@ page {
   height: 28rpx;
   margin-right: 20rpx;
 }
+.level, .sex{
+  width: 70rpx;
+}

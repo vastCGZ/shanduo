@@ -1,7 +1,11 @@
+page{
+  height: 100%;
+}
 
 /*分类*/
 .myactivity_body{
   width: 100%;
+  height: 100%;
 }
 .myactivity_body>.bodyTag{
   position: fixed;
@@ -10,6 +14,7 @@
   width: 100%;
   background-color: #fff;
   border-bottom:2rpx solid #eaeaea;
+  z-index: 100;
 }
 .Tag_edge{
   width: 50%;
@@ -28,5 +33,218 @@
   border-bottom: 6rpx solid #5e75ff;
 } 
 .tab-content{
-  padding-top: 82rpx;
+  /* margin-top: 182rpx; */
+  height: 100%;
+}
+.scoll-h{
+  height: 100%;
+}
+
+swiper-item {
+  background-color: #fff;
+}
+swiper-item {
+  padding-top: 80rpx;
+}
+
+/*活动*/
+
+
+.container2{
+  background-color: #eaeaea;
+  height: 100%;
+}
+.release_header{
+  height: 100rpx;
+  position: static;
+}
+.release_section{
+  height: 67%;
+}
+.release_section>view{
+  border-bottom: 1rpx solid #eaeaea;
+}
+.release_section>view>input{
+  padding: 20rpx;
+  width: 94%;
+}
+.release_section>view>textarea{
+  padding:20rpx;
+  height: 200rpx;
+  width: 94%;
+}
+.psection_ipt{
+  color: #999999;
+  font-size: 28rpx;
+}
+.psection_text{
+  color: #999999;
+  font-size: 28rpx;
+}
+/*人数*/
+.people>picker{
+  padding: 20rpx;
+  width: 20%;
+}
+.people view>image{
+  width: 45rpx;
+  height: 45rpx;
+  margin-right: 15rpx;
+  vertical-align: middle;
+}
+.people view>text{
+  color: #999999;
+  margin-right: 5rpx;
+  vertical-align: middle;
+}
+/*活动时间*/
+.time>image{
+  width: 45rpx;
+  height: 45rpx;
+  margin-right: 15rpx;
+  vertical-align: middle;
+}
+.time>text{
+  vertical-align: middle;
+}
+.time{
+  padding: 20rpx;
+}
+.time>picker{
+  float: right;
+}
+.time view>text{
+  color: #999999;
+  margin-right: 5rpx;
+  vertical-align: middle;
+}
+.time view>image{
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+}
+/*详细地址*/
+.release_section>.address{
+  border-bottom:8rpx solid #eaeaea;
+}
+.release_section>.address>textarea{
+  height: 100rpx;
+}
+.psection_address{
+  font-size: 28rpx;
+}
+
+/*底部*/
+
+.release_footer{
+  height: 33%;
+  background-color: #fff;
+  text-align: center;
+}
+.release_footer>view{
+  display: inline-block;
+  background-color: #4455de;
+  padding: 10rpx 30rpx 10rpx 30rpx;
+  border-radius: 50rpx;
+  margin: 20% auto auto;
+}
+.release_footer>view:nth-child(1){
+  margin-right: 30rpx;
+}
+.release_footer>view:nth-child(2){
+  margin-left: 30rpx;
+}
+.release_footer>view>text{
+  color: #fff;
+}
+
+
+/*动态*/
+
+
+.container1{
+  display: block;
+}
+.release_section1>textarea{
+  /* margin-top: 102rpx; */
+  padding: 30rpx;
+  width: 92%;
+}
+.psection1{
+  color: #999999;
+  font-size: 32rpx;
+}
+.release_footer1{
+  border-bottom: 2rpx solid #eaeaea;
+  background-color: #ffffff;
+  width:100%;
+  padding: 0 30rpx 70rpx; 
+}
+.release_footer1>view{
+  display: inline-block;
+}
+
+.release_footer_pic1{
+  width: 210rpx;
+  height: 210rpx;
+  border-radius: 20rpx;
+  vertical-align: bottom;
+  margin-right:30rpx;
+  margin-bottom: 20rpx;
+}
+.release_footer_pic1:nth-child(3n+0){
+  margin-right: 0;
+}
+.release_footer1>.pic_left1{
+  background-color: #eaeaea;
+  border-radius: 20rpx;
+  width: 210rpx;
+  height: 210rpx;
+  text-align: center;
+  line-height: 210rpx;
+  margin-top: 20rpx;
+}
+.release_footer1>.pic_left1>image{
+  width: 100%;
+  height: 100%;
+}
+.release_footer1>.pic_right1{
+  bottom: 25rpx;
+  left: 30rpx;
+}
+.release_footer1>.pic_right1{
+  text-align: right;
+}
+.release_footer1>.pic_right1>image{
+  width: 45rpx;
+  height: 45rpx;
+  vertical-align: middle;
+}
+.release_footer1>.pic_right1>text{
+  color: #4d99ff;
+}
+.footer_IM1{
+  margin: 20rpx 0 120rpx;
+}
+.footer_IM1>image{
+  width: 50rpx;
+  height: 50rpx;
+  margin-left: 20rpx;
+}
+.footer_IM1>image:nth-child(1){
+  width: 45rpx;
+  height: 45rpx;
+}
+.footer_di1{
+  width: 100%;
+  height: 100rpx;
+  border-bottom: 1rpx solid #eaeaea;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fff;
+}
+.footer_di1>image{
+  width: 54rpx;
+  height: 54rpx;
 }

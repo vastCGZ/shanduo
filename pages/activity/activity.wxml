@@ -10,15 +10,155 @@
       </view>
     </scroll-view>
     <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
-    style="height:{{winHeight}}rpx">
+    style="">
+    <!--活动  -->
       <swiper-item>
         <scroll-view scroll-y="true" class="scoll-h" >
-          <button type='primary' bindtap='pushActivity'>发布活动</button>
+          <!-- release_hd.wxml -->
+          <view class='container2 block'>
+            <view class='release_section'>
+              <view>
+                <input name='title' placeholder='请输入活动主题(最多输入20字符)' placeholder-class="psection_ipt" bindinput='inputActivityName'></input>
+              </view>
+              <view>
+                <textarea name='content' placeholder='请输入活动内容(禁止发违禁文字)' placeholder-class="psection_text" bindinput='inputActivityRemarks'></textarea>
+              </view>
+              <view class="people">
+                <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" class='inline'>
+                  <view>
+                    <image src='/image/icon/nan.png'></image>
+                    <text wx:if='{{index}}'>{{array[index]}}<text>人</text></text>
+                    <text wx:else>男生数</text>
+                  </view>
+                </picker>
+                <picker name='people' bindchange="bindPickerChange1" value="{{index1}}" range="{{array1}}" class='inline'>
+                  <view>
+                    <image src='/image/icon/nv.png'></image>
+                    <text wx:if='{{index1}}'>{{array1[index1]}}<text>人</text></text>
+                    <text wx:else>女生数</text>
+                  </view>
+                </picker>
+              </view>
+              <view class='time'>
+                <image src='/image/icon/time.png'></image>
+                <text>活动开始时间:</text>
+                <!-- <picker name='time' mode='date' class='inline' start='{{startActivityDate}}' fields='day' bindchange='startTimeChange'>
+                  <view>
+                    <text wx:if='{{activity.activityStartTime}}'>{{activity.activityStartTime}}</text>
+                    <text wx:else>选择开始时间</text>
+                    <image src='/image/icon/icon-0.png'></image>
+                  </view>
+                </picker> -->
+                <picker name='time' class='inline' mode="multiSelector" bindchange="bindStartMultiPickerChange" data-current="0" bindtap='pickerTap' bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+                  <view>
+                    <text wx:if='{{activity.activityStartTime}}'>{{activity.activityStartTime}}</text>
+                    <text wx:else>选择开始时间</text>
+                    <image src='/image/icon/icon-0.png'></image>
+                  </view>
+                </picker>
+              </view>
+              <view class='time'>
+                <image src='/image/icon/time.png'></image>
+                <text>报名截止时间:</text>
+                <!-- <picker name='time' mode='date' class='inline' fields='day' bindchange='cutoffTimeChange'>
+                  <view>
+                    <text wx:if='{{activity.activityCutoffTime}}'>{{activity.activityCutoffTime}}</text>
+                    <text wx:else>选择截止时间</text>
+                    <image src='/image/icon/icon-0.png'></image>
+                  </view>
+                </picker> -->
+                <picker name='time' class='inline' mode="multiSelector" bindchange="bindStartMultiPickerChange" data-current="1" bindtap='pickerTap' bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+                  <view>
+                    <text wx:if='{{activity.activityCutoffTime}}'>{{activity.activityCutoffTime}}</text>
+                    <text wx:else>选择截止时间</text>
+                    <image src='/image/icon/icon-0.png'></image>
+                  </view>
+                </picker>
+              </view>
+              <view class='time'>
+                <image src='/image/icon/money.png'></image>
+                <text>消费方式:</text>
+                <picker name='payment' class='inline' value="{{modesIndex}}" range="{{modes}}" bindchange='selectMode'>
+                  <view>
+                    <text wx:if='{{modesIndex}}'>{{modes[modesIndex]}}</text>
+                    <text wx:else>选择消费方式</text>
+                    <image src='/image/icon/icon-0.png'></image>
+                  </view>
+                </picker>
+              </view>
+              <view class='time'>
+                <image src='/image/icon/position.png'></image>
+                <text>活动地点:</text>
+                <view bindtap="openMap" class='inline flo_right'>
+                  <text wx:if='{{activity.activityAddress}}'>{{activity.activityAddress}}</text>
+                  <text wx:else>小区/写字楼/商城</text>
+                  <image src='/image/icon/icon-0.png'></image>
+                </view>
+              </view>
+              <view class='address'>
+                <textarea name='address' placeholder='更多地址详情' placeholder-class="psection_address"></textarea>
+              </view>
+            </view>
+            <view class='release_footer'>
+              <view>
+                <text>活动置顶</text>
+              </view>
+              <view>
+                <text bindtap='pushActivity'>活动发布</text>
+              </view>
+            </view>
+          </view>
+
+
+
         </scroll-view>
       </swiper-item>
+      <!--动态  -->
       <swiper-item>
         <scroll-view scroll-y="true" class="scoll-h" >
-          <button type='primary' bindtap='pushDynamic'>发布动态</button>
+
+
+
+
+          <!-- release_dt.wxml -->
+          <view class='container1'>
+            <view class='release_header'>
+              <text class='left_text inline' bindtap='cancel1'></text>
+              <text class='center_text inline' bindtap='launchDynamic'>发送</text>
+              <text class='right_text inline'></text>
+            </view> 
+            <view class='release_section1'>
+              <textarea placeholder='说说你觉得有趣的事吧!' placeholder-class="psection1" bindinput='inputContent'></textarea>
+            </view>
+            <view class='release_footer1 pos_rel'>
+              <block wx:for="{{avatarUrl}}" wx:key="navItems" wx:for-item="item" wx:for-index="idx">
+                <image class='release_footer_pic1' src="{{item}}"></image>
+              </block>
+              <view class='pic_left1' bindtap="bindViewTap">
+                <image src='/image/icon/bitmap_1.png'></image>
+              </view>
+              <view class='pic_right1 pos_abs'>
+                <image src='/image/icon/location.png'></image>
+                <text>长沙五一广场</text>
+              </view>
+            </view>
+            <view class='footer_di1'>
+              <image src='/image/icon/laugh_1.png'></image>
+              <image src='/image/icon/laugh_6.png'></image>
+              <image src='/image/icon/laugh_4.png'></image>
+              <image src='/image/icon/laugh_8.png'></image>
+            </view>
+            <view class='footer_IM1'>
+              <image src='/image/icon/copy_2_1.png'></image>
+              <image src='/image/icon/copy_6_1.png'></image>
+              <image src='/image/icon/copy_4_1.png'></image>
+            </view>
+          </view>
+
+
+
+
+
         </scroll-view>
       </swiper-item>
     </swiper>

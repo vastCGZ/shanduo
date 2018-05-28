@@ -1,4 +1,3 @@
-
 const app = getApp();
 var util = require('../../utils/util.js');
 var date = new Date();
@@ -119,7 +118,7 @@ Page({
     wx.navigateBack();
   },
   launchDynamic: function () {
-    if (this.data.avatarUrl) {
+    if (this.data.avatarUrl.length > 0) {
       this.uploadImg(this.data.avatarUrl);
     } else if (this.data.dynamic.content) {
       this.pushDynamic1();
@@ -240,16 +239,9 @@ Page({
     })
   },
   pushActivity: function () {
-    console.log('dd');
     var that = this;
-    var startDate = new Date(that.data.activity.activityStartTime);
-    var cutoffDate = new Date(that.data.activity.activityCutoffTime);
-    if (startDate.getTime() <= cutoffDate.getTime()) {
-      util.toast('活动截止时间已过');
-      return;
-    }
-    wx.showLoading()
     if (this.checkInputData()) {
+      wx.showLoading();
       wx.request({
         url: app.host + '/activity/saveactivity',
         data: that.data.activity,
@@ -332,6 +324,12 @@ Page({
     }
     if (!activity.activityCutoffTime) {
       util.toast('请输入活动截止时间');
+      return false;
+    }
+    var startDate = new Date(this.data.activity.activityStartTime);
+    var cutoffDate = new Date(this.data.activity.activityCutoffTime);
+    if (startDate.getTime() <= cutoffDate.getTime()) {
+      util.toast('活动截止时间已过');
       return false;
     }
     if (!activity.mode) {
@@ -570,5 +568,5 @@ Page({
       this.data.activity.activityCutoffTime = time;
     }
     this.setData({ activity: this.data.activity });
-  },
+  }
 })

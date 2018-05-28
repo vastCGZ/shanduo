@@ -1,4 +1,31 @@
 <!--pages/activityevaluation_fq/activityevaluation_fq.wxml-->
-<view class='fq_'>
-  <view class=''></view>
+<view class='fq_whole'>
+  <view class='fq_header'>
+    <view>
+      <text>主题:</text>
+      <text>一起吃火锅</text>
+      <text class='fq_text_left'>AA制</text>
+    </view>
+    <view>
+      <text>已结算</text>
+      <text class='fq_text_left'>参与者10人</text>
+    </view>
+  </view>
+  <view class='fq_body'>
+    <view class='fq_pjr_ul'>
+      <view class='fq_pjr_li'>
+        <image src='/image/icon/portrait.png'></image>
+        <text>胖虎</text>
+        <block wx:for="{{one_2}}" wx:key="index">  
+          <image class='pj_aix' catchtap='in_xin' id='{{index+1}}' data-in='use_sc2' src='/image/icon/fabulous_2.png'></image>  
+        </block>
+        <block wx:for="{{two_2}}" wx:key="index">  
+          <image class='pj_aix' catchtap='in_xin' id='{{index+1}}' data-in='use_sc' src='/image/icon/fabulous_2_1.png'></image>  
+        </block>
+      </view>
+      <view class='fq_cypj_li'>
+        <input type='text' name='cypj' placeholder="对参与者点评价呗! ..." placeholder-class="psection"></input>
+      </view>
+    </view>
+  </view>
 </view>

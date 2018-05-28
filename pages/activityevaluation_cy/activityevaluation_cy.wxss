@@ -1,1 +1,116 @@
 /* pages/activityevaluation_cy/activityevaluation_cy.wxss */
+page{
+  background-color: #f7f8ff;
+}
+.cy_whole{
+  padding: 20rpx;
+}
+.cy_header, .cy_body{
+  background-color: #fff;
+}
+.cy_pic, .cy_name, .cy_title{
+  text-align: center;
+}
+.cy_pic{
+  margin-bottom: 8rpx;
+  padding-top: 50rpx;
+}
+.cy_pic>image{
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+}
+.cy_name {
+  margin-bottom: 32rpx;
+}
+.cy_title>text.block.col_hui{
+  margin-top: 10rpx;
+  font-size: 28rpx;
+}
+.cy_body>view{
+  text-align: center;
+}
+.cy_pj{
+  padding-top: 32rpx;
+}
+.cy_pj>.cy_aix{
+  height: 46rpx;  
+  width: 52rpx;  
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 30rpx;
+}
+.cy_pj>.cy_aix:last-child{
+  margin-right: 0;
+}
+.cy_pj_txt{
+  margin-top: 16rpx;
+  color: rgb(255, 0, 0);
+}
+
+.cy_title_2>text.block.col_hui{
+  margin-top: 52rpx;
+  font-size: 28rpx;
+}
+.cy_pj_Label{
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  align-content:center;
+  margin-top: 56rpx;
+}
+.cy_pj_Label>view{
+  width: 390rpx;
+  flex-wrap:wrap;
+}
+.cy_pj_Label>view>view{
+  height: 50rpx;
+  width: 150rpx;
+  line-height: 50rpx;
+  border: 1rpx solid #999;
+  margin-bottom: 30rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  color: #999;
+  padding: 10rpx;
+}
+.cy_pj_Label>view>view>text{
+  color: #999;
+  font-size: 22rpx;
+}
+.cy_pj_Label>view>view:nth-child(odd){
+  margin-right: 40rpx;
+}
+.cy_cypj{
+  padding: 0 0 40rpx;
+}
+.cy_cypj>input{
+  width: 370rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  background-color: #f7f8ff;
+  margin: 0 auto;
+  text-align: left;
+  padding-left: 20rpx;
+}
+.psection{
+  font-size: 28rpx;
+  color: #d8d8d8;
+}
+.cy_footer{
+  width: 100%;
+  height: 96rpx;
+}
+.cy_footer>view{
+  position: fixed;
+  left: 0;
+  width: 95%;
+  height: 96rpx;
+  margin: 20rpx;
+  color: #fff;
+  line-height: 96rpx;
+  text-align: center;
+  background-color: #5E75FF;
+  z-index: 100;
+}

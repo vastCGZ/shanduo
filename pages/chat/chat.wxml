@@ -1,8 +1,10 @@
 <view class='container'>
-  <view class='release_header'>
-    <text class='left_text inline'></text>
-    <text class='center_text inline'>聊天</text>
-    <image src='/image/icon/plus.png' class='right_text inline'></image>
+  <view class='chat_header'>
+    <view class='release_header'>
+      <text class='left_text inline'></text>
+      <text class='center_text inline'>聊天</text>
+      <image src='/image/icon/plus.png' class='right_text inline'></image>
+    </view>
   </view>
   <view class='Chatting_body'>
     <view class='body_ul container'>

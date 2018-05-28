@@ -18,7 +18,7 @@
     <!-- 活动 -->
     <swiper-item>
       <view>
-        <swiper style='height:350rpx' indicator-dots='true' autoplay='true' interval='4000' indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#fff" circular="true">
+        <swiper class='broadcast' indicator-dots='true' autoplay='true' interval='4000' indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#fff" circular="true" previous-margin='100rpx' next-margin='100rpx' current>
           <block wx:for="{{advertise}}" wx:key="navItems">
             <swiper-item>
               <image style='width: 100%; height: 100%;' src='{{host}}/picture/{{item.picture}}'></image>

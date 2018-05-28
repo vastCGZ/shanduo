@@ -1,7 +1,7 @@
 // pages/myactivity/myactivity.js
 const app = getApp();
 var user;
-var lat,lon;
+var lat, lon;
 var pageSize = 20;
 Page({
   data: {
@@ -21,8 +21,8 @@ Page({
       totalpage: 0,
       arrayResult: []
     }],
-    typeId:[4,5,6],
-    host:null
+    typeId: [4, 5, 6],
+    host: null
   },
   // 滚动切换标签样式
   switchTab: function (e) {
@@ -56,11 +56,11 @@ Page({
   onLoad: function () {
     var that = this;
     user = app.globalData.userInfo;
-    that.setData({host:app.host});
+    that.setData({ host: app.host });
     wx.getLocation({
-      success: function(res) {
-        lat=res.latitude;
-        lon=res.longitude;
+      success: function (res) {
+        lat = res.latitude;
+        lon = res.longitude;
         that.loadActivities();
       },
     })
@@ -76,7 +76,7 @@ Page({
         });
       }
     });
-    
+
   },
   loadActivities: function () {
     var that = this;
@@ -93,7 +93,6 @@ Page({
       dataType: 'json',
       method: 'GET',
       success: function (res) {
-        console.log(res);
         var data = res.data;
         if (data.success && data.result.list.length > 0) {
           that.data.activities[that.data.currentTab].totalpage = data.result.totalpage;
@@ -108,7 +107,8 @@ Page({
 
   },
   onPullDownRefresh: function () {
-
+    this.emptyData();
+    this.loadActivities();
   },
   emptyData: function () {
     var ary = this.data.activities[this.data.currentTab].arrayResult;
@@ -118,6 +118,39 @@ Page({
     this.data.activities[this.data.currentTab].totalpage = 0;
     this.setData({
       activities: this.data.activities
+    })
+  },
+  gotoAppraiseView: function () {
+    wx.navigateTo({
+      url: '/pages/activityevaluation_cy/activityevaluation_cy',
+    })
+  }, cancelRegistration: function (e) {
+    var activityId = e.currentTarget.dataset.current;
+    wx.showModal({
+      title: '提醒',
+      content: '确定取消吗?',
+      success: (res) => {
+        if (res.confirm) {
+          wx.request({
+            data: {
+              token: app.globalData.userInfo.token,
+              activityId: activityId,
+              type: 2
+            },
+            dataType: 'json',
+            url: app.host + '/activity/joinActivities',
+            success: (res) => {
+              if (res.data.success) {
+                wx.startPullDownRefresh({
+                  complete: () => {
+                    wx.stopPullDownRefresh();
+                  }
+                });
+              }
+            }
+          })
+        }
+      }
     })
   }
 })

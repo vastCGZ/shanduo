@@ -1,6 +1,6 @@
 // pages/information/information.js
 const app = getApp();
-var user;
+var otherUserId;
 Page({
 
   /**
@@ -10,6 +10,8 @@ Page({
     winHeight: "",//窗口高度
     currentTab: 0, //预设当前项的值
     scrollLeft: 0 //tab标题的滚动条位置
+    ,otherUser:null
+    ,host:null
   },
   // 滚动切换标签样式
   switchTab: function (e) {
@@ -40,10 +42,10 @@ Page({
       })
     }
   },
-  onLoad: function () {
+  onLoad: function (options) {
     var that = this;
-    user = app.globalData.userInfo;
-    location = app.globalData.location;
+    otherUserId = options.otherUserId;
+    that.setData({host:app.host})
     // 高度自适应
     wx.getSystemInfo({
       success: function (res) {
@@ -56,5 +58,22 @@ Page({
         });
       }
     });
+    this.loadUserDetail();
+  }
+  , loadUserDetail: function () {
+    var that=this;
+    wx.request({
+      data: {
+        token: app.globalData.userInfo.token,
+        userId: otherUserId
+      },
+      url: app.host + '/jattention/userdetails',
+      success: (res) => {
+        if(res.data.success){
+          console.log(res);
+          that.setData({otherUser:res.data.result})
+        }
+      }
+    })
   }
 })

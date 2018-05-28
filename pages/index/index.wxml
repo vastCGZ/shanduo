@@ -44,19 +44,21 @@
             <block wx:for="{{activitys[0].arrayResult}}" wx:key="navItems" wx:for-item="item" wx:for-index="idx">
               <view class="item-ans">
                 <view class='activity_block'>
-                  <view class='activity_people'>
+                  <view class='activity_people' data-current='{{item.userId}}' bindtap='gotoUserHomePage'>
                     <image class="img" src="{{host}}/picture/{{item.headPortraitId}}"></image>
                     <view class="expertInfo inline">
                       <view class="name">{{item.userName}}</view>
                       <view class="tag">
                         <!--判断男女是男加 sex_nan    加在sex 后面-->
-                        <text class='sex'><text class='sex_on' wx:if='{{item.gender=="1"}}'>♂</text>
+                        <text class='{{item.gender=="1"?"sex_nan":"sex"}}'><text class='sex_on' wx:if='{{item.gender=="1"}}'>♂</text>
                         <text class='sex_on' wx:else>♀</text>{{item.age}}</text>
 
                         <!--判断是什么会员 -->
+                        <block wx:if='{{item.vipGrade>0}}'>
                         <text class='level'>SVIP9</text>
                         <text class='my_VIP'>VIP7</text>
                         <text class='my_DJ'>LV90</text>
+                        </block>
                       </view>
                     </view>
                   </view>

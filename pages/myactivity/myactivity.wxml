@@ -83,10 +83,10 @@
                     <button>置顶</button>
                   </block>
                   <block wx:if='{{currentTab==0}}'>
-                    <button>去评价</button>
+                    <button bindtap='gotoAppraiseView'>去评价</button>
                   </block>
                   <block wx:if='{{currentTab==1}}'>
-                    <button>取消报名</button>
+                    <button data-current="{{item.id}}" bindtap='cancelRegistration'>取消报名</button>
                   </block>
                   <block wx:if='{{currentTab==2}}'>
                     <button>刷新</button>

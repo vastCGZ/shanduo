@@ -1,5 +1,6 @@
 // pages/signup/signup.js
 const app = getApp();
+var util=require('../../utils/util.js');
 var activityId;
 Page({
 
@@ -96,7 +97,12 @@ Page({
       dataType:'json',
       url: app.host +'/activity/joinActivities',
       success:(res)=>{
-        console.log(res);
+        if(res.data.success){
+          util.toast(res.data.result);
+          setTimeout(function(){
+            wx.navigateBack();
+          },1000);
+        }
       }
     })
   }

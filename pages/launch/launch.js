@@ -569,25 +569,5 @@ Page({
       this.data.activity.activityCutoffTime = time;
     }
     this.setData({ activity: this.data.activity });
-  },
-  pushActivity: function () {
-    if (app.globalData.userInfo != null) {
-      wx.navigateTo({ url: '/pages/release_hd/release_hd' });
-    } else {
-      wx.showToast({
-        title: '请登录',
-        icon: 'none'
-      })
-    }
-  },
-  pushDynamic: function () {
-    if (app.globalData.userInfo != null) {
-      wx.navigateTo({ url: '/pages/release_dt/release_dt' });
-    } else {
-      wx.showToast({
-        title: '请登录',
-        icon: 'none'
-      })
-    }
   }
 })

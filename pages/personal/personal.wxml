@@ -1,8 +1,8 @@
 <view class='container'>
   <view class='bg_body'>
     <view class='believe'>
-      <view class='inline believe_left'>
-        <image src='{{headImg}}'></image>
+      <view class='inline believe_left' bindtap='gotoBaseSettingView'>
+        <image src='{{userInfo.picture}}'></image>
         <view class='inline'>
           <view>
           <!--判断是否是VIP如果是加 col_huang  -->
@@ -10,7 +10,8 @@
           </view>
           <view>
           <!--判断是男是女是男加 sex_nan  -->
-            <text class='{{userInfo.gender=="0"?"sex":"sex_nan"}}' wx:if='{{userInfo.gender=="0"}}'>♀{{userInfo.age}}</text><text wx:else>♂{{userInfo.age}}</text>
+            <text class='{{userInfo.gender=="0"?"sex":"sex_nan"}}' wx:if='{{userInfo.gender=="0"}}'>♀{{userInfo.age}}</text>
+            <text class='{{userInfo.gender=="0"?"sex":"sex_nan"}}' wx:else>♂{{userInfo.age}}</text>
           <!--判断是VIP还是SVIP如果是VIP加 my_VIP-->
             <!--还需判断是否是VIP或者SVIP如果不是 隐藏  -->
             <block wx:if='{{userInfo.vip>0}}'>

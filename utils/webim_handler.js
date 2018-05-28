@@ -50,6 +50,7 @@ function onMsgNotify(newMsgList) {
 
 //处理消息（私聊(包括普通消息和全员推送消息)，普通群(非直播聊天室)消息）
 function handlderMsg(msg) {
+  console.log(msg);
   var fromAccount, fromAccountNick, sessType, subType, contentHtml;
   fromAccount = msg.getFromAccount();
   if (!fromAccount) {
@@ -85,7 +86,7 @@ function handlderMsg(msg) {
           };
           webim.c2CMsgReaded(opts);
           WxNotificationCenter.postNotificationName('newMessageNotification', {
-            selToID: fromAccountNick,
+            fromAccount: fromAccount,
             content: contentHtml,
             time: util.getLocalTime(msg.getTime())
           });
@@ -102,19 +103,25 @@ function sdkLogin(userInfo, listeners, options, cbOk) {
   //web sdk 登录
   webim.login(userInfo, listeners, options,
     function (identifierNick) {
-      console.debug(identifierNick);
       //identifierNick为登录用户昵称(没有设置时，为帐号)，无登录态时为空
-      console.debug(identifierNick);
-      webim.Log.info('webim登录成功');
       cbOk && cbOk();
       loginInfo = userInfo;
       setProfilePortrait({
         'ProfileItem': [{
           "Tag": "Tag_Profile_IM_Nick",
           "Value": userInfo.identifierNick
+        }, {
+          "Tag": "Tag_Profile_IM_Image",
+          "Value": userInfo.headimg
+        },{
+            "Tag": "Tag_Profile_IM_Gender",
+            "Value": userInfo.gender == "0" ? "Gender_Type_Female" :"Gender_Type_Male"
         }]
-      }, function () {
+      }, function (resp) {
         //applyJoinBigGroup(avChatRoomId);//加入大群
+        console.log(resp);
+      },function(error){
+        console.log(error);
       })
       //hideDiscussForm();//隐藏评论表单
       //initEmotionUL();//初始化表情
@@ -130,7 +137,7 @@ function setProfilePortrait(options, callback) {
   webim.setProfilePortrait(options,
     function (res) {
       webim.Log.info('修改昵称成功');
-      callback && callback();
+      callback && callback(res);
     },
     function () {
 
@@ -201,7 +208,7 @@ function showMsg(msg) {
       break;
   }
   return {
-    fromAccountNick: fromAccountNick,
+    fromAccount: fromAccount,
     content: content,
     time: util.getLocalTime(msg.getTime()),
     me: isSelfSend

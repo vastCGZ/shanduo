@@ -20,7 +20,8 @@ Page({
       currentPage: 1,
       totalpage: 0,
       arrayResult: []
-    }]
+    }],
+    typeId:[4,5,6]
   },
   // 滚动切换标签样式
   switchTab: function (e) {
@@ -78,14 +79,14 @@ Page({
   loadActivities: function () {
     var that = this;
     wx.request({
-      url: app.host + '/activity/showOneActivity',
+      url: app.host + '/activity/showHotActivity',
       data: {
         token: user.token,
         page: that.data.activities[that.data.currentTab].currentPage,
         pageSize: pageSize,
         lat: lat,
         lon: lon,
-        type: parseInt(that.data.currentTab) + 1
+        type: parseInt(that.data.typeId[that.data.currentTab])
       },
       dataType: 'json',
       method: 'GET',

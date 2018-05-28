@@ -80,6 +80,7 @@ Page({
   },
   //下拉刷新
   onPullDownRefresh: function () {
+    this.emptyData();
     if (this.data.currentTab == 0) {
       this.getActivityData(true);
     } else {
@@ -236,7 +237,7 @@ Page({
       token = app.globalData.userInfo.token;
     }
     wx.request({
-      url: app.host + '/jdynamic/homeList',
+      url: app.host + '/jdynamic/dynamicList',
       data: {
         token: token,
         typeId: parseInt(that.data.currentTab2) + 1,

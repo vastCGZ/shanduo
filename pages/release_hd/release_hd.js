@@ -95,6 +95,7 @@ Page({
         dataType: 'json',
         method: 'GET',
         success: function (res) {
+          console.log(res);
           if (res.data.success) {
             util.toast('发布成功')
             setTimeout(function () {

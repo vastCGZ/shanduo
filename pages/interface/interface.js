@@ -15,7 +15,8 @@ Page({
     userInfo: null,
     actionStatus: '',
     toUserName: '',
-    messageBody: []
+    messageBody: [],
+    recentContact: {}
   },
 
   /**
@@ -39,11 +40,11 @@ Page({
           var oldMessageBody = that.data.messageBody;
           for (var i in historyMsgList) {
             var msg = {};
-            var msgbody = historyMsgList[i]
-            msg.fromAccountNick = msgbody.fromAccountNick;
+            var msgbody = historyMsgList[i];
+            msg.fromAccount = msgbody.fromAccount;
             msg.content = msgbody.elems[0].content.text;
             msg.time = util.getLocalTime(msgbody.time);
-            if (msgbody.fromAccountNick == app.globalData.userInfo.userId) {
+            if (msgbody.fromAccount == app.globalData.userInfo.userId) {
               msg.me = true;
             }
             oldMessageBody.push(msg);
@@ -51,12 +52,67 @@ Page({
           }
         }
       });
-    }
+    };
+    that.searchProfileByUserId([toUserId]);
     //注册通知
     WxNotificationCenter.addNotification('onConnNotify', that.onConnNotify, that);
     WxNotificationCenter.addNotification('newMessageNotification', that.newMessageNotification, that);
   },
-  onUnload:function(){
+  searchProfileByUserId: function (ids) {
+    var that = this;
+    var tag_list = [
+      "Tag_Profile_IM_Nick",//昵称
+      "Tag_Profile_IM_Gender",//性别
+      "Tag_Profile_IM_Image"//头像
+    ];
+    var options = {
+      'To_Account': ids,
+      'TagList': tag_list
+    };
+    webim.getProfilePortrait(
+      options,
+      function (resp) {
+        if (resp.UserProfileItem && resp.UserProfileItem.length > 0) {
+          for (var i in resp.UserProfileItem) {
+            var to_account = resp.UserProfileItem[i].To_Account;
+            var nick = null, gender = null, imageUrl = null;
+            for (var j in resp.UserProfileItem[i].ProfileItem) {
+              switch (resp.UserProfileItem[i].ProfileItem[j].Tag) {
+                case 'Tag_Profile_IM_Nick':
+                  nick = resp.UserProfileItem[i].ProfileItem[j].Value;
+                  break;
+                case 'Tag_Profile_IM_Gender':
+                  switch (resp.UserProfileItem[i].ProfileItem[j].Value) {
+                    case 'Gender_Type_Male':
+                      gender = '男';
+                      break;
+                    case 'Gender_Type_Female':
+                      gender = '女';
+                      break;
+                    case 'Gender_Type_Unknown':
+                      gender = '未知';
+                      break;
+                  }
+                  break;
+                case 'Tag_Profile_IM_Image':
+                  imageUrl = resp.UserProfileItem[i].ProfileItem[j].Value;
+                  break;
+              }
+            }
+            var lls = that.data.recentContact;
+            lls.Nick = webim.Tool.formatText2Html(nick);
+            lls.Gender = gender;
+            lls.Image = imageUrl;
+            that.setData({ recentContact: lls });
+          }
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  },
+  onUnload: function () {
     WxNotificationCenter.removeNotification('onConnNotify', this);
     WxNotificationCenter.removeNotification('newMessageNotification', this);
   },
@@ -65,10 +121,10 @@ Page({
     this.setData({ actionStatus: obj })
   },
   newMessageNotification: function (obj) {
-    if (obj.selToID == toUserId) {
+    if (obj.fromAccount == toUserId) {
       var oldMessageBody = this.data.messageBody;
       oldMessageBody.push({
-        fromAccountNick: obj.selToID,
+        fromAccount: obj.fromAccount,
         content: obj.content,
         time: obj.time
       });
@@ -139,7 +195,7 @@ Page({
             util.toast('对方不是自己的好友');
             break;
         }
-      }else{
+      } else {
         util.toast(res);
       }
     })

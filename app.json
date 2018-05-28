@@ -1,8 +1,6 @@
 {
   "pages":[
-    "pages/activityevaluation_fq/activityevaluation_fq",
     "pages/index/index",
-    "pages/activityevaluation_cy/activityevaluation_cy",
     "pages/login/login",
     "pages/register/register",
     "pages/chat/chat",
@@ -22,7 +20,9 @@
     "pages/search/search",
     "pages/edit/edit",
     "pages/information/information",
-    "pages/signup/signup"
+    "pages/signup/signup",
+    "pages/activityevaluation_fq/activityevaluation_fq",
+    "pages/activityevaluation_cy/activityevaluation_cy"
   ],
   "window":{
     "backgroundTextStyle":"dark",
@@ -52,7 +52,7 @@
         "pagePath": "pages/launch/launch",
         "text": "发布",
         "iconPath": "/image/icon/activity.png",
-        "selectedIconPath": "/image/icon/activity.png"
+        "selectedIconPath": "/image/icon/activity_1.png"
       },
       {
         "pagePath": "pages/friends/friends",

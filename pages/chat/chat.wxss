@@ -1,6 +1,13 @@
 page{
   background-color: rgba(250, 250, 250, 1);
 }
+.container{
+  justify-content: flex-start;
+}
+.chat_header{
+  height: 100rpx;
+  width: 100%;
+}
 .right_text{
   width: 44rpx;
   height: 44rpx;
@@ -10,9 +17,6 @@ page{
 }
 .Chatting_body{
   width: 100%;
-}
-.body_ul{
-  margin-top: 102rpx;
 }
 .body_li{
   background-color: #fff;

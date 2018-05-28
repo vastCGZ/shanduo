@@ -1,15 +1,16 @@
 
-var postsData = require('../../data/posts_data.js')
-var app = getApp()
+var webim = require('../../utils/webim.js');
+var util = require('../../utils/util.js');
+var WxNotificationCenter = require('../../utils/WxNotificationCenter.js');
+const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    posts_key: null,
-    //侧滑删除
-    items: [],
+    recentContact: [],//最近联系人
     startX: 0, //开始坐标
     startY: 0
   },
@@ -18,34 +19,148 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;    //调接口
-    for (var i = 0; i < postsData.postList.length; i++) {
-      that.data.items.push({
-        content: i + " 向左滑动删除哦,向左滑动删除哦,向左滑动删除哦,向左滑动删除哦,向左滑动删除哦",
-        isTouchMove: false //默认全隐藏删除
-      })
-    }
-    that.setData({
-      posts_key: postsData.postList,
-      items: that.data.items
-    });
+    var that = this;
+    WxNotificationCenter.addNotification('newMessageNotification', that.newMessageNotification, that);
+    webim.getRecentContactList({
+      'Count': 10 //最近的会话数 ,最大为 100
+    }, function (resp) {
+      console.log(resp);
+      //业务处理
+      if (resp.SessionItem) {
+        var ids = [];
+        var sessions = resp.SessionItem;
+        for (var i in sessions) {
+          ids.push(sessions[i].To_Account);
+          sessions[i].MsgTimeStamp = util.getLocalTime(sessions[i].MsgTimeStamp);
+          sessions[i].isTouchMove = false;
+        }
+        that.setData({
+          recentContact: sessions
+        });
+      }
+      that.searchProfileByUserId(ids)
+    }, function (resp) {
+      //错误回调
+    })
+
   },
-  gotoSessionView:function(){
-    wx.navigateTo({ url:'/pages/interface/interface'});
+  onUnload: function () {
+    WxNotificationCenter.removeNotification('newMessageNotification', this);
+  },
+  newMessageNotification: function (obj) {
+    var that = this;
+    var oldRecentContact = that.data.recentContact;
+    var atList = false;
+    for (var i in oldRecentContact) {
+      if (obj.fromAccount == oldRecentContact[i].To_Account) {
+        atList = true;
+        var count = oldRecentContact[i].UnreadMsgCount;
+        oldRecentContact[i].UnreadMsgCount = count + 1;
+        oldRecentContact[i].MsgShow = obj.content;
+        that.setData({ recentContact: oldRecentContact });
+        break;
+      }
+    }
+    if (!atList) {
+      var newItem = {};
+      newItem.MsgShow = obj.content;
+      newItem.MsgTimeStamp = obj.time;
+      newItem.To_Account = obj.fromAccount;
+      newItem.UnreadMsgCount = 1;
+      var oldRecentContact = that.data.recentContact;
+      oldRecentContact.push(newItem);
+      that.setData({ recentContact: oldRecentContact });
+      that.searchProfileByUserId([obj.fromAccount]);
+    }
+  },
+  //搜索用户
+  searchProfileByUserId: function (ids) {
+    var that = this;
+    var tag_list = [
+      "Tag_Profile_IM_Nick",//昵称
+      "Tag_Profile_IM_Gender",//性别
+      "Tag_Profile_IM_Image"//头像
+    ];
+    var options = {
+      'To_Account': ids,
+      'TagList': tag_list
+    };
+    webim.getProfilePortrait(
+      options,
+      function (resp) {
+        if (resp.UserProfileItem && resp.UserProfileItem.length > 0) {
+          for (var i in resp.UserProfileItem) {
+            var to_account = resp.UserProfileItem[i].To_Account;
+            var nick = null, gender = null, imageUrl = null;
+            for (var j in resp.UserProfileItem[i].ProfileItem) {
+              switch (resp.UserProfileItem[i].ProfileItem[j].Tag) {
+                case 'Tag_Profile_IM_Nick':
+                  nick = resp.UserProfileItem[i].ProfileItem[j].Value;
+                  break;
+                case 'Tag_Profile_IM_Gender':
+                  switch (resp.UserProfileItem[i].ProfileItem[j].Value) {
+                    case 'Gender_Type_Male':
+                      gender = '男';
+                      break;
+                    case 'Gender_Type_Female':
+                      gender = '女';
+                      break;
+                    case 'Gender_Type_Unknown':
+                      gender = '未知';
+                      break;
+                  }
+                  break;
+                case 'Tag_Profile_IM_Image':
+                  imageUrl = resp.UserProfileItem[i].ProfileItem[j].Value;
+                  break;
+              }
+            }
+            var lls = that.data.recentContact;
+            for (var k in lls) {
+              if (to_account == lls[k].To_Account) {
+                lls[k].Nick = webim.Tool.formatText2Html(nick);
+                lls[k].Gender = gender;
+                lls[k].Image = imageUrl;
+                that.setData({ recentContact: lls });
+                break;
+              }
+            }
+          }
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  },
+  gotoSessionView: function (e) {
+    var data = e.currentTarget.dataset.current.split(',');
+    var To_Account = data[0];
+    var oldRecentContact = this.data.recentContact;
+    for (var i in oldRecentContact) {
+      if (To_Account == oldRecentContact[i].To_Account) {
+        oldRecentContact[i].UnreadMsgCount = 0;
+        this.setData({ recentContact: oldRecentContact });
+        break;
+      }
+    }
+    wx.navigateTo({
+      url: '/pages/interface/interface?toUserId=' + data[0] + '&toUserName=' + data[1] + ''
+    })
   },
 
   //侧滑删除
   //手指触摸动作开始 记录起点X坐标
   touchstart: function (e) {
     //开始触摸时 重置所有删除
-    this.data.items.forEach(function (v, i) {
+    this.data.recentContact.forEach(function (v, i) {
       if (v.isTouchMove)//只操作为true的
         v.isTouchMove = false;
     })
     this.setData({
       startX: e.changedTouches[0].clientX,
       startY: e.changedTouches[0].clientY,
-      items: this.data.items
+      recentContact: this.data.recentContact
     })
   },
   //滑动事件处理
@@ -58,7 +173,7 @@ Page({
       touchMoveY = e.changedTouches[0].clientY,//滑动变化坐标
       //获取滑动角度
       angle = that.angle({ X: startX, Y: startY }, { X: touchMoveX, Y: touchMoveY });
-    that.data.items.forEach(function (v, i) {
+    that.data.recentContact.forEach(function (v, i) {
       v.isTouchMove = false
       //滑动超过30度角 return
       if (Math.abs(angle) > 30) return;
@@ -71,7 +186,7 @@ Page({
     })
     //更新数据
     that.setData({
-      items: that.data.items
+      recentContact: that.data.recentContact
     })
   },
   /**
@@ -87,9 +202,10 @@ Page({
   },
   //删除事件
   del: function (e) {
-    this.data.items.splice(e.currentTarget.dataset.index, 1)
+    console.log(e);
+    this.data.recentContact.splice(e.currentTarget.dataset.index, 1)
     this.setData({
-      items: this.data.items
+      recentContact: this.data.recentContact
     })
   }
 })

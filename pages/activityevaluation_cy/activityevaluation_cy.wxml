@@ -1,2 +1,53 @@
 <!--pages/activityevaluation_cy/activityevaluation_cy.wxml-->
-<text>pages/activityevaluation_cy/activityevaluation_cy.wxml</text>
+<view class='cy_whole'>
+  <view class='cy_header'>
+    <view class='cy_pic'>
+      <image src='/image/icon/portrait.png'></image>
+    </view>
+    <view class='cy_name'>
+      <text>小猪佩奇</text>
+    </view>
+    <view class='cy_title'>
+      <text>主题:</text>
+      <text>一起吃火锅</text>
+      <text class='fq_text_left'>AA制</text>
+      <text class='block col_hui'>已结束</text>
+    </view>
+  </view>
+  <view class='cy_body'>
+    <view class='cy_pj'>
+      <block wx:for="{{one_2}}" wx:key="index">  
+        <image class='cy_aix' catchtap='in_xin' id='{{index+1}}' data-in='use_sc2' src='/image/icon/fabulous_2.png'></image>  
+      </block>
+      <block wx:for="{{two_2}}" wx:key="index">  
+        <image class='cy_aix' catchtap='in_xin' id='{{index+1}}' data-in='use_sc' src='/image/icon/fabulous_2_1.png'></image>  
+      </block>
+    </view>
+    <view class='cy_pj_txt'>{{one_2}}星评价!</view>
+    <view class='cy_title_2'>
+      <text class='block col_hui'>说说活动给你带来的感觉!</text>
+    </view>
+    <view class='cy_pj_Label'>
+      <view>
+        <view class='inline'>
+          <text>气氛很棒!</text>
+        </view>
+        <view class='inline'>
+          <text>气氛很棒!hahaah</text>
+        </view>
+        <view class='inline'>
+          <text>气氛很棒!</text>
+        </view>
+        <view class='inline'>
+          <text>气氛很棒!</text>
+        </view>
+      </view>
+    </view>
+    <view class='cy_cypj'>
+      <input type='text' name='cypj' placeholder="其他想说的..." placeholder-class="psection"></input>
+    </view>
+  </view>
+  <view class='cy_footer'>
+    <view>提交评价</view>
+  </view>
+</view>

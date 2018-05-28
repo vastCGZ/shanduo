@@ -120,172 +120,18 @@ page{
   background-color: #f9f9f9;
   /* overflow: hidden; */
 }
-
-/*老版本 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
- 
-/* .frame {
-  margin: 15rpx;
-  padding: 20rpx;
+.broadcast{
+  height: 300rpx;
+  margin: 0 auto;
   background-color: #fff;
-  border-radius: 10rpx;
 }
-
-.m_left {
-  margin-left: 40rpx;
+.broadcast swiper-item{
+  border-radius: 20rpx;
 }
-
-.color_ls {
-  color: #42a8e4;
-  font-size: 22rpx;
+.broadcast image{
+  border-radius: 20rpx;
+  margin: 0 20rpx 0;
 }
-
-.location {
-  width: 30rpx;
-  height: 30rpx;
-  vertical-align: bottom;
-}
-
-.more {
-  width: 40rpx;
-  height: 40rpx;
-  vertical-align: middle;
-}
-
-.end {
-  font-size: 24rpx;
-  color: #9a9a9a;
-} 
-
- 
-.frame>view:nth-child(1) {
-  height: 190rpx;
-}
-
-.frame>view:nth-child(1)>view:nth-child(1) {
-  width: 60%;
-}
-
-.frame>view:nth-child(1)>view:nth-child(2) {
-  width: 40%;
-}
-
-.frame>view>view {
-  text-align: left;
-}
-
-.frame>view:nth-child(1)>view:nth-child(2)>view {
-  display: flex;
-  justify-content: flex-end;
-  / text-align: right; /
-}
-
-.frame>view:nth-child(1)>view:nth-child(2)>view>image {
-  border-radius: 50%;
-  display: inline-block;
-  width: 100rpx;
-  height: 100rpx;
-  margin-right: 12%;
-}
-
-.historical{
-  display: inline-block;
-  border-radius: 50rpx;
-  padding: 0 10rpx;
-  height: 35rpx;
-  background-color: #000;
-  color: #fff;
-  font-size: 24rpx;
-  text-align: center;
-  line-height: 35rpx;
-  vertical-align: middle;
-}
-
-.evaluate {
-  display: inline-block;
-  border-radius: 50rpx;
-  padding: 0 10rpx;
-  height: 35rpx;
-  background-color: #000;
-  font-size: 24rpx;
-  text-align: center;
-  line-height: 30rpx;
-  margin-left: 15rpx;
-  vertical-align: middle;
-}
-.evaluate>.evaluate_txt {
-  color: #fff;
-  vertical-align: middle;
-}
-.evaluate>.evaluate_pic {
-  width: 20rpx;
-  height: 20rpx;
-  vertical-align: middle;
-} 
-
-/动态/
-
-/附近动态/
-
-.dynamic .nearby {
-  padding: 20rpx 20rpx 0 20rpx;
-  background-color: #ffffff;
-  margin: 5rpx 8rpx;
-  border-radius: 10rpx;
-}
-
-/第二个view/
-.dynamic .nearby>view:nth-child(2)>view {
-  margin-top: 10rpx;
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  overflow: hidden;
-  height: 220rpx;
-}
-
-.dynamic .nearby>view:nth-child(2)>text {
-  color: #999;
-}
-
-.dynamic .nearby>view:nth-child(2)>view>image {
-  width: 220rpx;
-  height: 220rpx;
-  border-radius: 10rpx;
-  flex-shrink: 0;
-  margin-left: 16rpx;
-}
-
-.dynamic .nearby>view:nth-child(2)>view>image:nth-child(1) {
-  margin-left: 0rpx;
-}
-
-/第三个view/
-.dynamic .nearby>view:nth-child(3){
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-}
-.dynamic .nearby>view:nth-child(3)>view{
-  width: 50%;
-}
-.dynamic .nearby>view:nth-child(3)>view>image {
-  width: 50rpx;
-  height: 50rpx;
-  margin: 10rpx 10rpx 0 5rpx;
-}
-/ .dynamic .nearby>view:nth-child(3)>view:nth-child(2){
-  display: flex;
-  justify-content:flex-end;
-  align-self:center;
-  height: 84rpx;
-} /
-.dynamic .nearby>view:nth-child(3)>view:nth-child(2)>image{
-  width: 40rpx;
-  height: 10rpx;
-  vertical-align: middle;
-} */
-
-/*老版本 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑*/
 .nearby{
   padding: 0;
   margin-top: 10rpx;

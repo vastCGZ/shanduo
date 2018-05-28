@@ -25,7 +25,11 @@ function toast(msg) {
 }
 //时间戳转本地时间
 function getLocalTime(nS) {
-  return new Date(parseInt(nS) * 1000).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ");
+  var now = new Date(parseInt(nS)*1000),
+    y = now.getFullYear(),
+    m = now.getMonth() + 1,
+    d = now.getDate();
+  return y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + now.toTimeString().substr(0, 8);
 }
 //非空校验
 function checkInput(input) {

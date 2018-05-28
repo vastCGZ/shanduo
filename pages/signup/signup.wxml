@@ -10,63 +10,59 @@
   <view class="item-ans">
     <view class='activity_block'>
       <view class='activity_people'>
-        <image class="img" src="{{host}}/picture/{{item.headPortraitId}}"></image>
+        <image class="img" src="{{host}}/picture/{{activity.headPortraitId}}"></image>
         <view class="expertInfo inline">
-          <view class="name">{{item.userName}}</view>
+          <view class="name">{{activity.userName}}</view>
           <view class="tag">
             <!--判断男女是男加 sex_nan    加在sex 后面-->
-            <text class='sex'><text class='sex_on' wx:if='{{item.gender=="1"}}'>♂</text>
-            <text class='sex_on' wx:else>♀</text>{{item.age}}</text>
+            <text class='sex'><text class='sex_on' wx:if='{{activity.gender=="1"}}'>♂</text>
+            <text class='sex_on' wx:else>♀</text>{{activity.age}}</text>
 
-          <!--判断是什么会员 -->
-            <text class='level'>SVIP9</text>
-            <text class='my_VIP'>VIP7</text>
-            <text class='my_DJ'>LV90</text>
+            <!--判断是什么会员 -->
+            <block wx:if='{{activity.vipGrade>0}}'>
+              <text class='level'>SVIP9</text>
+              <text class='my_VIP'>VIP7</text>
+              <text class='my_DJ'>LV90</text>
+            </block>
           </view>
         </view>
       </view>
       <view class='activity_time'>
         <view class=''>
-          <text class='block col_lan'>{{item.activityStartTime}}</text>
+          <text class='block col_lan'>{{activity.activityStartTime}}</text>
           <text class='block col_hui'></text>
-          <text class='block col_hui'>报名截止:{{item.activityCutoffTime}}</text>
+          <text class='block col_hui'>报名截止:{{activity.activityCutoffTime}}</text>
         </view>
       </view>
     </view>
     <view class='activity_block'>
       <view class='activity_theme'>
         <text>主题：</text>
-        <text>{{item.activityName}}</text>
+        <text>{{activity.activityName}}</text>
         <text class='inline text_koge'></text>
-        <text>{{item.mode}}</text>
+        <text>{{activity.mode}}</text>
       </view>
       <view class='activity_place'>
         <text>活动地点：</text>
-        <text>{{item.activityAddress}}</text>
+        <text>{{activity.activityAddress}}</text>
         <image src='/image/icon/location.png'></image>
-        <text class='col_lan'>{{item.location}}km</text>
+        <text class='col_lan'>{{activity.location}}km</text>
       </view>
       <view class='activity_content'>
         <text>活动内容：</text>
-        <text>{{item.remarks}}</text>
+        <text>{{activity.remarks}}</text>
       </view>
     </view>
     <view class='activity_block'>
       <view>
         <view class='inline'>
           <image src='/image/icon/nan.png'></image>
-          <text>{{item.manNumber}}</text>
+          <text>{{activity.manNumber}}</text>
         </view>
         <view class='inline'>
           <image src='/image/icon/nv.png'></image>
-          <text>{{item.womanNumber}}</text>
+          <text>{{activity.womanNumber}}</text>
         </view>
-      </view>
-      <view>
-        <button>信誉轨迹</button>
-        <!--判断活动过期加 disabled -->
-        <button class='disabled'>去报名</button>
-        <image src='/image/icon/copy.png'></image>
       </view>
     </view>
     <!--判断当前弹出框是否隐藏  -->
@@ -107,14 +103,12 @@
     <text class='block text_title_left'>报名成员</text>
     <scroll-view scroll-x="true">
       <view class="signup_personnel">
-        <view>
-          <image src='' class='block'></image>
-          <text class='block'>胖虎</text>
-        </view>
-        <view>
-          <image src='' class='block'></image>
-          <text class='block'>小夫</text>
-        </view>
+        <block wx:for="{{participant}}" wx:key="navItems" wx:for-item="item" wx:for-index="idx">
+          <view>
+            <image src='{{host}}/picture/{{item.head_portrait_id}}' class='block'></image>
+            <text class='block'>{{item.user_name}}</text>
+          </view>
+        </block>
       </view>
     </scroll-view>
   </view>
@@ -124,7 +118,7 @@
         <text class='inline text_footer_left'>取消</text>
       </view>
       <view>
-        <text class='inline text_footer_right'>确认报名</text>
+        <text class='inline text_footer_right' bindtap='confirmation'>确认报名</text>
       </view>
     </view>
   </view>

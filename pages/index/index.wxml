@@ -10,7 +10,7 @@
       <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">活动</view>
       <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">动态</view>
     </view>
-    <view>
+    <view bindtap='gotoSearchView'>
       <image class='img_special' src='/image/icon/search.png'></image>
     </view>
   </view>
@@ -53,7 +53,7 @@
                         <text class='sex'><text class='sex_on' wx:if='{{item.gender=="1"}}'>♂</text>
                         <text class='sex_on' wx:else>♀</text>{{item.age}}</text>
 
-                      <!--判断是什么会员 -->
+                        <!--判断是什么会员 -->
                         <text class='level'>SVIP9</text>
                         <text class='my_VIP'>VIP7</text>
                         <text class='my_DJ'>LV90</text>
@@ -100,7 +100,7 @@
                   <view>
                     <button>信誉轨迹</button>
                     <!--判断活动过期加 disabled -->
-                    <button class='disabled' bindtap='gotoApplyView'>去报名</button>
+                    <button class='disabled' data-current="{{item.id}}" bindtap='gotoApplyView'>去报名</button>
                     <image src='/image/icon/copy.png'></image>
                   </view>
                 </view>
@@ -237,7 +237,7 @@
                   </view>
                   <view>
                     <button>信誉轨迹</button>
-                    <button bindtap='gotoApplyView'>去报名</button>
+                    <button data-current="{{item.id}}" bindtap='gotoApplyView'>去报名</button>
                     <image src='/image/icon/copy.png'></image>
                   </view>
                 </view>
@@ -341,7 +341,7 @@
                   </view>
                   <view>
                     <button>信誉轨迹</button>
-                    <button bindtap='gotoApplyView'>去报名</button>
+                    <button data-current="{{item.id}}" bindtap='gotoApplyView'>去报名</button>
                     <image src='/image/icon/copy.png'></image>
                   </view>
                 </view>

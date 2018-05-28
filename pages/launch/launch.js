@@ -178,7 +178,7 @@ Page({
           });
           setTimeout(function () {
             wx.switchTab({
-              url: '/pages/activity/activity'
+              url: '/pages/index/index'
             })
           }, 500)
         }
@@ -240,6 +240,7 @@ Page({
     })
   },
   pushActivity: function () {
+    console.log('dd');
     var that = this;
     var startDate = new Date(that.data.activity.activityStartTime);
     var cutoffDate = new Date(that.data.activity.activityCutoffTime);
@@ -259,7 +260,7 @@ Page({
             util.toast('发布成功')
             setTimeout(function () {
               wx.switchTab({
-                url: '/pages/activity/activity'
+                url: '/pages/index/index'
               })
             }, 500)
           } else {
@@ -302,7 +303,7 @@ Page({
         // address	详细地址
         // latitude	纬度，浮点数，范围为 - 90~90，负数表示南纬
         // longitude	经度，浮点数，范围为 - 180~180，负数表示西经
-        that.data.activity.activityAddress = res.address;
+        that.data.activity.activityAddress = res.name;
         that.data.activity.lon = res.longitude;
         that.data.activity.lat = res.latitude;
         that.setData({
@@ -570,24 +571,4 @@ Page({
     }
     this.setData({ activity: this.data.activity });
   },
-  pushActivity: function () {
-    if (app.globalData.userInfo != null) {
-      wx.navigateTo({ url: '/pages/release_hd/release_hd' });
-    } else {
-      wx.showToast({
-        title: '请登录',
-        icon: 'none'
-      })
-    }
-  },
-  pushDynamic: function () {
-    if (app.globalData.userInfo != null) {
-      wx.navigateTo({ url: '/pages/release_dt/release_dt' });
-    } else {
-      wx.showToast({
-        title: '请登录',
-        icon: 'none'
-      })
-    }
-  }
 })

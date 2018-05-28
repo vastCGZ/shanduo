@@ -1,4 +1,4 @@
-<!-- release_hd.wxml -->
+  release_hd.wxml 
 <view class='container block'>
   <view class='release_header'>
     <text class='left_text inline' bindtap='cancel'>取消</text>
@@ -31,13 +31,6 @@
     <view class='time'>
       <image src='/image/icon/time.png'></image>
       <text>活动开始时间:</text>
-      <!-- <picker name='time' mode='date' class='inline' start='{{startActivityDate}}' fields='day' bindchange='startTimeChange'>
-        <view>
-          <text wx:if='{{activity.activityStartTime}}'>{{activity.activityStartTime}}</text>
-          <text wx:else>选择开始时间</text>
-          <image src='/image/icon/icon-0.png'></image>
-        </view>
-      </picker> -->
       <picker name='time' class='inline' mode="multiSelector" bindchange="bindStartMultiPickerChange" data-current="0" bindtap='pickerTap' bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
         <view>
           <text wx:if='{{activity.activityStartTime}}'>{{activity.activityStartTime}}</text>
@@ -49,13 +42,6 @@
     <view class='time'>
       <image src='/image/icon/time.png'></image>
       <text>报名截止时间:</text>
-      <!-- <picker name='time' mode='date' class='inline' fields='day' bindchange='cutoffTimeChange'>
-        <view>
-          <text wx:if='{{activity.activityCutoffTime}}'>{{activity.activityCutoffTime}}</text>
-          <text wx:else>选择截止时间</text>
-          <image src='/image/icon/icon-0.png'></image>
-        </view>
-      </picker> -->
       <picker name='time' class='inline' mode="multiSelector" bindchange="bindStartMultiPickerChange" data-current="1" bindtap='pickerTap' bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
         <view>
           <text wx:if='{{activity.activityCutoffTime}}'>{{activity.activityCutoffTime}}</text>
@@ -96,4 +82,4 @@
       <text bindtap='pushActivity'>活动发布</text>
     </view>
   </view>
-</view>
+</view> 

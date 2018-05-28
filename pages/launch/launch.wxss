@@ -145,9 +145,8 @@ swiper-item {
 .release_footer>view{
   display: inline-block;
   background-color: #4455de;
-  padding: 10rpx 30rpx 10rpx 30rpx;
   border-radius: 50rpx;
-  margin: 20% auto auto;
+  margin: 25% auto auto;
 }
 .release_footer>view:nth-child(1){
   margin-right: 30rpx;

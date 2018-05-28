@@ -207,14 +207,13 @@ Page({
       dataType: 'json',
       success: function (res) {
         if (res.data.success) {
-          console.log(res.data);
           var array = that.data.activitys[that.data.currentTab1].arrayResult;
           that.data.activitys[that.data.currentTab1].arrayResult = array.concat(res.data.result.list);
           that.data.activitys[that.data.currentTab1].totalpage = res.data.result.totalpage;
           that.setData(
             { activitys: that.data.activitys }
           );
-          
+
         } else {
           wx.showToast({
             title: res.data.errorCode,
@@ -262,7 +261,7 @@ Page({
             that.setData(
               { dynamics: that.data.dynamics }
             );
-            
+
           }
         } else {
           wx.showToast({
@@ -346,9 +345,14 @@ Page({
         }
       }
     })
-  }, gotoApplyView:function(e){
+  }, gotoApplyView: function (e) {
+    var activityId = e.currentTarget.dataset.current;
     wx.navigateTo({
-      url: '/pages/signup/signup'
+      url: '/pages/signup/signup?activityId=' + activityId + ''
+    })
+  }, gotoSearchView:function(){
+    wx.navigateTo({
+      url: '/pages/search/search'
     })
   }
 }) 

@@ -66,6 +66,7 @@ Page({
       newItem.MsgShow = obj.content;
       newItem.MsgTimeStamp = obj.time;
       newItem.To_Account = obj.fromAccount;
+      newItem.isTouchMove = false;
       newItem.UnreadMsgCount = 1;
       var oldRecentContact = that.data.recentContact;
       oldRecentContact.push(newItem);
@@ -202,8 +203,8 @@ Page({
   },
   //删除事件
   del: function (e) {
-    var that=this;
-    var val=e.currentTarget.dataset.index.split(',');
+    var that = this;
+    var val = e.currentTarget.dataset.index.split(',');
     //sess_type == 'C2C' ? 1 : 2;
     var data = {
       'To_Account': val[1],

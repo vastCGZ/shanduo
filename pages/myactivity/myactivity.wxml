@@ -12,31 +12,29 @@
         <text class="{{currentTab==2 ? 'userLi_actived ' : ''}}">我的</text>
       </view>
     </scroll-view>
-    <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
-    style="height:{{winHeight}}rpx">
+    <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx">
       <!--for循环 已参加，已报名，我的 -->
-      <swiper-item  wx:for="{{activities}}" wx:for-item="items" wx:key="navs" wx:for-index="indexs">
-        <scroll-view scroll-y="true" class="scoll-h" >
-        <!--for循环  -->
-          <block  wx:for="{{items.arrayResult}}" wx:for-item="item" wx:key="nav" wx:for-index="index">
+      <swiper-item wx:for="{{activities}}" wx:for-item="items" wx:key="navs" wx:for-index="indexs">
+        <scroll-view scroll-y="true" class="scoll-h">
+          <!--for循环  -->
+          <block wx:for="{{items.arrayResult}}" wx:for-item="item" wx:key="nav" wx:for-index="index">
             <view class="item-ans">
               <view class='activity_block'>
                 <view class='activity_people'>
-                  <image class="img" src="/image/icon/portrait.png"></image>
+                  <image class="img" src="{{host}}/picture/{{item.headPortraitId}}"></image>
                   <view class="expertInfo inline">
                     <view class="name">{{item.userName}}</view>
                     <view class="tag">
-                    <!--判断男女是男加 sex_nan -->
+                      <!--判断男女是男加 sex_nan -->
                       <text>
                         <text class='sex' wx:if='{{item.gender=="1"}}'>♂</text>
-                        <text wx:else>♀</text>
-                      {{item.age}}
+                      <text wx:else>♀</text> {{item.age}}
                       </text>
-                    <!--判断是什么会员 -->
-                    <block wx:if='{{item.vipGrade>0}}'>
-                      <text class='level'>SVIP9</text>
-                      <text class='my_VIP'>VIP</text>
-                      <text class='my_DJ'>LV90</text>
+                      <!--判断是什么会员 -->
+                      <block wx:if='{{item.vipGrade>0}}'>
+                        <text class='level'>SVIP9</text>
+                        <text class='my_VIP'>VIP</text>
+                        <text class='my_DJ'>LV90</text>
                       </block>
                     </view>
                   </view>
@@ -78,8 +76,21 @@
                   </view>
                 </view>
                 <view>
+                  <block wx:if='{{item.typeId==0}}'>
                   <button>信誉轨迹</button>
-                  <button>取消报名</button>
+                  </block>
+                  <block wx:if='{{item.typeId==1}}'>
+                    <button>置顶</button>
+                  </block>
+                  <block wx:if='{{currentTab==0}}'>
+                    <button>去评价</button>
+                  </block>
+                  <block wx:if='{{currentTab==1}}'>
+                    <button>取消报名</button>
+                  </block>
+                  <block wx:if='{{currentTab==2}}'>
+                    <button>刷新</button>
+                  </block>
                   <image src='/image/icon/copy.png'></image>
                 </view>
               </view>
@@ -90,4 +101,4 @@
       </swiper-item>
     </swiper>
   </view>
-</view> 
+</view>

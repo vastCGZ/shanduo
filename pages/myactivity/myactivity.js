@@ -21,7 +21,8 @@ Page({
       totalpage: 0,
       arrayResult: []
     }],
-    typeId:[4,5,6]
+    typeId:[4,5,6],
+    host:null
   },
   // 滚动切换标签样式
   switchTab: function (e) {
@@ -55,6 +56,7 @@ Page({
   onLoad: function () {
     var that = this;
     user = app.globalData.userInfo;
+    that.setData({host:app.host});
     wx.getLocation({
       success: function(res) {
         lat=res.latitude;
@@ -91,6 +93,7 @@ Page({
       dataType: 'json',
       method: 'GET',
       success: function (res) {
+        console.log(res);
         var data = res.data;
         if (data.success && data.result.list.length > 0) {
           that.data.activities[that.data.currentTab].totalpage = data.result.totalpage;

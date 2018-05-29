@@ -149,5 +149,8 @@
       <view>加好友</view>
       <view>发消息</view>
     </view>
+    <view class='information_footer_div' wx:if='{{false}}'>
+      <view>发消息</view>
+    </view>
   </view>
 </view>

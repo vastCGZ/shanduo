@@ -8,7 +8,6 @@ Page({
     one_2: 0,
     two_2: 5  
   },
-  //情况二:用户给评分  
   in_xin: function (e) {
     var in_xin = e.currentTarget.dataset.in;
     var one_2;

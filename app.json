@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/authorization/authorization",
     "pages/login/login",
     "pages/register/register",
     "pages/chat/chat",
@@ -22,7 +23,8 @@
     "pages/information/information",
     "pages/signup/signup",
     "pages/activityevaluation_fq/activityevaluation_fq",
-    "pages/activityevaluation_cy/activityevaluation_cy"
+    "pages/activityevaluation_cy/activityevaluation_cy",
+    "pages/credit/credit"
   ],
   "window":{
     "backgroundTextStyle":"dark",

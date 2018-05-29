@@ -1,0 +1,128 @@
+<!--pages/credit/credit.wxml-->
+<view>
+  <view class='pic_box'>
+    <view class='pic_box_content'>
+      <image src='/image/icon/portrait.png'></image>
+      <text>5分</text>
+      <text>初窥门径</text>
+    </view>
+  </view>
+  <view class='credit_body'>
+    <scroll-view scroll-x="true" class="bodyTag inline" scroll-left="{{scrollLeft}}">
+      <view class='Tag_edge inline'>
+        <text class="{{currentTab==0 ? 'userLi_actived ' : ''}}" data-current="0" bindtap="swichNav">发布</text>
+      </view>
+      <view class='Tag_edge inline'>
+        <text class="{{currentTab==1 ? 'userLi_actived ' : ''}}" data-current="1" bindtap="swichNav">参加</text>
+      </view>
+    </scroll-view>
+    <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab">
+      <swiper-item>
+        <scroll-view scroll-y="{{true}}" class='scoll-h'>
+          <view class='fq_pjr_leader'>
+            <view class='inline'>
+              <image src='/image/icon/portrait.png'></image>
+              <view class='inline'>
+                <text class='block'>小猪佩奇</text>
+                <!--判断男女是男加 sex_nan    加在sex 后面-->
+                <text class='sex'><text class='sex_on' wx:if='{{item.gender=="1"}}'>♂</text>
+                <text class='sex_on' wx:else>♀</text>24</text>
+                <!--判断是什么会员 my_VIP-->
+                <text class='level'>SVIP9</text>
+              </view>
+            </view>
+            <view class='inline'>
+              <view>
+                <view class='inline'>
+                  <text>主题:</text>
+                  <text>一起吃火锅</text>
+                </view>
+                <view class='inline'>
+                  <text>AA制</text>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view>
+            <block wx:for='{{8}}'wx:key=''>
+              <view class='fq_pjr_ul'>
+                <view class='fq_pjr_li'>
+                  <image src='/image/icon/portrait.png'></image>
+                  <view class='inline'>
+                    <view>
+                      <text>胖虎</text>
+                      <block wx:for="{{5}}" wx:key="index">  
+                        <image class='pj_aix' src='/image/icon/fabulous_2.png'></image>  
+                      </block>
+                      <block wx:for="{{5-5}}" wx:key="index">  
+                        <image class='pj_aix' src='/image/icon/fabulous_2_1.png'></image>  
+                      </block>
+                    </view>
+                    <view>
+                      <text class='col_hui'>1分钟前</text>
+                    </view>
+                  </view>
+                </view>
+                <view class='fq_cypj_li'>
+                  <text>活动整体感觉一般吧，主要是我胖虎没吃饱，没吃饱，没吃饱，没吃饱啊</text>
+                </view>
+              </view>
+            </block>
+          </view>
+        </scroll-view>
+      </swiper-item>
+      <swiper-item>
+        <scroll-view scroll-y="{{true}}" class='scoll-h'>
+          <view class='fq_pjr_leader'>
+            <view class='inline'>
+              <image src='/image/icon/portrait.png'></image>
+              <view class='inline'>
+                <text class='block'>熊猫头</text>
+                <!--判断男女是男加 sex_nan    加在sex 后面-->
+                <text class='sex'><text class='sex_on' wx:if='{{item.gender=="1"}}'>♂</text>
+                <text class='sex_on' wx:else>♀</text>24</text>
+                <!--判断是什么会员 my_VIP-->
+                <text class='level'>SVIP9</text>
+              </view>
+            </view>
+            <view class='inline'>
+              <view>
+                <view class='inline'>
+                  <text>主题:</text>
+                  <text>唱K</text>
+                </view>
+                <view class='inline'>
+                  <text>AA制</text>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view>
+            <block wx:for='{{8}}'wx:key=''>
+              <view class='fq_pjr_ul'>
+                <view class='fq_pjr_li'>
+                  <image src='/image/icon/portrait.png'></image>
+                  <view class='inline'>
+                    <view>
+                      <text>胖虎</text>
+                      <block wx:for="{{2}}" wx:key="index">  
+                        <image class='pj_aix' src='/image/icon/fabulous_2.png'></image>  
+                      </block>
+                      <block wx:for="{{5-2}}" wx:key="index">  
+                        <image class='pj_aix' src='/image/icon/fabulous_2_1.png'></image>  
+                      </block>
+                    </view>
+                    <text>发起者评价:</text>
+                  </view>
+                </view>
+                <view class='fq_cypj_li'>
+                  <text class='col_hui'>胖虎请你下次别来了好吗? 吃这么多还占着话筒不放!</text>
+                </view>
+              </view>
+            </block>
+          </view>
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>

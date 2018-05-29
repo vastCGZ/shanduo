@@ -47,6 +47,19 @@ Page({
   },
   onLoad: function () {
     var that = this;
+    // 查看是否授权
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.record']) {
+          wx.authorize({
+            scope: 'scope.record',
+            success() {
+              
+            }
+          })
+        }
+      }
+    });
     that.setData({ host: app.host })
     wx.getSystemInfo({
       success: function (res) {

@@ -37,9 +37,7 @@ Page({
   swichNav: function (e) {
     var cur = e.target.dataset.current;
     if (this.data.currentTab == cur) { return; }
-    this.setData({ currentTab: cur })
-    this.emptyData();
-    this.loadActivities();
+    this.setData({ currentTab: cur });
   },
   //判断当前滚动超过一屏时，设置tab标题滚动条。
   checkCor: function () {

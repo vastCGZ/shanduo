@@ -12,13 +12,16 @@ App({
     var that = this;
     wx.getStorage({
       key: 'localUser',
-      success: function (res) {
+      success: (res) => {
         that.globalData.userInfo = res.data;
+        that.globalData.authorize = true;
         that.globalData.userInfo.picture = that.host + '/picture/' + that.globalData.userInfo.picture
         that.initIM();
+        WxNotificationCenter.addNotification('onConnNotify', that.onConnNotify, that);
+      }, fail: () => {
+        that.userLogin();
       }
     });
-    WxNotificationCenter.addNotification('onConnNotify', that.onConnNotify, that);
   },
   initIM: function (cbOk) {
     var that = this;
@@ -60,7 +63,39 @@ App({
   },
   globalData: {
     userInfo: null,
-    actionStatus: ''
+    authorize: false,
+    actionStatus: '',
+    openId: null
   },
   host: 'https://yapinkeji.com/shanduoparty'
+  , userLogin: function () {
+    var that = this;
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+          wx.request({
+            url: that.host + '/wechat/loginWechat',
+            data: {
+              code: res.code
+            },
+            dataType:'json',
+            success: (res) => {
+              console.log(res);
+              if (res.data.success) {
+
+              } else {
+                switch (res.data.errCode) {
+                  case 10086:
+                    break;
+                  case 10087:
+                    that.globalData.openId = res.data.errCodeDes
+                    break;
+                }
+              }
+            }
+          })
+        }
+      }
+    });
+  }
 })

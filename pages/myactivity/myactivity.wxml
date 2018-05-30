@@ -3,13 +3,13 @@
   <view class='myactivity_body'>
     <scroll-view scroll-x="true" class="bodyTag inline" scroll-left="{{scrollLeft}}">
       <view class='Tag_edge inline'>
-        <text class="{{currentTab==0 ? 'userLi_actived ' : ''}}">已参加</text>
+        <text class="{{currentTab==0 ? 'userLi_actived ' : ''}}" data-current="0" bindtap='swichNav'>已参加</text>
       </view>
       <view class='Tag_edge inline'>
-        <text class="{{currentTab==1 ? 'userLi_actived ' : ''}}">已报名</text>
+        <text class="{{currentTab==1 ? 'userLi_actived ' : ''}}" data-current="1" bindtap='swichNav'>已报名</text>
       </view>
       <view class='Tag_edge inline'>
-        <text class="{{currentTab==2 ? 'userLi_actived ' : ''}}">我的</text>
+        <text class="{{currentTab==2 ? 'userLi_actived ' : ''}}" data-current="2" bindtap='swichNav'>我的</text>
       </view>
     </scroll-view>
     <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx">

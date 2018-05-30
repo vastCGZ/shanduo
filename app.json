@@ -1,6 +1,8 @@
 {
   "pages":[
+    "pages/welcome/welcome",
     "pages/index/index",
+    "pages/authorization/authorization",
     "pages/login/login",
     "pages/register/register",
     "pages/chat/chat",

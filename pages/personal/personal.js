@@ -1,5 +1,6 @@
 const app = getApp();
 var toastutil = require('../../utils/util.js');
+var WxNotificationCenter = require('../../utils/WxNotificationCenter.js');
 Page({
 
   /**
@@ -13,6 +14,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    WxNotificationCenter.addNotification('newMessageNotification', this.newMessageNotification, this);
     var localUserInfo = app.globalData.userInfo;
     if (!localUserInfo) {
       wx.redirectTo({
@@ -21,8 +23,14 @@ Page({
     } else {
       this.setData({ userInfo: localUserInfo });
     }
+  }, newMessageNotification: function () {
+    wx.showTabBarRedDot({
+      index: 1
+    });
   },
-
+  onUnload: function () {
+    WxNotificationCenter.removeNotification('newMessageNotification', this);
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

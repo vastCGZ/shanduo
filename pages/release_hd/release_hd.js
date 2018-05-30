@@ -80,14 +80,7 @@ Page({
     })
   },
   pushActivity: function () {
-    console.log('发布');
     var that = this;
-    var startDate = new Date(that.data.activity.activityStartTime);
-    var cutoffDate = new Date(that.data.activity.activityCutoffTime);
-    if (startDate.getTime() <= cutoffDate.getTime()) {
-      util.toast('活动截止时间已过');
-      return;
-    }
     wx.showLoading()
     if (this.checkInputData()) {
       wx.request({
@@ -176,6 +169,12 @@ Page({
     if (!activity.activityCutoffTime) {
       util.toast('请输入活动截止时间');
       return false;
+    }
+    var startDate = new Date(this.data.activity.activityStartTime);
+    var cutoffDate = new Date(this.data.activity.activityCutoffTime);
+    if (startDate.getTime() <= cutoffDate.getTime()) {
+      util.toast('活动截止时间已过');
+      return;
     }
     if (!activity.mode) {
       util.toast('请输入活动消费方式');

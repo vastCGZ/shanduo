@@ -185,7 +185,7 @@
             <block wx:for="{{ activitys[1].arrayResult }}" wx:key="navItems" wx:for-item="item" wx:for-index="idx">
               <view class="item-ans">
                 <view class='activity_block'>
-                  <view class='activity_people'>
+                  <view class='activity_people' data-current='{{item.userId}}' bindtap='gotoUserHomePage'>
                     <image class="img" src="{{host}}/picture/{{item.headPortraitId}}"></image>
                     <view class="expertInfo inline">
                       <view class="name">{{item.userName}}</view>
@@ -289,7 +289,7 @@
             <block wx:for="{{ activitys[2].arrayResult }}" wx:key="navItems" wx:for-item="item" wx:for-index="idx">
               <view class="item-ans">
                 <view class='activity_block'>
-                  <view class='activity_people'>
+                  <view class='activity_people' data-current='{{item.userId}}' bindtap='gotoUserHomePage'>
                     <image class="img" src="{{host}}/picture/{{item.headPortraitId}}"></image>
                     <view class="expertInfo inline">
                       <view class="name">{{item.userName}}</view>
@@ -387,14 +387,14 @@
             <block wx:for="{{ dynamics[0].arrayResult }}" wx:key="navItems" wx:for-item="item" wx:for-index="idx">
               <view class='nearby'>
                 <view class='believe'>
-                  <view class='inline believe_left'>
+                  <view class='inline believe_left' data-current='{{item.userId}}' bindtap='gotoUserHomePage'>
                     <image src='{{host}}/picture/{{item.portraitId}}'></image>
                     <view class='inline'>
                       <view>
-                        <text>{{item.initiator}}</text>
+                        <text>{{item.name}}</text>
                       </view>
                       <view>
-                        <text class='sex'><text class='sex_on' wx:if='{{item.gender=="1"}}'>♂</text>
+                        <text class='{{item.gender=="1"?"sex_nan":"sex"}}'><text class='sex_on' wx:if='{{item.gender=="1"}}'>♂</text>
                         <text class='sex_on' wx:else>♀</text>{{item.age}}</text>
                         <text class='level'>{{item.vip}}</text>
                       </view>
@@ -402,7 +402,7 @@
                   </view>
                   <view class='inline believe_right'>
                     <image class='location' src='/image/icon/location.png'></image>
-                    <text class='color_ls'>{{item.distance}}</text>
+                    <text class='color_ls'>{{item.distance}}km</text>
                   </view>
                 </view>
                 <view data-current="{{item.id}}" bindtap='gotoDynamicDetails'>
@@ -469,15 +469,17 @@
             <block wx:for="{{ dynamics[1].arrayResult }}" wx:key="navItems" wx:for-item="item" wx:for-index="idx">
               <view class='nearby'>
                 <view class='believe'>
-                  <view class='inline believe_left'>
+                  <view class='inline believe_left' data-current='{{item.userId}}' bindtap='gotoUserHomePage'>
                     <image src='{{host}}/picture/{{item.portraitId}}'></image>
                     <view class='inline'>
                       <view>
-                        <text>{{item.initiator}}</text>
+                        <text>{{item.name}}</text>
                       </view>
                       <view>
-                        <text class='sex'><text class='sex_on' wx:if='{{item.gender=="1"}}'>♂</text>
-                        <text class='sex_on' wx:else>♀</text>{{item.age}}</text>
+                        <text class='{{item.gender=="1"?"sex_nan":"sex"}}'>
+                         <text class='sex_on' wx:if='{{item.gender=="1"}}'>♂</text>
+                         <text class='sex_on' wx:else>♀</text>{{item.age}}
+                        </text>
                         <text class='level'>{{item.vip}}</text>
                       </view>
                     </view>

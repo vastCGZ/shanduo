@@ -1,6 +1,7 @@
 var app = getApp()
 var util = require('../../utils/util.js');
 var date_util = require('../../utils/date_util.js');
+var WxNotificationCenter = require('../../utils/WxNotificationCenter.js');
 Page({
   data: {
     winWidth: 0,
@@ -47,6 +48,7 @@ Page({
   },
   onLoad: function () {
     var that = this;
+    WxNotificationCenter.addNotification('newMessageNotification', that.newMessageNotification, that);
     that.setData({ host: app.host })
     wx.getSystemInfo({
       success: function (res) {
@@ -77,6 +79,13 @@ Page({
       }
     })
     that.advertise();
+  }, newMessageNotification: function () {
+    wx.showTabBarRedDot({
+      index: 1
+    });
+  },
+  onUnload: function () {
+    WxNotificationCenter.removeNotification('newMessageNotification', this);
   },
   //下拉刷新
   onPullDownRefresh: function () {
@@ -207,7 +216,6 @@ Page({
       dataType: 'json',
       success: function (res) {
         if (res.data.success) {
-          console.log(res.data);
           var array = that.data.activitys[that.data.currentTab1].arrayResult;
           that.data.activitys[that.data.currentTab1].arrayResult = array.concat(res.data.result.list);
           that.data.activitys[that.data.currentTab1].totalpage = res.data.result.totalpage;

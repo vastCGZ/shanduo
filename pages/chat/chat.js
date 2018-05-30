@@ -24,7 +24,6 @@ Page({
     webim.getRecentContactList({
       'Count': 10 //最近的会话数 ,最大为 100
     }, function (resp) {
-      console.log(resp);
       //业务处理
       if (resp.SessionItem) {
         var ids = [];
@@ -73,8 +72,9 @@ Page({
       that.setData({ recentContact: oldRecentContact });
       that.searchProfileByUserId([obj.fromAccount]);
     }
+    wx.hideTabBarRedDot({ index: 1 });
   },
-  //搜索用户
+  //获取用户资料
   searchProfileByUserId: function (ids) {
     var that = this;
     var tag_list = [

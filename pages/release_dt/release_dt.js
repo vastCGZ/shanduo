@@ -10,11 +10,11 @@ Page({
       lat: null,
       lon: null
     },
-    pictureSize:9
+    pictureSize: 9
   },
   bindViewTap: function () {
     var that = this;
-    if (that.data.avatarUrl.length==9){
+    if (that.data.avatarUrl.length == 9) {
       util.toast('最多选择9张');
       return;
     }
@@ -39,7 +39,7 @@ Page({
     wx.navigateBack();
   },
   launchDynamic: function () {
-    if (this.data.avatarUrl) {
+    if (this.data.avatarUrl.length > 0) {
       this.uploadImg(this.data.avatarUrl);
     } else if (this.data.dynamic.content) {
       this.pushDynamic();

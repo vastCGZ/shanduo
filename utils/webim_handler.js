@@ -50,7 +50,6 @@ function onMsgNotify(newMsgList) {
 
 //处理消息（私聊(包括普通消息和全员推送消息)，普通群(非直播聊天室)消息）
 function handlderMsg(msg) {
-  console.log(msg);
   var fromAccount, fromAccountNick, sessType, subType, contentHtml;
   fromAccount = msg.getFromAccount();
   if (!fromAccount) {

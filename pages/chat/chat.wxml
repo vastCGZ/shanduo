@@ -3,7 +3,7 @@
     <view class='release_header'>
       <text class='left_text inline'></text>
       <text class='center_text inline'>聊天</text>
-      <image src='/image/icon/plus.png' class='right_text inline'></image>
+      <image src='/image/icon/activity_1.png' class='right_text inline'></image>
     </view>
   </view>
   <view class='Chatting_body'>

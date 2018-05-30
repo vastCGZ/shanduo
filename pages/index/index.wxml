@@ -1,11 +1,6 @@
 <!--index.wxml-->
 <view>
   <view class="container">
-    <view>
-      <view bindtap="click">
-        <image class='img_special' src='/image/icon/scan.png'></image>
-      </view>
-    </view>
     <view class="swiper-tab">
       <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">活动</view>
       <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">动态</view>
@@ -50,7 +45,7 @@
                       <view class="name">{{item.userName}}</view>
                       <view class="tag">
                         <!--判断男女是男加 sex_nan    加在sex 后面-->
-                        <text class='sex'><text class='sex_on' wx:if='{{item.gender=="1"}}'>♂</text>
+                        <text class='sex {{item.gender=="1"?"sex_nan":""}}'><text class='sex_on sex_off' wx:if='{{item.gender=="1"}}'>♂</text>
                         <text class='sex_on' wx:else>♀</text>{{item.age}}</text>
 
                         <!--判断是什么会员 -->
@@ -155,7 +150,7 @@
     <!-- 活动 -->
     <swiper-item>
       <view>
-        <swiper style='height:350rpx' indicator-dots='true' autoplay='true' interval='4000' indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#fff" circular="true">
+        <swiper class='broadcast' indicator-dots='true' autoplay='true' interval='4000' indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#fff" circular="true" previous-margin='100rpx' next-margin='100rpx' current>
           <block wx:for="{{advertise}}" wx:key="navItems">
             <swiper-item>
               <image style='width: 100%; height: 100%;' src='{{host}}/picture/{{item.picture}}'></image>
@@ -257,7 +252,7 @@
     <!-- 活动 -->
     <swiper-item>
       <view>
-        <swiper style='height:350rpx' indicator-dots='true' autoplay='true' interval='4000' indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#fff" circular="true">
+        <swiper class='broadcast' indicator-dots='true' autoplay='true' interval='4000' indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#fff" circular="true" previous-margin='100rpx' next-margin='100rpx' current>
           <block wx:for="{{advertise}}" wx:key="navItems">
             <swiper-item>
               <image style='width: 100%; height: 100%;' src='{{host}}/picture/{{item.picture}}'></image>
@@ -355,14 +350,14 @@
     <swiper-item>
     </swiper-item>
   </swiper>
-  <swiper wx:if="{{currentTab2 == 0 && currentTab == 1}}" current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange" style='height:{{430+455*(dynamics[0].arrayResult.length)}}rpx'>
+  <swiper wx:if="{{currentTab2 == 0 && currentTab == 1}}" current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange" style='height:{{430+465*(dynamics[0].arrayResult.length)}}rpx'>
     <!-- 活动 -->
     <swiper-item>
     </swiper-item>
     <!-- 动态 -->
     <swiper-item class="dynamic">
       <view>
-        <swiper style='height:350rpx' indicator-dots='true' autoplay='true' interval='4000' indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#fff" circular="true">
+        <swiper class='broadcast' indicator-dots='true' autoplay='true' interval='4000' indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#fff" circular="true" previous-margin='100rpx' next-margin='100rpx' current>
           <block wx:for="{{advertise}}" wx:key="navItems">
             <swiper-item>
               <image style='width: 100%; height: 100%;' src='{{host}}/picture/{{item.picture}}'></image>
@@ -392,8 +387,10 @@
                         <text>{{item.initiator}}</text>
                       </view>
                       <view>
-                        <text class='sex'><text class='sex_on' wx:if='{{item.gender=="1"}}'>♂</text>
-                        <text class='sex_on' wx:else>♀</text>{{item.age}}</text>
+                        <view class='sex'>
+                          <text class='sex_on' wx:if='{{item.gender=="1"}}'>♂</text>
+                          <text class='sex_on' wx:else>♀</text>{{item.age}}
+                        </view> 
                         <text class='level'>{{item.vip}}</text>
                       </view>
                     </view>
@@ -435,14 +432,14 @@
       </swiper>
     </swiper-item>
   </swiper>
-  <swiper wx:if="{{currentTab2 == 1 && currentTab == 1}}" current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange" style='height:{{430+455*(dynamics[1].arrayResult.length)}}rpx'>
+  <swiper wx:if="{{currentTab2 == 1 && currentTab == 1}}" current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange" style='height:{{430+465*(dynamics[1].arrayResult.length)}}rpx'>
     <!-- 活动 -->
     <swiper-item>
     </swiper-item>
     <!-- 动态 -->
     <swiper-item class="dynamic">
       <view>
-        <swiper style='height:350rpx' indicator-dots='true' autoplay='true' interval='4000' indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#fff" circular="true">
+        <swiper class='broadcast' indicator-dots='true' autoplay='true' interval='4000' indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#fff" circular="true" previous-margin='100rpx' next-margin='100rpx' current>
           <block wx:for="{{advertise}}" wx:key="navItems">
             <swiper-item>
               <image style='width: 100%; height: 100%;' src='{{host}}/picture/{{item.picture}}'></image>

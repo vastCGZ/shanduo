@@ -1,0 +1,64 @@
+/* pages/security/security.wxss */
+page {
+  height: 100%;
+}
+
+.container {
+  align-items: stretch;
+}
+
+.bg_body {
+  background-color: #f7f8ff;
+  height: 100%;
+}
+
+.bg_body>view {
+  background-color: #fff;
+  padding-left: 30rpx;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  height: 100rpx;
+  margin-top: 1px;
+}
+.nav:nth-child(3) {
+  margin-top: 5px;
+}
+
+.nav>view {
+  display: flex;
+  width: 50%;
+  line-height: 100%;
+  align-self: center;
+}
+
+.nav>.nav_left>view {
+  align-self: center;
+}
+
+.nav>.nav_left>view>text {
+  color: #333;
+}
+
+/*靠右*/
+
+.nav>.nav_right {
+  justify-content: flex-end;
+  align-self: center;
+}
+
+.nav>.nav_right>image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+.nav>.nav_right>text {
+  color: #999;
+  margin-right: 20rpx;
+}
+.level, .sex{
+  width: 70rpx;
+}

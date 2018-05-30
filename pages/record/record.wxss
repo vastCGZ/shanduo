@@ -1,0 +1,54 @@
+/* pages/record/record.wxss */
+page {
+  height: 100%;
+}
+
+.container {
+  align-items: stretch;
+}
+
+.bg_body {
+  background-color: #f7f8ff;
+  height: 100%;
+}
+
+.bg_body>view {
+  background-color: #fff;
+}
+
+.information{
+  display: flex;
+  height: 160rpx;
+  margin-top: 2px;
+}
+.information>view{
+  display: flex;
+  align-items:center;
+  margin-left: 20rpx;
+}
+.information>view:nth-child(2){
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+}
+.information>view:nth-child(3){
+  flex-direction:column;
+  align-items:flex-end;
+  justify-content:center;
+  flex-grow: 1;
+  margin-right: 20rpx;
+}
+.information>view>image{
+  width: 100rpx;
+  height: 100rpx;
+  border: 1rpx solid #405CFF;
+  border-radius: 50%;
+}
+.information>view>text{
+  font-size: 32rpx;
+  color: #999;
+}
+.information>view>text:first-child{
+  font-size: 36rpx;
+  color: #333;
+}

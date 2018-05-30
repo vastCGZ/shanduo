@@ -1,0 +1,54 @@
+/* pages/modify_mm/modify_mm.wxss */
+page {
+  height: 100%;
+}
+
+.container {
+  align-items: stretch;
+}
+
+.bg_body {
+  background-color: #fff;
+  height: 100%;
+  text-align: center;
+}
+
+.bg_body>view {
+  background-color: #fff;
+  padding-left: 30rpx;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100rpx;
+  border-top: 1px solid #f7f8ff;
+  line-height: 100rpx;
+}
+.nav:nth-child(3) {
+  border-bottom: 5px solid #f7f8ff;
+}
+.nav>view:last-child{
+  width: 80%;
+  height: 100rpx;
+  text-align: left;
+  line-height: 100rpx;
+}
+.nav>view>input{
+  height: 100%;
+  padding-left: 20rpx;
+}
+.psection{
+  font-size: 26rpx;
+}
+.btn{
+  display: inline-block;
+  width: 80%;
+  height: 95rpx;
+  line-height: 95rpx;
+  background-color: #5c75ff;
+  border-radius: 50rpx;
+  margin-top: 30rpx;
+  color: #fff;
+  font-size: 34rpx;
+}

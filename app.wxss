@@ -56,11 +56,15 @@ text {
 .my_DJ {
   background-color: #5175ff;
 }
-
+/*女*/
 .sex_on {
   background-color: #ff9bf0;
   color: #fff;
   margin-right: 5rpx;
+}
+/*男*/
+.sex_off {
+  background-color: #029fd9;
 }
 
 .flo_left {
@@ -107,7 +111,11 @@ text {
 .believe>.believe_left>view {
   align-self: center;
 }
-
+.believe>.believe_left>view>view:last-child>view>.sex_on{
+  display: inline-block;
+  height: 100%;
+  line-height: 28rpx;
+}
 /*头像*/
 
 .believe>.believe_left>image {
@@ -185,11 +193,7 @@ form {
   height: 180rpx;
 }
 
-/*男*/
 
-.sex_nan {
-  background-color: #029fd9;
-}
 /*页脚*/
 
 .footer {

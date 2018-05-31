@@ -100,7 +100,7 @@
                     </view>
                   </view>
                   <view>
-                    <button>信誉轨迹</button>
+                    <button bindtap='gotoCreditCenterView'>信誉轨迹</button>
                     <!--判断活动过期加 disabled -->
                     <button class='disabled' data-current="{{item.id}}" bindtap='gotoApplyView'>去报名</button>
                     <image src='/image/icon/copy.png'></image>
@@ -238,7 +238,7 @@
                     </view>
                   </view>
                   <view>
-                    <button>信誉轨迹</button>
+                    <button bindtap='gotoCreditCenterView'>信誉轨迹</button>
                     <button data-current="{{item.id}}" bindtap='gotoApplyView'>去报名</button>
                     <image src='/image/icon/copy.png'></image>
                   </view>
@@ -342,7 +342,7 @@
                     </view>
                   </view>
                   <view>
-                    <button>信誉轨迹</button>
+                    <button bindtap='gotoCreditCenterView'>信誉轨迹</button>
                     <button data-current="{{item.id}}" bindtap='gotoApplyView'>去报名</button>
                     <image src='/image/icon/copy.png'></image>
                   </view>

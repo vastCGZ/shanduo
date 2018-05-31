@@ -1,6 +1,6 @@
 // pages/signup/signup.js
 const app = getApp();
-var util=require('../../utils/util.js');
+var util = require('../../utils/util.js');
 var activityId;
 Page({
 
@@ -8,9 +8,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    host:null,
-    activity:null,
-    participant:[]
+    host: null,
+    activity: null,
+    participant: [],
+    joinActivity: 0
   },
 
   /**
@@ -18,7 +19,7 @@ Page({
    */
   onLoad: function (options) {
     activityId = options.activityId;
-    this.setData({host:app.host});
+    this.setData({ host: app.host });
     this.loadActivityDetail();
   },
 
@@ -80,30 +81,31 @@ Page({
       dataType: 'json',
       url: app.host + '/activity/oneActivity',
       success: (res) => {
-        console.log(res);
-        if(res.data.success){
-          that.setData({ participant: res.data.result.resultList, activity: res.data.result.activityInfo})
+        if (res.data.success) {
+          that.setData({ participant: res.data.result.resultList, activity: res.data.result.activityInfo, joinActivity: res.data.result.joinActivity })
         }
       }
     })
   }
-  , confirmation:function(){
+  , confirmation: function () {
     wx.request({
-      data:{
+      data: {
         token: app.globalData.userInfo.token,
-        activityId:activityId,
-        type:1
+        activityId: activityId,
+        type: 1
       },
-      dataType:'json',
-      url: app.host +'/activity/joinActivities',
-      success:(res)=>{
-        if(res.data.success){
+      dataType: 'json',
+      url: app.host + '/activity/joinActivities',
+      success: (res) => {
+        if (res.data.success) {
           util.toast(res.data.result);
-          setTimeout(function(){
+          setTimeout(function () {
             wx.navigateBack();
-          },1000);
+          }, 1000);
         }
       }
     })
+  }, cancelRegistration: function () {
+
   }
 })

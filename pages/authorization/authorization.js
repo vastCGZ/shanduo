@@ -1,4 +1,4 @@
-const app=getApp();
+const app = getApp();
 Page({
 
   /**
@@ -21,18 +21,31 @@ Page({
   onUnload: function () {
 
   }, bindGetUserInfo: function (e) {
+    var that = this;
     var errMsg = e.detail.errMsg.split(':')[1];
     if ("ok" === errMsg) {
+      app.globalData.tmpUser.nickName = e.detail.userInfo.nickName;
+      app.globalData.tmpUser.gender = e.detail.userInfo.gender == 1 ? 1 : 0
       wx.request({
-        data:{
-          openId: app.globalData.openId,
+        data: {
+          openId: app.globalData.tmpUser.openId,
           encryptedData: e.detail.encryptedData,
           iv: e.detail.iv
         },
-        dataType:'json',
-        url: app.host +'/wechat/getOpenid',
-        success:(res)=>{
-          console.log(res);
+        dataType: 'json',
+        url: app.host + '/wechat/getOpenid',
+        success: (res) => {
+          if (res.data.success) {
+            wx.setStorage({
+              key: 'localUser',
+              data: res.data.result
+            })
+            app.onLaunch();
+          } else {
+            if (10086 == res.data.errCode) {
+              app.globalData.tmpUser.unionId = res.data.errCodeDes;
+            }
+          }
         }
       })
       wx.switchTab({

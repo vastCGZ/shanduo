@@ -1,5 +1,7 @@
 const app = getApp();
 var date_util = require('../../utils/date_util.js');
+var util = require('../../utils/util.js');
+var webimhandler = require('../../utils/webim_handler.js');
 var otherUserId;
 Page({
 
@@ -93,6 +95,7 @@ Page({
       },
       url: app.host + '/jattention/userdetails',
       success: (res) => {
+        console.log(res);
         if (res.data.success) {
           that.setData({ otherUser: res.data.result })
         }
@@ -155,8 +158,6 @@ Page({
       },
       dataType: 'json',
       success: function (res) {
-        console.log(res);
-        //createDate
         if (res.data.success) {
           var newData = res.data.result.list;
           if (newData.length > 0) {
@@ -242,5 +243,23 @@ Page({
       }
     }
 
+  }, gotoSessionView: function (e) {
+    console.log(e);
+    var data = e.currentTarget.dataset.current.split(',');
+    wx.navigateTo({
+      url: '/pages/interface/interface?toUserId=' + data[0] + '&toUserName=' + data[1] + ''
+    })
+  },
+  addFriend:function(){
+    var localUser = app.globalData.userInfo;
+    if (localUser){
+      webimhandler.addFriend(localUser.userId, otherUserId, (res)=>{
+        console.log(res);
+      }, (res)=>{
+        console.log(res);
+      });
+    }else{
+      util.toast('登录后操作');
+    }
   }
 })

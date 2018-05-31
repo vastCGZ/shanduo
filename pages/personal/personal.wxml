@@ -15,7 +15,7 @@
           <!--判断是VIP还是SVIP如果是VIP加 my_VIP-->
             <!--还需判断是否是VIP或者SVIP如果不是 隐藏  -->
             <block wx:if='{{userInfo.vip>0}}'>
-            <text class='level'>SVIP2</text>
+            <text class='level'>{{userInfo.vip}}</text>
             </block>
           </view>
         </view>
@@ -48,7 +48,7 @@
         <image src='/image/icon/icon-2.png'></image>
       </view>
     </view>
-    <view class='nav'>
+    <view class='nav' bindtap='gotoCreditCenterView'>
       <view class='inline nav_left'>
         <image src='/image/icon/icon-8.png'></image>
         <view>

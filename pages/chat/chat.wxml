@@ -7,7 +7,7 @@
     </view>
   </view>
   <view class='Chatting_body'>
-    <view class='body_ul container'>
+    <view class='body_ul container' wx:if='{{recentContact.length>0}}'>
       <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{recentContact}}" wx:key="navItems"  wx:for-item="item" wx:for-index="index">
         <view class="content">
           <view class='body_li believe' data-current="{{item.To_Account}},{{item.Nick}}" bindtap='gotoSessionView'>
@@ -16,9 +16,9 @@
               <view class='inline'>
                 <view>
                   <!--判断是否是VIP如果是加 col_huang  -->
-                  <text class='col_huang'>{{item.Nick}}</text>
+                  <text class='col_huang'>{{item.Nick?item.Nick:"临时会话"}}</text>
                   <!--判断是男是女是男加 sex_nan  -->
-                  <text class='sex'>{{item.Gender}}{{item.age}}</text>
+                  <text class='sex'>{{item.Gender?item.Gender:"女"}}{{item.age}}</text>
                   <!--判断是VIP还是SVIP如果是VIP加 my_VIP-->
                   <!--还需判断是否是VIP或者SVIP如果不是 隐藏  -->
                   <text wx:if='{{ false }}' class='level'>{{item.level}}</text>
@@ -35,8 +35,9 @@
             </view>
           </view>
         </view>
-        <view class="del" catchtap="del" data-index="{{index}},{{item.To_Account}}">删除</view>
+        <view class="del" catchtap="del" data-index="{{index}},{{item.To_Account}},{{item.Type}}">删除</view>
       </view> 
     </view>
+    <view wx:else>没人撩你</view>
   </view>
 </view>

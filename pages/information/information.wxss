@@ -116,3 +116,9 @@
   line-height: 100rpx;
   text-align: center;
 }
+.information_footer>.information_footer_div>view{
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+}

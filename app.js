@@ -65,7 +65,12 @@ App({
     userInfo: null,
     authorize: false,
     actionStatus: '',
-    openId: null
+    tmpUser: {
+      openId: null,
+      unionId: null,
+      nickName: null,
+      gender: 0
+    }
   },
   host: 'https://yapinkeji.com/shanduoparty'
   , userLogin: function () {
@@ -78,17 +83,40 @@ App({
             data: {
               code: res.code
             },
-            dataType:'json',
+            dataType: 'json',
             success: (res) => {
-              console.log(res);
               if (res.data.success) {
-
+                wx.setStorage({
+                  key: 'localUser',
+                  data: res.data.result
+                })
+                that.onLaunch();
               } else {
                 switch (res.data.errCode) {
                   case 10086:
+                    var jsonVal = JSON.parse(res.data.errCodeDes);
+                    that.globalData.tmpUser.openId = jsonVal.openId;
+                    that.globalData.tmpUser.unionId = jsonVal.unionId;
+                    that.globalData.authorize = true;
+                    wx.getSetting({
+                      success: function (res) {
+                        if (res.authSetting['scope.userInfo']) {
+                          wx.getUserInfo({
+                            withCredentials:false,
+                            success:(res)=>{
+                              var errMsg = res.errMsg.split(':')[1];
+                              if ("ok" === errMsg) {
+                                that.globalData.tmpUser.nickName = res.userInfo.nickName;
+                                that.globalData.tmpUser.gender = res.userInfo.gender == 1 ? 1 : 0
+                              }
+                            }
+                          });
+                        }
+                      }
+                    });
                     break;
                   case 10087:
-                    that.globalData.openId = res.data.errCodeDes
+                    that.globalData.tmpUser.openId = res.data.errCodeDes
                     break;
                 }
               }

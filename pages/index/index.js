@@ -161,7 +161,6 @@ Page({
   //滑动切换动态内的Tab
   bindChange2: function (e) {
     var that = this;
-    console.log(2);
     that.setData({ currentTab2: e.detail.current });
     that.emptyData();
     that.getDynamicData();
@@ -366,8 +365,18 @@ Page({
   }
   , gotoUserHomePage: function (e) {
     var userId = e.currentTarget.dataset.current;
+    if (userId == app.globalData.userInfo.userId) {
+      wx.switchTab({
+        url: '/pages/personal/personal'
+      })
+    }else{
     wx.navigateTo({
-      url: '/pages/information/information?otherUserId=' + userId + '',
+      url: '/pages/information/information?otherUserId=' + userId + ''
     })
+    }
+  }, gotoCreditCenterView: function () {
+    wx.navigateTo({
+      url: '/pages/credit/credit'
+    });
   }
 }) 

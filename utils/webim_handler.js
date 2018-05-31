@@ -50,6 +50,7 @@ function onMsgNotify(newMsgList) {
 
 //处理消息（私聊(包括普通消息和全员推送消息)，普通群(非直播聊天室)消息）
 function handlderMsg(msg) {
+  console.log(msg);
   var fromAccount, fromAccountNick, sessType, subType, contentHtml;
   fromAccount = msg.getFromAccount();
   if (!fromAccount) {
@@ -87,6 +88,7 @@ function handlderMsg(msg) {
           WxNotificationCenter.postNotificationName('newMessageNotification', {
             fromAccount: fromAccount,
             content: contentHtml,
+            Type:1,
             time: util.getLocalTime(msg.getTime())
           });
           break;
@@ -112,14 +114,14 @@ function sdkLogin(userInfo, listeners, options, cbOk) {
         }, {
           "Tag": "Tag_Profile_IM_Image",
           "Value": userInfo.headimg
-        },{
-            "Tag": "Tag_Profile_IM_Gender",
-            "Value": userInfo.gender == "0" ? "Gender_Type_Female" :"Gender_Type_Male"
+        }, {
+          "Tag": "Tag_Profile_IM_Gender",
+          "Value": userInfo.gender == "0" ? "Gender_Type_Female" : "Gender_Type_Male"
         }]
       }, function (resp) {
         //applyJoinBigGroup(avChatRoomId);//加入大群
         console.log(resp);
-      },function(error){
+      }, function (error) {
         console.log(error);
       })
       //hideDiscussForm();//隐藏评论表单
@@ -1051,6 +1053,7 @@ function uploadFileByBase64(digest, size, binary) {
     }
   );
 }
+//发送文件消息
 function sendFile(file, fileName) {
   if (!selToID) {
     alert("您还没有好友，暂不能聊天");
@@ -1079,6 +1082,62 @@ function sendFile(file, fileName) {
   }, function (err) {
     alert(err.ErrorInfo);
   });
+}
+//加好友
+function addFriend(fromAccount, toAccount, cbOk, cbErr) {
+  var add_friend_item = [
+    {
+      'To_Account': toAccount,
+      "AddSource": "AddSource_Type_Unknow",
+      "AddWording": '你好，我们做朋友吧' //加好友附言，可为空
+    }
+  ];
+  var options = {
+    'From_Account': fromAccount,
+    'AddFriendItem': add_friend_item
+  };
+  webim.applyAddFriend(options, function (res) {
+    cbOk && cbOk(res);
+  }, function (res) {
+    cbErr && cbErr(res);
+  });
+}
+//拉取申请好友请求
+function cloneFriendRequest(fromAccount, cbOk, cbErr) {
+  var options = {
+    'From_Account': fromAccount,
+    'PendencyType': 'Pendency_Type_ComeIn',
+    'StartTime': 0,
+    'MaxLimited': 10,
+    'LastSequence': 0
+  };
+  webim.getPendency(options, function (res) {
+    cbOk && cbOk(res);
+  }, function (res) {
+    cbErr && cbErr(res);
+  });
+}
+//获取好友列表
+function getFriendList(fromAccount, cbOk, cbErr) {
+  var options = {
+    'From_Account': fromAccount,
+    'TimeStamp': 0,
+    'StartIndex': 0,
+    'GetCount': 10,
+    'LastStandardSequence': 0,
+    "TagList":
+    [
+      "Tag_Profile_IM_Nick",
+      "Tag_SNS_IM_Remark"
+    ]
+  };
+  webim.getAllFriend(
+    options,
+    function (resp) {
+      cbOk && cbOk(resp);
+    }, function (res) {
+      cbErr && cbErr(res);
+    });
 }
 module.exports = {
   init: init,
@@ -1132,5 +1191,8 @@ module.exports = {
   showGroupSystemMsg: showGroupSystemMsg,
   getLastC2CHistoryMsgs: getLastC2CHistoryMsgs,
   uploadPic: uploadPic,
-  onConnNotify: onConnNotify
+  onConnNotify: onConnNotify,
+  addFriend: addFriend,
+  cloneFriendRequest: cloneFriendRequest,
+  getFriendList: getFriendList
 };

@@ -97,9 +97,7 @@ Page({
             title: res.data.result
           });
           setTimeout(function () {
-            wx.switchTab({
-              url: '/pages/launch/launch'
-            })
+            wx.navigateBack();
           }, 500)
         }
       }, fail: (res) => {

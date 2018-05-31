@@ -67,12 +67,12 @@ Page({
       newItem.To_Account = obj.fromAccount;
       newItem.isTouchMove = false;
       newItem.UnreadMsgCount = 1;
+      newItem.Type = obj.Type;
       var oldRecentContact = that.data.recentContact;
       oldRecentContact.push(newItem);
       that.setData({ recentContact: oldRecentContact });
       that.searchProfileByUserId([obj.fromAccount]);
     }
-    wx.hideTabBarRedDot({ index: 1 });
   },
   //获取用户资料
   searchProfileByUserId: function (ids) {
@@ -205,10 +205,10 @@ Page({
   del: function (e) {
     var that = this;
     var val = e.currentTarget.dataset.index.split(',');
-    //sess_type == 'C2C' ? 1 : 2;
+    console.log(val);
     var data = {
       'To_Account': val[1],
-      'chatType': 1
+      'chatType': parseInt(val[2])
     }
     webim.deleteChat(
       data,
@@ -217,6 +217,9 @@ Page({
         that.setData({
           recentContact: that.data.recentContact
         })
+        if (that.data.recentContact.length == 0) {
+          wx.hideTabBarRedDot({ index: 1 });
+        }
       }
     );
   }

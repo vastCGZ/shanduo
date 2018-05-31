@@ -196,9 +196,12 @@
     </swiper>
   </view>
   <view class='information_footer'>
-    <view>
-      <view>加好友</view>
-      <view>发消息</view>
+    <view class='information_footer_div' wx:if='{{otherUser.isAttention}}'>
+      <view data-current="{{otherUser.userId}},{{otherUser.name}}" bindtap='gotoSessionView'>发消息</view>
+    </view>
+    <view wx:else>
+      <view bindtap='addFriend'>加好友</view>
+      <view data-current="{{otherUser.userId}},{{otherUser.name}}" bindtap='gotoSessionView'>临时会话</view>
     </view>
   </view>
 </view>

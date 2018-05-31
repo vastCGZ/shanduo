@@ -60,7 +60,7 @@ swiper-item {
   position: static;
 }
 .release_section{
-  height: 67%;
+  /* height: 67%; */
 }
 .release_section>view{
   border-bottom: 1rpx solid #eaeaea;
@@ -125,9 +125,9 @@ swiper-item {
   vertical-align: middle;
 }
 /*详细地址*/
-.release_section>.address{
+ .release_section>.address{
   border-bottom:8rpx solid #eaeaea;
-}
+} 
 .release_section>.address>textarea{
   height: 100rpx;
 }
@@ -138,15 +138,17 @@ swiper-item {
 /*底部*/
 
 .release_footer{
-  height: 33%;
-  background-color: #fff;
+  height: 100rpx; 
   text-align: center;
+  line-height: 100rpx;
 }
 .release_footer>view{
+  width: 200rpx;
+  height: 60rpx;
+  line-height: 60rpx;
   display: inline-block;
   background-color: #4455de;
   border-radius: 50rpx;
-  margin: 25% auto auto;
 }
 .release_footer>view:nth-child(1){
   margin-right: 30rpx;

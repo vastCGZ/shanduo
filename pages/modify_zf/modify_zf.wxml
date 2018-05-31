@@ -1,0 +1,79 @@
+<!--pages/modify_zf/modify_zf.wxml-->
+<!--判断是哪个活动的置顶  -->
+    <view wx:if='{{currentTab==2}}' hidden='{{true}}' class='payment'>
+      <view>
+      <!--标题  -->
+        <view class='payment_title'>
+            <image src='/image/icon/off.png'></image >
+            <text>普通置顶</text>
+        </view>
+        <!--支付详情  -->
+        <view class='payment_details'>
+          <view class='details_money'>
+            <view>
+              <text class='col_lan details_da'>2</text>
+              <text class='col_lan'>元</text>
+              <text>/12小时</text>
+            </view>
+          </view>
+          <view class='details_payment'>
+            <view>
+              <image src='/image/icon/copy_10.png'></image>
+              <text>余额支付</text>
+            </view>
+          </view>
+          <view class='details_payment'>
+            <view>
+              <image src='/image/icon/copy_2_1.png'></image>
+              <text class='col_hui'>微信支付</text>
+            </view>
+          </view>
+          <view class='details_payment'>
+            <view>
+              <image src='/image/icon/copy_9.png'></image>
+              <text class='col_hui'>支付宝支付</text>
+            </view>
+          </view>
+          <view class='details_upgrade'>
+            <view>
+              <text class='col_hui'>开通置顶VIP费用低至1.5元！</text>
+              <text class='col_lan details_xiao'>去开通>></text>
+            </view>
+          </view>
+        </view>
+        <!--确认,取消  -->
+        <view class='payment_whether'>
+          <button class='payment_cancel'>取消</button>
+          <button class='payment_confirm'>确认支付</button>
+        </view>
+      </view>
+    </view>
+    <!--判断是否确认支付  -->
+    <!--wx:if='{{currentTab==2}}' hidden='{{true}}'   -->
+    <view class='pwd_payment'>
+      <view>
+      <!--标题  -->
+        <view class='payment_title'>
+            <image src='/image/icon/off.png'></image >
+            <text>支付密码</text>
+        </view>
+        <!--支付密码  -->
+        <view class='payment_pwd'>
+          <view>
+            <text class='col_hui'>请输入六位支付密码</text>
+          </view>
+          <view class="payPass_box_m">  
+              <view class="payPass_box_m_in">  
+                  <view class="payPass_box_m_in_in" wx:for="{{6}}" wx:key="KeyItem">  
+                      <input type="number" maxlength="1" password="{{true}}"/>  
+                  </view>  
+              </view> 
+          </view>
+        </view>
+        <!--确认,返回  -->
+        <view class='payment_whether'>
+          <button class='payment_cancel'>返回</button>
+          <button class='payment_confirm'>确认</button>
+        </view>
+      </view>
+    </view>

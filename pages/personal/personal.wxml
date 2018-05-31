@@ -1,31 +1,44 @@
 <view class='container'>
   <view class='bg_body'>
-    <view class='believe'>
-      <view class='inline believe_left' bindtap='gotoBaseSettingView'>
-        <image src='{{userInfo.picture}}'></image>
-        <view class='inline'>
+    <view class='pic_box'>
+      <view class='pic_box_content'>
+        <view bindtap='gotoBaseSettingView'>
+          <image src='/image/icon/portrait.png'></image>
           <view>
-          <!--判断是否是VIP如果是加 col_huang  -->
             <text>{{userInfo.name}}</text>
-          </view>
-          <view>
-          <!--判断是男是女是男加 sex_nan  -->
             <text class='{{userInfo.gender=="0"?"sex":"sex_nan"}}' wx:if='{{userInfo.gender=="0"}}'>♀{{userInfo.age}}</text>
             <text class='{{userInfo.gender=="0"?"sex":"sex_nan"}}' wx:else>♂{{userInfo.age}}</text>
-          <!--判断是VIP还是SVIP如果是VIP加 my_VIP-->
-            <!--还需判断是否是VIP或者SVIP如果不是 隐藏  -->
+          </view>
+          <text>闪多号：{{userInfo.userId}}</text>
+          <view>
             <block wx:if='{{userInfo.vip>0}}'>
             <text class='level'>{{userInfo.vip}}</text>
             </block>
+            <text class='my_DJ'>LV90</text>
+          </view>
+        </view>
+        <view>
+          <view class='inline'>
+            <text class='text_da'>1</text>
+            <text class='text_xiao'>好友</text>
+          </view>
+          <view class='inline'>
+            <text class='text_da'>5</text>
+            <text class='text_xiao'>活动</text>
+          </view>
+          <view class='inline'>
+            <text class='text_da'>10</text>
+            <text class='text_xiao'>动态</text>
           </view>
         </view>
       </view>
-      <view class='inline believe_right'>
+      <image src='/image/icon/nv_1.png'></image>
+    </view>
+      <!-- <view class='inline believe_right'>
         <view bindtap='signin'>
           <text>签到</text>
         </view>
-      </view>
-    </view>
+      </view> -->
     <view class='nav' bindtap='gotoMyActivityView'>
       <view class='inline nav_left'>
         <image src='/image/icon/icon-5.png'></image>
@@ -34,7 +47,7 @@
         </view>
       </view>
       <view class='inline nav_right'>
-        <image src='/image/icon/icon-2.png'></image>
+        <image src='/image/icon/icon-0.png'></image>
       </view>
     </view>
     <view class='nav' bindtap='gotoMydynamicView'>
@@ -45,7 +58,7 @@
         </view>
       </view>
       <view class='inline nav_right'>
-        <image src='/image/icon/icon-2.png'></image>
+        <image src='/image/icon/icon-0.png'></image>
       </view>
     </view>
     <view class='nav' bindtap='gotoCreditCenterView'>
@@ -56,7 +69,7 @@
         </view>
       </view>
       <view class='inline nav_right'>
-        <image src='/image/icon/icon-2.png'></image>
+        <image src='/image/icon/icon-0.png'></image>
       </view>
     </view>
     <view class='nav' bindtap='gotoMyWalletView'>
@@ -67,7 +80,7 @@
         </view>
       </view>
       <view class='inline nav_right'>
-        <image src='/image/icon/icon-2.png'></image>
+        <image src='/image/icon/icon-0.png'></image>
       </view>
     </view>
     <view class='nav' bindtap='gotoMemberCenterView'>
@@ -78,7 +91,7 @@
         </view>
       </view>
       <view class='inline nav_right'>
-        <image src='/image/icon/icon-2.png'></image>
+        <image src='/image/icon/icon-0.png'></image>
       </view>
     </view>
     <view class='nav' bindtap='getoSettingView'> 
@@ -89,7 +102,7 @@
         </view>
       </view>
       <view class='inline nav_right'>
-        <image src='/image/icon/icon-2.png'></image>
+        <image src='/image/icon/icon-0.png'></image>
       </view>
     </view>
   </view>

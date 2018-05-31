@@ -1,0 +1,24 @@
+<!--pages/about/about.wxml-->
+<view class='container'>
+  <view class='bg_body'>
+    <view class='information'>
+      <view>
+          <image src='/image/icon/icon-0.png'></image>
+      </view>
+      <view>
+        <text class='block'>闪多 Shan Duo</text>
+        <text class='block'>版本: 1.0</text>
+      </view>
+    </view>
+    <view class='nav'>
+      <view class='inline nav_left'>
+        <view>
+          <text>简介</text>
+        </view>
+      </view>
+      <view class='inline nav_right'>
+        <image src='/image/icon/icon-0.png'></image>
+      </view>
+    </view>
+  </view>
+</view>

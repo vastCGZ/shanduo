@@ -1,0 +1,18 @@
+<!--pages/record/record.wxml-->
+<view class='container'>
+  <view class='bg_body'>
+    <view class='information'>
+      <view>
+          <image src='/image/icon/icon-0.png'></image>
+      </view>
+      <view>
+        <text class='block'>开通VIP会员</text>
+        <text class='block'>5月14日 17:48</text>
+      </view>
+      <view>
+          <text>-24.6元</text>
+      </view>
+    </view>
+  </view>
+</view>
+

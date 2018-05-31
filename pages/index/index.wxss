@@ -24,24 +24,26 @@ page{
 
 .swiper-tab {
   text-align: center;
-  border: 1rpx solid #777;
-  width: 300rpx;
+  /* border: 1rpx solid #777; */
+  width: 200rpx;
   height: 50rpx;
   line-height: 50rpx;
-  border-radius: 50rpx;
+  /* border-radius: 50rpx; */
 }
 
 /*选项卡动态，活动标题元素*/
-
+ 
 .swiper-tab-list {
   display: inline-block;
   background-color: #fff;
-  border-radius: 50rpx;
+  /* border-radius: 50rpx; */
   width: 50%;
-  color: #000;
+  color: #999;
+  font-size: 32rpx;
+  text-decoration: underline;
 }
 
-.swiper-tab-list:nth-child(1) {
+/* .swiper-tab-list:nth-child(1) {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
 }
@@ -49,13 +51,14 @@ page{
 .swiper-tab-list:nth-child(2) {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
-}
+}  */
 
 /*选项卡动态，活动标题选中状态*/
 
 .on {
-  color: #fff;
-  background-color: #000;
+  color: #405CFF;  
+  font-size: 34rpx;
+  /* background-color: #000;  */
 }
 
 /*选项卡动态，活动内容容器*/

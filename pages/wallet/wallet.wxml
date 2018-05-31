@@ -1,5 +1,9 @@
 <!--pages/wallet/wallet.wxml-->
 <view class='container'>
+  <view class='more'>
+    <text>更多</text>
+    <image src='/image/icon/icon-0.png'></image>
+  </view>
   <view class='wallet_block_ul'>
     <view class='wallet_block_li'>
       <text class='col_lan'>{{WalletInfo.money}}</text>

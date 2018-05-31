@@ -1,0 +1,30 @@
+<!--pages/modify_mm/modify_mm.wxml-->
+<view class='container'>
+  <view class='bg_body'>
+    <view class='nav'>
+      <view>
+        <text>旧密码:</text>
+      </view>
+      <view>
+        <input placeholder="若包含字母，请注意区分大小写" placeholder-class="psection" type='text' name='jpwd' password='{{true}}' bindinput='inputPwd'></input>
+      </view>
+    </view>
+    <view class='nav'>
+      <view>
+        <text>新密码:</text>
+      </view>
+      <view>
+        <input placeholder="8-16位，至少含数字/字母/字符2种组合" placeholder-class="psection" type='text' name='xpwd' password='{{true}}' bindinput='inputPwd'></input>
+      </view>
+    </view>
+    <view class='nav'>
+      <view>
+        <text>确认新密码:</text>
+      </view>
+      <view>
+        <input placeholder="8-16位，至少含数字/字母/字符2种组合" placeholder-class="psection" type='text' name='qxpwd' password='{{true}}' bindinput='inputPwd'></input>
+      </view>
+    </view>
+    <button class='btn'>确认修改</button>
+  </view>
+</view>

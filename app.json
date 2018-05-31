@@ -25,7 +25,12 @@
     "pages/signup/signup",
     "pages/activityevaluation_fq/activityevaluation_fq",
     "pages/activityevaluation_cy/activityevaluation_cy",
-    "pages/credit/credit"
+    "pages/credit/credit",
+    "pages/security/security",
+    "pages/modify_mm/modify_mm",
+    "pages/modify_zf/modify_zf",
+    "pages/about/about",
+    "pages/record/record"
   ],
   "window":{
     "backgroundTextStyle":"dark",
@@ -55,7 +60,7 @@
         "pagePath": "pages/launch/launch",
         "text": "发布",
         "iconPath": "/image/icon/activity.png",
-        "selectedIconPath": "/image/icon/activity_1.png"
+        "selectedIconPath": "/image/icon/activity.png"
       },
       {
         "pagePath": "pages/friends/friends",

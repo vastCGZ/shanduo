@@ -1,0 +1,45 @@
+<!--pages/security/security.wxml-->
+<view class='container'>
+  <view class='bg_body'>
+    <view class='nav'>
+      <view class='inline nav_left'>
+        <view>
+          <text>闪多号</text>
+        </view>
+      </view>
+      <view class='inline nav_right'>
+        <text>10007</text>
+      </view>
+    </view>
+    <view class='nav'>
+      <view class='inline nav_left'>
+        <view>
+          <text>手机号</text>
+        </view>
+      </view>
+      <view class='inline nav_right'>
+        <text>12345678910</text>
+      </view>
+    </view>
+    <view class='nav'>
+      <view class='inline nav_left'>
+        <view>
+          <text>修改闪多密码</text>
+        </view>
+      </view>
+      <view class='inline nav_right'>
+        <image src='/image/icon/icon-0.png'></image>
+      </view>
+    </view>
+    <view class='nav'>
+      <view class='inline nav_left'>
+        <view>
+          <text>修改支付密码</text>
+        </view>
+      </view>
+      <view class='inline nav_right'>
+        <image src='/image/icon/icon-0.png'></image>
+      </view>
+    </view>
+  </view>
+</view>

@@ -55,9 +55,9 @@
 
                         <!--判断是什么会员 -->
                         <block wx:if='{{item.vipGrade>0}}'>
-                        <text class='level'>SVIP9</text>
-                        <text class='my_VIP'>VIP7</text>
-                        <text class='my_DJ'>LV90</text>
+                          <text class='level'>SVIP9</text>
+                          <text class='my_VIP'>VIP7</text>
+                          <text class='my_DJ'>LV90</text>
                         </block>
                       </view>
                     </view>
@@ -194,9 +194,11 @@
                         <text class='sex'><text class='sex_on' wx:if='{{item.gender=="1"}}'>♂</text>
                         <text class='sex_on' wx:else>♀</text>{{item.age}}</text>
                         <!--判断是什么会员 -->
-                        <text class='level'>SVIP</text>
-                        <text class='my_VIP'>VIP</text>
-                        <text class='my_DJ'>LV90</text>
+                        <block wx:if='{{item.vipGrade>0}}'>
+                          <text class='level'>SVIP</text>
+                          <text class='my_VIP'>VIP</text>
+                          <text class='my_DJ'>LV90</text>
+                        </block>
                       </view>
                     </view>
                   </view>
@@ -298,9 +300,11 @@
                         <text class='sex'><text class='sex_on' wx:if='{{item.gender=="1"}}'>♂</text>
                         <text class='sex_on' wx:else>♀</text>{{item.age}}</text>
                         <!--判断是什么会员 -->
-                        <text class='level'>SVIP</text>
-                        <text class='my_VIP'>VIP</text>
-                        <text class='my_DJ'>LV90</text>
+                        <block wx:if='{{item.vipGrade>0}}'>
+                          <text class='level'>SVIP</text>
+                          <text class='my_VIP'>VIP</text>
+                          <text class='my_DJ'>LV90</text>
+                        </block>
                       </view>
                     </view>
                   </view>
@@ -478,7 +482,7 @@
                       <view>
                         <text class='{{item.gender=="1"?"sex_nan":"sex"}}'>
                          <text class='sex_on' wx:if='{{item.gender=="1"}}'>♂</text>
-                         <text class='sex_on' wx:else>♀</text>{{item.age}}
+                        <text class='sex_on' wx:else>♀</text>{{item.age}}
                         </text>
                         <text class='level'>{{item.vip}}</text>
                       </view>

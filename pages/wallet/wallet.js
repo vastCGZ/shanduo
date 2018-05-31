@@ -65,7 +65,9 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }, loadWalletInfo: function () {
+  }, 
+  //钱包信息
+  loadWalletInfo: function () {
     var that = this;
     wx.request({
       url: app.host + 'jmoney/getmoney',
@@ -81,6 +83,11 @@ Page({
         }
       }
     })
+  }, 
+  //交易记录
+  gotoStatementsView:function(){
+    wx.navigateTo({
+      url: '/pages/record/record'
+    })
   }
-
 })

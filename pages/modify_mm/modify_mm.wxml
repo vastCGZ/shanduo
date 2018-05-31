@@ -6,7 +6,7 @@
         <text>旧密码:</text>
       </view>
       <view>
-        <input placeholder="若包含字母，请注意区分大小写" placeholder-class="psection" type='text' name='jpwd' password='{{true}}' bindinput='inputPwd'></input>
+        <input placeholder="若包含字母，请注意区分大小写" placeholder-class="psection" type='text' name='jpwd' password='true' bindinput='inputOldPwd'></input>
       </view>
     </view>
     <view class='nav'>
@@ -14,7 +14,7 @@
         <text>新密码:</text>
       </view>
       <view>
-        <input placeholder="8-16位，至少含数字/字母/字符2种组合" placeholder-class="psection" type='text' name='xpwd' password='{{true}}' bindinput='inputPwd'></input>
+        <input placeholder="8-16位，至少含数字/字母/字符2种组合" placeholder-class="psection" type='text' name='xpwd' password='true' bindinput='inputNewPwd'></input>
       </view>
     </view>
     <view class='nav'>
@@ -22,9 +22,9 @@
         <text>确认新密码:</text>
       </view>
       <view>
-        <input placeholder="8-16位，至少含数字/字母/字符2种组合" placeholder-class="psection" type='text' name='qxpwd' password='{{true}}' bindinput='inputPwd'></input>
+        <input placeholder="8-16位，至少含数字/字母/字符2种组合" placeholder-class="psection" type='text' name='qxpwd' password='true' bindinput='inputConfirmPwd'></input>
       </view>
     </view>
-    <button class='btn'>确认修改</button>
+    <button class='btn' bindtap='btnSubmit'>确认修改</button>
   </view>
 </view>

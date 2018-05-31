@@ -3,7 +3,7 @@
   <view class='bg_body'>
     <view class='information'>
       <view>
-          <image src='/image/icon/icon-0.png'></image>
+          <image src='/image/icon/logo.png'></image>
       </view>
       <view>
         <text class='block'>闪多 Shan Duo</text>

@@ -14,19 +14,28 @@ Page({
       content: '确定退出当前账号？',
       success: (res) => {
         if (res.confirm) {
-          webim.logout((res)=>{
+          webim.logout((res) => {
             app.globalData.userInfo = null,
-              wx.removeStorage({
-                key: 'localUser',
-                success: function (res) {
-                  wx.reLaunch({ url: '/pages/personal/personal' });
-                }
-              })
-          }, (res)=>{
+              wx.clearStorage();
+              setTimeout(function(){
+                wx.reLaunch({
+                  url: '/pages/personal/personal',
+                })
+              },1000);
+            app.onLaunch();
+          }, (res) => {
 
           });
         }
       }
+    })
+  }, gotoSecurityView: function () {
+    wx.navigateTo({
+      url: '/pages/security/security'
+    })
+  }, gotoAboutView: function () {
+    wx.navigateTo({
+      url: '/pages/about/about'
     })
   }
 })

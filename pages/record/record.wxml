@@ -1,18 +1,24 @@
 <!--pages/record/record.wxml-->
 <view class='container'>
   <view class='bg_body'>
-    <view class='information'>
-      <view>
-          <image src='/image/icon/icon-0.png'></image>
-      </view>
-      <view>
-        <text class='block'>开通VIP会员</text>
-        <text class='block'>5月14日 17:48</text>
-      </view>
-      <view>
-          <text>-24.6元</text>
-      </view>
-    </view>
+    <block wx:if='{{statements.arrayResult.length>0}}'>
+      <block wx:for='{{statements.arrayResult}}' wx:key='index'>
+        <view class='information'>
+          <view>
+            <image src='/image/icon/icon-0.png'></image>
+          </view>
+          <view>
+            <text class='block'>{{item.remarks}}</text>
+            <text class='block'>{{item.createDate}}</text>
+          </view>
+          <view>
+            <text>-{{item.amount}}元</text>
+          </view>
+        </view>
+      </block>
+    </block>
+    <block wx:else>
+      <view class='information'>没有记录</view>
+    </block>
   </view>
 </view>
-

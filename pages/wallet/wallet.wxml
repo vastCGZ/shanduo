@@ -17,7 +17,7 @@
       <image src='/image/icon/copy_10_1.png'></image>
       <text>充值</text>
     </view>
-    <view class='wallet_block_li'>
+    <view class='wallet_block_li' bindtap='gotoStatementsView'>
       <image src='/image/icon/copy_10_2.png'></image>
       <text>交易记录</text>
     </view>

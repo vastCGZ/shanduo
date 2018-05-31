@@ -62,5 +62,14 @@ Page({
    */
   onShareAppMessage: function () {
   
+  }, gotoModityPwdView:function(){
+    wx.navigateTo({
+      url: '/pages/modify_mm/modify_mm'
+    })
+
+  }, gotoModityPayPwdView:function(){
+    wx.navigateTo({
+      url: '/pages/modify_zf/modify_zf'
+    })
   }
 })

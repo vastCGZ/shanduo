@@ -132,5 +132,10 @@ Page({
   seeComments: function (e) {
     var id = e.target.dataset.current;
     wx.navigateTo({ url: '/pages/comment/comment?dynamicId=' + id + '' });
+  }, onShareAppMessage: function (res) {
+    return {
+      title: '自定义转发标题',
+      path: '/pages/dynamic/dynamic?dynamicId=' + dynamicId+''
+    }
   }
 })

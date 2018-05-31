@@ -1,110 +1,119 @@
 /* pages/modify_zf/modify_zf.wxss */
-.payment, .pwd_payment{
-  background-color:rgba(51,51,51,.5);
-  width: 100%;
-  height: 100%;
+page {
+  height: 50%;
+}
+page .wallets-password .input-content-wrap .top {
+  display: flex;
+  align-items: center;
+  height: 70rpx;
+  justify-content: space-around;
+  margin-top: 100rpx;
+}
+page .wallets-password .input-content-wrap .top .txt{
+  color: #333;
+  font-size: 34rpx;
+}
+page .wallets-password .input-content-wrap .actual_fee {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70rpx;
+}
+
+page .wallets-password .input-content-wrap .actual_fee text {
+  color: #999;
+  font-size: 30rpx;
+}
+
+page .wallets-password .input-content-wrap .input-password-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 150rpx;
+}
+
+page .wallets-password .input-content-wrap .input-password-wrap .password_dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  color: #000;
+  box-sizing: border-box;
+  width: 80rpx;
+  height: 80rpx;
+  border: 1px solid #ddd;
+  margin-right: 10rpx;
+}
+
+page .wallets-password .input-content-wrap .input-password-wrap .password_dot:last-child {
+  margin: 0;
+}
+
+page .wallets-password .input-content-wrap .input-password-wrap .password_dot i {
+  background: #000;
+  border-radius: 50%;
+  width: 20rpx;
+  height: 20rpx;
+}
+
+page .wallets-password .input-content {
   position: absolute;
-  top: 0;
-  left:0;
+  opacity: 0;
+  left: -100%;
+  top: 600rpx;
+  background: #f56;
+  z-index: -999;
 }
-.payment>view{
-  margin: 45% auto auto auto ;
-  background-color:#fff;
-  width: 500rpx;
-  height: 500rpx;
-  border-radius: 20rpx;
+
+page .wallets-password .input-content.active {
+  z-index: -99;
 }
-.pwd_payment>view{
-  margin: 45% auto auto auto ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .pwd_payment>view{
   background-color:#fff;
-  width: 400rpx;
-  height: 320rpx;
   border-radius: 20rpx;
 }
 .payment_title{
-  height: 80rpx;
-  background-color:#fff;
-  border-bottom: 1rpx solid #f7f8ff;
-  line-height: 80rpx;
-  vertical-align: middle;
-  text-align: left;
-  border-top-left-radius: 20rpx;
-  border-top-right-radius: 20rpx;
+  padding-top: 100rpx;
+  text-align: center;
+  font-size: 34rpx;
+  border-top: 3px solid #f7f8ff;
 }
-.payment_title>image{
-  width: 30rpx;
-  height: 30rpx;
-  vertical-align: middle;
-  margin-right: 29%;
-  margin-left: 3%;
-}
-.details_money>view{
-  display: inline-block;
-  width: 200rpx;
-  text-align: left;
-}
-.details_da{
-  font-size: 65rpx;
-  margin-left: 10rpx;
-}
-.details_xiao{
-  font-size: 22rpx;
-}
-.details_payment{
-  margin-top: 15rpx;
-}
-.details_payment>view{
-  display: inline-block;
-  width: 200rpx;
-  text-align: left;
-}
-.details_payment>view>image{
-  width: 40rpx;
-  height: 40rpx;
-  vertical-align: middle;
-  margin: 0 10rpx;
-}
-.details_payment>view>text{
-  vertical-align: middle;
-}
-.details_upgrade{
-  margin-top: 20rpx;
-}
-.payment_whether{
-  margin-top: 30rpx;
-}
-.payment_whether>button{
-  display: inline-block;
-  width: 200rpx;
-  height: 60rpx;
-  line-height: 60rpx;
-  font-size: 26rpx;
-  border-radius: 50rpx;
-  padding: 0;
-  background-color: #fff;
-  color: #fff;
-  border: 1rpx solid #5e75ff;
-}
-.payment_whether>.payment_cancel{
-  margin-right: 10rpx;
-  color: #5e75ff;
-}
-.payment_whether>.payment_confirm{
-  margin-left: 10rpx;
-  background-color: #5e75ff;
-}
-.pwd_payment .payment_whether>button{
-  width: 140rpx;
-  height: 50rpx;
-  line-height: 50rpx;
+.payment_pwd{
+  text-align: center;
 }
 .payment_pwd>view{
-    margin-top: 20rpx;  
+  margin-top: 30rpx;
 }
-/*6位支付密码*/
-.payPass_box_m{  
-    margin-top: 20rpx;  
+.payment_pwd>view>text.col_hui{
+  font-size: 30rpx;
+}
+.payment_pwd>.payPass_box_m{  
+    margin-top: 65rpx;  
     width: 100%;  
     display: flex;  
     align-items: center;  
@@ -119,13 +128,13 @@
     z-index: 10;  
 }  
 .payPass_box_m_in_in{  
-    width: 50rpx;  
-    height: 50rpx;  
-    border:4rpx #bfbfbf solid;  
+    width: 60rpx;  
+    height: 60rpx;  
+    border:1px #bfbfbf solid;  
     display: flex;  
     justify-content: center;  
     align-items: center;  
-    margin-right:8rpx;   
+    margin-right:10rpx;   
 }
 .payPass_box_m_in_in:last-child{
     margin-right:0;   
@@ -143,4 +152,4 @@
 .indexTopInput input{  
     width: 100%;  
     height: 100%;  
-} 
+}  */

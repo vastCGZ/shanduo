@@ -62,6 +62,7 @@
     </view>
   </view>
   <input bindinput="set_wallets_password1" class="input-content" password type="number" focus="{{isFocus}}" maxlength="6" />
+  <button class="button-content">完成修改</button>
 </view>
 
 

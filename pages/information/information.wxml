@@ -2,22 +2,25 @@
 <view>
   <view class='pic_box'>
     <view class='pic_box_content'>
-      <image src='/image/icon/portrait.png'></image>
+      <image src='{{host}}/picture/{{otherUser.picture}}'></image>
       <view>
-        <text>一只小可爱呀</text>
-        <text class='sex'>♂23</text>
+        <text>{{otherUser.name}}</text>
+        <text class='sex'><text wx:if='{{otherUser.gender=="0"}}'>♀</text>
+        <text wx:else>♂{{otherUser.age}}</text></text>
       </view>
-      <text>闪多号：5201314</text>
+      <text>闪多号：{{otherUser.userId}}</text>
       <view>
-        <text class='level'>SVIP</text>
-        <text class='my_DJ'>LV90</text>
+        <block wx:if='{{otherUser.vip>0}}'>
+          <text class='level'>SVIP</text>
+          <text class='my_DJ'>LV90</text>
+        </block>
       </view>
       <view>
-        <text class='text_da'>1</text>
+        <text class='text_da'>{{otherUser.attention}}</text>
         <text class='text_xiao'>好友</text>
-        <text class='text_da'>5</text>
+        <text class='text_da'>{{otherUser.activity}}</text>
         <text class='text_xiao'>活动</text>
-        <text class='text_da'>10</text>
+        <text class='text_da'>{{otherUser.dynamic}}</text>
         <text class='text_xiao'>动态</text>
       </view>
     </view>
@@ -32,125 +35,173 @@
         <text class="{{currentTab==1 ? 'userLi_actived ' : ''}}" data-current="1" bindtap="swichNav">TA的动态</text>
       </view>
     </scroll-view>
-    <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
-    style="height:{{winHeight}}rpx;">
+    <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx;">
       <swiper-item>
-        <scroll-view scroll-y="true" class="scoll-h" >
-            <block wx:for="{{8}}" wx:key="navItems" wx:for-item="item" wx:for-index="idx">
-              <view class="item-ans">
-                <view class='activity_block'>
-                  <view class='activity_people'>
-                    <image class="img" src="{{host}}/picture/{{item.headPortraitId}}"></image>
-                    <view class="expertInfo inline">
-                      <view class="name">{{item.userName}}</view>
-                      <view class="tag">
-                        <!--判断男女是男加 sex_nan    加在sex 后面-->
-                        <text class='sex'><text class='sex_on' wx:if='{{item.gender=="1"}}'>♂</text>
-                        <text class='sex_on' wx:else>♀</text>{{item.age}}</text>
+        <scroll-view scroll-y="true" class="scoll-h">
+          <block wx:for="{{activitys.arrayResult}}" wx:key="navItems" wx:for-item="item" wx:for-index="idx">
+            <view class="item-ans">
+              <view class='activity_block'>
+                <view class='activity_people'>
+                  <image class="img" src="{{host}}/picture/{{item.headPortraitId}}"></image>
+                  <view class="expertInfo inline">
+                    <view class="name">{{item.userName}}</view>
+                    <view class="tag">
+                      <!--判断男女是男加 sex_nan    加在sex 后面-->
+                      <text class='{{item.gender=="0"?"sex":"sex_nan"}}'><text class='sex_on' wx:if='{{item.gender=="1"}}'>♂</text>
+                      <text class='sex_on' wx:else>♀</text>{{item.age}}</text>
 
                       <!--判断是什么会员 -->
+                      <block wx:if='{{item.vipGrade>0}}'>
                         <text class='level'>SVIP9</text>
                         <text class='my_VIP'>VIP7</text>
                         <text class='my_DJ'>LV90</text>
-                      </view>
-                    </view>
-                  </view>
-                  <view class='activity_time'>
-                    <view class=''>
-                      <text class='block col_lan'>{{item.activityStartTime}}</text>
-                      <text class='block col_hui'></text>
-                      <text class='block col_hui'>报名截止:{{item.activityCutoffTime}}</text>
+                      </block>
                     </view>
                   </view>
                 </view>
-                <view class='activity_block'>
-                  <view class='activity_theme'>
-                    <text>主题：</text>
-                    <text>{{item.activityName}}</text>
-                    <text class='inline text_koge'></text>
-                    <text>{{item.mode}}</text>
-                  </view>
-                  <view class='activity_place'>
-                    <text>活动地点：</text>
-                    <text>{{item.activityAddress}}</text>
-                    <image src='/image/icon/location.png'></image>
-                    <text class='col_lan'>{{item.location}}km</text>
-                  </view>
-                  <view class='activity_content'>
-                    <text>活动内容：</text>
-                    <text>{{item.remarks}}</text>
-                  </view>
-                </view>
-                <view class='activity_block'>
-                  <view>
-                    <view class='inline'>
-                      <image src='/image/icon/nan.png'></image>
-                      <text>{{item.manNumber}}</text>
-                    </view>
-                    <view class='inline'>
-                      <image src='/image/icon/nv.png'></image>
-                      <text>{{item.womanNumber}}</text>
-                    </view>
-                  </view>
-                  <view>
-                    <button>信誉轨迹</button>
-                    <!--判断活动过期加 disabled -->
-                    <button class='disabled'>去报名</button>
-                    <image src='/image/icon/copy.png'></image>
-                  </view>
-                </view>
-                <!--判断当前弹出框是否隐藏  -->
-                <view class='sare_frame' wx:if='{{false}}'>
-                  <view class='share'>
-                    <view class='inline'>
-                      <image src='/image/icon/copy_1.png'></image>
-                      <text>闪多好友</text>
-                    </view>
-                    <view class='inline'>
-                      <image src='/image/icon/copy_2.png'></image>
-                      <text>微信好友</text>
-                    </view>
-                    <view class='inline'>
-                      <image src='/image/icon/copy_3.png'></image>
-                      <text>朋友圈</text>
-                    </view>
-                    <view class='inline'>
-                      <image src='/image/icon/copy_4.png'></image>
-                      <text>QQ好友</text>
-                    </view>
-                    <view class='inline'>
-                      <image src='/image/icon/copy_5.png'></image>
-                      <text>QQ空间</text>
-                    </view>
-                    <view class='inline'>
-                      <image src='/image/icon/copy_6.png'></image>
-                      <text>微博</text>
-                    </view>
-                    <view class='inline'>
-                      <image src='/image/icon/copy_7.png'></image>
-                      <text>举报</text>
-                    </view>
+                <view class='activity_time'>
+                  <view class=''>
+                    <text class='block col_lan'>{{item.activityStartTime}}</text>
+                    <text class='block col_hui'></text>
+                    <text class='block col_hui'>报名截止:{{item.activityCutoffTime}}</text>
                   </view>
                 </view>
               </view>
-            </block>
+              <view class='activity_block'>
+                <view class='activity_theme'>
+                  <text>主题：</text>
+                  <text>{{item.activityName}}</text>
+                  <text class='inline text_koge'></text>
+                  <text>{{item.mode}}</text>
+                </view>
+                <view class='activity_place'>
+                  <text>活动地点：</text>
+                  <text>{{item.activityAddress}}</text>
+                  <image src='/image/icon/location.png'></image>
+                  <text class='col_lan'>{{item.location}}km</text>
+                </view>
+                <view class='activity_content'>
+                  <text>活动内容：</text>
+                  <text>{{item.remarks}}</text>
+                </view>
+              </view>
+              <view class='activity_block'>
+                <view>
+                  <view class='inline'>
+                    <image src='/image/icon/nan.png'></image>
+                    <text>{{item.manNumber}}</text>
+                  </view>
+                  <view class='inline'>
+                    <image src='/image/icon/nv.png'></image>
+                    <text>{{item.womanNumber}}</text>
+                  </view>
+                </view>
+                <view>
+                  <button>信誉轨迹</button>
+                  <!--判断活动过期加 disabled -->
+                  <button class='disabled'>去报名</button>
+                  <image src='/image/icon/copy.png'></image>
+                </view>
+              </view>
+              <!--判断当前弹出框是否隐藏  -->
+              <view class='sare_frame' wx:if='{{false}}'>
+                <view class='share'>
+                  <view class='inline'>
+                    <image src='/image/icon/copy_1.png'></image>
+                    <text>闪多好友</text>
+                  </view>
+                  <view class='inline'>
+                    <image src='/image/icon/copy_2.png'></image>
+                    <text>微信好友</text>
+                  </view>
+                  <view class='inline'>
+                    <image src='/image/icon/copy_3.png'></image>
+                    <text>朋友圈</text>
+                  </view>
+                  <view class='inline'>
+                    <image src='/image/icon/copy_4.png'></image>
+                    <text>QQ好友</text>
+                  </view>
+                  <view class='inline'>
+                    <image src='/image/icon/copy_5.png'></image>
+                    <text>QQ空间</text>
+                  </view>
+                  <view class='inline'>
+                    <image src='/image/icon/copy_6.png'></image>
+                    <text>微博</text>
+                  </view>
+                  <view class='inline'>
+                    <image src='/image/icon/copy_7.png'></image>
+                    <text>举报</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </block>
         </scroll-view>
       </swiper-item>
       <!--动态  -->
       <swiper-item>
-        <scroll-view scroll-y="true" class="scoll-h" >
-        哈哈哈
+        <scroll-view scroll-y="true" class="scoll-h">
+          <block wx:for="{{ dynamics.arrayResult }}" wx:key="navItems" wx:for-item="item" wx:for-index="idx">
+            <view class='nearby'>
+              <view class='believe'>
+                <view class='inline believe_left'>
+                  <image src='{{host}}/picture/{{item.portraitId}}'></image>
+                  <view class='inline'>
+                    <view>
+                      <text>{{item.name}}</text>
+                    </view>
+                    <view>
+                      <text class='{{item.gender=="1"?"sex_nan":"sex"}}'><text class='sex_on' wx:if='{{item.gender=="1"}}'>♂</text>
+                      <text class='sex_on' wx:else>♀</text>{{item.age}}</text>
+                      <block wx:if='{{item.vip>0}}'>
+                        <text class='level'>{{item.vip}}</text>
+                      </block>
+                    </view>
+                  </view>
+                </view>
+                <view class='inline believe_right'>
+                  <image class='location' src='/image/icon/location.png'></image>
+                  <text class='color_ls'>{{item.distance}}km</text>
+                </view>
+              </view>
+              <view data-current="{{item.id}}" bindtap='gotoDynamicDetails'>
+                <text>{{item.content}}</text>
+                <view>
+                  <block wx:for="{{ item.picture }}" wx:key="navItems" wx:for-item="ite" wx:for-index="index">
+                    <!--判断一张图片或者两张图片需放大,加类名 big   -->
+                    <image src='{{host}}/picture/{{ite}}'></image>
+                  </block>
+                </view>
+                <view>
+                  <text>{{item.createDate}}发布</text>
+                </view>
+              </view>
+              <view>
+                <view>
+                  <image src='/image/icon/comment_1.png' data-current="{{item.id}}" bindtap='gotoDynamicDetails'></image>
+                  <text>{{item.dynamicCount}}</text>
+                  <image src='/image/icon/fabulous_1.png'></image>
+                  <text>{{item.praise}}</text>
+                </view>
+                <view>
+                  <image src='/image/icon/copy.png'></image>
+                </view>
+              </view>
+            </view>
+          </block>
         </scroll-view>
       </swiper-item>
     </swiper>
   </view>
   <view class='information_footer'>
-    <view>
-      <view>加好友</view>
-      <view>发消息</view>
+    <view class='information_footer_div' wx:if='{{otherUser.isAttention}}'>
+      <view data-current="{{otherUser.userId}},{{otherUser.name}}" bindtap='gotoSessionView'>发消息</view>
     </view>
-    <view class='information_footer_div' wx:if='{{false}}'>
-      <view>发消息</view>
+    <view wx:else>
+      <view bindtap='addFriend'>加好友</view>
+      <view data-current="{{otherUser.userId}},{{otherUser.name}}" bindtap='gotoSessionView'>临时会话</view>
     </view>
   </view>
 </view>

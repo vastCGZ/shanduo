@@ -1,6 +1,7 @@
 var app = getApp()
 var util = require('../../utils/util.js');
 var date_util = require('../../utils/date_util.js');
+var WxNotificationCenter = require('../../utils/WxNotificationCenter.js');
 Page({
   data: {
     winWidth: 0,
@@ -45,19 +46,7 @@ Page({
   },
   onLoad: function () {
     var that = this;
-    // 查看是否授权
-    wx.getSetting({
-      success(res) {
-        if (!res.authSetting['scope.record']) {
-          wx.authorize({
-            scope: 'scope.record',
-            success() {
-              
-            }
-          })
-        }
-      }
-    });
+    WxNotificationCenter.addNotification('newMessageNotification', that.newMessageNotification, that);
     that.setData({ host: app.host })
     wx.getSystemInfo({
       success: function (res) {
@@ -88,6 +77,13 @@ Page({
       }
     })
     that.advertise();
+  }, newMessageNotification: function () {
+    wx.showTabBarRedDot({
+      index: 1
+    });
+  },
+  onUnload: function () {
+    WxNotificationCenter.removeNotification('newMessageNotification', this);
   },
   //下拉刷新
   onPullDownRefresh: function () {
@@ -163,7 +159,6 @@ Page({
   //滑动切换动态内的Tab
   bindChange2: function (e) {
     var that = this;
-    console.log(2);
     that.setData({ currentTab2: e.detail.current });
     that.emptyData();
     that.getDynamicData();
@@ -332,9 +327,25 @@ Page({
     wx.navigateTo({
       url: '/pages/signup/signup?activityId=' + activityId + ''
     })
-  }, gotoSearchView:function(){
+  }, gotoSearchView: function () {
     wx.navigateTo({
       url: '/pages/search/search'
     })
+  }
+  , gotoUserHomePage: function (e) {
+    var userId = e.currentTarget.dataset.current;
+    if (userId == app.globalData.userInfo.userId) {
+      wx.switchTab({
+        url: '/pages/personal/personal'
+      })
+    }else{
+    wx.navigateTo({
+      url: '/pages/information/information?otherUserId=' + userId + ''
+    })
+    }
+  }, gotoCreditCenterView: function () {
+    wx.navigateTo({
+      url: '/pages/credit/credit'
+    });
   }
 }) 

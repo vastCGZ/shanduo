@@ -4,7 +4,7 @@
     <text class='center_text inline'>我的动态</text>
     <text class='right_text inline' bindtap='pushDynamic'>发布</text>
   </view>
-  <block wx:for="{{ dynamics }}" wx:key="navItems" wx:for-item="item" wx:for-index="idx">
+  <block wx:for="{{ dynamics.arrayResult }}" wx:key="navItems" wx:for-item="item" wx:for-index="idx">
     <view class='nearby'>
       <view class='believe'>
         <view class='inline believe_left'>

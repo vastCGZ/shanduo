@@ -1,6 +1,6 @@
 {
   "pages":[
-    "pages/modify_zf/modify_zf",
+    "pages/welcome/welcome",
     "pages/index/index",
     "pages/authorization/authorization",
     "pages/login/login",
@@ -28,6 +28,7 @@
     "pages/credit/credit",
     "pages/security/security",
     "pages/modify_mm/modify_mm",
+    "pages/modify_zf/modify_zf",
     "pages/about/about",
     "pages/record/record"
   ],

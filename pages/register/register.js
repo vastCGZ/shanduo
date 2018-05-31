@@ -104,13 +104,12 @@ Page({
     })) {
       return;
     }
+    app.globalData.tmpUser.username = phone;
+    app.globalData.tmpUser.password = pwd;
+    app.globalData.tmpUser.codes = auth_code;
     wx.request({
-      url: app.host + '/juser/saveuser',
-      data: {
-        phone: phone,
-        code: auth_code,
-        password: pwd
-      },
+      url: app.host + '/wechat/bindingUser',
+      data: app.globalData.tmpUser,
       dataType: 'json',
       success: function (res) {
         if (res.data.success) {
@@ -121,15 +120,15 @@ Page({
           });
           wx.showToast({
             title: '注册成功',
-            icon: 'none',
-            duration: 2000
+            icon: 'none'
           });
-          wx.switchTab({ url: '/pages/personal/personal' });
+          setTimeout(function(){
+            wx.switchTab({ url: '/pages/personal/personal' });
+          },1000);
         } else {
           wx.showToast({
             title: res.data.errorCode,
-            icon: 'none',
-            duration: 2000
+            icon: 'none'
           });
         }
       }

@@ -24,7 +24,6 @@ Page({
     webim.getRecentContactList({
       'Count': 10 //最近的会话数 ,最大为 100
     }, function (resp) {
-      console.log(resp);
       //业务处理
       if (resp.SessionItem) {
         var ids = [];
@@ -68,13 +67,14 @@ Page({
       newItem.To_Account = obj.fromAccount;
       newItem.isTouchMove = false;
       newItem.UnreadMsgCount = 1;
+      newItem.Type = obj.Type;
       var oldRecentContact = that.data.recentContact;
       oldRecentContact.push(newItem);
       that.setData({ recentContact: oldRecentContact });
       that.searchProfileByUserId([obj.fromAccount]);
     }
   },
-  //搜索用户
+  //获取用户资料
   searchProfileByUserId: function (ids) {
     var that = this;
     var tag_list = [
@@ -205,10 +205,10 @@ Page({
   del: function (e) {
     var that = this;
     var val = e.currentTarget.dataset.index.split(',');
-    //sess_type == 'C2C' ? 1 : 2;
+    console.log(val);
     var data = {
       'To_Account': val[1],
-      'chatType': 1
+      'chatType': parseInt(val[2])
     }
     webim.deleteChat(
       data,
@@ -217,6 +217,9 @@ Page({
         that.setData({
           recentContact: that.data.recentContact
         })
+        if (that.data.recentContact.length == 0) {
+          wx.hideTabBarRedDot({ index: 1 });
+        }
       }
     );
   }

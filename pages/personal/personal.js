@@ -21,8 +21,7 @@ Page({
     } else {
       this.setData({ userInfo: localUserInfo });
     }
-  },
-
+  }, 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -110,5 +109,9 @@ Page({
     wx.navigateTo({
       url: '/pages/edit/edit'
     })
+  }, gotoCreditCenterView:function(){
+    wx.navigateTo({
+      url: '/pages/credit/credit'
+    });
   }
 })

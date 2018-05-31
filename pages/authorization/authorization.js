@@ -1,65 +1,56 @@
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
-  },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-    
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
-  },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-    
+  }, bindGetUserInfo: function (e) {
+    var that = this;
+    var errMsg = e.detail.errMsg.split(':')[1];
+    if ("ok" === errMsg) {
+      app.globalData.tmpUser.nickName = e.detail.userInfo.nickName;
+      app.globalData.tmpUser.gender = e.detail.userInfo.gender == 1 ? 1 : 0
+      wx.request({
+        data: {
+          openId: app.globalData.tmpUser.openId,
+          encryptedData: e.detail.encryptedData,
+          iv: e.detail.iv
+        },
+        dataType: 'json',
+        url: app.host + '/wechat/getOpenid',
+        success: (res) => {
+          if (res.data.success) {
+            wx.setStorage({
+              key: 'localUser',
+              data: res.data.result
+            })
+            app.onLaunch();
+          } else {
+            if (10086 == res.data.errCode) {
+              app.globalData.tmpUser.unionId = res.data.errCodeDes;
+            }
+          }
+        }
+      })
+      wx.switchTab({
+        url: '/pages/index/index'
+      })
+    }
   }
 })

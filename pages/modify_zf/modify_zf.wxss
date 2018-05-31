@@ -1,13 +1,11 @@
 /* pages/modify_zf/modify_zf.wxss */
-page {
-  height: 50%;
-}
 page .wallets-password .input-content-wrap .top {
   display: flex;
   align-items: center;
   height: 70rpx;
   justify-content: space-around;
-  margin-top: 100rpx;
+  padding-top: 100rpx;
+  border-top: 3px solid #f7f8ff;
 }
 page .wallets-password .input-content-wrap .top .txt{
   color: #333;
@@ -68,88 +66,14 @@ page .wallets-password .input-content {
 page .wallets-password .input-content.active {
   z-index: -99;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* .pwd_payment>view{
-  background-color:#fff;
-  border-radius: 20rpx;
-}
-.payment_title{
-  padding-top: 100rpx;
-  text-align: center;
+page .wallets-password .button-content{
+  width: 60%;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 50rpx;
+  border: 0;
+  background-color: #3D59FF;
+  color: #fff;
   font-size: 34rpx;
-  border-top: 3px solid #f7f8ff;
+  margin-top: 120rpx;
 }
-.payment_pwd{
-  text-align: center;
-}
-.payment_pwd>view{
-  margin-top: 30rpx;
-}
-.payment_pwd>view>text.col_hui{
-  font-size: 30rpx;
-}
-.payment_pwd>.payPass_box_m{  
-    margin-top: 65rpx;  
-    width: 100%;  
-    display: flex;  
-    align-items: center;  
-    justify-content: center;  
-    position: relative;  
-}  
-.payPass_box_m_in{  
-    display: flex;  
-    align-items: center;  
-    justify-content: center;  
-    position: relative;  
-    z-index: 10;  
-}  
-.payPass_box_m_in_in{  
-    width: 60rpx;  
-    height: 60rpx;  
-    border:1px #bfbfbf solid;  
-    display: flex;  
-    justify-content: center;  
-    align-items: center;  
-    margin-right:10rpx;   
-}
-.payPass_box_m_in_in:last-child{
-    margin-right:0;   
-}  
-.indexTopInput{  
-    position: absolute;  
-    height: 100%;  
-    background: #000;  
-    opacity: 0.5;  
-    z-index: 2;  
-    left: 0rpx;  
-    background: red;  
-    left: -150%;  
-}  
-.indexTopInput input{  
-    width: 100%;  
-    height: 100%;  
-}  */

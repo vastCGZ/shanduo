@@ -6,6 +6,7 @@ Page({
     wallets_password_flag: false//密码输入遮罩
   },
   set_wallets_password(e) {//获取验证支付密码
+    console.log('验证密码：'+ e.detail.value)
     this.setData({
       wallets_password: e.detail.value
     });
@@ -14,17 +15,19 @@ Page({
     }
   },
   set_wallets_password1(e) {//获取修改支付密码
+    console.log('修改密码：'+ e.detail.value)
     this.setData({
       wallets_password1: e.detail.value
     });
   },
   set_Focus() {//聚焦input
-    console.log('isFocus', this.data.isFocus)
+    console.log('获得焦点')
     this.setData({
       isFocus: true
     })
   },
   set_notFocus() {//失去焦点
+    console.log('失去焦点')
     this.setData({
       isFocus: false
     })
@@ -35,7 +38,7 @@ Page({
 function wallet_pay(_this) {
   console.log('验证支付密码')
   _this.setData({
-    wallets_password_flag: true,
+    wallets_password_flag: true,//验证消失，修改显示
     isFocus: true
   })
 }

@@ -716,6 +716,7 @@ page {
 .activity_block:nth-child(3){
   height: 75rpx;
   padding: 0;
+  border-top:2rpx solid #f7f8ff;
   border-bottom:2rpx solid #eaeaea;
 }
 .activity_block:nth-child(3)>view{

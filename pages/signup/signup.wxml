@@ -118,11 +118,12 @@
         <text class='inline text_footer_left'>取消</text>
       </view>
       <view>
-      <block wx:if='{{joinActivity==0}}'>
-        <text class='inline text_footer_right' bindtap='confirmation'>确认报名</text>
+        <block wx:if='{{joinActivity}}'>
+          <text class='inline text_footer_right' bindtap='confirmation'>确认报名</text>
         </block>
         <block wx:else>
-        <text class='inline text_footer_right' bindtap='cancelRegistration'>取消报名</text></block>
+          <text class='inline text_footer_right' bindtap='confirmation'>取消报名</text>
+        </block>
       </view>
     </view>
   </view>

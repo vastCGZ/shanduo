@@ -205,7 +205,6 @@ Page({
   del: function (e) {
     var that = this;
     var val = e.currentTarget.dataset.index.split(',');
-    console.log(val);
     var data = {
       'To_Account': val[1],
       'chatType': parseInt(val[2])

@@ -1,8 +1,55 @@
-page{
+.pwd_payment{
+  background-color:rgba(51,51,51,.2);
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left:0;
+  display: flex;
+  justify-content: center;
+  align-items:flex-end;
+  
+}
+.payment_whether>image {
+  width: 120rpx;
+  height: 120rpx;
+  line-height: 60rpx;
+  font-size: 26rpx;
+  border-radius: 50%;
+  padding: 0;
+  background-color: #fff;
+  color: #fff;
+  margin: 0 10rpx 40rpx;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* page{
   height: 100%;
 }
 
-/*分类*/
+/分类/
 .myactivity_body{
   width: 100%;
   height: 100%;
@@ -34,7 +81,7 @@ page{
   border-bottom: 6rpx solid #5e75ff;
 } 
 .tab-content{
-  /* margin-top: 182rpx; */
+  / margin-top: 182rpx; /
   height: 100%;
 }
 .scoll-h{
@@ -48,7 +95,7 @@ swiper-item {
   padding-top: 80rpx;
 }
 
-/*活动*/
+/活动/
 
 
 .container2{
@@ -60,7 +107,7 @@ swiper-item {
   position: static;
 }
 .release_section{
-  /* height: 67%; */
+  / height: 67%; /
 }
 .release_section>view{
   border-bottom: 1rpx solid #eaeaea;
@@ -82,7 +129,7 @@ swiper-item {
   color: #999999;
   font-size: 28rpx;
 }
-/*人数*/
+/人数/
 .people>picker{
   padding: 20rpx;
   width: 20%;
@@ -98,7 +145,7 @@ swiper-item {
   margin-right: 5rpx;
   vertical-align: middle;
 }
-/*活动时间*/
+/活动时间/
 .time>image{
   width: 45rpx;
   height: 45rpx;
@@ -124,7 +171,7 @@ swiper-item {
   height: 30rpx;
   vertical-align: middle;
 }
-/*详细地址*/
+/详细地址/
  .release_section>.address{
   border-bottom:8rpx solid #eaeaea;
 } 
@@ -135,7 +182,7 @@ swiper-item {
   font-size: 28rpx;
 }
 
-/*底部*/
+/底部/
 
 .release_footer{
   height: 100rpx; 
@@ -161,14 +208,14 @@ swiper-item {
 }
 
 
-/*动态*/
+/动态/
 
 
 .container1{
   display: block;
 }
 .release_section1>textarea{
-  /* margin-top: 102rpx; */
+  / margin-top: 102rpx; /
   padding: 30rpx;
   width: 92%;
 }
@@ -249,4 +296,4 @@ swiper-item {
 .footer_di1>image{
   width: 54rpx;
   height: 54rpx;
-}
+} */

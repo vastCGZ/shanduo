@@ -43,14 +43,15 @@ Page({
             app.onLaunch();
           } else {
             if (10086 == res.data.errCode) {
-              app.globalData.tmpUser.unionId = res.data.errCodeDes;
+              var jsonVal = JSON.parse(res.data.errCodeDes);
+              app.globalData.tmpUser.unionId = jsonVal.unionId;
             }
           }
+          wx.switchTab({
+            url: '/pages/index/index'
+          })
         }
-      })
-      wx.switchTab({
-        url: '/pages/index/index'
-      })
+      });
     }
   }
 })

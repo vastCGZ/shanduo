@@ -9,7 +9,9 @@ Page({
     userInfo: null,
     tmpUserInfo: {},
     gender: ['女', '男'],
-    genderIndex: 0
+    genderIndex: 0,
+    region: null,
+    customItem: '全部'
   },
 
   /**
@@ -18,7 +20,11 @@ Page({
   onLoad: function (options) {
     var tmp = this.data.tmpUserInfo;
     tmp.token = app.globalData.userInfo.token;
-    this.setData({ userInfo: app.globalData.userInfo, tmpUserInfo: tmp, genderIndex: app.globalData.userInfo.gender });
+    var region = ['北京市', '北京市', '东城区'];
+    if (app.globalData.userInfo.hometown) {
+      region = app.globalData.userInfo.hometown.split(',');
+    }
+    this.setData({ userInfo: app.globalData.userInfo, tmpUserInfo: tmp, genderIndex: app.globalData.userInfo.gender, region: region });
   },
 
   /**
@@ -124,12 +130,12 @@ Page({
           wx.showToast({
             title: '修改成功'
           });
-          setTimeout(function () {
-            webim.logout((res) => {
+          webim.logout((res) => {
+            setTimeout(function () {
               wx.reLaunch({ url: '/pages/personal/personal' });
-            });
-          }, 1000);
-          app.onLaunch();
+            }, 1000);
+            app.onLaunch();
+          });
         }
       }, fail: (res) => {
         util.toast(res.errorMsg);
@@ -147,6 +153,17 @@ Page({
     var tmp = this.data.tmpUserInfo;
     tmp.birthday = e.detail.value;
     this.setData({ tmpUserInfo: tmp });
+    this.updateUserInfo();
+  },
+  //修改家乡
+  bindRegionChange: function (e) {
+    var tmp = this.data.tmpUserInfo;
+    var hometown = e.detail.value;
+    tmp.hometown = hometown.join(',');
+    this.setData({
+      region: e.detail.value,
+      tmpUserInfo: tmp
+    })
     this.updateUserInfo();
   }
 })

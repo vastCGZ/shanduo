@@ -1,25 +1,21 @@
 const app = getApp()
 Page({
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-    if (app.globalData.authorize) {
-      wx.switchTab({url:'/pages/index/index'});
-    }else{
+    var that = this;
+    if (!app.globalData.authorize) {
       wx.getSetting({
         success: function (res) {
-          if (res.authSetting['scope.userInfo']) {
-            // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-            wx.switchTab({ url: '/pages/index/index' });
-          }else{
+          if (!res.authSetting['scope.userInfo']) {
             wx.redirectTo({
               url: '/pages/authorization/authorization'
             })
+          }else{
+            wx.switchTab({ url: '/pages/index/index' });
           }
         }
       });
+    } else {
+      wx.switchTab({ url: '/pages/index/index' });
     }
   }
 })

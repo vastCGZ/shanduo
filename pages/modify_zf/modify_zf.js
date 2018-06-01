@@ -1,66 +1,76 @@
-// pages/modify_zf/modify_zf.js
+const app = getApp();
+var util = require('../../utils/util.js');
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    isFocus: true,//控制input 聚焦
+    wallets_password_flag: false//密码输入遮罩
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
+  set_wallets_password(e) {//获取验证支付密码
+    this.setData({
+      wallets_password: e.detail.value
+    });
+    if (this.data.wallets_password.length == 6) {//密码长度6位时，自动跳转修改支付密码
+      this.setData({
+        wallets_password_flag: true,//验证消失，修改显示
+        isFocus: true
+      })
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  set_wallets_password1(e) {//获取修改支付密码
+    this.setData({
+      wallets_password1: e.detail.value
+    });
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  set_Focus() {//聚焦input
+    this.setData({
+      isFocus: true
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  set_notFocus() {//失去焦点
+    this.setData({
+      isFocus: false
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+  toBack:function(){
+    this.setData({
+      wallets_password: 0
+    });
+      this.setData({
+        wallets_password_flag: false,//验证消失，修改显示
+        isFocus: true
+      })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  //提交修改
+  submitDone: function () {
+    var that = this;
+    var newPwd = that.data.wallets_password1;
+    if (!util.checkInput(newPwd) || newPwd.replace(/\s/g, '').length < 6) {
+      util.toast('新密码为空或长度不足');
+      return;
+    }
+    wx.request({
+      url: app.host + 'jmoney/updatepassword',
+      data: {
+        token: app.globalData.userInfo.token,
+        typeId: 2,
+        password: that.data.wallets_password,
+        newPassword: that.data.wallets_password1
+      },
+      dataType: 'json',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'POST',
+      success: (res) => {
+        if(res.data.success){
+          util.toast('设置成功');
+          setTimeout(function(){
+            wx.navigateBack();
+          },1000);
+        }else{
+          util.toast(res.data.errCodeDes);
+        }
+      }
+    })
   }
 })

@@ -43,7 +43,6 @@ Page({
     wx.request({
       url: app.host + '/jdynamic/bydynamic',
       data: {
-        token: app.globalData.userInfo.token,
         dynamicId: dynamicId
       },
       dataType: 'json',
@@ -62,7 +61,6 @@ Page({
     wx.request({
       url: app.host + '/jdynamic/commentList',
       data: {
-        token: app.globalData.userInfo.token,
         dynamicId: dynamicId,
         page: that.data.pageIndex,
         pageSize: that.data.pageSize
@@ -89,6 +87,10 @@ Page({
   },
   sendComments: function () {
     var that = this;
+    if (!app.globalData.userInfo){
+      util.toast('登录后操作');
+      return;
+    }
     var comments = that.data.comments;
     if (!util.checkInput(comments)) {
       util.toast('不能发送空白内容');
@@ -113,6 +115,10 @@ Page({
     })
   },
   dynamicPraise: function () {
+    if (!app.globalData.userInfo) {
+      util.toast('登录后操作');
+      return;
+    }
     wx.request({
       url: app.host + '/jdynamic/ispraise',
       data: {
@@ -134,7 +140,7 @@ Page({
     wx.navigateTo({ url: '/pages/comment/comment?dynamicId=' + id + '' });
   }, onShareAppMessage: function (res) {
     return {
-      title: '自定义转发标题',
+      title: '闪多动态',
       path: '/pages/dynamic/dynamic?dynamicId=' + dynamicId+''
     }
   }

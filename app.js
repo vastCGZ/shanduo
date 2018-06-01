@@ -63,13 +63,13 @@ App({
   },
   globalData: {
     userInfo: null,
-    authorize: false,
+    authorize: null,
     actionStatus: '',
     tmpUser: {
-      openId: null,
-      unionId: null,
-      nickName: null,
-      gender: 0
+      nickName: '',
+      gender: 0,
+      openId: '',
+      unionId: ''
     }
   },
   host: 'https://yapinkeji.com/shanduoparty'
@@ -94,35 +94,66 @@ App({
               } else {
                 switch (res.data.errCode) {
                   case 10086:
-                    var jsonVal = JSON.parse(res.data.errCodeDes);
-                    that.globalData.tmpUser.openId = jsonVal.openId;
-                    that.globalData.tmpUser.unionId = jsonVal.unionId;
-                    that.globalData.authorize = true;
-                    wx.getSetting({
-                      success: function (res) {
-                        if (res.authSetting['scope.userInfo']) {
-                          wx.getUserInfo({
-                            withCredentials:false,
-                            success:(res)=>{
-                              var errMsg = res.errMsg.split(':')[1];
-                              if ("ok" === errMsg) {
-                                that.globalData.tmpUser.nickName = res.userInfo.nickName;
-                                that.globalData.tmpUser.gender = res.userInfo.gender == 1 ? 1 : 0
-                              }
-                            }
-                          });
-                        }
-                      }
-                    });
+                    that.adapter(res.data.errCodeDes);
                     break;
                   case 10087:
-                    that.globalData.tmpUser.openId = res.data.errCodeDes
+                    that.globalData.tmpUser.openId = res.data.errCodeDes;
+                    that.getUserInfo();
                     break;
                 }
               }
             }
           })
         }
+      }
+    });
+  }, getUserInfo: function () {
+    var that = this;
+    wx.getSetting({
+      success: function (res) {
+        if (res.authSetting['scope.userInfo']) {
+          wx.getUserInfo({
+            withCredentials: true,
+            success: (res) => {
+              wx.request({
+                data: {
+                  openId: that.globalData.tmpUser.openId,
+                  encryptedData: res.encryptedData,
+                  iv: res.iv
+                },
+                dataType: 'json',
+                url: that.host + '/wechat/getOpenid',
+                success: (res) => {
+                  if (res.data.success) {
+                    wx.setStorage({
+                      key: 'localUser',
+                      data: res.data.result
+                    })
+                    that.onLaunch();
+                  } else {
+                    if (10086 == res.data.errCode) {
+                      that.adapter(res.data.errCodeDes);
+                    }
+                  }
+                }
+              })
+            }
+          });
+        }
+      }
+    });
+  }, adapter: function (callBackData) {
+    var that = this;
+    var jsonVal = JSON.parse(callBackData);
+    that.globalData.tmpUser.openId = jsonVal.openId;
+    that.globalData.tmpUser.unionId = jsonVal.unionId;
+    that.globalData.authorize = true;
+    wx.getUserInfo({
+      withCredentials: false,
+      success: (res) => {
+        var errMsg = res.errMsg.split(':')[1];
+        that.globalData.tmpUser.nickName = res.userInfo.nickName;
+        that.globalData.tmpUser.gender = res.userInfo.gender == 1 ? 1 : 0;
       }
     });
   }

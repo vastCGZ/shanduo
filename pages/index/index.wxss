@@ -1,9 +1,11 @@
 /*index.wxss*/
 
-page{
+page {
   background-color: #f7f8ff;
 }
+
 /*祖容器  */
+
 .container {
   height: 110rpx;
   display: flex;
@@ -32,7 +34,7 @@ page{
 }
 
 /*选项卡动态，活动标题元素*/
- 
+
 .swiper-tab-list {
   display: inline-block;
   background-color: #fff;
@@ -56,8 +58,8 @@ page{
 /*选项卡动态，活动标题选中状态*/
 
 .on {
-  color: #405CFF;  
-  font-size: 34rpx;
+  color: #405cff;
+  font-size: 38rpx;
   /* background-color: #000;  */
 }
 
@@ -97,20 +99,22 @@ page{
 
 /*选项卡标题元素*/
 
-.swiper-tab-list1{
+.swiper-tab-list1 {
   display: inline-block;
   width: 33%;
   height: 60rpx;
   padding: 10rpx 0;
 }
-.swiper-tab-list1>text{
+
+.swiper-tab-list1>text {
   display: inline-block;
   color: #999;
   height: 100%;
 }
+
 /*选项卡标题选中状态*/
 
-.swiper-tab-list1>.on1{
+.swiper-tab-list1>.on1 {
   color: #333;
   border-bottom: 5rpx solid #5e75ff;
 }
@@ -123,54 +127,64 @@ page{
   background-color: #f9f9f9;
   /* overflow: hidden; */
 }
-.broadcast{
+
+.broadcast {
   height: 300rpx;
   margin: 0 auto;
   background-color: #fff;
 }
-.broadcast swiper-item{
+
+.broadcast swiper-item {
   border-radius: 20rpx;
 }
-.broadcast image{
+
+.broadcast image {
   border-radius: 20rpx;
-  margin: 0 20rpx 0;
+  margin: 0 20rpx 0 ;
 }
-.nearby{
+
+.nearby {
   padding: 0;
   margin-top: 10rpx;
 }
-.nearby>view:nth-child(1){
+
+.nearby>view:nth-child(1) {
   padding-bottom: 0;
 }
-.nearby>view:nth-child(2)>text{
+
+.nearby>view:nth-child(2)>text {
   color: #333;
 }
-.activity_block:nth-child(2){
+
+.activity_block:nth-child(2) {
   border-bottom: 0;
 }
+
 .sare_frame {
-  background-color:rgba(51,51,51,.1);
+  background-color: rgba(51, 51, 51, 0.1);
 }
+
 .item-ans {
   position: relative;
 }
+
 .sare_frame>.share {
-  width:90%;
-  height:85%;
-  padding:20rpx;
-  display:flex;
-  position:absolute;
+  width: 90%;
+  height: 85%;
+  padding: 20rpx;
+  display: flex;
+  position: absolute;
   top: 2%;
   bottom: 2%;
   left: 2%;
   right: 2%;
-  flex-direction:row;
-  flex-wrap:wrap;
-  align-items:center;
-  background-color:#fff;
-  align-content:space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: #fff;
+  align-content: space-around;
 }
-.disabled{
-  background: #fff
-  color：
+
+.disabled {
+  background: #fff color：;
 }

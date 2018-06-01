@@ -65,7 +65,8 @@ Page({
         } else {
           wx.showToast({
             title: '登陆错误',
-            image: '/image/icon/error.gif'
+            image: '/image/icon/error.gif',
+            duration:2000
           })
         }
       },

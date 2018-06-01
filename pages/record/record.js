@@ -96,7 +96,6 @@ Page({
         pageSize: that.data.pageSize
       },
       success: (res) => {
-        console.log(res);
         if (res.data.success && res.data.result.list.length > 0) {
           var newData = res.data.result.list;
           for (var i in newData) {

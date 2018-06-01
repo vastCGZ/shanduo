@@ -11,7 +11,7 @@ Page({
     host: null,
     activity: null,
     participant: [],
-    joinActivity: 0
+    joinActivity: false
   },
 
   /**
@@ -69,30 +69,43 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: '闪多活动',
+      path: '/pages/signup/signup?activityId=' + activityId + ''
+    }
   },
   loadActivityDetail: function () {
-    var that = this;
+    var that = this
+    var token = ''
+    if (app.globalData.userInfo) {
+      token = app.globalData.userInfo.token;
+    }
     wx.request({
       data: {
-        token: app.globalData.userInfo.token,
+        token: token,
         activityId: activityId
       },
       dataType: 'json',
       url: app.host + '/activity/oneActivity',
       success: (res) => {
+        console.log(res);
         if (res.data.success) {
-          that.setData({ participant: res.data.result.resultList, activity: res.data.result.activityInfo, joinActivity: res.data.result.joinActivity })
+          that.setData({ participant: res.data.result.resultList, activity: res.data.result.activityInfo, joinActivity: res.data.result.joinActivity == 0 ? false : true })
         }
       }
     })
   }
   , confirmation: function () {
+    var that = this;
+    if (!app.globalData.userInfo) {
+      util.toast('登录后操作');
+      return;
+    }
     wx.request({
       data: {
         token: app.globalData.userInfo.token,
         activityId: activityId,
-        type: 1
+        type: that.data.joinActivity ? 2 : 1
       },
       dataType: 'json',
       url: app.host + '/activity/joinActivities',
@@ -105,7 +118,5 @@ Page({
         }
       }
     })
-  }, cancelRegistration: function () {
-
   }
 })

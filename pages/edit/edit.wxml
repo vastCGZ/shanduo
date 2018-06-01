@@ -69,9 +69,9 @@
     </view>
     <view class='edit_option'>
       <text>家乡</text>
-      <picker name='payment' class='inline' value="{{modesIndex}}" mode='region' range="{{modes}}" bindchange='selectMode'>
+      <picker name='payment' class='inline' mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
         <view>
-          <text></text>
+          <text>当前选择：{{region[0]}}，{{region[1]}}，{{region[2]}}</text>
           <image src='/image/icon/icon-0.png'></image>
         </view>
       </picker>

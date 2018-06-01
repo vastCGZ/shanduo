@@ -89,7 +89,6 @@ Page({
         dataType: 'json',
         method: 'GET',
         success: function (res) {
-          console.log(res);
           if (res.data.success) {
             util.toast('发布成功')
             setTimeout(function () {
@@ -107,7 +106,6 @@ Page({
     }
   },
   openMap: function () {
-    console.log('ddd');
     var that = this;
     wx.getSetting({
       success(res) {
@@ -134,7 +132,6 @@ Page({
     var that = this;
     wx.chooseLocation({
       success(res) {
-        console.log(res);
         // name	位置名称
         // address	详细地址
         // latitude	纬度，浮点数，范围为 - 90~90，负数表示南纬

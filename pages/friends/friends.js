@@ -115,6 +115,10 @@ Page({
   // typeId 类型: 1, 好友;2,拉黑
   // page 页码
   // pageSize 记录数
+  onShow: function () {
+    var pages = getCurrentPages(); //获取加载的页面信息（结果是个数组）
+    app.currentPage = pages[0].route;
+  },
   onLoad: function (options) {
     this.setData({ host: app.host });
     this.loadFriends();

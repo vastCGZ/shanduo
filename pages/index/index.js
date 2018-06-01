@@ -44,6 +44,10 @@ Page({
     pageSize: 20,
     advertise: null
   },
+  onShow: function () {
+    var pages = getCurrentPages(); //获取加载的页面信息（结果是个数组）
+    app.currentPage = pages[0].route;
+  },
   onLoad: function () {
     var that = this;
     WxNotificationCenter.addNotification('newMessageNotification', that.newMessageNotification, that);
@@ -81,6 +85,39 @@ Page({
     wx.showTabBarRedDot({
       index: 1
     });
+  },
+  bindGetUserInfo: function (e) {
+    var that = this;
+    var errMsg = e.detail.errMsg.split(':')[1];
+    if ("ok" === errMsg) {
+      app.globalData.tmpUser.nickName = e.detail.userInfo.nickName;
+      app.globalData.tmpUser.gender = e.detail.userInfo.gender == 1 ? 1 : 0
+      wx.request({
+        data: {
+          openId: app.globalData.tmpUser.openId,
+          encryptedData: e.detail.encryptedData,
+          iv: e.detail.iv
+        },
+        dataType: 'json',
+        url: app.host + '/wechat/getOpenid',
+        success: (res) => {
+          if (res.data.success) {
+            wx.setStorage({
+              key: 'localUser',
+              data: res.data.result
+            })
+            app.onLaunch();
+          } else {
+            if (10086 == res.data.errCode) {
+              app.globalData.tmpUser.unionId = res.data.errCodeDes;
+            }
+          }
+        }
+      })
+      wx.switchTab({
+        url: '/pages/index/index'
+      })
+    }
   },
   onUnload: function () {
     WxNotificationCenter.removeNotification('newMessageNotification', this);
@@ -338,10 +375,10 @@ Page({
       wx.switchTab({
         url: '/pages/personal/personal'
       })
-    }else{
-    wx.navigateTo({
-      url: '/pages/information/information?otherUserId=' + userId + ''
-    })
+    } else {
+      wx.navigateTo({
+        url: '/pages/information/information?otherUserId=' + userId + ''
+      })
     }
   }, gotoCreditCenterView: function () {
     wx.navigateTo({

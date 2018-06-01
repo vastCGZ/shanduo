@@ -12,6 +12,10 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+  onShow: function () {
+    var pages = getCurrentPages(); //获取加载的页面信息（结果是个数组）
+    app.currentPage = pages[0].route;
+  },
   onLoad: function (options) {
     var localUserInfo = app.globalData.userInfo;
     if (!localUserInfo) {
@@ -28,13 +32,6 @@ Page({
   onReady: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  },
-
   /**
    * 生命周期函数--监听页面隐藏
    */

@@ -1,3 +1,4 @@
+@import "../post_item/post_item_template.wxss";
 /*index.wxss*/
 
 page {

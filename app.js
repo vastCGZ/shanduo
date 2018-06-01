@@ -72,7 +72,8 @@ App({
       unionId: ''
     }
   },
-  host: 'https://yapinkeji.com/shanduoparty'
+  host: 'https://yapinkeji.com/shanduoparty',
+  currentPage:null
   , userLogin: function () {
     var that = this;
     wx.login({

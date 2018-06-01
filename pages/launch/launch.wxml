@@ -7,6 +7,9 @@
     </view>
   </view>
 </view>
+<view class='payment_title'>
+  <image src='/image/icon/off.png' bindtap='binShow'></image>
+</view>
 
 
 

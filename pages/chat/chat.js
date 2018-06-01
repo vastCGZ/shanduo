@@ -18,6 +18,10 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+  onShow: function () {
+    var pages = getCurrentPages(); //获取加载的页面信息（结果是个数组）
+    app.currentPage = pages[0].route;
+  },
   onLoad: function (options) {
     var that = this;
     WxNotificationCenter.addNotification('newMessageNotification', that.newMessageNotification, that);

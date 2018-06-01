@@ -1,5 +1,6 @@
+<import src="../post_item/post_item_template.wxml" />
 <!--index.wxml-->
-<view style='height:100%'>
+<view style='height:97%'>
   <view class="container">
     <view class="swiper-tab">
       <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">活动</view>
@@ -532,6 +533,6 @@
     </swiper-item>
   </swiper>
 </view>
-<view>
-
-</view>
+<block wx:if='{{false}}'>
+  <template is="postItem" />
+</block>

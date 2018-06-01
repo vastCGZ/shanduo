@@ -1,9 +1,27 @@
-// const app = getApp();
+const app = getApp();
 // var util = require('../../utils/util.js');
 // var date = new Date();
 // var currentHours = date.getHours();
 // var currentMinute = date.getMinutes();
 Page({
+  onLoad:(e)=>{
+    console.log(e);
+  },
+  onShow: function () {
+    wx.hideTabBar({
+      animation:true
+    })
+  },
+  binShow() {
+    wx.showTabBar({
+      animation: true
+    });
+    console.log(app.currentPage)
+    wx.switchTab({
+      url: '/'+app.currentPage
+    });
+    
+  }
 //   data: {
 //     currentTab: 0, //预设当前项的值
 //     scrollLeft: 0, //tab标题的滚动条位置
